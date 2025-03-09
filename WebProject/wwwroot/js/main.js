@@ -8,18 +8,73 @@ document.addEventListener('DOMContentLoaded', function() {
     const TOKEN_KEY = 'auth_token';
     const USER_KEY = 'user_data';
 
+    // Direct check for authentication state and update body class
+    if (localStorage.getItem(TOKEN_KEY)) {
+        document.body.classList.add('authenticated');
+        console.log("Body class set to authenticated based on token presence");
+    } else {
+        document.body.classList.remove('authenticated');
+        console.log("Body class authenticated removed based on token absence");
+    }
+
     // ===== UTILITY FUNCTIONS =====
+    
+    // Ensure proper display of UTF-8 characters
+    function ensureCorrectEncoding(text) {
+        if (!text) return "User";
+        try {
+            // In case the text has been double-encoded or has encoding issues
+            // Try to normalize it for display
+            return decodeURIComponent(escape(text));
+        } catch (e) {
+            console.error("Error normalizing text:", e);
+            return text;
+        }
+    }
     
     // Save auth token to localStorage
     function saveAuthToken(tokenData) {
         localStorage.setItem(TOKEN_KEY, tokenData.token);
-        localStorage.setItem(USER_KEY, JSON.stringify(tokenData.user));
+        // Make sure user data is always an object before saving it
+        if (tokenData.user) {
+            localStorage.setItem(USER_KEY, JSON.stringify(tokenData.user));
+            console.log("User data saved:", tokenData.user);
+        } else {
+            // Extract user info from JWT token
+            try {
+                const tokenParts = tokenData.token.split('.');
+                if (tokenParts.length === 3) {
+                    // Proper decoding of Base64URL with UTF-8 handling
+                    const base64Url = tokenParts[1];
+                    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                    }).join(''));
+                    
+                    const payload = JSON.parse(jsonPayload);
+                    const userData = {
+                        userId: payload.nameid,
+                        email: payload.email,
+                        fullName: payload.unique_name,
+                        role: payload.role
+                    };
+                    localStorage.setItem(USER_KEY, JSON.stringify(userData));
+                    console.log("User data extracted from token:", userData);
+                }
+            } catch (error) {
+                console.error("Failed to extract user data from token:", error);
+                // Save empty user object as fallback
+                localStorage.setItem(USER_KEY, JSON.stringify({fullName: "User"}));
+            }
+        }
+        console.log("Auth token saved:", tokenData.token);
     }
     
     // Clear auth token from localStorage
     function clearAuthToken() {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.removeItem(USER_KEY);
+        console.log("Auth token cleared from localStorage");
     }
     
     // Get auth token from localStorage
@@ -29,7 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check if user is authenticated
     function isAuthenticated() {
-        return !!getAuthToken();
+        const token = getAuthToken();
+        console.log("Current auth token:", token);
+        return !!token;
     }
     
     // Generic API call function with error handling
@@ -233,7 +290,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 if (response.success) {
+                    // Ensure we have the right format for saveAuthToken
+                    if (!response.token && response.data && response.data.token) {
+                        response.token = response.data.token;
+                    }
+                    
+                    if (!response.user && response.data && response.data.user) {
+                        response.user = response.data.user;
+                    }
+                    
+                    console.log("Login response:", response);
                     saveAuthToken(response);
+                    console.log("Login successful, updating UI immediately");
+                    updateUIBasedOnAuth();
                     return response;
                 } else {
                     throw new Error(response.message || 'Login failed');
@@ -265,7 +334,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 if (alternativeResponse.success) {
+                    // Ensure we have the right format for saveAuthToken
+                    if (!alternativeResponse.token && alternativeResponse.data && alternativeResponse.data.token) {
+                        alternativeResponse.token = alternativeResponse.data.token;
+                    }
+                    
+                    if (!alternativeResponse.user && alternativeResponse.data && alternativeResponse.data.user) {
+                        alternativeResponse.user = alternativeResponse.data.user;
+                    }
+                    
+                    console.log("Login response from alternative endpoint:", alternativeResponse);
                     saveAuthToken(alternativeResponse);
+                    console.log("Login successful via alternative endpoint, updating UI immediately");
+                    updateUIBasedOnAuth();
                     return alternativeResponse;
                 }
                 
@@ -391,6 +472,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 showToast('Thành công', 'Đăng nhập thành công', 'success');
                 
+                // Update UI immediately
+                console.log("Updating UI immediately after successful login");
+                updateUIBasedOnAuth();
+                
+                // Apply direct CSS fix for auth buttons
+                const authButtons = document.querySelector('.auth-buttons');
+                if (authButtons) {
+                    console.log("Applying direct CSS fix for auth buttons after login");
+                    authButtons.style.cssText = 'display: none !important'; // Use !important to override any other styles
+                }
+                
                 // Hide modal after a brief delay
                 setTimeout(() => {
                     const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
@@ -398,8 +490,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         loginModal.hide();
                     }
                     
-                    // Update UI based on authentication status instead of reloading
+                    // Update UI again after modal is hidden
+                    console.log("Updating UI again after modal is hidden");
                     updateUIBasedOnAuth();
+                    
+                    // Force a final check after a bit longer delay
+                    setTimeout(() => {
+                        console.log("Final UI update check after login");
+                        updateUIBasedOnAuth();
+                        
+                        // Final direct CSS fix for auth buttons
+                        const authButtons = document.querySelector('.auth-buttons');
+                        if (authButtons) {
+                            console.log("Applying final direct CSS fix for auth buttons");
+                            authButtons.style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important;';
+                            authButtons.classList.add('d-none');
+                            authButtons.hidden = true;
+                        }
+                    }, 500);
                 }, 1000);
             } catch (error) {
                 // Handle specific error cases with Vietnamese messages
@@ -635,38 +743,130 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update UI based on authentication status
     function updateUIBasedOnAuth() {
         const isLoggedIn = isAuthenticated();
+        console.log("Authentication status:", isLoggedIn);
+        
+        // Add or remove authenticated class on body element
+        if (isLoggedIn) {
+            document.body.classList.add('authenticated');
+        } else {
+            document.body.classList.remove('authenticated');
+        }
+        
         const authButtons = document.querySelector('.auth-buttons');
         const userDropdown = document.querySelector('.user-dropdown');
         
+        console.log("Auth buttons element:", authButtons);
+        console.log("User dropdown element:", userDropdown);
+        
         if (authButtons && userDropdown) {
             if (isLoggedIn) {
-                // Fix: Safely parse JSON with a default empty object if localStorage item doesn't exist
-                let userData = {};
+                // Use multiple approaches to ensure the elements are properly hidden/shown
+                // 1. Use inline styles
+                authButtons.style.display = 'none';
+                userDropdown.style.display = 'block';
+                
+                // 2. Add/remove classes
+                authButtons.classList.add('d-none');
+                authButtons.classList.remove('d-flex');
+                userDropdown.classList.remove('d-none');
+                
+                // 3. Set visibility
+                authButtons.hidden = true;
+                userDropdown.hidden = false;
+                
+                // Force the reflow of the DOM to ensure the changes are applied
+                void authButtons.offsetWidth;
+                void userDropdown.offsetWidth;
+                
+                // Try to load user data for display
+                let userData = {fullName: "User"};
                 try {
                     const storedData = localStorage.getItem(USER_KEY);
+                    console.log("Stored user data:", storedData);
                     if (storedData) {
                         userData = JSON.parse(storedData);
+                    } else {
+                        console.log("No user data found, using default name");
                     }
                 } catch (error) {
                     console.error('Error parsing user data:', error);
+                    // If we can't parse the user data but we're authenticated,
+                    // try to extract basic info from the token
+                    try {
+                        const token = getAuthToken();
+                        if (token) {
+                            const tokenParts = token.split('.');
+                            if (tokenParts.length === 3) {
+                                // Proper decoding of Base64URL with UTF-8 handling
+                                const base64Url = tokenParts[1];
+                                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                                }).join(''));
+                                
+                                const payload = JSON.parse(jsonPayload);
+                                userData = {
+                                    fullName: payload.unique_name || "User"
+                                };
+                                console.log("Extracted user name from token:", userData.fullName);
+                            }
+                        }
+                    } catch (tokenError) {
+                        console.error("Failed to extract name from token:", tokenError);
+                    }
                 }
                 
                 const userNameElement = userDropdown.querySelector('.user-name');
                 if (userNameElement) {
-                    userNameElement.textContent = userData.fullName || 'User';
+                    // Apply encoding fix to ensure proper display of UTF-8 characters
+                    userNameElement.textContent = ensureCorrectEncoding(userData.fullName) || 'User';
                 }
-                
-                authButtons.style.display = 'none';
-                userDropdown.style.display = 'block';
             } else {
-                authButtons.style.display = 'block';
+                // Use multiple approaches to ensure the elements are properly hidden/shown
+                // 1. Use inline styles
+                authButtons.style.display = 'flex';
                 userDropdown.style.display = 'none';
+                
+                // 2. Add/remove classes
+                authButtons.classList.remove('d-none');
+                authButtons.classList.add('d-flex');
+                userDropdown.classList.add('d-none');
+                
+                // 3. Set visibility
+                authButtons.hidden = false;
+                userDropdown.hidden = true;
+                
+                // Force the reflow of the DOM to ensure the changes are applied
+                void authButtons.offsetWidth;
+                void userDropdown.offsetWidth;
+                
+                console.log("Setting auth buttons display to block/flex");
             }
+        } else {
+            console.error("Could not find auth buttons or user dropdown");
         }
     }
     
-    // Initialize UI
+    // Initialize UI - Call this function first as soon as the page loads
+    console.log("Initializing UI based on authentication status");
     updateUIBasedOnAuth();
+    
+    // Add an additional check after a short delay to ensure the UI is properly updated
+    setTimeout(() => {
+        console.log("Running delayed UI update check");
+        updateUIBasedOnAuth();
+        
+        // Force-fix auth buttons if needed
+        const isLoggedIn = isAuthenticated();
+        if (isLoggedIn) {
+            const authButtons = document.querySelector('.auth-buttons');
+            const navbarCollapse = document.getElementById('navbarNav');
+            if (authButtons && navbarCollapse) {
+                console.log("Applying direct CSS fix for auth buttons");
+                authButtons.style.cssText = 'display: none !important';  // Use !important to override any other styles
+            }
+        }
+    }, 500);
 });
 
 // ===== VALIDATION FUNCTIONS =====

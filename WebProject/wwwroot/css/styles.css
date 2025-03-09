@@ -361,4 +361,27 @@ a {
 
 .features-section .col-md-4 {
     animation: fadeIn 1s ease-out;
+}
+
+/* Authentication UI states */
+.auth-buttons.hidden,
+.auth-buttons.d-none,
+.user-dropdown:not(.d-none) ~ .auth-buttons {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+body.authenticated .auth-buttons {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+body.authenticated .user-dropdown {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 } 
