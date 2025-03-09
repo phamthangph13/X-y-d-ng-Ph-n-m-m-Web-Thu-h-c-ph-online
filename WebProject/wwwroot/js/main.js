@@ -398,8 +398,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         loginModal.hide();
                     }
                     
-                    // Redirect or update UI based on user role
-                    window.location.reload();
+                    // Update UI based on authentication status instead of reloading
+                    updateUIBasedOnAuth();
                 }, 1000);
             } catch (error) {
                 // Handle specific error cases with Vietnamese messages
@@ -580,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 await logout();
                 showToast('Success', 'You have been logged out', 'success');
                 setTimeout(() => {
-                    window.location.reload();
+                    updateUIBasedOnAuth();
                 }, 1000);
             } catch (error) {
                 showToast('Error', 'Logout failed', 'error');

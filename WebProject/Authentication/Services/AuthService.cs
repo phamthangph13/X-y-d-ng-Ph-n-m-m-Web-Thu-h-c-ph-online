@@ -82,7 +82,7 @@ namespace WebProject.Authentication.Services
             var token = await GenerateEmailConfirmationTokenAsync(user);
 
             // Send confirmation email
-            var confirmationLink = $"{_configuration["AppUrl"]}/auth/confirm-email?userId={user.UserID}&token={token}";
+            var confirmationLink = $"{_configuration["AppUrl"]}/api/auth/confirm-email?userId={user.UserID}&token={token}";
             await _emailService.SendEmailAsync(user.Email, "Confirm your email",
                 $"Please confirm your account by clicking this link: <a href='{confirmationLink}'>Click here</a>");
 
