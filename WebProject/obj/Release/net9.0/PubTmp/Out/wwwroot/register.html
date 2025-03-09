@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký - Hệ Thống Thu Học Phí Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Logo">
+                <span>EduPay</span>
+            </a>
+            
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tuition.html" class="nav-link">Tra cứu học phí</a>
+                </li>
+                <li class="nav-item">
+                    <a href="payment.html" class="nav-link">Thanh toán</a>
+                </li>
+                <li class="nav-item">
+                    <a href="history.html" class="nav-link">Lịch sử giao dịch</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Liên hệ</a>
+                </li>
+            </ul>
+            
+            <div class="user-menu">
+                <div class="user-menu-toggle">
+                    <img src="images/user-avatar.jpg" alt="User Avatar" class="user-avatar">
+                    <span>Tài khoản</span>
+                </div>
+                <div class="user-menu-dropdown">
+                    <a href="login.html" class="user-menu-item">Đăng nhập</a>
+                    <a href="register.html" class="user-menu-item">Đăng ký</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Register Section -->
+    <section class="auth-container">
+        <div class="auth-form">
+            <div class="auth-header">
+                <h1 class="auth-title">Đăng ký tài khoản</h1>
+                <p class="auth-subtitle">Nhập thông tin của bạn để tạo tài khoản mới</p>
+            </div>
+            
+            <form class="validate-form">
+                <div class="form-group">
+                    <label for="fullname">Họ và tên</label>
+                    <input type="text" id="fullname" class="form-control" required data-error-msg="Vui lòng nhập họ và tên">
+                </div>
+                
+                <div class="form-group">
+                    <label for="student_id">Mã số sinh viên</label>
+                    <input type="text" id="student_id" class="form-control" required data-error-msg="Vui lòng nhập mã số sinh viên">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required data-error-msg="Vui lòng nhập địa chỉ email hợp lệ">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="tel" id="phone" class="form-control" required data-error-msg="Vui lòng nhập số điện thoại">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" class="form-control" required data-error-msg="Vui lòng nhập mật khẩu">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm_password">Xác nhận mật khẩu</label>
+                    <input type="password" id="confirm_password" class="form-control" required data-error-msg="Vui lòng xác nhận mật khẩu">
+                </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" id="terms" class="form-check-input" required data-error-msg="Bạn phải đồng ý với điều khoản sử dụng">
+                    <label for="terms" class="form-check-label">Tôi đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a></label>
+                </div>
+                
+                <button type="submit" class="btn">Đăng ký</button>
+            </form>
+            
+            <div class="auth-separator">
+                <span class="auth-separator-text">Hoặc đăng ký với</span>
+            </div>
+            
+            <div class="social-login">
+                <button class="social-login-button">
+                    <img src="images/google-icon.png" alt="Google">
+                    Google
+                </button>
+                <button class="social-login-button">
+                    <img src="images/facebook-icon.png" alt="Facebook">
+                    Facebook
+                </button>
+            </div>
+            
+            <div class="auth-footer">
+                Đã có tài khoản? <a href="login.html">Đăng nhập</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>Về chúng tôi</h4>
+                    <p>EduPay là hệ thống thu học phí trực tuyến hàng đầu, cung cấp giải pháp thanh toán học phí an toàn, tiện lợi cho học sinh, sinh viên và phụ huynh.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="tuition.html">Tra cứu học phí</a></li>
+                        <li><a href="payment.html">Thanh toán</a></li>
+                        <li><a href="history.html">Lịch sử giao dịch</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Hướng dẫn sử dụng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Trung tâm hỗ trợ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận XYZ, TP. HCM</li>
+                        <li><i class="fas fa-phone"></i> +84 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@edupay.com</li>
+                        <li><i class="fas fa-clock"></i> Thứ 2 - Thứ 6: 8:00 - 17:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 EduPay - Hệ thống thu học phí trực tuyến. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="js/site.js"></script>
+</body>
+</html> 

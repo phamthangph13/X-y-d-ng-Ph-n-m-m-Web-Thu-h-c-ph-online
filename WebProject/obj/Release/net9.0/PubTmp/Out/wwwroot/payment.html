@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán học phí - Hệ Thống Thu Học Phí Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/payment.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Logo">
+                <span>EduPay</span>
+            </a>
+            
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tuition.html" class="nav-link">Tra cứu học phí</a>
+                </li>
+                <li class="nav-item">
+                    <a href="payment.html" class="nav-link active">Thanh toán</a>
+                </li>
+                <li class="nav-item">
+                    <a href="history.html" class="nav-link">Lịch sử giao dịch</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Liên hệ</a>
+                </li>
+            </ul>
+            
+            <div class="user-menu">
+                <div class="user-menu-toggle">
+                    <img src="images/user-avatar.jpg" alt="User Avatar" class="user-avatar">
+                    <span>Nguyễn Văn A</span>
+                </div>
+                <div class="user-menu-dropdown">
+                    <a href="profile.html" class="user-menu-item">Thông tin tài khoản</a>
+                    <a href="history.html" class="user-menu-item">Lịch sử giao dịch</a>
+                    <a href="#" class="user-menu-item">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Payment Section -->
+    <section class="payment-container">
+        <div class="container">
+            <div class="payment-header">
+                <h1 class="payment-title">Thanh toán học phí</h1>
+                <p class="payment-subtitle">Vui lòng điền đầy đủ thông tin để hoàn tất quá trình thanh toán học phí</p>
+            </div>
+            
+            <div class="payment-layout">
+                <div class="payment-form-container">
+                    <form id="payment-form">
+                        <h2 class="payment-form-title">Thông tin thanh toán</h2>
+                        
+                        <div class="invoice-details">
+                            <div class="invoice-item">
+                                <span class="invoice-item-label">Mã sinh viên:</span>
+                                <span>SV12345</span>
+                            </div>
+                            <div class="invoice-item">
+                                <span class="invoice-item-label">Họ và tên:</span>
+                                <span>Nguyễn Văn A</span>
+                            </div>
+                            <div class="invoice-item">
+                                <span class="invoice-item-label">Lớp:</span>
+                                <span>K45-CNTT</span>
+                            </div>
+                            <div class="invoice-item">
+                                <span class="invoice-item-label">Kỳ học:</span>
+                                <span>Học kỳ 1, Năm học 2023-2024</span>
+                            </div>
+                        </div>
+                        
+                        <h2 class="payment-form-title">Chọn phương thức thanh toán</h2>
+                        
+                        <div class="payment-method-options">
+                            <div class="payment-method-option active">
+                                <input type="radio" name="payment_method" id="credit_card" value="credit_card" class="payment-method-radio" checked>
+                                <div class="payment-method-info">
+                                    <h3 class="payment-method-title">Thẻ tín dụng/ghi nợ</h3>
+                                    <p class="payment-method-description">Thanh toán an toàn với Visa, Mastercard, JCB...</p>
+                                </div>
+                                <div class="payment-method-logo">
+                                    <img src="images/visa.png" alt="Visa">
+                                    <img src="images/mastercard.png" alt="Mastercard">
+                                    <img src="images/jcb.png" alt="JCB">
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method-option">
+                                <input type="radio" name="payment_method" id="bank_transfer" value="bank_transfer" class="payment-method-radio">
+                                <div class="payment-method-info">
+                                    <h3 class="payment-method-title">Chuyển khoản ngân hàng</h3>
+                                    <p class="payment-method-description">Chuyển khoản trực tiếp từ tài khoản ngân hàng của bạn</p>
+                                </div>
+                                <div class="payment-method-logo">
+                                    <img src="images/bank.png" alt="Bank">
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method-option">
+                                <input type="radio" name="payment_method" id="e_wallet" value="e_wallet" class="payment-method-radio">
+                                <div class="payment-method-info">
+                                    <h3 class="payment-method-title">Ví điện tử</h3>
+                                    <p class="payment-method-description">Thanh toán qua ví điện tử: Momo, ZaloPay, VNPay...</p>
+                                </div>
+                                <div class="payment-method-logo">
+                                    <img src="images/momo.png" alt="Momo">
+                                    <img src="images/zalopay.png" alt="ZaloPay">
+                                    <img src="images/vnpay.png" alt="VNPay">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-details">
+                            <div class="form-group">
+                                <label for="card-name">Tên chủ thẻ</label>
+                                <input type="text" id="card-name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-number">Số thẻ</label>
+                                <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            
+                            <div class="card-row">
+                                <div class="form-group">
+                                    <label for="expiry-date">Ngày hết hạn (MM/YY)</label>
+                                    <input type="text" id="expiry-date" class="form-control" placeholder="MM/YY" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" class="form-control" placeholder="123" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h2 class="payment-form-title">Thông tin người thanh toán</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="payer-name">Họ và tên</label>
+                                <input type="text" id="payer-name" class="form-control" value="Nguyễn Văn A" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="payer-phone">Số điện thoại</label>
+                                <input type="tel" id="payer-phone" class="form-control" value="0912345678" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="payer-email">Email</label>
+                            <input type="email" id="payer-email" class="form-control" value="nguyenvana@example.com" required>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="save-info" class="form-check-input">
+                            <label for="save-info" class="form-check-label">Lưu thông tin cho lần thanh toán sau</label>
+                        </div>
+                        
+                        <button type="submit" class="btn payment-button">Thanh toán ngay</button>
+                        
+                        <div class="payment-security">
+                            <i class="fas fa-lock"></i> Thông tin thanh toán của bạn được bảo mật và mã hóa.
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="payment-summary">
+                    <h2 class="payment-form-title">Tóm tắt học phí</h2>
+                    
+                    <div class="summary-item">
+                        <span class="summary-item-label">Học phí cơ bản:</span>
+                        <span id="tuition-amount">8.500.000 ₫</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span class="summary-item-label">Phí dịch vụ:</span>
+                        <span id="processing-fee">212.500 ₫</span>
+                    </div>
+                    
+                    <div class="summary-total">
+                        <span>Tổng cộng:</span>
+                        <span id="total-amount">8.712.500 ₫</span>
+                    </div>
+                    
+                    <div class="payment-security">
+                        <i class="fas fa-shield-alt"></i> Bảo đảm hoàn tiền 100% nếu có sai sót
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>Về chúng tôi</h4>
+                    <p>EduPay là hệ thống thu học phí trực tuyến hàng đầu, cung cấp giải pháp thanh toán học phí an toàn, tiện lợi cho học sinh, sinh viên và phụ huynh.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="tuition.html">Tra cứu học phí</a></li>
+                        <li><a href="payment.html">Thanh toán</a></li>
+                        <li><a href="history.html">Lịch sử giao dịch</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="#">Hướng dẫn sử dụng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Trung tâm hỗ trợ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận XYZ, TP. HCM</li>
+                        <li><i class="fas fa-phone"></i> +84 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@edupay.com</li>
+                        <li><i class="fas fa-clock"></i> Thứ 2 - Thứ 6: 8:00 - 17:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 EduPay - Hệ thống thu học phí trực tuyến. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="js/site.js"></script>
+    <script src="js/payment.js"></script>
+</body>
+</html> 
