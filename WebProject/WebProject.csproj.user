@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>https</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\WebProject\Properties\PublishProfiles\site19820-WebDeploy1.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\Properties\PublishProfiles\site19820-WebDeploy2.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

@@ -82,7 +82,8 @@ namespace WebProject.Authentication.Services
             var token = await GenerateEmailConfirmationTokenAsync(user);
 
             // Send confirmation email
-            var confirmationLink = $"{_configuration["AppUrl"]}/api/auth/confirm-email?userId={user.UserID}&token={token}";
+            string appUrl = _configuration["AppUrl"] ?? _configuration["AppSettings:BaseUrl"] ?? "http://havarduniversity.runasp.net";
+            var confirmationLink = $"{appUrl}/api/auth/confirm-email?userId={user.UserID}&token={token}";
             await _emailService.SendEmailAsync(user.Email, "Confirm your email",
                 $"Please confirm your account by clicking this link: <a href='{confirmationLink}'>Click here</a>");
 
@@ -260,7 +261,8 @@ namespace WebProject.Authentication.Services
             }
 
             var token = await GeneratePasswordResetTokenAsync(user);
-            var resetLink = $"{_configuration["AppUrl"]}/auth/reset-password?email={email}&token={token}";
+            string appUrl = _configuration["AppUrl"] ?? _configuration["AppSettings:BaseUrl"] ?? "http://havarduniversity.runasp.net";
+            var resetLink = $"{appUrl}/auth/reset-password?email={email}&token={token}";
             
             await _emailService.SendEmailAsync(email, "Reset Password",
                 $"Please reset your password by clicking this link: <a href='{resetLink}'>Click here</a>");
