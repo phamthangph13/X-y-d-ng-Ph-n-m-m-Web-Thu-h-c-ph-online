@@ -8,7 +8,8 @@ using Microsoft.Extensions.Logging;
 
 namespace WebProject.Authentication.Controllers
 {
-    [Route("api/[controller]")]
+    // Use only one route attribute to prevent ambiguous matches
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -19,6 +20,13 @@ namespace WebProject.Authentication.Controllers
         {
             _authService = authService;
             _logger = logger;
+        }
+
+        // Test endpoint to verify routing
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Ok(new { message = "AuthController is working correctly" });
         }
 
         /// <summary>
@@ -72,10 +80,10 @@ namespace WebProject.Authentication.Controllers
         }
 
         /// <summary>
-        /// Login with email and password
+        /// Login using email and password
         /// </summary>
         /// <param name="model">Login credentials</param>
-        /// <returns>Authentication result with JWT token</returns>
+        /// <returns>Authentication result with token</returns>
         [HttpPost("login")]
         [ProducesResponseType(typeof(AuthResponse), 200)]
         [ProducesResponseType(typeof(AuthResponse), 400)]
@@ -86,13 +94,21 @@ namespace WebProject.Authentication.Controllers
                 return BadRequest(new AuthResponse { Success = false, Message = "Invalid input data" });
             }
 
-            var result = await _authService.LoginAsync(model);
-            if (!result.Success)
+            try
             {
-                return BadRequest(result);
-            }
+                var result = await _authService.LoginAsync(model);
+                if (!result.Success)
+                {
+                    return BadRequest(result);
+                }
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during login attempt for email: {Email}", model.Email);
+                return BadRequest(new AuthResponse { Success = false, Message = "Login failed. Please try again later." });
+            }
         }
 
         /// <summary>

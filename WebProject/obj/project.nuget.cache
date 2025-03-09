@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kt/8HQ27aIw=",
+  "dgSpecHash": "nVZyaxN3MIk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\WebProject\\WebProject.csproj",
+  "projectFilePath": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\WebProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\winni\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\winni\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

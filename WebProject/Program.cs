@@ -18,6 +18,18 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<WebProject.Models.ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add CORS policy to allow requests from any origin during development
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin() // Change back to allowing any origin for development
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+        // Note: AllowCredentials cannot be used with AllowAnyOrigin
+    });
+});
+
 // Add authentication services
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
@@ -102,6 +114,9 @@ else
 }
 
 app.UseHttpsRedirection();
+
+// Enable CORS - Make sure this comes before UseRouting and UseAuthorization
+app.UseCors("AllowAll");
 
 // Use default files before static files
 app.UseDefaultFiles(new DefaultFilesOptions

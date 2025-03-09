@@ -4923,11 +4923,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\WebProject\\WebProject.csproj",
+      "projectUniqueName": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\WebProject.csproj",
       "projectName": "WebProject",
-      "projectPath": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\WebProject\\WebProject.csproj",
+      "projectPath": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\WebProject.csproj",
       "packagesPath": "C:\\Users\\winni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\WebProject\\obj\\",
+      "outputPath": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "E:\\C#\\SDK\\NuGetPackages"
