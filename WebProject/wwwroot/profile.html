@@ -842,133 +842,14 @@
     <script src="js/services/api.js" type="module"></script>
     <script src="js/utils/auth.js" type="module"></script>
     <script src="js/utils/toast.js" type="module"></script>
-    <script src="js/profile.js" type="module"></script>
+    <script src="js/utils/ui.js" type="module"></script>
+    
+    <!-- Import module script for authentication and functionality -->
+    <script type="module" src="js/pages/profile.js"></script>
+    
+    <!-- Show content after loading -->
     <script>
-        // Add JavaScript for modal animations and interactions
         document.addEventListener('DOMContentLoaded', function() {
-            // Sidebar Functionality
-            const sidebar = document.querySelector('.sidebar');
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const mainContainer = document.querySelector('.main-container');
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
-
-            // Toggle sidebar on desktop
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('sidebar-collapsed');
-                mainContainer.classList.toggle('expanded');
-            });
-
-            // Toggle sidebar on mobile
-            mobileMenuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('show');
-                this.querySelector('i').classList.toggle('fa-bars');
-                this.querySelector('i').classList.toggle('fa-times');
-            });
-
-            // Handle sidebar link active state
-            const sidebarLinks = document.querySelectorAll('.sidebar-menu-link');
-            sidebarLinks.forEach(link => {
-                if (link.getAttribute('href') === window.location.pathname.split('/').pop()) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Sync logout buttons
-            const logoutBtn = document.getElementById('logoutBtn');
-            if (sidebarLogoutBtn && logoutBtn) {
-                sidebarLogoutBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Trigger the same logout functionality
-                    logoutBtn.click();
-                    return false;
-                });
-            }
-
-            // Modal animations
-            const modals = document.querySelectorAll('.modal');
-            const editProfileBtn = document.getElementById('editProfileBtn');
-            const changePasswordBtn = document.getElementById('changePasswordBtn');
-            const cancelBtns = document.querySelectorAll('.cancel-btn');
-            
-            function openModal(modalId) {
-                const modal = document.getElementById(modalId);
-                if (!modal) return;
-                
-                // Reset any previous styles
-                modal.style.cssText = '';
-                modal.querySelector('.modal-content').style.cssText = '';
-                
-                modal.style.display = 'flex';
-                setTimeout(() => {
-                    modal.classList.add('show');
-                }, 10);
-                
-                // Prevent body scrolling
-                document.body.style.overflow = 'hidden';
-            }
-            
-            function closeModal(modal) {
-                if (!modal) return;
-                
-                modal.classList.remove('show');
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = '';
-                }, 300);
-            }
-            
-            editProfileBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openModal('editProfileModal');
-                return false;
-            });
-            
-            changePasswordBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openModal('changePasswordModal');
-                return false;
-            });
-            
-            cancelBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const modal = btn.closest('.modal');
-                    closeModal(modal);
-                    return false;
-                });
-            });
-            
-            // Close modal when clicking outside
-            modals.forEach(modal => {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        closeModal(modal);
-                    }
-                });
-            });
-            
-            // Handle form submission to prevent default behavior
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    // Process form data here or via your existing scripts
-                    return false;
-                });
-            });
-            
-            // Info row hover effect
-            const infoRows = document.querySelectorAll('.info-row');
-            infoRows.forEach(row => {
-                row.addEventListener('mouseenter', () => {
-                    row.style.transform = 'translateX(10px)';
-                });
-                row.addEventListener('mouseleave', () => {
-                    row.style.transform = 'translateX(0)';
-                });
-            });
-            
             // Show content after loading
             setTimeout(() => {
                 document.querySelectorAll('.loading-placeholder').forEach(placeholder => {
