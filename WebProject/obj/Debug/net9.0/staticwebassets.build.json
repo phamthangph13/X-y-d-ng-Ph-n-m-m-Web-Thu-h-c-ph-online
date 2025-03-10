@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "e8Ac2FRZHUy7TDW6GQSpGVtu8fF/uhLxO9xlC2ISthI=",
+  "Hash": "qcHawnYN+DRpUIoGVKBmRn+QkNrmYDHi61p9ddPDbZg=",
   "Source": "WebProject",
   "BasePath": "_content/WebProject",
   "Mode": "Default",
@@ -17,12 +17,54 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-oz1zgvzr4u.gz",
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\70de4ww4bo-fkg53mx7sd.gz",
       "SourceId": "WebProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/WebProject",
-      "RelativePath": "js/main#[.{fingerprint=oz1zgvzr4u}]?.js.gz",
+      "RelativePath": "js/profile#[.{fingerprint=fkg53mx7sd}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\profile.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "d5650rz6be",
+      "Integrity": "Yapq4KfYHAYudMRTEaz1996vauHLFywBg+IaO2yfEh8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\profile.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\9jb6b6or5z-a4lkhuqax9.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "css/profile#[.{fingerprint=a4lkhuqax9}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\profile.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "xag5slnbdo",
+      "Integrity": "N976alSNAx281cPNTBEgZHOOu52HYbjOapLYWB/SbGg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\profile.css"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-ky59r0najp.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/main#[.{fingerprint=ky59r0najp}]?.js.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -31,19 +73,19 @@
       "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\main.js",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "xjrdqx8fg4",
-      "Integrity": "vYoRWnveBQJv4q9qIvN6RGZlYaYBNG9tX4kh9Hy93Mw=",
+      "Fingerprint": "b1tacon1de",
+      "Integrity": "gbIXePgBX9atCmR4JeDLSJBqs968+pdIea3oWsUHqDk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\main.js"
     },
     {
-      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-5kc4vz46bc.gz",
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-rayhcbvhzc.gz",
       "SourceId": "WebProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/WebProject",
-      "RelativePath": "index#[.{fingerprint=5kc4vz46bc}]?.html.gz",
+      "RelativePath": "index#[.{fingerprint=rayhcbvhzc}]?.html.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -52,8 +94,8 @@
       "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "sube1u2y4f",
-      "Integrity": "fFPK8fL/MqGOOuBTT6SqpZKlmHyTDHPySXElPn3N4/0=",
+      "Fingerprint": "x4t9xvrfeg",
+      "Integrity": "wQgZip9CnkIJ8gorw3pq6pr2YvqSGGwu/+L3DbJ6hbw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html"
@@ -80,6 +122,111 @@
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\images\\hero-image.svg"
     },
     {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\l9u1gxe01v-0x3ezg1259.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/config#[.{fingerprint=0x3ezg1259}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\config.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "bitdo9b04u",
+      "Integrity": "o2Iy5CythTIIwTVNgNIZ/PVo3fyiNbUvE0R7ahjSlE0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\config.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\plislp6lhc-dgrsuxd2ni.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "profile#[.{fingerprint=dgrsuxd2ni}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\profile.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "gzu5lx19g5",
+      "Integrity": "HNUAqpB3SqUJtQdXAoMsU63/JtttASCektvw8UquDJc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\profile.html"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\sl6vr8tif9-iv0j3ixl5v.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/utils/toast#[.{fingerprint=iv0j3ixl5v}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\toast.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "2gy7r8hvcp",
+      "Integrity": "3mqnoZWQfT2L0cItPZ97qV+xeiBOsZIQwKeSKN+qbMI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\toast.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vhqpzn1n9z-idq0lmt7q2.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/services/api#[.{fingerprint=idq0lmt7q2}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\services\\api.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "lkt2g0coqm",
+      "Integrity": "NdLI8dSVUyksMxLPD1kDC2tcapxC/tAU1nVL8D9CuO0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\services\\api.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vlsu9ifc2w-sdqhs88hh8.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/utils/ui#[.{fingerprint=sdqhs88hh8}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\ui.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "bpngt3bkg9",
+      "Integrity": "AUv2uRDQL5nofEg+hLb5Y8H495crHvK/vMGNpb0+OKo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\ui.js"
+    },
+    {
       "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vrgbhacsr4-60uzpidqpp.gz",
       "SourceId": "WebProject",
       "SourceType": "Discovered",
@@ -99,6 +246,90 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xbj3r3ql89-oaz3qxovat.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/utils/auth#[.{fingerprint=oaz3qxovat}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\auth.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "6pv5msmce3",
+      "Integrity": "RqrdM+moM8/nwX2gNNSKJvKJEGi/uExBMKImqdRESoo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\auth.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xmlgmqkrbr-fs5jrgdfhn.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/utils/validation#[.{fingerprint=fs5jrgdfhn}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\validation.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "q37dyh17i0",
+      "Integrity": "NnvaD5gKVMRHtgYMz8fUXDrF1mL7heDq7vXJ2REdnYM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\validation.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zfo0bo8n4y-c7oy2j8pi6.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/handlers/auth#[.{fingerprint=c7oy2j8pi6}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\handlers\\auth.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "1pt2s34qhw",
+      "Integrity": "K7VQB2MURKuWl0Bpz80TFctd7HUq46VzAgBjEVovCyc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\handlers\\auth.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\profile.css",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "css/profile#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "a4lkhuqax9",
+      "Integrity": "6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\profile.css"
     },
     {
       "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\styles.css",
@@ -157,11 +388,53 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5kc4vz46bc",
-      "Integrity": "azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0=",
+      "Fingerprint": "rayhcbvhzc",
+      "Integrity": "HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\config.js",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/config#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0x3ezg1259",
+      "Integrity": "VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\config.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\handlers\\auth.js",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/handlers/auth#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "c7oy2j8pi6",
+      "Integrity": "+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\handlers\\auth.js"
     },
     {
       "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\main.js",
@@ -178,14 +451,459 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "oz1zgvzr4u",
-      "Integrity": "1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA=",
+      "Fingerprint": "ky59r0najp",
+      "Integrity": "lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\main.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\profile.js",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/profile#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fkg53mx7sd",
+      "Integrity": "4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\profile.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\services\\api.js",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/services/api#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "idq0lmt7q2",
+      "Integrity": "ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\services\\api.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\auth.js",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/utils/auth#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "oaz3qxovat",
+      "Integrity": "cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\utils\\auth.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\toast.js",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/utils/toast#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "iv0j3ixl5v",
+      "Integrity": "0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\utils\\toast.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\ui.js",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/utils/ui#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sdqhs88hh8",
+      "Integrity": "0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\utils\\ui.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\validation.js",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "js/utils/validation#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fs5jrgdfhn",
+      "Integrity": "D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\utils\\validation.js"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\profile.html",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "profile#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dgrsuxd2ni",
+      "Integrity": "/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\profile.html"
     }
   ],
   "Endpoints": [
+    {
+      "Route": "css/profile.a4lkhuqax9.css",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\9jb6b6or5z-a4lkhuqax9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000708215297"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1411"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N976alSNAx281cPNTBEgZHOOu52HYbjOapLYWB/SbGg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:31:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a4lkhuqax9"
+        },
+        {
+          "Name": "label",
+          "Value": "css/profile.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.a4lkhuqax9.css",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\profile.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5493"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:31:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a4lkhuqax9"
+        },
+        {
+          "Name": "label",
+          "Value": "css/profile.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.a4lkhuqax9.css.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\9jb6b6or5z-a4lkhuqax9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1411"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N976alSNAx281cPNTBEgZHOOu52HYbjOapLYWB/SbGg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:31:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a4lkhuqax9"
+        },
+        {
+          "Name": "label",
+          "Value": "css/profile.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-N976alSNAx281cPNTBEgZHOOu52HYbjOapLYWB/SbGg="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.css",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\9jb6b6or5z-a4lkhuqax9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000708215297"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1411"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N976alSNAx281cPNTBEgZHOOu52HYbjOapLYWB/SbGg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:31:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.css",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\profile.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5493"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:31:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6rDcVNOF7ylP0iQSvGAbp1Uc48nHaVg2MctqIpnSC/M="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.css.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\9jb6b6or5z-a4lkhuqax9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1411"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N976alSNAx281cPNTBEgZHOOu52HYbjOapLYWB/SbGg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:31:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-N976alSNAx281cPNTBEgZHOOu52HYbjOapLYWB/SbGg="
+        }
+      ]
+    },
     {
       "Route": "css/styles.60uzpidqpp.css",
       "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vrgbhacsr4-60uzpidqpp.gz",
@@ -211,7 +929,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 19:47:08 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -272,7 +990,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 19:47:08 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -317,7 +1035,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 19:47:08 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -372,7 +1090,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 19:47:08 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -425,7 +1143,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 19:47:08 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -462,7 +1180,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 19:47:08 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -509,7 +1227,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 18:46:20 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -570,7 +1288,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 18:46:20 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -615,7 +1333,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 18:46:20 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -670,7 +1388,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 18:46:20 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -723,7 +1441,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 18:46:20 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -760,7 +1478,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 18:46:20 GMT"
+          "Value": "Mon, 10 Mar 2025 12:53:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -783,13 +1501,13 @@
       ]
     },
     {
-      "Route": "index.5kc4vz46bc.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-5kc4vz46bc.gz",
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-rayhcbvhzc.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000251130085"
+          "Quality": "0.000249500998"
         }
       ],
       "ResponseHeaders": [
@@ -799,19 +1517,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3981"
+          "Value": "4007"
         },
         {
           "Name": "ETag",
-          "Value": "\"fFPK8fL/MqGOOuBTT6SqpZKlmHyTDHPySXElPn3N4/0=\""
+          "Value": "\"wQgZip9CnkIJ8gorw3pq6pr2YvqSGGwu/+L3DbJ6hbw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:06:38 GMT"
+          "Value": "Mon, 10 Mar 2025 13:19:31 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -827,26 +1545,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0=\""
+          "Value": "W/\"HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "5kc4vz46bc"
-        },
-        {
-          "Name": "label",
-          "Value": "index.html"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0="
+          "Value": "sha256-HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws="
         }
       ]
     },
     {
-      "Route": "index.5kc4vz46bc.html",
+      "Route": "index.html",
       "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -856,7 +1566,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "23785"
+          "Value": "23811"
         },
         {
           "Name": "Content-Type",
@@ -864,11 +1574,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0=\""
+          "Value": "\"HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:06:38 GMT"
+          "Value": "Mon, 10 Mar 2025 13:19:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-rayhcbvhzc.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4007"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wQgZip9CnkIJ8gorw3pq6pr2YvqSGGwu/+L3DbJ6hbw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:19:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-wQgZip9CnkIJ8gorw3pq6pr2YvqSGGwu/+L3DbJ6hbw="
+        }
+      ]
+    },
+    {
+      "Route": "index.rayhcbvhzc.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-rayhcbvhzc.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000249500998"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4007"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wQgZip9CnkIJ8gorw3pq6pr2YvqSGGwu/+L3DbJ6hbw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:19:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rayhcbvhzc"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws="
+        }
+      ]
+    },
+    {
+      "Route": "index.rayhcbvhzc.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "23811"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:19:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -878,7 +1733,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "5kc4vz46bc"
+          "Value": "rayhcbvhzc"
         },
         {
           "Name": "label",
@@ -886,13 +1741,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0="
+          "Value": "sha256-HXCy2Dvi9x+g6BWcD3BygLH3+InnzeQfYPkZNNPrgws="
         }
       ]
     },
     {
-      "Route": "index.5kc4vz46bc.html.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-5kc4vz46bc.gz",
+      "Route": "index.rayhcbvhzc.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-rayhcbvhzc.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -901,7 +1756,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3981"
+          "Value": "4007"
         },
         {
           "Name": "Content-Type",
@@ -909,11 +1764,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fFPK8fL/MqGOOuBTT6SqpZKlmHyTDHPySXElPn3N4/0=\""
+          "Value": "\"wQgZip9CnkIJ8gorw3pq6pr2YvqSGGwu/+L3DbJ6hbw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:06:38 GMT"
+          "Value": "Mon, 10 Mar 2025 13:19:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -931,7 +1786,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "5kc4vz46bc"
+          "Value": "rayhcbvhzc"
         },
         {
           "Name": "label",
@@ -939,18 +1794,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-fFPK8fL/MqGOOuBTT6SqpZKlmHyTDHPySXElPn3N4/0="
+          "Value": "sha256-wQgZip9CnkIJ8gorw3pq6pr2YvqSGGwu/+L3DbJ6hbw="
         }
       ]
     },
     {
-      "Route": "index.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-5kc4vz46bc.gz",
+      "Route": "js/config.0x3ezg1259.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\l9u1gxe01v-0x3ezg1259.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000251130085"
+          "Quality": "0.003333333333"
         }
       ],
       "ResponseHeaders": [
@@ -960,19 +1815,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3981"
+          "Value": "299"
         },
         {
           "Name": "ETag",
-          "Value": "\"fFPK8fL/MqGOOuBTT6SqpZKlmHyTDHPySXElPn3N4/0=\""
+          "Value": "\"o2Iy5CythTIIwTVNgNIZ/PVo3fyiNbUvE0R7ahjSlE0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:06:38 GMT"
+          "Value": "Mon, 10 Mar 2025 13:35:25 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -984,23 +1839,31 @@
         },
         {
           "Name": "Content-Type",
-          "Value": "text/html"
+          "Value": "text/javascript"
         },
         {
           "Name": "ETag",
-          "Value": "W/\"azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0=\""
+          "Value": "W/\"VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "0x3ezg1259"
+        },
+        {
+          "Name": "label",
+          "Value": "js/config.js"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0="
+          "Value": "sha256-VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY="
         }
       ]
     },
     {
-      "Route": "index.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html",
+      "Route": "js/config.0x3ezg1259.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\config.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1009,35 +1872,43 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "23785"
+          "Value": "518"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/html"
+          "Value": "text/javascript"
         },
         {
           "Name": "ETag",
-          "Value": "\"azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0=\""
+          "Value": "\"VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:06:38 GMT"
+          "Value": "Mon, 10 Mar 2025 13:35:25 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "0x3ezg1259"
+        },
+        {
+          "Name": "label",
+          "Value": "js/config.js"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-azxBKGkzRr/hXZ3kwmmdOtWd/JiDHgIiMt3wTFkEAw0="
+          "Value": "sha256-VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY="
         }
       ]
     },
     {
-      "Route": "index.html.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-5kc4vz46bc.gz",
+      "Route": "js/config.0x3ezg1259.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\l9u1gxe01v-0x3ezg1259.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1046,23 +1917,23 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3981"
+          "Value": "299"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/html"
+          "Value": "text/javascript"
         },
         {
           "Name": "ETag",
-          "Value": "\"fFPK8fL/MqGOOuBTT6SqpZKlmHyTDHPySXElPn3N4/0=\""
+          "Value": "\"o2Iy5CythTIIwTVNgNIZ/PVo3fyiNbUvE0R7ahjSlE0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:06:38 GMT"
+          "Value": "Mon, 10 Mar 2025 13:35:25 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -1075,19 +1946,27 @@
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "0x3ezg1259"
+        },
+        {
+          "Name": "label",
+          "Value": "js/config.js.gz"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-fFPK8fL/MqGOOuBTT6SqpZKlmHyTDHPySXElPn3N4/0="
+          "Value": "sha256-o2Iy5CythTIIwTVNgNIZ/PVo3fyiNbUvE0R7ahjSlE0="
         }
       ]
     },
     {
-      "Route": "js/main.js",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-oz1zgvzr4u.gz",
+      "Route": "js/config.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\l9u1gxe01v-0x3ezg1259.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000106666667"
+          "Quality": "0.003333333333"
         }
       ],
       "ResponseHeaders": [
@@ -1097,15 +1976,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9374"
+          "Value": "299"
         },
         {
           "Name": "ETag",
-          "Value": "\"vYoRWnveBQJv4q9qIvN6RGZlYaYBNG9tX4kh9Hy93Mw=\""
+          "Value": "\"o2Iy5CythTIIwTVNgNIZ/PVo3fyiNbUvE0R7ahjSlE0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:25:35 GMT"
+          "Value": "Mon, 10 Mar 2025 13:35:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1125,13 +2004,448 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA=\""
+          "Value": "W/\"VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA="
+          "Value": "sha256-VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY="
+        }
+      ]
+    },
+    {
+      "Route": "js/config.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\config.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "518"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-VN5Jlesh965A+J7OErw27aGBQZjbM3FOx/gBC0mPsRY="
+        }
+      ]
+    },
+    {
+      "Route": "js/config.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\l9u1gxe01v-0x3ezg1259.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "299"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"o2Iy5CythTIIwTVNgNIZ/PVo3fyiNbUvE0R7ahjSlE0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-o2Iy5CythTIIwTVNgNIZ/PVo3fyiNbUvE0R7ahjSlE0="
+        }
+      ]
+    },
+    {
+      "Route": "js/handlers/auth.c7oy2j8pi6.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zfo0bo8n4y-c7oy2j8pi6.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000484730974"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2062"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"K7VQB2MURKuWl0Bpz80TFctd7HUq46VzAgBjEVovCyc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:04:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "c7oy2j8pi6"
+        },
+        {
+          "Name": "label",
+          "Value": "js/handlers/auth.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk="
+        }
+      ]
+    },
+    {
+      "Route": "js/handlers/auth.c7oy2j8pi6.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\handlers\\auth.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10034"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:04:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "c7oy2j8pi6"
+        },
+        {
+          "Name": "label",
+          "Value": "js/handlers/auth.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk="
+        }
+      ]
+    },
+    {
+      "Route": "js/handlers/auth.c7oy2j8pi6.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zfo0bo8n4y-c7oy2j8pi6.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2062"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"K7VQB2MURKuWl0Bpz80TFctd7HUq46VzAgBjEVovCyc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:04:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "c7oy2j8pi6"
+        },
+        {
+          "Name": "label",
+          "Value": "js/handlers/auth.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-K7VQB2MURKuWl0Bpz80TFctd7HUq46VzAgBjEVovCyc="
+        }
+      ]
+    },
+    {
+      "Route": "js/handlers/auth.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zfo0bo8n4y-c7oy2j8pi6.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000484730974"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2062"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"K7VQB2MURKuWl0Bpz80TFctd7HUq46VzAgBjEVovCyc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:04:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk="
+        }
+      ]
+    },
+    {
+      "Route": "js/handlers/auth.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\handlers\\auth.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10034"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:04:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+CKDGrgYsYfgI9HpBZy8IZy5CJ7A730yGo5exXCCLjk="
+        }
+      ]
+    },
+    {
+      "Route": "js/handlers/auth.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zfo0bo8n4y-c7oy2j8pi6.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2062"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"K7VQB2MURKuWl0Bpz80TFctd7HUq46VzAgBjEVovCyc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:04:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-K7VQB2MURKuWl0Bpz80TFctd7HUq46VzAgBjEVovCyc="
+        }
+      ]
+    },
+    {
+      "Route": "js/main.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-ky59r0najp.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000103799045"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9633"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gbIXePgBX9atCmR4JeDLSJBqs968+pdIea3oWsUHqDk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:14:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU="
         }
       ]
     },
@@ -1146,7 +2460,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "45604"
+          "Value": "47626"
         },
         {
           "Name": "Content-Type",
@@ -1154,11 +2468,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA=\""
+          "Value": "\"lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:25:35 GMT"
+          "Value": "Mon, 10 Mar 2025 13:14:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1168,13 +2482,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA="
+          "Value": "sha256-lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU="
         }
       ]
     },
     {
       "Route": "js/main.js.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-oz1zgvzr4u.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-ky59r0najp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1183,7 +2497,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9374"
+          "Value": "9633"
         },
         {
           "Name": "Content-Type",
@@ -1191,11 +2505,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"vYoRWnveBQJv4q9qIvN6RGZlYaYBNG9tX4kh9Hy93Mw=\""
+          "Value": "\"gbIXePgBX9atCmR4JeDLSJBqs968+pdIea3oWsUHqDk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:25:35 GMT"
+          "Value": "Mon, 10 Mar 2025 13:14:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1213,18 +2527,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-vYoRWnveBQJv4q9qIvN6RGZlYaYBNG9tX4kh9Hy93Mw="
+          "Value": "sha256-gbIXePgBX9atCmR4JeDLSJBqs968+pdIea3oWsUHqDk="
         }
       ]
     },
     {
-      "Route": "js/main.oz1zgvzr4u.js",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-oz1zgvzr4u.gz",
+      "Route": "js/main.ky59r0najp.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-ky59r0najp.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000106666667"
+          "Quality": "0.000103799045"
         }
       ],
       "ResponseHeaders": [
@@ -1234,15 +2548,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9374"
+          "Value": "9633"
         },
         {
           "Name": "ETag",
-          "Value": "\"vYoRWnveBQJv4q9qIvN6RGZlYaYBNG9tX4kh9Hy93Mw=\""
+          "Value": "\"gbIXePgBX9atCmR4JeDLSJBqs968+pdIea3oWsUHqDk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:25:35 GMT"
+          "Value": "Mon, 10 Mar 2025 13:14:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1262,13 +2576,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA=\""
+          "Value": "W/\"lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "oz1zgvzr4u"
+          "Value": "ky59r0najp"
         },
         {
           "Name": "label",
@@ -1276,12 +2590,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA="
+          "Value": "sha256-lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU="
         }
       ]
     },
     {
-      "Route": "js/main.oz1zgvzr4u.js",
+      "Route": "js/main.ky59r0najp.js",
       "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\main.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1291,7 +2605,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "45604"
+          "Value": "47626"
         },
         {
           "Name": "Content-Type",
@@ -1299,11 +2613,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA=\""
+          "Value": "\"lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:25:35 GMT"
+          "Value": "Mon, 10 Mar 2025 13:14:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1313,7 +2627,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "oz1zgvzr4u"
+          "Value": "ky59r0najp"
         },
         {
           "Name": "label",
@@ -1321,13 +2635,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-1NA4AHuWz5lJ7nJeCu1m31Vanahs6ABk5cq4c4ZbzeA="
+          "Value": "sha256-lI5FNzOkrCbSQQw4C0ISVWV2ecP5GBzMQsUqYssR4MU="
         }
       ]
     },
     {
-      "Route": "js/main.oz1zgvzr4u.js.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-oz1zgvzr4u.gz",
+      "Route": "js/main.ky59r0najp.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\cftla9ba8p-ky59r0najp.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1336,7 +2650,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9374"
+          "Value": "9633"
         },
         {
           "Name": "Content-Type",
@@ -1344,11 +2658,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"vYoRWnveBQJv4q9qIvN6RGZlYaYBNG9tX4kh9Hy93Mw=\""
+          "Value": "\"gbIXePgBX9atCmR4JeDLSJBqs968+pdIea3oWsUHqDk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:25:35 GMT"
+          "Value": "Mon, 10 Mar 2025 13:14:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1366,7 +2680,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "oz1zgvzr4u"
+          "Value": "ky59r0najp"
         },
         {
           "Name": "label",
@@ -1374,7 +2688,2093 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-vYoRWnveBQJv4q9qIvN6RGZlYaYBNG9tX4kh9Hy93Mw="
+          "Value": "sha256-gbIXePgBX9atCmR4JeDLSJBqs968+pdIea3oWsUHqDk="
+        }
+      ]
+    },
+    {
+      "Route": "js/profile.fkg53mx7sd.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\70de4ww4bo-fkg53mx7sd.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000482160077"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2073"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yapq4KfYHAYudMRTEaz1996vauHLFywBg+IaO2yfEh8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:34:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fkg53mx7sd"
+        },
+        {
+          "Name": "label",
+          "Value": "js/profile.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI="
+        }
+      ]
+    },
+    {
+      "Route": "js/profile.fkg53mx7sd.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\profile.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8674"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:34:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fkg53mx7sd"
+        },
+        {
+          "Name": "label",
+          "Value": "js/profile.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI="
+        }
+      ]
+    },
+    {
+      "Route": "js/profile.fkg53mx7sd.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\70de4ww4bo-fkg53mx7sd.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2073"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yapq4KfYHAYudMRTEaz1996vauHLFywBg+IaO2yfEh8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:34:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fkg53mx7sd"
+        },
+        {
+          "Name": "label",
+          "Value": "js/profile.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yapq4KfYHAYudMRTEaz1996vauHLFywBg+IaO2yfEh8="
+        }
+      ]
+    },
+    {
+      "Route": "js/profile.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\70de4ww4bo-fkg53mx7sd.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000482160077"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2073"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yapq4KfYHAYudMRTEaz1996vauHLFywBg+IaO2yfEh8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:34:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI="
+        }
+      ]
+    },
+    {
+      "Route": "js/profile.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\profile.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8674"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:34:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4VFgi+k7TKyrQ8w96s1xJiHswCSp2WukSwrCFnm+XfI="
+        }
+      ]
+    },
+    {
+      "Route": "js/profile.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\70de4ww4bo-fkg53mx7sd.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2073"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yapq4KfYHAYudMRTEaz1996vauHLFywBg+IaO2yfEh8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:34:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yapq4KfYHAYudMRTEaz1996vauHLFywBg+IaO2yfEh8="
+        }
+      ]
+    },
+    {
+      "Route": "js/services/api.idq0lmt7q2.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vhqpzn1n9z-idq0lmt7q2.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000648088140"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1542"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NdLI8dSVUyksMxLPD1kDC2tcapxC/tAU1nVL8D9CuO0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "idq0lmt7q2"
+        },
+        {
+          "Name": "label",
+          "Value": "js/services/api.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ="
+        }
+      ]
+    },
+    {
+      "Route": "js/services/api.idq0lmt7q2.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\services\\api.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4682"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "idq0lmt7q2"
+        },
+        {
+          "Name": "label",
+          "Value": "js/services/api.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ="
+        }
+      ]
+    },
+    {
+      "Route": "js/services/api.idq0lmt7q2.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vhqpzn1n9z-idq0lmt7q2.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1542"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NdLI8dSVUyksMxLPD1kDC2tcapxC/tAU1nVL8D9CuO0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "idq0lmt7q2"
+        },
+        {
+          "Name": "label",
+          "Value": "js/services/api.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NdLI8dSVUyksMxLPD1kDC2tcapxC/tAU1nVL8D9CuO0="
+        }
+      ]
+    },
+    {
+      "Route": "js/services/api.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vhqpzn1n9z-idq0lmt7q2.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000648088140"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1542"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NdLI8dSVUyksMxLPD1kDC2tcapxC/tAU1nVL8D9CuO0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ="
+        }
+      ]
+    },
+    {
+      "Route": "js/services/api.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\services\\api.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4682"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ep0w2rtbHTeWu7BsZPLWl+GPk2U3MRayHAq3A7LOeiQ="
+        }
+      ]
+    },
+    {
+      "Route": "js/services/api.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vhqpzn1n9z-idq0lmt7q2.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1542"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NdLI8dSVUyksMxLPD1kDC2tcapxC/tAU1nVL8D9CuO0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NdLI8dSVUyksMxLPD1kDC2tcapxC/tAU1nVL8D9CuO0="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/auth.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xbj3r3ql89-oaz3qxovat.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001199040767"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "833"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RqrdM+moM8/nwX2gNNSKJvKJEGi/uExBMKImqdRESoo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:01:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/auth.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\auth.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2465"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:01:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/auth.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xbj3r3ql89-oaz3qxovat.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "833"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RqrdM+moM8/nwX2gNNSKJvKJEGi/uExBMKImqdRESoo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:01:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RqrdM+moM8/nwX2gNNSKJvKJEGi/uExBMKImqdRESoo="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/auth.oaz3qxovat.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xbj3r3ql89-oaz3qxovat.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001199040767"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "833"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RqrdM+moM8/nwX2gNNSKJvKJEGi/uExBMKImqdRESoo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:01:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oaz3qxovat"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/auth.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/auth.oaz3qxovat.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\auth.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2465"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:01:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oaz3qxovat"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/auth.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cJNtDkTqgHwkvU7di8RuYw0JfY46spo96im7le9B55A="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/auth.oaz3qxovat.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xbj3r3ql89-oaz3qxovat.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "833"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RqrdM+moM8/nwX2gNNSKJvKJEGi/uExBMKImqdRESoo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:01:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oaz3qxovat"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/auth.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RqrdM+moM8/nwX2gNNSKJvKJEGi/uExBMKImqdRESoo="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/toast.iv0j3ixl5v.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\sl6vr8tif9-iv0j3ixl5v.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001428571429"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "699"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3mqnoZWQfT2L0cItPZ97qV+xeiBOsZIQwKeSKN+qbMI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iv0j3ixl5v"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/toast.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/toast.iv0j3ixl5v.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\toast.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1614"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iv0j3ixl5v"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/toast.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/toast.iv0j3ixl5v.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\sl6vr8tif9-iv0j3ixl5v.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "699"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3mqnoZWQfT2L0cItPZ97qV+xeiBOsZIQwKeSKN+qbMI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "iv0j3ixl5v"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/toast.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3mqnoZWQfT2L0cItPZ97qV+xeiBOsZIQwKeSKN+qbMI="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/toast.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\sl6vr8tif9-iv0j3ixl5v.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001428571429"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "699"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3mqnoZWQfT2L0cItPZ97qV+xeiBOsZIQwKeSKN+qbMI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/toast.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\toast.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1614"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0rn4dQmRWCuH0ly1Hr4rMiIeIZspAq0HXrWqDt9phrE="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/toast.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\sl6vr8tif9-iv0j3ixl5v.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "699"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3mqnoZWQfT2L0cItPZ97qV+xeiBOsZIQwKeSKN+qbMI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:35:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3mqnoZWQfT2L0cItPZ97qV+xeiBOsZIQwKeSKN+qbMI="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/ui.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vlsu9ifc2w-sdqhs88hh8.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000653167864"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1530"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AUv2uRDQL5nofEg+hLb5Y8H495crHvK/vMGNpb0+OKo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:03:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/ui.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\ui.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4953"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:03:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/ui.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vlsu9ifc2w-sdqhs88hh8.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1530"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AUv2uRDQL5nofEg+hLb5Y8H495crHvK/vMGNpb0+OKo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:03:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-AUv2uRDQL5nofEg+hLb5Y8H495crHvK/vMGNpb0+OKo="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/ui.sdqhs88hh8.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vlsu9ifc2w-sdqhs88hh8.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000653167864"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1530"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AUv2uRDQL5nofEg+hLb5Y8H495crHvK/vMGNpb0+OKo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:03:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sdqhs88hh8"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/ui.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/ui.sdqhs88hh8.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\ui.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4953"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:03:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sdqhs88hh8"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/ui.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0Bt7cBTAS89UnIihpWS1MGkP4JlphWJpqMwIz07X62E="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/ui.sdqhs88hh8.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vlsu9ifc2w-sdqhs88hh8.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1530"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AUv2uRDQL5nofEg+hLb5Y8H495crHvK/vMGNpb0+OKo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:03:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sdqhs88hh8"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/ui.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-AUv2uRDQL5nofEg+hLb5Y8H495crHvK/vMGNpb0+OKo="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/validation.fs5jrgdfhn.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xmlgmqkrbr-fs5jrgdfhn.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000759301443"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1316"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NnvaD5gKVMRHtgYMz8fUXDrF1mL7heDq7vXJ2REdnYM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:02:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fs5jrgdfhn"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/validation.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/validation.fs5jrgdfhn.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\validation.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4025"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:02:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fs5jrgdfhn"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/validation.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/validation.fs5jrgdfhn.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xmlgmqkrbr-fs5jrgdfhn.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1316"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NnvaD5gKVMRHtgYMz8fUXDrF1mL7heDq7vXJ2REdnYM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:02:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fs5jrgdfhn"
+        },
+        {
+          "Name": "label",
+          "Value": "js/utils/validation.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NnvaD5gKVMRHtgYMz8fUXDrF1mL7heDq7vXJ2REdnYM="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/validation.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xmlgmqkrbr-fs5jrgdfhn.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000759301443"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1316"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NnvaD5gKVMRHtgYMz8fUXDrF1mL7heDq7vXJ2REdnYM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:02:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/validation.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\validation.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4025"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:02:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-D28CKhDIWDIBAHI5RdYRUckuMXUnOFZf2Hn+0/4E0iA="
+        }
+      ]
+    },
+    {
+      "Route": "js/utils/validation.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\xmlgmqkrbr-fs5jrgdfhn.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1316"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NnvaD5gKVMRHtgYMz8fUXDrF1mL7heDq7vXJ2REdnYM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:02:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NnvaD5gKVMRHtgYMz8fUXDrF1mL7heDq7vXJ2REdnYM="
+        }
+      ]
+    },
+    {
+      "Route": "profile.dgrsuxd2ni.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\plislp6lhc-dgrsuxd2ni.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000627352572"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1593"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HNUAqpB3SqUJtQdXAoMsU63/JtttASCektvw8UquDJc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:37:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dgrsuxd2ni"
+        },
+        {
+          "Name": "label",
+          "Value": "profile.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg="
+        }
+      ]
+    },
+    {
+      "Route": "profile.dgrsuxd2ni.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\profile.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7877"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:37:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dgrsuxd2ni"
+        },
+        {
+          "Name": "label",
+          "Value": "profile.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg="
+        }
+      ]
+    },
+    {
+      "Route": "profile.dgrsuxd2ni.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\plislp6lhc-dgrsuxd2ni.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1593"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HNUAqpB3SqUJtQdXAoMsU63/JtttASCektvw8UquDJc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:37:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dgrsuxd2ni"
+        },
+        {
+          "Name": "label",
+          "Value": "profile.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HNUAqpB3SqUJtQdXAoMsU63/JtttASCektvw8UquDJc="
+        }
+      ]
+    },
+    {
+      "Route": "profile.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\plislp6lhc-dgrsuxd2ni.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000627352572"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1593"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HNUAqpB3SqUJtQdXAoMsU63/JtttASCektvw8UquDJc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:37:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg="
+        }
+      ]
+    },
+    {
+      "Route": "profile.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\profile.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7877"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:37:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/csTq+Y54hMjcytT8xocK6rl57oeurUGsL3+l0mL4rg="
+        }
+      ]
+    },
+    {
+      "Route": "profile.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\plislp6lhc-dgrsuxd2ni.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1593"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HNUAqpB3SqUJtQdXAoMsU63/JtttASCektvw8UquDJc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Mar 2025 13:37:35 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HNUAqpB3SqUJtQdXAoMsU63/JtttASCektvw8UquDJc="
         }
       ]
     }

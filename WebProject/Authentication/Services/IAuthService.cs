@@ -19,5 +19,7 @@ namespace WebProject.Authentication.Services
         Task<User?> FindByEmailAsync(string email);
         Task<string> GeneratePasswordResetTokenAsync(User user);
         Task LogoutAsync();
+        string HashPassword(string password);
+        bool VerifyPassword(string password, string hashedPassword);
     }
 } 

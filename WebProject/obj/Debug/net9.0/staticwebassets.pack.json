@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\profile.css",
+      "PackagePath": "staticwebassets\\css\\profile.css"
+    },
+    {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\styles.css",
       "PackagePath": "staticwebassets\\css\\styles.css"
     },
@@ -13,8 +17,44 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\config.js",
+      "PackagePath": "staticwebassets\\js\\config.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\handlers\\auth.js",
+      "PackagePath": "staticwebassets\\js\\handlers\\auth.js"
+    },
+    {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\main.js",
       "PackagePath": "staticwebassets\\js\\main.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\profile.js",
+      "PackagePath": "staticwebassets\\js\\profile.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\services\\api.js",
+      "PackagePath": "staticwebassets\\js\\services\\api.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\auth.js",
+      "PackagePath": "staticwebassets\\js\\utils\\auth.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\toast.js",
+      "PackagePath": "staticwebassets\\js\\utils\\toast.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\ui.js",
+      "PackagePath": "staticwebassets\\js\\utils\\ui.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\utils\\validation.js",
+      "PackagePath": "staticwebassets\\js\\utils\\validation.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\profile.html",
+      "PackagePath": "staticwebassets\\profile.html"
     },
     {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.WebProject.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

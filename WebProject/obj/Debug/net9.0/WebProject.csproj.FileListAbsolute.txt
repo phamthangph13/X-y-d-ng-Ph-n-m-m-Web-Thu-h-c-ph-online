@@ -403,5 +403,15 @@ C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProje
 C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\ref\WebProject.dll
 C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\l0pb11oqay-awsdxsnfpb.gz
 C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\vrgbhacsr4-60uzpidqpp.gz
-C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\fv9h8woxx0-5kc4vz46bc.gz
-C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\cftla9ba8p-oz1zgvzr4u.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\zfo0bo8n4y-c7oy2j8pi6.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\cftla9ba8p-ky59r0najp.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\xbj3r3ql89-oaz3qxovat.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\vlsu9ifc2w-sdqhs88hh8.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\xmlgmqkrbr-fs5jrgdfhn.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\9jb6b6or5z-a4lkhuqax9.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\fv9h8woxx0-rayhcbvhzc.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\l9u1gxe01v-0x3ezg1259.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\70de4ww4bo-fkg53mx7sd.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\vhqpzn1n9z-idq0lmt7q2.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\sl6vr8tif9-iv0j3ixl5v.gz
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\obj\Debug\net9.0\compressed\plislp6lhc-dgrsuxd2ni.gz

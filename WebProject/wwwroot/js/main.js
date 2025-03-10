@@ -1,3 +1,7 @@
+import { dropdownApi } from './services/api.js';
+import { initAuthHandlers } from './handlers/auth.js';
+import { updateUIBasedOnAuth, initSmoothScroll, initAnimations } from './utils/ui.js';
+
 // Helper function to add field errors
 function addFieldError(fieldId, errorMessage) {
     const field = document.getElementById(fieldId);
@@ -421,12 +425,56 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== EVENT HANDLERS =====
     
     // Load dropdown data when register modal is shown
-    $('#registerModal').on('show.bs.modal', function() {
-        loadDepartments();
-        loadEnrollmentYears();
+    $('#registerModal').on('show.bs.modal', async function() {
+        try {
+            const departments = await dropdownApi.getDepartments();
+            const departmentSelect = document.getElementById('departmentID');
+            
+            // Clear all options except the first one
+            while (departmentSelect.options.length > 1) {
+                departmentSelect.remove(1);
+            }
+            
+            departments.forEach(dept => {
+                const option = document.createElement('option');
+                option.value = dept.departmentID;
+                option.textContent = `${dept.departmentName} (${dept.departmentCode})`;
+                departmentSelect.appendChild(option);
+            });
+            
+            await dropdownApi.getEnrollmentYears();
+        } catch (error) {
+            showToast('Error', 'Failed to load form data', 'error');
+        }
     });
     
-    // Handle the "Forgot Password" link click
+    // Handle department change to update class options
+    const departmentSelect = document.getElementById('departmentID');
+    if (departmentSelect) {
+        departmentSelect.addEventListener('change', async function() {
+            try {
+                const classes = await dropdownApi.getClasses(this.value);
+                const classSelect = document.getElementById('classID');
+                
+                // Clear all options except the first one
+                while (classSelect.options.length > 1) {
+                    classSelect.remove(1);
+                }
+                
+                classes.forEach(cls => {
+                    const option = document.createElement('option');
+                    option.value = cls.classID;
+                    option.textContent = cls.className;
+                    option.dataset.departmentId = cls.departmentID;
+                    classSelect.appendChild(option);
+                });
+            } catch (error) {
+                showToast('Error', 'Failed to load classes', 'error');
+            }
+        });
+    }
+    
+    // Handle "Forgot Password" link click
     const forgotPasswordLink = document.getElementById('forgotPasswordLink');
     if (forgotPasswordLink) {
         forgotPasswordLink.addEventListener('click', function(e) {
@@ -438,14 +486,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const forgotPasswordModal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
                 forgotPasswordModal.show();
             }, 300);
-        });
-    }
-
-    // Add department change listener to update class options
-    const departmentSelect = document.getElementById('departmentID');
-    if (departmentSelect) {
-        departmentSelect.addEventListener('change', function() {
-            loadClasses(this.value);
         });
     }
 
@@ -871,6 +911,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize UI - Call this function first as soon as the page loads
     console.log("Initializing UI based on authentication status");
     updateUIBasedOnAuth();
+    
+    // Initialize all auth handlers
+    initAuthHandlers();
+    
+    // Initialize smooth scrolling
+    initSmoothScroll();
+    
+    // Initialize animations
+    initAnimations();
     
     // Add an additional check after a short delay to ensure the UI is properly updated
     setTimeout(() => {
