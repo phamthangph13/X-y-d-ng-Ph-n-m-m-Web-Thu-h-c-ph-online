@@ -3,7 +3,7 @@ import random
 from datetime import datetime, timedelta
 
 # Connection string with explicit driver specification and correct encryption parameters
-conn_str = "Driver={ODBC Driver 17 for SQL Server};Server=db15290.public.databaseasp.net;Database=db15290;Uid=db15290;Pwd=jT+5Y2t=qM@7;TrustServerCertificate=yes;Encrypt=yes;"
+conn_str = "Driver={ODBC Driver 17 for SQL Server};Server=db15352.public.databaseasp.net;Database=db15352;Uid=db15352;Pwd=Kb9?2G+cf3W@;TrustServerCertificate=yes;Encrypt=yes;"
 
 # Departments to add (Khoa)
 departments = [

@@ -1,13 +1,24 @@
 import { API_ENDPOINTS } from '../config.js';
 import { getAuthToken } from '../utils/auth.js';
 
-// Generic API call function with error handling
+// Generic API call function with enhanced error handling
 async function apiCall(url, method = 'GET', data = null, requiresAuth = false) {
+    console.log(`Making ${method} request to: ${url}`);
+    
+    // Detect if we're on production server
+    const isProduction = window.location.hostname !== "localhost";
+    if (isProduction) {
+        console.log('Running in production environment');
+    }
+    
     const options = {
         method,
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'same-origin'
     };
     
     if (data) {
@@ -22,28 +33,61 @@ async function apiCall(url, method = 'GET', data = null, requiresAuth = false) {
     }
     
     try {
+        console.log('Request options:', JSON.stringify({...options, body: options.body ? '[DATA]' : undefined}));
         const response = await fetch(url, options);
-        const contentType = response.headers.get('content-type');
         
-        if (contentType && contentType.includes('application/json')) {
-            const responseData = await response.json();
+        console.log(`Response status: ${response.status} ${response.statusText}`);
+        
+        // Log response headers for debugging
+        const headers = {};
+        response.headers.forEach((value, key) => {
+            headers[key] = value;
+        });
+        console.log('Response headers:', headers);
+        
+        // For all environments, log the raw response text for debugging
+        const responseClone = response.clone();
+        const rawText = await responseClone.text();
+        console.log('Raw response text:', rawText);
+        
+        if (!rawText || rawText.trim() === '') {
+            console.error('Empty response received from server');
+            return [];  // Return empty array as fallback
+        }
+        
+        try {
+            // Try to parse the raw text manually
+            const parsedData = JSON.parse(rawText);
+            console.log('Successfully parsed JSON response:', parsedData);
+            
+            // Check if not OK status
             if (!response.ok) {
-                throw new Error(responseData.message || getFriendlyErrorMessage(response.status));
+                const errorMessage = parsedData.message || getFriendlyErrorMessage(response.status);
+                console.error('Error response with parsed JSON:', errorMessage);
+                throw new Error(errorMessage);
             }
-            return responseData;
-        } else {
-            const textResponse = await response.text();
+            
+            // Check if the response has $id and $values properties (ASP.NET format)
+            if (parsedData && parsedData.$id && parsedData.$values) {
+                console.log('Detected ASP.NET serialization format with $values');
+                return parsedData; // Return the whole object, the api functions will extract $values
+            }
+            
+            return parsedData;
+        } catch (parseError) {
+            console.error('Failed to parse response as JSON:', parseError);
+            
+            // Check if not OK status
             if (!response.ok) {
-                throw new Error(getFriendlyErrorMessage(response.status, textResponse));
+                const errorMessage = rawText || getFriendlyErrorMessage(response.status);
+                console.error('Error response with text:', errorMessage);
+                throw new Error(errorMessage);
             }
-            try {
-                return JSON.parse(textResponse);
-            } catch (e) {
-                return { message: textResponse || 'Success' };
-            }
+            
+            return [];  // Return empty array as fallback
         }
     } catch (error) {
-        console.error('API Error:', error);
+        console.error(`API call error (${method} ${url}):`, error);
         throw error;
     }
 }
@@ -127,18 +171,213 @@ export const authApi = {
 
 // Dropdown data API calls
 export const dropdownApi = {
-    getDepartments: () => 
-        apiCall(`${API_ENDPOINTS.DROPDOWN}/departments`),
-        
-    getClasses: (departmentId = null) => {
-        const url = departmentId 
-            ? `${API_ENDPOINTS.DROPDOWN}/classes?departmentId=${departmentId}` 
-            : `${API_ENDPOINTS.DROPDOWN}/classes`;
-        return apiCall(url);
+    getDepartments: async () => {
+        try {
+            console.log('Getting departments...');
+            const response = await apiCall(`${API_ENDPOINTS.DROPDOWN}/departments`);
+            console.log('Raw departments response:', response);
+            
+            // Handle various response formats
+            if (!response) {
+                console.warn('Empty response from departments API');
+                return [];
+            }
+            
+            // Check if it's the special response format with $values
+            if (response.$values) {
+                console.log('Response contains $values array with', response.$values.length, 'items');
+                
+                // Sửa tên thuộc tính để trùng khớp với dữ liệu trả về
+                const uniqueValues = Array.from(new Set(response.$values.map(item => item.departmentID)))
+                    .map(id => response.$values.find(item => item.departmentID === id));
+                return uniqueValues;
+            }
+            
+            // Check if it's already an array
+            if (Array.isArray(response)) {
+                console.log('Response is an array with', response.length, 'items');
+                
+                // Sửa tên thuộc tính để trùng khớp với dữ liệu trả về
+                const uniqueValues = Array.from(new Set(response.map(item => item.departmentID)))
+                    .map(id => response.find(item => item.departmentID === id));
+                return uniqueValues;
+            }
+            
+            // Try to check if response is a JSON string
+            if (typeof response === 'string') {
+                try {
+                    const parsedResponse = JSON.parse(response);
+                    console.log('Parsed string response:', parsedResponse);
+                    
+                    if (parsedResponse.$values) {
+                        console.log('Parsed response contains $values with', parsedResponse.$values.length, 'items');
+                        return parsedResponse.$values;
+                    }
+                    
+                    if (Array.isArray(parsedResponse)) {
+                        console.log('Parsed response is an array with', parsedResponse.length, 'items');
+                        return parsedResponse;
+                    }
+                } catch (error) {
+                    console.error('Error parsing response string:', error);
+                }
+            }
+            
+            // Log all properties of the response for debugging
+            console.log('Response properties:', Object.keys(response));
+            
+            // If it's some other object, try to extract departments from it
+            console.warn('Unexpected response format:', response);
+            return [];
+        } catch (error) {
+            console.error('Error in getDepartments:', error);
+            return []; // Return empty array instead of propagating error
+        }
     },
         
-    getEnrollmentYears: () => 
-        apiCall(`${API_ENDPOINTS.DROPDOWN}/enrollment-years`)
+    getClasses: async (departmentId = null) => {
+        try {
+            const url = departmentId 
+                ? `${API_ENDPOINTS.DROPDOWN}/classes?departmentId=${departmentId}` 
+                : `${API_ENDPOINTS.DROPDOWN}/classes`;
+                
+            console.log('Getting classes...', departmentId ? `for department ${departmentId}` : 'for all departments');
+            console.log('API call stack trace:', new Error().stack);
+            console.log('API call timestamp:', new Date().toISOString());
+            
+            const response = await apiCall(url);
+            console.log('Raw classes response:', response);
+            
+            // Handle various response formats
+            if (!response) {
+                console.warn('Empty response from classes API');
+                return [];
+            }
+            
+            // Lấy mảng dữ liệu chính xác từ response
+            let classData = [];
+            
+            // Check if response has $values property - this is the primary case
+            if (response && response.$values && Array.isArray(response.$values)) {
+                console.log(`Found ${response.$values.length} classes in $values property`);
+                classData = response.$values;
+            } 
+            // Check if response is a plain array
+            else if (Array.isArray(response)) {
+                console.log(`Found ${response.length} classes in array response`);
+                classData = response;
+            }
+            // Handle other formats
+            else {
+                console.warn('Unexpected response format, checking if response is JSON object');
+                // If response is an object without $values but with numeric keys, it might be an array-like object
+                if (typeof response === 'object') {
+                    let possibleArrayData = [];
+                    let hasNumericKeys = false;
+                    
+                    for (let key in response) {
+                        // Skip $id and $values properties
+                        if (key === '$id' || key === '$values') continue;
+                        
+                        // Check if the key is numeric, indicating an array-like object
+                        if (!isNaN(parseInt(key))) {
+                            hasNumericKeys = true;
+                            if (response[key] && typeof response[key] === 'object' && 
+                                response[key].classID) {
+                                possibleArrayData.push(response[key]);
+                            }
+                        }
+                    }
+                    
+                    if (hasNumericKeys && possibleArrayData.length > 0) {
+                        console.log(`Extracted ${possibleArrayData.length} classes from object with numeric keys`);
+                        classData = possibleArrayData;
+                    } else {
+                        console.warn('Could not extract class data from response');
+                    }
+                } else {
+                    console.warn('Response is neither an object nor an array');
+                }
+            }
+            
+            console.log(`Original data contains ${classData.length} classes`);
+            
+            // Filter out duplicates based on classID
+            const uniqueClassData = [];
+            const seenClassIDs = new Set();
+            
+            classData.forEach(cls => {
+                if (cls && cls.classID && !seenClassIDs.has(cls.classID)) {
+                    seenClassIDs.add(cls.classID);
+                    uniqueClassData.push(cls);
+                }
+            });
+            
+            console.log(`After removing duplicates: ${uniqueClassData.length} unique classes`);
+            console.log('Final classes data:', uniqueClassData);
+            
+            return uniqueClassData;
+        } catch (error) {
+            console.error('Error in getClasses:', error);
+            return []; // Return empty array instead of propagating error
+        }
+    },
+        
+    getEnrollmentYears: async () => {
+        try {
+            console.log('Getting enrollment years...');
+            const response = await apiCall(`${API_ENDPOINTS.DROPDOWN}/enrollment-years`);
+            console.log('Raw enrollment years response:', response);
+            
+            // Handle various response formats
+            if (!response) {
+                console.warn('Empty response from enrollment years API');
+                return [];
+            }
+            
+            // Check if it's the special response format with $values
+            if (response.$values) {
+                console.log('Response contains $values array with', response.$values.length, 'items');
+                return response.$values;
+            }
+            
+            // Check if it's already an array
+            if (Array.isArray(response)) {
+                console.log('Response is an array with', response.length, 'items');
+                return response;
+            }
+            
+            // Try to check if response is a JSON string
+            if (typeof response === 'string') {
+                try {
+                    const parsedResponse = JSON.parse(response);
+                    console.log('Parsed string response:', parsedResponse);
+                    
+                    if (parsedResponse.$values) {
+                        console.log('Parsed response contains $values with', parsedResponse.$values.length, 'items');
+                        return parsedResponse.$values;
+                    }
+                    
+                    if (Array.isArray(parsedResponse)) {
+                        console.log('Parsed response is an array with', parsedResponse.length, 'items');
+                        return parsedResponse;
+                    }
+                } catch (error) {
+                    console.error('Error parsing response string:', error);
+                }
+            }
+            
+            // Log all properties of the response for debugging
+            console.log('Response properties:', Object.keys(response));
+            
+            // If it's some other object, try to extract years from it
+            console.warn('Unexpected response format:', response);
+            return [];
+        } catch (error) {
+            console.error('Error in getEnrollmentYears:', error);
+            return []; // Return empty array instead of propagating error
+        }
+    }
 };
 
 // Student Tuition API calls
