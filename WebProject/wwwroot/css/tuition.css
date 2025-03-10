@@ -824,4 +824,29 @@ main:hover {
         width: 95%;
         padding: 1.5rem;
     }
+}
+
+/* Empty state styling */
+.empty-state {
+    text-align: center;
+    padding: 30px !important;
+}
+
+.empty-state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+.empty-state-container i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #adb5bd;
+}
+
+.empty-state-container p {
+    font-size: 18px;
+    margin: 0;
 } 

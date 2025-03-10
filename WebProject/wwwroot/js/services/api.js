@@ -139,4 +139,28 @@ export const dropdownApi = {
         
     getEnrollmentYears: () => 
         apiCall(`${API_ENDPOINTS.DROPDOWN}/enrollment-years`)
+};
+
+// Student Tuition API calls
+export const tuitionApi = {
+    testStudentTuition: () =>
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/Test`, 'GET', null, false),
+        
+    checkData: () =>
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/CheckData`, 'GET', null, false),
+        
+    getStudentFees: (studentId) => 
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetStudentFees/${studentId}`, 'GET', null, true),
+        
+    getFeeDetails: (studentFeeId) => 
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetFeeDetails/${studentFeeId}`, 'GET', null, true),
+        
+    getPaymentHistory: (studentId) => 
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetPaymentHistory/${studentId}`, 'GET', null, true),
+        
+    getCurrentSemesterFees: (studentId) => 
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetCurrentSemesterFees/${studentId}`, 'GET', null, true),
+        
+    getUnpaidFees: (studentId) => 
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetUnpaidFees/${studentId}`, 'GET', null, true)
 }; 

@@ -7,7 +7,8 @@ const API_BASE_URL = window.location.hostname === "localhost"
 const API_ENDPOINTS = {
     AUTH: `${API_BASE_URL}/api/auth`,
     USERS: `${API_BASE_URL}/api/users`,
-    DROPDOWN: `${API_BASE_URL}/api/dropdowndata`
+    DROPDOWN: `${API_BASE_URL}/api/dropdowndata`,
+    STUDENT_TUITION: `${API_BASE_URL}/api/StudentTuition`
 };
 
 // Local Storage Keys
