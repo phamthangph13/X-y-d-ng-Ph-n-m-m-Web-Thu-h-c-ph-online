@@ -901,4 +901,371 @@ main:hover {
     .modal-actions button {
         width: 100%;
     }
+}
+
+/* Payment History Styles */
+
+/* Stats Cards */
+.payment-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.stat-icon i {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.stat-info h3 {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 0.5rem 0;
+}
+
+.stat-info p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* Table Styles */
+.payment-history-table-container {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.payment-history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-history-table th {
+    background: #f8f9fa;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.payment-history-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    color: #666;
+}
+
+.payment-history-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Styles */
+.status-success {
+    color: #28a745;
+    background: #e3f9e5;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.status-pending {
+    color: #ffc107;
+    background: #fff3cd;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.status-failed {
+    color: #dc3545;
+    background: #f8d7da;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.status-refunded {
+    color: #6c757d;
+    background: #e9ecef;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+/* Action Buttons */
+.btn-view-detail, .btn-download {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-view-detail {
+    color: var(--primary-color);
+}
+
+.btn-download {
+    color: #28a745;
+}
+
+.btn-view-detail:hover {
+    color: var(--primary-color-dark);
+}
+
+.btn-download:hover {
+    color: #218838;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.modal-header h2 i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.payment-info {
+    margin-bottom: 2rem;
+}
+
+.info-group {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.info-group label {
+    width: 200px;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.info-group label i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+}
+
+.info-group span {
+    color: #333;
+    font-weight: 500;
+}
+
+.payment-items h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.payment-items h3 i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+}
+
+.payment-items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-items-table th {
+    background: #f8f9fa;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.payment-items-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+    color: #666;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.modal-footer button {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.modal-footer button i {
+    margin-right: 0.5rem;
+}
+
+.download-btn {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.download-btn:hover {
+    background: var(--primary-color-dark);
+}
+
+.close-btn {
+    background: #6c757d;
+    color: #fff;
+}
+
+.close-btn:hover {
+    background: #5a6268;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+}
+
+.empty-state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.empty-state-container i {
+    font-size: 2rem;
+    color: #6c757d;
+}
+
+.empty-state-container p {
+    color: #6c757d;
+    margin: 0;
+}
+
+/* Loading Placeholder */
+.loading-placeholder {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+    display: none;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .payment-history-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .info-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-group label {
+        margin-bottom: 0.5rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
 } 

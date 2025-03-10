@@ -69,258 +69,152 @@
             </header>
 
             <main class="animate__animated animate__fadeIn animate__delay-1s">
-                <section class="history-section">
-                    <h1 class="animate__animated animate__fadeInLeft"><i class="fas fa-history"></i>Lịch sử thanh toán</h1>
-                    
-                    <!-- Tổng quan về thanh toán -->
-                    <div class="history-overview">
-                        <div class="stats-container">
-                            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
-                                <div class="stat-icon">
-                                    <i class="fas fa-calendar-check"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3>Tổng số giao dịch</h3>
-                                    <p class="loading-placeholder" style="width: 60px; height: 30px;"></p>
-                                    <p class="total-transactions content-element">12</p>
-                                </div>
+                <section class="payment-history-section">
+                    <h1 class="animate__animated animate__fadeInLeft">
+                        <i class="fas fa-history"></i>Lịch sử thanh toán
+                    </h1>
+
+                    <!-- Thống kê thanh toán -->
+                    <div class="payment-stats">
+                        <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                            <div class="stat-icon">
+                                <i class="fas fa-exchange-alt"></i>
                             </div>
-                            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
-                                <div class="stat-icon">
-                                    <i class="fas fa-hand-holding-usd"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3>Tổng tiền đã thanh toán</h3>
-                                    <p class="loading-placeholder" style="width: 120px; height: 30px;"></p>
-                                    <p class="total-paid content-element">45,000,000 VNĐ</p>
-                                </div>
+                            <div class="stat-info">
+                                <h3>Tổng giao dịch</h3>
+                                <p class="loading-placeholder" style="width: 120px; height: 30px;"></p>
+                                <p class="total-transactions content-element">0</p>
                             </div>
-                            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
-                                <div class="stat-icon">
-                                    <i class="fas fa-credit-card"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3>Phương thức phổ biến</h3>
-                                    <p class="loading-placeholder" style="width: 150px; height: 30px;"></p>
-                                    <p class="popular-method content-element">Internet Banking</p>
-                                </div>
+                        </div>
+                        <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                            <div class="stat-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Tổng số tiền</h3>
+                                <p class="loading-placeholder" style="width: 120px; height: 30px;"></p>
+                                <p class="total-amount content-element">0 ₫</p>
+                            </div>
+                        </div>
+                        <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Tỷ lệ thành công</h3>
+                                <p class="loading-placeholder" style="width: 120px; height: 30px;"></p>
+                                <p class="success-rate content-element">0%</p>
+                            </div>
+                        </div>
+                        <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                            <div class="stat-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Phương thức ưa thích</h3>
+                                <p class="loading-placeholder" style="width: 120px; height: 30px;"></p>
+                                <p class="preferred-method content-element">N/A</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bộ lọc -->
-                    <div class="filter-section animate__animated animate__fadeInUp animate__delay-2s">
-                        <h2><i class="fas fa-filter"></i>Bộ lọc</h2>
-                        <div class="filter-container">
-                            <div class="filter-group">
-                                <label for="dateRangeFilter">Khoảng thời gian:</label>
-                                <select id="dateRangeFilter">
-                                    <option value="all">Tất cả</option>
-                                    <option value="today">Hôm nay</option>
-                                    <option value="week">7 ngày qua</option>
-                                    <option value="month">30 ngày qua</option>
-                                    <option value="year">1 năm qua</option>
-                                    <option value="custom">Tùy chỉnh...</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label for="paymentMethodFilter">Phương thức thanh toán:</label>
-                                <select id="paymentMethodFilter">
-                                    <option value="all">Tất cả</option>
-                                    <option value="banking">Internet Banking</option>
-                                    <option value="credit">Thẻ tín dụng/ghi nợ</option>
-                                    <option value="momo">Ví MoMo</option>
-                                    <option value="vnpay">VN Pay</option>
-                                    <option value="zalopay">Zalo Pay</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label for="statusFilter">Trạng thái:</label>
-                                <select id="statusFilter">
-                                    <option value="all">Tất cả</option>
-                                    <option value="success">Thành công</option>
-                                    <option value="pending">Đang xử lý</option>
-                                    <option value="failed">Thất bại</option>
-                                </select>
-                            </div>
-                            <div class="filter-actions">
-                                <button id="applyFilterBtn"><i class="fas fa-search"></i>Áp dụng</button>
-                                <button id="resetFilterBtn"><i class="fas fa-undo"></i>Đặt lại</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Danh sách lịch sử giao dịch -->
-                    <div class="history-list animate__animated animate__fadeInUp animate__delay-2s">
-                        <h2><i class="fas fa-list"></i>Các giao dịch</h2>
-                        
-                        <div class="history-table-container">
-                            <table class="history-table">
+                    <!-- Bảng lịch sử thanh toán -->
+                    <div class="payment-history-table-container animate__animated animate__fadeInUp animate__delay-2s">
+                        <h2><i class="fas fa-list"></i>Chi tiết giao dịch</h2>
+                        <div class="table-responsive">
+                            <table class="payment-history-table">
                                 <thead>
                                     <tr>
                                         <th>Mã giao dịch</th>
                                         <th>Ngày thanh toán</th>
-                                        <th>Nội dung</th>
-                                        <th>Học kỳ</th>
-                                        <th>Số tiền</th>
                                         <th>Phương thức</th>
+                                        <th>Số tiền</th>
                                         <th>Trạng thái</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td data-label="Mã giao dịch">TXN123456789</td>
-                                        <td data-label="Ngày thanh toán">25/07/2023</td>
-                                        <td data-label="Nội dung">Học phí kỳ I năm 2023-2024</td>
-                                        <td data-label="Học kỳ">2023-2024/I</td>
-                                        <td data-label="Số tiền">5,500,000 VNĐ</td>
-                                        <td data-label="Phương thức">Internet Banking</td>
-                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
-                                        <td data-label="Hành động">
-                                            <button class="btn-receipt" data-id="TXN123456789"><i class="fas fa-file-invoice"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Mã giao dịch">TXN123456788</td>
-                                        <td data-label="Ngày thanh toán">18/12/2022</td>
-                                        <td data-label="Nội dung">Học phí kỳ II năm 2022-2023</td>
-                                        <td data-label="Học kỳ">2022-2023/II</td>
-                                        <td data-label="Số tiền">5,000,000 VNĐ</td>
-                                        <td data-label="Phương thức">Thẻ tín dụng</td>
-                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
-                                        <td data-label="Hành động">
-                                            <button class="btn-receipt" data-id="TXN123456788"><i class="fas fa-file-invoice"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Mã giao dịch">TXN123456787</td>
-                                        <td data-label="Ngày thanh toán">25/07/2022</td>
-                                        <td data-label="Nội dung">Học phí kỳ I năm 2022-2023</td>
-                                        <td data-label="Học kỳ">2022-2023/I</td>
-                                        <td data-label="Số tiền">5,000,000 VNĐ</td>
-                                        <td data-label="Phương thức">Zalo Pay</td>
-                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
-                                        <td data-label="Hành động">
-                                            <button class="btn-receipt" data-id="TXN123456787"><i class="fas fa-file-invoice"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Mã giao dịch">TXN123456786</td>
-                                        <td data-label="Ngày thanh toán">18/12/2021</td>
-                                        <td data-label="Nội dung">Học phí kỳ II năm 2021-2022</td>
-                                        <td data-label="Học kỳ">2021-2022/II</td>
-                                        <td data-label="Số tiền">4,500,000 VNĐ</td>
-                                        <td data-label="Phương thức">Internet Banking</td>
-                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
-                                        <td data-label="Hành động">
-                                            <button class="btn-receipt" data-id="TXN123456786"><i class="fas fa-file-invoice"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Mã giao dịch">TXN123456785</td>
-                                        <td data-label="Ngày thanh toán">25/07/2021</td>
-                                        <td data-label="Nội dung">Học phí kỳ I năm 2021-2022</td>
-                                        <td data-label="Học kỳ">2021-2022/I</td>
-                                        <td data-label="Số tiền">4,500,000 VNĐ</td>
-                                        <td data-label="Phương thức">Thẻ tín dụng</td>
-                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
-                                        <td data-label="Hành động">
-                                            <button class="btn-receipt" data-id="TXN123456785"><i class="fas fa-file-invoice"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td data-label="Mã giao dịch">TXN123456784</td>
-                                        <td data-label="Ngày thanh toán">18/12/2020</td>
-                                        <td data-label="Nội dung">Học phí kỳ II năm 2020-2021</td>
-                                        <td data-label="Học kỳ">2020-2021/II</td>
-                                        <td data-label="Số tiền">4,000,000 VNĐ</td>
-                                        <td data-label="Phương thức">MoMo</td>
-                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
-                                        <td data-label="Hành động">
-                                            <button class="btn-receipt" data-id="TXN123456784"><i class="fas fa-file-invoice"></i></button>
+                                        <td colspan="6" class="empty-state">
+                                            <div class="empty-state-container">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <p>Đang tải lịch sử thanh toán...</p>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
-                        <!-- Phân trang -->
-                        <div class="pagination-container">
-                            <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
-                            <button class="pagination-btn active">1</button>
-                            <button class="pagination-btn">2</button>
-                            <button class="pagination-btn">3</button>
-                            <span class="pagination-ellipsis">...</span>
-                            <button class="pagination-btn">10</button>
-                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-
-                    <!-- Action buttons -->
-                    <div class="history-actions animate__animated animate__fadeInUp animate__delay-3s">
-                        <button id="exportExcelBtn" class="primary-btn"><i class="fas fa-file-excel"></i>Xuất Excel</button>
-                        <button id="exportPdfBtn" class="secondary-btn"><i class="fas fa-file-pdf"></i>Xuất PDF</button>
                     </div>
                 </section>
             </main>
         </div>
     </div>
 
-    <!-- Receipt Modal -->
-    <div id="receiptModal" class="modal">
-        <div class="modal-content receipt-modal">
-            <div class="receipt-header">
-                <div class="receipt-logo">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h2>EduPay</h2>
+    <!-- Payment Detail Modal -->
+    <div id="paymentDetailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-info-circle"></i>Chi tiết giao dịch</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-info">
+                    <div class="info-group">
+                        <label><i class="fas fa-hashtag"></i>Mã giao dịch:</label>
+                        <span class="transaction-id">-</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-calendar-alt"></i>Ngày thanh toán:</label>
+                        <span class="payment-date">-</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-credit-card"></i>Phương thức:</label>
+                        <span class="payment-method">-</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-money-bill-wave"></i>Số tiền:</label>
+                        <span class="payment-amount">-</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-info-circle"></i>Trạng thái:</label>
+                        <span class="payment-status">-</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-file-alt"></i>Nội dung thanh toán:</label>
+                        <span class="payment-description">-</span>
+                    </div>
                 </div>
-                <div class="receipt-title">
-                    <h2>Biên lai thanh toán</h2>
-                    <p>Mã giao dịch: <span id="receiptTransactionId">TXN123456789</span></p>
+                <div class="payment-items">
+                    <h3><i class="fas fa-list"></i>Chi tiết các khoản thanh toán</h3>
+                    <div class="table-responsive">
+                        <table class="payment-items-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã học phần</th>
+                                    <th>Tên học phần</th>
+                                    <th>Số tín chỉ</th>
+                                    <th>Học kỳ</th>
+                                    <th>Số tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        <div class="empty-state-container">
+                                            <i class="fas fa-info-circle"></i>
+                                            <p>Không có dữ liệu chi tiết</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            
-            <div class="receipt-details">
-                <div class="receipt-row">
-                    <div class="receipt-label">Ngày giao dịch:</div>
-                    <div class="receipt-value" id="receiptDate">25/07/2023 15:30:45</div>
-                </div>
-                <div class="receipt-row">
-                    <div class="receipt-label">Người thanh toán:</div>
-                    <div class="receipt-value" id="receiptPayer">Nguyễn Văn A</div>
-                </div>
-                <div class="receipt-row">
-                    <div class="receipt-label">Mã sinh viên:</div>
-                    <div class="receipt-value" id="receiptStudentId">SV12345</div>
-                </div>
-                <div class="receipt-row">
-                    <div class="receipt-label">Nội dung thanh toán:</div>
-                    <div class="receipt-value" id="receiptDescription">Học phí kỳ I năm 2023-2024</div>
-                </div>
-                <div class="receipt-row">
-                    <div class="receipt-label">Số tiền:</div>
-                    <div class="receipt-value" id="receiptAmount">5,500,000 VNĐ</div>
-                </div>
-                <div class="receipt-row">
-                    <div class="receipt-label">Phương thức thanh toán:</div>
-                    <div class="receipt-value" id="receiptMethod">Internet Banking</div>
-                </div>
-                <div class="receipt-row">
-                    <div class="receipt-label">Trạng thái:</div>
-                    <div class="receipt-value" id="receiptStatus">Thành công</div>
-                </div>
-            </div>
-            
-            <div class="receipt-footer">
-                <p>Biên lai này được tạo tự động bởi hệ thống EduPay.</p>
-                <p>Nếu có thắc mắc, vui lòng liên hệ phòng tài chính: taichinh@trường.edu.vn</p>
-            </div>
-            
-            <div class="modal-actions">
-                <button type="button" id="printReceiptBtn"><i class="fas fa-print"></i>In biên lai</button>
-                <button type="button" id="downloadReceiptBtn"><i class="fas fa-download"></i>Tải biên lai</button>
-                <button type="button" class="cancel-btn"><i class="fas fa-times"></i>Đóng</button>
+            <div class="modal-footer">
+                <button class="download-btn"><i class="fas fa-download"></i>Tải hoá đơn</button>
+                <button class="close-btn"><i class="fas fa-times"></i>Đóng</button>
             </div>
         </div>
     </div>
@@ -331,22 +225,7 @@
     <script src="js/utils/auth.js" type="module"></script>
     <script src="js/utils/toast.js" type="module"></script>
     
-    <!-- Import module script for authentication and functionality -->
+    <!-- Import module script for payment history functionality -->
     <script type="module" src="js/pages/payment-history.js"></script>
-    
-    <!-- Show content after loading -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show content after loading
-            setTimeout(() => {
-                document.querySelectorAll('.loading-placeholder').forEach(placeholder => {
-                    placeholder.style.display = 'none';
-                });
-                document.querySelectorAll('.content-element').forEach(element => {
-                    element.style.opacity = '1';
-                });
-            }, 1500);
-        });
-    </script>
 </body>
 </html> 

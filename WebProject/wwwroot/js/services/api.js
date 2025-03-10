@@ -152,15 +152,58 @@ export const tuitionApi = {
     getStudentFees: (studentId) => 
         apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetStudentFees/${studentId}`, 'GET', null, true),
         
-    getFeeDetails: (studentFeeId) => 
-        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetFeeDetails/${studentFeeId}`, 'GET', null, true),
-        
-    getPaymentHistory: (studentId) => 
-        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetPaymentHistory/${studentId}`, 'GET', null, true),
-        
     getCurrentSemesterFees: (studentId) => 
         apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetCurrentSemesterFees/${studentId}`, 'GET', null, true),
         
     getUnpaidFees: (studentId) => 
-        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetUnpaidFees/${studentId}`, 'GET', null, true)
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetUnpaidFees/${studentId}`, 'GET', null, true),
+
+    // Get payment history for a student
+    getPaymentHistory: (studentId) => 
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetPaymentHistory/${studentId}`, 'GET', null, true),
+        
+    // Get payment details
+    getPaymentDetails: (paymentId) => 
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetPaymentDetails/${paymentId}`, 'GET', null, true),
+        
+    // Download invoice
+    downloadInvoice: async (paymentId) => {
+        try {
+            const token = getAuthToken();
+            const response = await fetch(
+                `${API_ENDPOINTS.STUDENT_TUITION}/DownloadInvoice/${paymentId}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+            
+            if (!response.ok) throw new Error('Network response was not ok');
+            
+            // Get filename from Content-Disposition header
+            const contentDisposition = response.headers.get('Content-Disposition');
+            let filename = 'invoice.pdf';
+            if (contentDisposition) {
+                const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(contentDisposition);
+                if (matches != null && matches[1]) {
+                    filename = matches[1].replace(/['"]/g, '');
+                }
+            }
+            
+            // Create blob and download
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        } catch (error) {
+            console.error('Error downloading invoice:', error);
+            throw error;
+        }
+    }
 }; 
