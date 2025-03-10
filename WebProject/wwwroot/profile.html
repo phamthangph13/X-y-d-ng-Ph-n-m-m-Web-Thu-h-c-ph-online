@@ -20,6 +20,8 @@
             --border-radius: 12px;
             --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
             --transition: all 0.3s ease;
+            --sidebar-width: 280px;
+            --sidebar-collapsed-width: 80px;
         }
 
         body {
@@ -29,11 +31,165 @@
             color: var(--dark-color);
             margin: 0;
             padding: 0;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: white;
+            box-shadow: var(--box-shadow);
+            z-index: 1000;
+            transition: var(--transition);
+            overflow-y: auto;
+            overflow-x: hidden;
+            left: 0;
+        }
+
+        .sidebar-collapsed {
+            width: var(--sidebar-collapsed-width);
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+        }
+
+        .sidebar-toggle:hover {
+            background-color: rgba(0,0,0,0.05);
+            transform: rotate(180deg);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 1rem 0;
+            margin: 0;
+        }
+
+        .sidebar-menu-item {
+            padding: 0;
+            margin: 0.5rem 0;
+        }
+
+        .sidebar-menu-link {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            font-weight: 500;
+            gap: 0.8rem;
+        }
+
+        .sidebar-menu-link:hover, .sidebar-menu-link.active {
+            background: linear-gradient(90deg, rgba(67, 97, 238, 0.1) 0%, rgba(67, 97, 238, 0) 100%);
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary-color);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .sidebar-menu-icon {
+            font-size: 1.2rem;
+            min-width: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sidebar-menu-text {
+            white-space: nowrap;
+            transition: var(--transition);
+            opacity: 1;
+        }
+
+        .sidebar-collapsed .sidebar-menu-text,
+        .sidebar-collapsed .sidebar-logo-text {
+            opacity: 0;
+            width: 0;
+            display: none;
+        }
+
+        /* Main Content Styles */
+        .main-container {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            transition: var(--transition);
+            width: calc(100% - var(--sidebar-width));
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .main-container.expanded {
+            margin-left: var(--sidebar-collapsed-width);
+            width: calc(100% - var(--sidebar-collapsed-width));
         }
 
         .container {
             max-width: 1200px;
             padding: 20px;
+            margin: 0 auto;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1100;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-toggle:hover {
+            transform: scale(1.1);
         }
 
         /* Header Styles */
@@ -461,11 +617,39 @@
         }
 
         /* Responsive styles */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 1500;
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-container {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .main-container.expanded {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
             .profile-info {
                 grid-template-columns: 1fr;
             }
-            
+        }
+
+        @media (max-width: 768px) {
             .profile-actions {
                 flex-direction: column;
                 align-items: stretch;
@@ -482,128 +666,174 @@
             
             .modal-content {
                 width: 95%;
-                margin: 30% auto;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <nav class="animate__animated animate__fadeInDown">
-                <div class="user-info">
-                    <i class="fas fa-user-circle"></i>
-                    <span class="user-name loading-placeholder" style="width: 150px;"></span>
-                    <span class="user-name content-element">User</span>
-                </div>
-                <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Đăng xuất</button>
-            </nav>
-        </header>
-
-        <main class="animate__animated animate__fadeIn animate__delay-1s">
-            <section class="profile-section">
-                <h1 class="animate__animated animate__fadeInLeft"><i class="fas fa-user-edit"></i>Thông tin cá nhân</h1>
-                
-                <div class="profile-info">
-                    <div class="info-group animate__animated animate__fadeInLeft animate__delay-1s">
-                        <h2><i class="fas fa-info-circle"></i>Thông tin cơ bản</h2>
-                        <div class="info-row">
-                            <label><i class="fas fa-user"></i>Họ và tên:</label>
-                            <span class="loading-placeholder" style="width: 200px;"></span>
-                            <span class="user-fullname content-element">N/A</span>
-                        </div>
-                        <div class="info-row">
-                            <label><i class="fas fa-envelope"></i>Email:</label>
-                            <span class="loading-placeholder" style="width: 250px;"></span>
-                            <span class="user-email content-element">N/A</span>
-                        </div>
-                        <div class="info-row">
-                            <label><i class="fas fa-id-card"></i>Mã sinh viên:</label>
-                            <span class="loading-placeholder" style="width: 150px;"></span>
-                            <span class="user-student-code content-element">N/A</span>
-                        </div>
-                        <div class="info-row">
-                            <label><i class="fas fa-phone"></i>Số điện thoại:</label>
-                            <span class="loading-placeholder" style="width: 150px;"></span>
-                            <span class="user-phone content-element">N/A</span>
-                        </div>
-                    </div>
-
-                    <div class="info-group animate__animated animate__fadeInRight animate__delay-1s">
-                        <h2><i class="fas fa-graduation-cap"></i>Thông tin học tập</h2>
-                        <div class="info-row">
-                            <label><i class="fas fa-building"></i>Khoa:</label>
-                            <span class="loading-placeholder" style="width: 300px;"></span>
-                            <span class="user-department content-element">N/A</span>
-                        </div>
-                        <div class="info-row">
-                            <label><i class="fas fa-users"></i>Lớp:</label>
-                            <span class="loading-placeholder" style="width: 200px;"></span>
-                            <span class="user-class content-element">N/A</span>
-                        </div>
-                        <div class="info-row">
-                            <label><i class="fas fa-calendar-alt"></i>Năm nhập học:</label>
-                            <span class="loading-placeholder" style="width: 100px;"></span>
-                            <span class="user-enrollment-year content-element">N/A</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="profile-actions animate__animated animate__fadeInUp animate__delay-2s">
-                    <button id="editProfileBtn"><i class="fas fa-edit"></i>Chỉnh sửa thông tin</button>
-                    <button id="changePasswordBtn"><i class="fas fa-key"></i>Đổi mật khẩu</button>
-                    <div class="two-factor-toggle">
-                        <label for="twoFactorAuth"><i class="fas fa-shield-alt"></i>Xác thực 2 bước:</label>
-                        <input type="checkbox" id="twoFactorAuth">
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Edit Profile Modal -->
-        <div id="editProfileModal" class="modal">
-            <div class="modal-content">
-                <h2><i class="fas fa-user-edit"></i>Chỉnh sửa thông tin</h2>
-                <form id="editProfileForm">
-                    <div class="form-group">
-                        <label for="editFullName"><i class="fas fa-user"></i>Họ và tên:</label>
-                        <input type="text" id="editFullName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editPhone"><i class="fas fa-phone"></i>Số điện thoại:</label>
-                        <input type="tel" id="editPhone" required>
-                    </div>
-                    <div class="modal-actions">
-                        <button type="submit"><i class="fas fa-save"></i>Lưu thay đổi</button>
-                        <button type="button" class="cancel-btn"><i class="fas fa-times"></i>Hủy</button>
-                    </div>
-                </form>
-            </div>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="sidebar-logo-text">EduPay</span>
+            </a>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
         </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="index.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                    <span class="sidebar-menu-text">Trang chủ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="profile.html" class="sidebar-menu-link active">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                    <span class="sidebar-menu-text">Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="tuition.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="sidebar-menu-text">Học phí</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="payment-history.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-history"></i></span>
+                    <span class="sidebar-menu-text">Lịch sử thanh toán</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
 
-        <!-- Change Password Modal -->
-        <div id="changePasswordModal" class="modal">
-            <div class="modal-content">
-                <h2><i class="fas fa-key"></i>Đổi mật khẩu</h2>
-                <form id="changePasswordForm">
-                    <div class="form-group">
-                        <label for="currentPassword"><i class="fas fa-lock"></i>Mật khẩu hiện tại:</label>
-                        <input type="password" id="currentPassword" required>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle animate__animated animate__fadeIn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="container">
+            <header>
+                <nav class="animate__animated animate__fadeInDown">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="user-name loading-placeholder" style="width: 150px;"></span>
+                        <span class="user-name content-element">User</span>
                     </div>
-                    <div class="form-group">
-                        <label for="newPassword"><i class="fas fa-key"></i>Mật khẩu mới:</label>
-                        <input type="password" id="newPassword" required>
+                    <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Đăng xuất</button>
+                </nav>
+            </header>
+
+            <main class="animate__animated animate__fadeIn animate__delay-1s">
+                <section class="profile-section">
+                    <h1 class="animate__animated animate__fadeInLeft"><i class="fas fa-user-edit"></i>Thông tin cá nhân</h1>
+                    
+                    <div class="profile-info">
+                        <div class="info-group animate__animated animate__fadeInLeft animate__delay-1s">
+                            <h2><i class="fas fa-info-circle"></i>Thông tin cơ bản</h2>
+                            <div class="info-row">
+                                <label><i class="fas fa-user"></i>Họ và tên:</label>
+                                <span class="loading-placeholder" style="width: 200px;"></span>
+                                <span class="user-fullname content-element">N/A</span>
+                            </div>
+                            <div class="info-row">
+                                <label><i class="fas fa-envelope"></i>Email:</label>
+                                <span class="loading-placeholder" style="width: 250px;"></span>
+                                <span class="user-email content-element">N/A</span>
+                            </div>
+                            <div class="info-row">
+                                <label><i class="fas fa-id-card"></i>Mã sinh viên:</label>
+                                <span class="loading-placeholder" style="width: 150px;"></span>
+                                <span class="user-student-code content-element">N/A</span>
+                            </div>
+                            <div class="info-row">
+                                <label><i class="fas fa-phone"></i>Số điện thoại:</label>
+                                <span class="loading-placeholder" style="width: 150px;"></span>
+                                <span class="user-phone content-element">N/A</span>
+                            </div>
+                        </div>
+
+                        <div class="info-group animate__animated animate__fadeInRight animate__delay-1s">
+                            <h2><i class="fas fa-graduation-cap"></i>Thông tin học tập</h2>
+                            <div class="info-row">
+                                <label><i class="fas fa-building"></i>Khoa:</label>
+                                <span class="loading-placeholder" style="width: 300px;"></span>
+                                <span class="user-department content-element">N/A</span>
+                            </div>
+                            <div class="info-row">
+                                <label><i class="fas fa-users"></i>Lớp:</label>
+                                <span class="loading-placeholder" style="width: 200px;"></span>
+                                <span class="user-class content-element">N/A</span>
+                            </div>
+                            <div class="info-row">
+                                <label><i class="fas fa-calendar-alt"></i>Năm nhập học:</label>
+                                <span class="loading-placeholder" style="width: 100px;"></span>
+                                <span class="user-enrollment-year content-element">N/A</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="confirmPassword"><i class="fas fa-check-circle"></i>Xác nhận mật khẩu mới:</label>
-                        <input type="password" id="confirmPassword" required>
+
+                    <div class="profile-actions animate__animated animate__fadeInUp animate__delay-2s">
+                        <button id="editProfileBtn"><i class="fas fa-edit"></i>Chỉnh sửa thông tin</button>
+                        <button id="changePasswordBtn"><i class="fas fa-key"></i>Đổi mật khẩu</button>
+                        <div class="two-factor-toggle">
+                            <label for="twoFactorAuth"><i class="fas fa-shield-alt"></i>Xác thực 2 bước:</label>
+                            <input type="checkbox" id="twoFactorAuth">
+                        </div>
                     </div>
-                    <div class="modal-actions">
-                        <button type="submit"><i class="fas fa-save"></i>Đổi mật khẩu</button>
-                        <button type="button" class="cancel-btn"><i class="fas fa-times"></i>Hủy</button>
-                    </div>
-                </form>
-            </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-user-edit"></i>Chỉnh sửa thông tin</h2>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label for="editFullName"><i class="fas fa-user"></i>Họ và tên:</label>
+                    <input type="text" id="editFullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPhone"><i class="fas fa-phone"></i>Số điện thoại:</label>
+                    <input type="tel" id="editPhone" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit"><i class="fas fa-save"></i>Lưu thay đổi</button>
+                    <button type="button" class="cancel-btn"><i class="fas fa-times"></i>Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-key"></i>Đổi mật khẩu</h2>
+            <form id="changePasswordForm">
+                <div class="form-group">
+                    <label for="currentPassword"><i class="fas fa-lock"></i>Mật khẩu hiện tại:</label>
+                    <input type="password" id="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword"><i class="fas fa-key"></i>Mật khẩu mới:</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword"><i class="fas fa-check-circle"></i>Xác nhận mật khẩu mới:</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit"><i class="fas fa-save"></i>Đổi mật khẩu</button>
+                    <button type="button" class="cancel-btn"><i class="fas fa-times"></i>Hủy</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -616,6 +846,45 @@
     <script>
         // Add JavaScript for modal animations and interactions
         document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar Functionality
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const mainContainer = document.querySelector('.main-container');
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
+
+            // Toggle sidebar on desktop
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('sidebar-collapsed');
+                mainContainer.classList.toggle('expanded');
+            });
+
+            // Toggle sidebar on mobile
+            mobileMenuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('show');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times');
+            });
+
+            // Handle sidebar link active state
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu-link');
+            sidebarLinks.forEach(link => {
+                if (link.getAttribute('href') === window.location.pathname.split('/').pop()) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Sync logout buttons
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (sidebarLogoutBtn && logoutBtn) {
+                sidebarLogoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Trigger the same logout functionality
+                    logoutBtn.click();
+                    return false;
+                });
+            }
+
             // Modal animations
             const modals = document.querySelectorAll('.modal');
             const editProfileBtn = document.getElementById('editProfileBtn');

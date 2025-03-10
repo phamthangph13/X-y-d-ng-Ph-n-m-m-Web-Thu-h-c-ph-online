@@ -52,9 +52,26 @@ export function isAuthenticated() {
 export function getUserData() {
     try {
         const userData = localStorage.getItem(STORAGE_KEYS.USER);
-        return userData ? JSON.parse(userData) : null;
+        const parsedData = userData ? JSON.parse(userData) : null;
+        
+        console.log('getUserData from localStorage:', parsedData);
+        
+        // Debug check for class info in localStorage
+        if (parsedData && parsedData.class_) {
+            console.log('localStorage has class_ field:', parsedData.class_);
+        } else if (parsedData && parsedData.class) {
+            console.log('localStorage has class field:', parsedData.class);
+        } else {
+            console.log('localStorage data does not contain class or class_ field');
+            // Log all keys to see what's available
+            if (parsedData) {
+                console.log('Available keys in localStorage:', Object.keys(parsedData));
+            }
+        }
+        
+        return parsedData;
     } catch (error) {
-        console.error('Error parsing user data:', error);
+        console.error('Error parsing user data from localStorage:', error);
         return null;
     }
 }

@@ -1,6 +1,6 @@
 import { isAuthenticated, getUserData } from './utils/auth.js';
 import { showToast } from './utils/ui.js';
-import { authApi } from './services/api.js';
+import { authApi, dropdownApi } from './services/api.js';
 
 // Check authentication on page load
 document.addEventListener('DOMContentLoaded', async function() {
@@ -53,6 +53,9 @@ function showLoadingState(isLoading) {
 
 // Update UI with profile data
 function updateProfileUI(userData) {
+    // Debug - log the entire userData object to see its structure
+    console.log("Profile data received:", JSON.stringify(userData, null, 2));
+    
     // Basic user info
     document.querySelectorAll('.user-name').forEach(el => {
         el.textContent = userData.fullName || 'User';
@@ -73,12 +76,8 @@ function updateProfileUI(userData) {
         document.querySelector('.user-department').textContent = 'N/A';
     }
     
-    if (userData.class) {
-        document.querySelector('.user-class').textContent = 
-            `${userData.class.className} (${userData.class.classCode})` || 'N/A';
-    } else {
-        document.querySelector('.user-class').textContent = 'N/A';
-    }
+    // Enhanced fix for class information - check all possible property names
+    updateClassInfo(userData);
     
     document.querySelector('.user-enrollment-year').textContent = userData.enrollmentYear || 'N/A';
 
@@ -94,6 +93,53 @@ function updateProfileUI(userData) {
     
     // Store the complete profile data for later use
     localStorage.setItem('user_data', JSON.stringify(userData));
+}
+
+// New function to handle class information update
+async function updateClassInfo(userData) {
+    const classElement = document.querySelector('.user-class');
+    
+    // Try all possible ways to get class info from userData
+    if (userData.class_) {
+        console.log("Found class_ property:", userData.class_);
+        classElement.textContent = `${userData.class_.className} (${userData.class_.classCode})`;
+        return;
+    } else if (userData.class) {
+        console.log("Found class property:", userData.class);
+        classElement.textContent = `${userData.class.className} (${userData.class.classCode})`;
+        return;
+    }
+    
+    // If we have departmentId and classId but no class object, try to fetch it
+    if (userData.student && userData.student.classID) {
+        try {
+            console.log("Trying to fetch class info using classID:", userData.student.classID);
+            const classesData = await dropdownApi.getClasses(userData.student.departmentID);
+            if (classesData && Array.isArray(classesData)) {
+                const classInfo = classesData.find(c => c.classID === userData.student.classID);
+                if (classInfo) {
+                    console.log("Found class info from API:", classInfo);
+                    classElement.textContent = `${classInfo.className} (${classInfo.classCode})`;
+                    return;
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching class info:", error);
+        }
+    }
+    
+    // Last resort - search through all properties
+    for (const key in userData) {
+        if (userData[key] && typeof userData[key] === 'object' && 
+            userData[key].className && userData[key].classCode) {
+            console.log(`Found potential class info in property: ${key}`, userData[key]);
+            classElement.textContent = `${userData[key].className} (${userData[key].classCode})`;
+            return;
+        }
+    }
+    
+    // If all attempts fail
+    classElement.textContent = 'N/A';
 }
 
 // Initialize all event handlers

@@ -90,8 +90,30 @@ export const authApi = {
         apiCall(`${API_ENDPOINTS.AUTH}/logout`, 'POST', null, true),
         
     // Profile related API calls
-    getProfile: () =>
-        apiCall(`${API_ENDPOINTS.USERS}/profile`, 'GET', null, true),
+    getProfile: async () => {
+        try {
+            const result = await apiCall(`${API_ENDPOINTS.USERS}/profile`, 'GET', null, true);
+            console.log('API getProfile raw response:', result);
+            
+            // Debug check for class info
+            if (result && result.class_) {
+                console.log('API returned class_ field:', result.class_);
+            } else if (result && result.class) {
+                console.log('API returned class field:', result.class);
+            } else {
+                console.log('API response does not contain class or class_ field');
+                // Log all keys to see what's available
+                if (result) {
+                    console.log('Available keys in API response:', Object.keys(result));
+                }
+            }
+            
+            return result;
+        } catch (error) {
+            console.error('Error in getProfile:', error);
+            throw error;
+        }
+    },
         
     updateProfile: (formData) => 
         apiCall(`${API_ENDPOINTS.USERS}/profile`, 'PUT', formData, true),

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử thanh toán - EduPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/payment-history.css">
+</head>
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="sidebar-logo-text">EduPay</span>
+            </a>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="index.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                    <span class="sidebar-menu-text">Trang chủ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="profile.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                    <span class="sidebar-menu-text">Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="tuition.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="sidebar-menu-text">Học phí</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="payment-history.html" class="sidebar-menu-link active">
+                    <span class="sidebar-menu-icon"><i class="fas fa-history"></i></span>
+                    <span class="sidebar-menu-text">Lịch sử thanh toán</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle animate__animated animate__fadeIn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="container">
+            <header>
+                <nav class="animate__animated animate__fadeInDown">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="user-name loading-placeholder" style="width: 150px;"></span>
+                        <span class="user-name content-element">User</span>
+                    </div>
+                    <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Đăng xuất</button>
+                </nav>
+            </header>
+
+            <main class="animate__animated animate__fadeIn animate__delay-1s">
+                <section class="history-section">
+                    <h1 class="animate__animated animate__fadeInLeft"><i class="fas fa-history"></i>Lịch sử thanh toán</h1>
+                    
+                    <!-- Tổng quan về thanh toán -->
+                    <div class="history-overview">
+                        <div class="stats-container">
+                            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Tổng số giao dịch</h3>
+                                    <p class="loading-placeholder" style="width: 60px; height: 30px;"></p>
+                                    <p class="total-transactions content-element">12</p>
+                                </div>
+                            </div>
+                            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                                <div class="stat-icon">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Tổng tiền đã thanh toán</h3>
+                                    <p class="loading-placeholder" style="width: 120px; height: 30px;"></p>
+                                    <p class="total-paid content-element">45,000,000 VNĐ</p>
+                                </div>
+                            </div>
+                            <div class="stat-card animate__animated animate__fadeInUp animate__delay-1s">
+                                <div class="stat-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Phương thức phổ biến</h3>
+                                    <p class="loading-placeholder" style="width: 150px; height: 30px;"></p>
+                                    <p class="popular-method content-element">Internet Banking</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bộ lọc -->
+                    <div class="filter-section animate__animated animate__fadeInUp animate__delay-2s">
+                        <h2><i class="fas fa-filter"></i>Bộ lọc</h2>
+                        <div class="filter-container">
+                            <div class="filter-group">
+                                <label for="dateRangeFilter">Khoảng thời gian:</label>
+                                <select id="dateRangeFilter">
+                                    <option value="all">Tất cả</option>
+                                    <option value="today">Hôm nay</option>
+                                    <option value="week">7 ngày qua</option>
+                                    <option value="month">30 ngày qua</option>
+                                    <option value="year">1 năm qua</option>
+                                    <option value="custom">Tùy chỉnh...</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="paymentMethodFilter">Phương thức thanh toán:</label>
+                                <select id="paymentMethodFilter">
+                                    <option value="all">Tất cả</option>
+                                    <option value="banking">Internet Banking</option>
+                                    <option value="credit">Thẻ tín dụng/ghi nợ</option>
+                                    <option value="momo">Ví MoMo</option>
+                                    <option value="vnpay">VN Pay</option>
+                                    <option value="zalopay">Zalo Pay</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="statusFilter">Trạng thái:</label>
+                                <select id="statusFilter">
+                                    <option value="all">Tất cả</option>
+                                    <option value="success">Thành công</option>
+                                    <option value="pending">Đang xử lý</option>
+                                    <option value="failed">Thất bại</option>
+                                </select>
+                            </div>
+                            <div class="filter-actions">
+                                <button id="applyFilterBtn"><i class="fas fa-search"></i>Áp dụng</button>
+                                <button id="resetFilterBtn"><i class="fas fa-undo"></i>Đặt lại</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Danh sách lịch sử giao dịch -->
+                    <div class="history-list animate__animated animate__fadeInUp animate__delay-2s">
+                        <h2><i class="fas fa-list"></i>Các giao dịch</h2>
+                        
+                        <div class="history-table-container">
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Mã giao dịch</th>
+                                        <th>Ngày thanh toán</th>
+                                        <th>Nội dung</th>
+                                        <th>Học kỳ</th>
+                                        <th>Số tiền</th>
+                                        <th>Phương thức</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="Mã giao dịch">TXN123456789</td>
+                                        <td data-label="Ngày thanh toán">25/07/2023</td>
+                                        <td data-label="Nội dung">Học phí kỳ I năm 2023-2024</td>
+                                        <td data-label="Học kỳ">2023-2024/I</td>
+                                        <td data-label="Số tiền">5,500,000 VNĐ</td>
+                                        <td data-label="Phương thức">Internet Banking</td>
+                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
+                                        <td data-label="Hành động">
+                                            <button class="btn-receipt" data-id="TXN123456789"><i class="fas fa-file-invoice"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Mã giao dịch">TXN123456788</td>
+                                        <td data-label="Ngày thanh toán">18/12/2022</td>
+                                        <td data-label="Nội dung">Học phí kỳ II năm 2022-2023</td>
+                                        <td data-label="Học kỳ">2022-2023/II</td>
+                                        <td data-label="Số tiền">5,000,000 VNĐ</td>
+                                        <td data-label="Phương thức">Thẻ tín dụng</td>
+                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
+                                        <td data-label="Hành động">
+                                            <button class="btn-receipt" data-id="TXN123456788"><i class="fas fa-file-invoice"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Mã giao dịch">TXN123456787</td>
+                                        <td data-label="Ngày thanh toán">25/07/2022</td>
+                                        <td data-label="Nội dung">Học phí kỳ I năm 2022-2023</td>
+                                        <td data-label="Học kỳ">2022-2023/I</td>
+                                        <td data-label="Số tiền">5,000,000 VNĐ</td>
+                                        <td data-label="Phương thức">Zalo Pay</td>
+                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
+                                        <td data-label="Hành động">
+                                            <button class="btn-receipt" data-id="TXN123456787"><i class="fas fa-file-invoice"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Mã giao dịch">TXN123456786</td>
+                                        <td data-label="Ngày thanh toán">18/12/2021</td>
+                                        <td data-label="Nội dung">Học phí kỳ II năm 2021-2022</td>
+                                        <td data-label="Học kỳ">2021-2022/II</td>
+                                        <td data-label="Số tiền">4,500,000 VNĐ</td>
+                                        <td data-label="Phương thức">Internet Banking</td>
+                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
+                                        <td data-label="Hành động">
+                                            <button class="btn-receipt" data-id="TXN123456786"><i class="fas fa-file-invoice"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Mã giao dịch">TXN123456785</td>
+                                        <td data-label="Ngày thanh toán">25/07/2021</td>
+                                        <td data-label="Nội dung">Học phí kỳ I năm 2021-2022</td>
+                                        <td data-label="Học kỳ">2021-2022/I</td>
+                                        <td data-label="Số tiền">4,500,000 VNĐ</td>
+                                        <td data-label="Phương thức">Thẻ tín dụng</td>
+                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
+                                        <td data-label="Hành động">
+                                            <button class="btn-receipt" data-id="TXN123456785"><i class="fas fa-file-invoice"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Mã giao dịch">TXN123456784</td>
+                                        <td data-label="Ngày thanh toán">18/12/2020</td>
+                                        <td data-label="Nội dung">Học phí kỳ II năm 2020-2021</td>
+                                        <td data-label="Học kỳ">2020-2021/II</td>
+                                        <td data-label="Số tiền">4,000,000 VNĐ</td>
+                                        <td data-label="Phương thức">MoMo</td>
+                                        <td data-label="Trạng thái"><span class="status-success">Thành công</span></td>
+                                        <td data-label="Hành động">
+                                            <button class="btn-receipt" data-id="TXN123456784"><i class="fas fa-file-invoice"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Phân trang -->
+                        <div class="pagination-container">
+                            <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <span class="pagination-ellipsis">...</span>
+                            <button class="pagination-btn">10</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="history-actions animate__animated animate__fadeInUp animate__delay-3s">
+                        <button id="exportExcelBtn" class="primary-btn"><i class="fas fa-file-excel"></i>Xuất Excel</button>
+                        <button id="exportPdfBtn" class="secondary-btn"><i class="fas fa-file-pdf"></i>Xuất PDF</button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="modal">
+        <div class="modal-content receipt-modal">
+            <div class="receipt-header">
+                <div class="receipt-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>EduPay</h2>
+                </div>
+                <div class="receipt-title">
+                    <h2>Biên lai thanh toán</h2>
+                    <p>Mã giao dịch: <span id="receiptTransactionId">TXN123456789</span></p>
+                </div>
+            </div>
+            
+            <div class="receipt-details">
+                <div class="receipt-row">
+                    <div class="receipt-label">Ngày giao dịch:</div>
+                    <div class="receipt-value" id="receiptDate">25/07/2023 15:30:45</div>
+                </div>
+                <div class="receipt-row">
+                    <div class="receipt-label">Người thanh toán:</div>
+                    <div class="receipt-value" id="receiptPayer">Nguyễn Văn A</div>
+                </div>
+                <div class="receipt-row">
+                    <div class="receipt-label">Mã sinh viên:</div>
+                    <div class="receipt-value" id="receiptStudentId">SV12345</div>
+                </div>
+                <div class="receipt-row">
+                    <div class="receipt-label">Nội dung thanh toán:</div>
+                    <div class="receipt-value" id="receiptDescription">Học phí kỳ I năm 2023-2024</div>
+                </div>
+                <div class="receipt-row">
+                    <div class="receipt-label">Số tiền:</div>
+                    <div class="receipt-value" id="receiptAmount">5,500,000 VNĐ</div>
+                </div>
+                <div class="receipt-row">
+                    <div class="receipt-label">Phương thức thanh toán:</div>
+                    <div class="receipt-value" id="receiptMethod">Internet Banking</div>
+                </div>
+                <div class="receipt-row">
+                    <div class="receipt-label">Trạng thái:</div>
+                    <div class="receipt-value" id="receiptStatus">Thành công</div>
+                </div>
+            </div>
+            
+            <div class="receipt-footer">
+                <p>Biên lai này được tạo tự động bởi hệ thống EduPay.</p>
+                <p>Nếu có thắc mắc, vui lòng liên hệ phòng tài chính: taichinh@trường.edu.vn</p>
+            </div>
+            
+            <div class="modal-actions">
+                <button type="button" id="printReceiptBtn"><i class="fas fa-print"></i>In biên lai</button>
+                <button type="button" id="downloadReceiptBtn"><i class="fas fa-download"></i>Tải biên lai</button>
+                <button type="button" class="cancel-btn"><i class="fas fa-times"></i>Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/services/api.js" type="module"></script>
+    <script src="js/utils/auth.js" type="module"></script>
+    <script src="js/utils/toast.js" type="module"></script>
+    <script src="js/payment-history.js" type="module"></script>
+    <script>
+        // Add JavaScript for interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar Functionality
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const mainContainer = document.querySelector('.main-container');
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
+
+            // Toggle sidebar on desktop
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('sidebar-collapsed');
+                mainContainer.classList.toggle('expanded');
+            });
+
+            // Toggle sidebar on mobile
+            mobileMenuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('show');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times');
+            });
+
+            // Handle sidebar link active state
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu-link');
+            sidebarLinks.forEach(link => {
+                if (link.getAttribute('href') === window.location.pathname.split('/').pop()) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Sync logout buttons
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (sidebarLogoutBtn && logoutBtn) {
+                sidebarLogoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Trigger the same logout functionality
+                    logoutBtn.click();
+                    return false;
+                });
+            }
+
+            // Show receipt modal
+            const receiptButtons = document.querySelectorAll('.btn-receipt');
+            const receiptModal = document.getElementById('receiptModal');
+            const cancelBtns = document.querySelectorAll('.cancel-btn');
+
+            function openModal(modal) {
+                if (!modal) return;
+                
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+                
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeModal(modal) {
+                if (!modal) return;
+                
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+
+            receiptButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const transactionId = this.getAttribute('data-id');
+                    document.getElementById('receiptTransactionId').textContent = transactionId;
+                    
+                    // In real app, fetch receipt details based on transaction ID
+                    // For now, we just display static data
+                    
+                    openModal(receiptModal);
+                });
+            });
+
+            // Close modals
+            cancelBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const modal = btn.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+            
+            // Close modal when clicking outside
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal(modal);
+                    }
+                });
+            });
+
+            // Filter functionality
+            const applyFilterBtn = document.getElementById('applyFilterBtn');
+            const resetFilterBtn = document.getElementById('resetFilterBtn');
+
+            applyFilterBtn.addEventListener('click', function() {
+                // Apply filters - in a real app, this would fetch filtered data
+                alert('Chức năng lọc sẽ được triển khai sau.');
+            });
+
+            resetFilterBtn.addEventListener('click', function() {
+                // Reset filter dropdowns
+                document.getElementById('dateRangeFilter').value = 'all';
+                document.getElementById('paymentMethodFilter').value = 'all';
+                document.getElementById('statusFilter').value = 'all';
+            });
+
+            // Export functionality
+            const exportExcelBtn = document.getElementById('exportExcelBtn');
+            const exportPdfBtn = document.getElementById('exportPdfBtn');
+
+            exportExcelBtn.addEventListener('click', function() {
+                alert('Xuất file Excel sẽ được triển khai sau.');
+            });
+
+            exportPdfBtn.addEventListener('click', function() {
+                alert('Xuất file PDF sẽ được triển khai sau.');
+            });
+
+            // Print receipt
+            const printReceiptBtn = document.getElementById('printReceiptBtn');
+            printReceiptBtn.addEventListener('click', function() {
+                alert('Chức năng in biên lai sẽ được triển khai sau.');
+            });
+
+            // Download receipt
+            const downloadReceiptBtn = document.getElementById('downloadReceiptBtn');
+            downloadReceiptBtn.addEventListener('click', function() {
+                alert('Chức năng tải biên lai sẽ được triển khai sau.');
+            });
+
+            // Pagination
+            const paginationBtns = document.querySelectorAll('.pagination-btn');
+            paginationBtns.forEach(btn => {
+                if (!btn.disabled) {
+                    btn.addEventListener('click', function() {
+                        paginationBtns.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        // In a real app, this would load the correct page of results
+                    });
+                }
+            });
+            
+            // Show content after loading
+            setTimeout(() => {
+                document.querySelectorAll('.loading-placeholder').forEach(placeholder => {
+                    placeholder.style.display = 'none';
+                });
+                document.querySelectorAll('.content-element').forEach(element => {
+                    element.style.opacity = '1';
+                });
+            }, 1500);
+        });
+    </script>
+</body>
+</html> 
