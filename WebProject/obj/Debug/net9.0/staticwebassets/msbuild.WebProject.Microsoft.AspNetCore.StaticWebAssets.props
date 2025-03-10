@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>oenapgerst</Fingerprint>
-      <Integrity>ANKpHjWEAGPu6HpxRVYNFCSNIcl/PTjKsjuk4TRL7KQ=</Integrity>
+      <Fingerprint>in86bau82s</Fingerprint>
+      <Integrity>TqQwzJSgcmMmsjlZwa21z653BxZV+3A8Jp1TXkGNnSY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\payment-history.css'))</OriginalItemSpec>
@@ -174,8 +174,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>qo4jeyfxsf</Fingerprint>
-      <Integrity>emRuyp36WWg4miWsJI8zq+dHqO+MCxEFT0xusDyFX8k=</Integrity>
+      <Fingerprint>6t0wequszu</Fingerprint>
+      <Integrity>GiJA9VQ7sKNh/o0wtuVZefGffbw2YQsrZz0KEC4GqkY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pages\payment-history.js'))</OriginalItemSpec>
@@ -210,8 +210,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>oqn1t56ntr</Fingerprint>
-      <Integrity>kECXGMGY0+vqW3e4fJ5w4JuOAaSyMAfXhEX/PfaMdVU=</Integrity>
+      <Fingerprint>3lxd3mn1a5</Fingerprint>
+      <Integrity>uWmoFaY/LK/BAehbweV+yqtDSbSm4K6RsKD0fmEJJrY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pages\tuition.js'))</OriginalItemSpec>
@@ -246,8 +246,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>34dxxfkerf</Fingerprint>
-      <Integrity>o92wLvrhCBIAabp9xCX2dDnVT0HUrAUUs2jYLMwIuAg=</Integrity>
+      <Fingerprint>4aojxz6jnf</Fingerprint>
+      <Integrity>VLGT/P5JYoPIEEY2XwGNbgx8G1gEX964mlmJn8Sp1QM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\services\api.js'))</OriginalItemSpec>
@@ -336,8 +336,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>mwf4gbx23c</Fingerprint>
-      <Integrity>htXifZYoNHNKtFHEvSwrCK9cfpdDcqbaI3OVk1Pmqoc=</Integrity>
+      <Fingerprint>k6w0apmwx8</Fingerprint>
+      <Integrity>FK8Ast6goOKa5odEsTc7ZO9nPJh5gSWtCQZeg6+5l/A=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\payment-history.html'))</OriginalItemSpec>
@@ -372,8 +372,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>hyenta7csw</Fingerprint>
-      <Integrity>hz99YS1m4OCp4WwC+WEvl/hFiiQMbeuwERNvSssZ+Zw=</Integrity>
+      <Fingerprint>09jsj1sfhw</Fingerprint>
+      <Integrity>dGeykeuA5wNSGOq/qv0gjlG5pQw//nx3JBaCnkhVrCw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\tuition.html'))</OriginalItemSpec>
