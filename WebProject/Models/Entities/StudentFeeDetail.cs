@@ -16,7 +16,7 @@ namespace WebProject.Models.Entities
         public int FeeCategoryID { get; set; }
         
         [Required]
-        [Column(TypeName = "decimal(10, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
         
         // Navigation properties

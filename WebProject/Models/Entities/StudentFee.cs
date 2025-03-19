@@ -17,16 +17,18 @@ namespace WebProject.Models.Entities
         public int SemesterID { get; set; }
         
         [Required]
-        [Column(TypeName = "decimal(10, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal TotalAmount { get; set; }
         
         [Required]
         public DateTime DueDate { get; set; }
         
+        [Required]
         [StringLength(20)]
-        public string Status { get; set; } = "Unpaid";
+        public string Status { get; set; } // Unpaid, Partial, Paid
         
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        [Required]
+        public DateTime CreatedDate { get; set; }
         
         public DateTime? LastUpdated { get; set; }
         

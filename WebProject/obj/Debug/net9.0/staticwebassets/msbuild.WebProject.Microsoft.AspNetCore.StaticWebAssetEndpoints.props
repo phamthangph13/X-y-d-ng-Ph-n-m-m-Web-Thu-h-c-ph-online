@@ -228,6 +228,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-xsfVTb4P1l\u002BRyB19PJAy3TGn2LeiaOG2n7Amz59TVEY="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1710"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022xsfVTb4P1l\u002BRyB19PJAy3TGn2LeiaOG2n7Amz59TVEY=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 17:20:11 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WebProject/js/student-tuition.4rmzmwpmjj.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\student-tuition.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"4rmzmwpmjj"},{"Name":"integrity","Value":"sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="},{"Name":"label","Value":"_content/WebProject/js/student-tuition.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"41287"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 18:30:44 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WebProject/js/student-tuition.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\student-tuition.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"41287"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 18:30:44 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WebProject/js/utils/auth.czx3s57aph.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\utils\auth.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
@@ -324,17 +336,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"mvrlyu8phv"},{"Name":"integrity","Value":"sha256-niXAkvIOs0XBtvY6BovfcsjMfyEL6C03h/t8D2ozmTQ="},{"Name":"label","Value":"_content/WebProject/profile.html"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"29419"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022niXAkvIOs0XBtvY6BovfcsjMfyEL6C03h/t8D2ozmTQ=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 17:20:11 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/WebProject/student-tuition.g5lhjyqmhn.html">
+    <StaticWebAssetEndpoint Include="_content/WebProject/student-tuition.dnhrgjsep7.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\student-tuition.html'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"g5lhjyqmhn"},{"Name":"integrity","Value":"sha256-VGALSdDJM\u002BxJPK2YJ3OfIYEutcIoWi1\u002BJna920zGHm0="},{"Name":"label","Value":"_content/WebProject/student-tuition.html"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"14566"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022VGALSdDJM\u002BxJPK2YJ3OfIYEutcIoWi1\u002BJna920zGHm0=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 17:20:11 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"dnhrgjsep7"},{"Name":"integrity","Value":"sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir\u002BJi4zQxDjUxA="},{"Name":"label","Value":"_content/WebProject/student-tuition.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"28635"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022GQ4aOiMZ9Govt5bW5W7olgmc0oysIir\u002BJi4zQxDjUxA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 18:22:45 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WebProject/student-tuition.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\student-tuition.html'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-VGALSdDJM\u002BxJPK2YJ3OfIYEutcIoWi1\u002BJna920zGHm0="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"14566"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022VGALSdDJM\u002BxJPK2YJ3OfIYEutcIoWi1\u002BJna920zGHm0=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 17:20:11 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir\u002BJi4zQxDjUxA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"28635"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022GQ4aOiMZ9Govt5bW5W7olgmc0oysIir\u002BJi4zQxDjUxA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 18:22:45 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/WebProject/system-settings.html">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\system-settings.html'))</AssetFile>

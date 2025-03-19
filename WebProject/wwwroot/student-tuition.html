@@ -202,6 +202,70 @@
                 display: flex;
             }
         }
+
+        /* Các style cho trang quản lý học phí sinh viên */
+        .student-search-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .student-list-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .fee-badge {
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .fee-badge.paid {
+            background-color: var(--success-color);
+        }
+
+        .fee-badge.unpaid {
+            background-color: var(--warning-color);
+        }
+
+        .fee-badge.partial {
+            background-color: var(--accent-color);
+        }
+
+        .progress-thin {
+            height: 0.5rem;
+        }
+
+        .detail-row {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 0.5rem 0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 4rem;
+            height: 4rem;
+        }
     </style>
 </head>
 <body>
@@ -281,102 +345,315 @@
 
     <!-- Main Content -->
     <div class="main-container">
-        <div class="container">
-        <h2 class="mb-4"><i class="fas fa-users me-2"></i>Quản lý học phí sinh viên</h2>
-        
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Danh mục học phí</h5>
+        <div class="container mt-4">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Quản lý học phí sinh viên</h5>
+                    <button id="createBatchFeesButton" class="btn btn-primary btn-sm">Tạo học phí hàng loạt</button>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="semesterSelect" class="form-label">Học kỳ</label>
+                            <select id="semesterSelect" class="form-select">
+                                <option value="">Chọn học kỳ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="departmentSelect" class="form-label">Khoa</label>
+                            <select id="departmentSelect" class="form-select">
+                                <option value="">Chọn khoa</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="classSelect" class="form-label">Lớp</label>
+                            <select id="classSelect" class="form-select">
+                                <option value="">Chọn lớp</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="feeStatusSelect" class="form-label">Trạng thái học phí</label>
+                            <select id="feeStatusSelect" class="form-select">
+                                <option value="">Tất cả trạng thái</option>
+                                <option value="Paid">Đã thanh toán</option>
+                                <option value="Partial">Thanh toán một phần</option>
+                                <option value="Unpaid">Chưa thanh toán</option>
+                                <option value="Overdue">Quá hạn</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                            <i class="fas fa-plus me-2"></i>Thêm danh mục
-                        </button>
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Tên danh mục</th>
-                                        <th>Mô tả</th>
-                                        <th>Trạng thái</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="feeCategories">
-                                    <!-- Fee categories will be loaded here -->
-                                </tbody>
-                            </table>
+                    <div class="row mb-3">
+                        <div class="col-md-9">
+                            <label for="searchInput" class="form-label">Tìm kiếm</label>
+                            <input type="text" id="searchInput" class="form-control" placeholder="Tìm theo mã SV, tên, email...">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label d-block">&nbsp;</label>
+                            <button id="searchButton" class="btn btn-primary w-100">
+                                <i class="fas fa-search me-1"></i> Tìm kiếm
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Cấu trúc học phí</h5>
+
+            <!-- Results table -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Danh sách học phí sinh viên</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Mã SV</th>
+                                    <th>Họ tên</th>
+                                    <th>Lớp</th>
+                                    <th>Khoa</th>
+                                    <th>Học kỳ</th>
+                                    <th>Tổng học phí</th>
+                                    <th>Đã thanh toán</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hạn nộp</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentFeesList">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="card-body">
-                        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addFeeStructureModal">
-                            <i class="fas fa-plus me-2"></i>Thêm học phí
-                        </button>
-                        
-                        <div class="mb-3">
-                            <label for="departmentFilter" class="form-label">Khoa</label>
-                            <select class="form-select" id="departmentFilter">
-                                <option value="">Tất cả các khoa</option>
-                                <!-- Departments will be loaded here -->
-                            </select>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="semesterFilter" class="form-label">Học kỳ</label>
-                            <select class="form-select" id="semesterFilter">
-                                <option value="">Tất cả các học kỳ</option>
-                                <!-- Semesters will be loaded here -->
-                            </select>
-                        </div>
-                        
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Khoa</th>
-                                        <th>Học kỳ</th>
-                                        <th>Danh mục</th>
-                                        <th>Số tiền</th>
-                                        <th>Tính theo tín chỉ</th>
-                                        <th>Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="feeStructures">
-                                    <!-- Fee structures will be loaded here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <nav aria-label="Page navigation" class="mt-3">
+                        <ul id="pagination" class="pagination justify-content-center">
+                            <!-- Pagination will be generated here -->
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Modals for adding/editing fee categories and structures -->
-    <!-- Add Category Modal -->
-    <div class="modal fade" id="addCategoryModal" tabindex="-1">
-        <!-- Modal content for adding a category -->
+    <!-- Modal xem/chỉnh sửa thông tin học phí -->
+    <div class="modal fade" id="studentFeeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="studentFeeModalLabel">Chi tiết học phí sinh viên</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Thông tin sinh viên</h6>
+                            <div id="studentInfo">
+                                <!-- Thông tin sinh viên sẽ được load động -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Tổng quan học phí</h6>
+                            <div id="feeOverview">
+                                <!-- Tổng quan học phí sẽ được load động -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="mt-4 mb-3">Chi tiết học phí</h6>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Danh mục</th>
+                                    <th>Số tiền</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feeDetailsList">
+                                <!-- Chi tiết học phí sẽ được load động -->
+                            </tbody>
+                            <tfoot>
+                                <tr class="table-primary">
+                                    <th>Tổng cộng</th>
+                                    <th id="totalFeeAmount"></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <h6 class="mt-4 mb-3">Lịch sử thanh toán</h6>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Ngày thanh toán</th>
+                                    <th>Số tiền</th>
+                                    <th>Phương thức</th>
+                                    <th>Mã giao dịch</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentHistoryList">
+                                <!-- Lịch sử thanh toán sẽ được load động -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="editFeeButton">Chỉnh sửa học phí</button>
+                    <button type="button" class="btn btn-success" id="addPaymentButton">Thêm thanh toán</button>
+                    <button type="button" class="btn btn-info" id="generateInvoiceButton">Tạo hóa đơn</button>
+                    <button type="button" class="btn btn-warning" id="sendReminderButton">Gửi nhắc nhở</button>
+                </div>
+            </div>
+        </div>
     </div>
     
-    <!-- Add Fee Structure Modal -->
-    <div class="modal fade" id="addFeeStructureModal" tabindex="-1">
-        <!-- Modal content for adding a fee structure -->
+    <!-- Modal chỉnh sửa học phí -->
+    <div class="modal fade" id="editFeeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chỉnh sửa học phí</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editFeeForm">
+                        <input type="hidden" id="studentFeeId">
+                        <div class="mb-3">
+                            <label for="feeDueDate" class="form-label">Hạn nộp học phí</label>
+                            <input type="date" class="form-control" id="feeDueDate" required>
+                        </div>
+                        
+                        <div id="feeItemsContainer">
+                            <!-- Chi tiết học phí sẽ được render động ở đây -->
+                        </div>
+                        
+                        <button type="button" class="btn btn-outline-primary btn-sm mt-2" id="addFeeItemButton">
+                            <i class="fas fa-plus"></i> Thêm khoản phí
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="saveFeeButton">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
     </div>
     
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/fee-structure.js"></script>
+    <!-- Modal thêm thanh toán -->
+    <div class="modal fade" id="addPaymentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm thanh toán mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPaymentForm">
+                        <input type="hidden" id="paymentStudentFeeId">
+                        <div class="mb-3">
+                            <label for="paymentAmount" class="form-label">Số tiền thanh toán</label>
+                            <input type="number" class="form-control" id="paymentAmount" required min="0">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paymentMethod" class="form-label">Phương thức thanh toán</label>
+                            <select class="form-select" id="paymentMethod" required>
+                                <option value="">Chọn phương thức thanh toán</option>
+                                <!-- Phương thức thanh toán sẽ được load từ API -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="transactionId" class="form-label">Mã giao dịch</label>
+                            <input type="text" class="form-control" id="transactionId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paymentReference" class="form-label">Ghi chú</label>
+                            <textarea class="form-control" id="paymentReference" rows="2"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="savePaymentButton">Lưu thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal tạo học phí hàng loạt -->
+    <div class="modal fade" id="batchFeeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tạo học phí hàng loạt</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i> Chức năng này sẽ tạo học phí cho tất cả sinh viên thuộc khoa và lớp đã chọn dựa trên cấu trúc học phí đã thiết lập.
+                    </div>
+                    
+                    <form id="batchFeeForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="batchSemester" class="form-label">Học kỳ</label>
+                                <select class="form-select" id="batchSemester" required>
+                                    <option value="">Chọn học kỳ</option>
+                                    <!-- Học kỳ sẽ được load từ API -->
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="batchDepartment" class="form-label">Khoa</label>
+                                <select class="form-select" id="batchDepartment">
+                                    <option value="">Tất cả các khoa</option>
+                                    <!-- Khoa sẽ được load từ API -->
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="batchClass" class="form-label">Lớp</label>
+                                <select class="form-select" id="batchClass">
+                                    <option value="">Tất cả các lớp</option>
+                                    <!-- Lớp sẽ được load từ API -->
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="batchDueDate" class="form-label">Hạn nộp học phí</label>
+                                <input type="date" class="form-control" id="batchDueDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="overwriteExisting">
+                            <label class="form-check-label" for="overwriteExisting">
+                                Ghi đè lên học phí đã tồn tại (nếu có)
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="createBatchFeesSubmitButton">Tạo học phí</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay d-none" id="loadingOverlay">
+        <div class="spinner-border text-primary loading-spinner" role="status">
+            <span class="visually-hidden">Đang tải...</span>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="js/student-tuition.js"></script>
     <script src="js/sidebar.js"></script>
 </body>
 </html>
