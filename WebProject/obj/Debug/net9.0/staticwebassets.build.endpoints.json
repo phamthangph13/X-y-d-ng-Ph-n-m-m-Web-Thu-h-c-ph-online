@@ -5665,13 +5665,13 @@
       ]
     },
     {
-      "Route": "js/student-tuition.4rmzmwpmjj.js",
+      "Route": "js/student-tuition.a5psc4ff09.js",
       "AssetFile": "js/student-tuition.js.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000147732309"
+          "Quality": "0.000148257969"
         }
       ],
       "ResponseHeaders": [
@@ -5689,7 +5689,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6768"
+          "Value": "6744"
         },
         {
           "Name": "Content-Type",
@@ -5697,15 +5697,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=\""
+          "Value": "\"doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\""
+          "Value": "W/\"ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Vary",
@@ -5715,11 +5715,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4rmzmwpmjj"
+          "Value": "a5psc4ff09"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="
+          "Value": "sha256-ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk="
         },
         {
           "Name": "label",
@@ -5728,7 +5728,7 @@
       ]
     },
     {
-      "Route": "js/student-tuition.4rmzmwpmjj.js",
+      "Route": "js/student-tuition.a5psc4ff09.js",
       "AssetFile": "js/student-tuition.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -5742,7 +5742,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "41287"
+          "Value": "40237"
         },
         {
           "Name": "Content-Type",
@@ -5750,21 +5750,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\""
+          "Value": "\"ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4rmzmwpmjj"
+          "Value": "a5psc4ff09"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="
+          "Value": "sha256-ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk="
         },
         {
           "Name": "label",
@@ -5773,7 +5773,7 @@
       ]
     },
     {
-      "Route": "js/student-tuition.4rmzmwpmjj.js.gz",
+      "Route": "js/student-tuition.a5psc4ff09.js.gz",
       "AssetFile": "js/student-tuition.js.gz",
       "Selectors": [],
       "ResponseHeaders": [
@@ -5791,7 +5791,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6768"
+          "Value": "6744"
         },
         {
           "Name": "Content-Type",
@@ -5799,11 +5799,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=\""
+          "Value": "\"doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Vary",
@@ -5813,11 +5813,11 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4rmzmwpmjj"
+          "Value": "a5psc4ff09"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4="
+          "Value": "sha256-doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0="
         },
         {
           "Name": "label",
@@ -5832,7 +5832,7 @@
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000147732309"
+          "Quality": "0.000148257969"
         }
       ],
       "ResponseHeaders": [
@@ -5850,7 +5850,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6768"
+          "Value": "6744"
         },
         {
           "Name": "Content-Type",
@@ -5858,15 +5858,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=\""
+          "Value": "\"doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\""
+          "Value": "W/\"ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Vary",
@@ -5876,7 +5876,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="
+          "Value": "sha256-ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk="
         }
       ]
     },
@@ -5895,7 +5895,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "41287"
+          "Value": "40237"
         },
         {
           "Name": "Content-Type",
@@ -5903,17 +5903,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\""
+          "Value": "\"ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="
+          "Value": "sha256-ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk="
         }
       ]
     },
@@ -5936,7 +5936,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6768"
+          "Value": "6744"
         },
         {
           "Name": "Content-Type",
@@ -5944,11 +5944,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=\""
+          "Value": "\"doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Vary",
@@ -5958,7 +5958,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4="
+          "Value": "sha256-doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0="
         }
       ]
     },
@@ -8347,174 +8347,13 @@
       ]
     },
     {
-      "Route": "student-tuition.dnhrgjsep7.html",
-      "AssetFile": "student-tuition.html.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000212675457"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4701"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=\""
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dnhrgjsep7"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA="
-        },
-        {
-          "Name": "label",
-          "Value": "student-tuition.html"
-        }
-      ]
-    },
-    {
-      "Route": "student-tuition.dnhrgjsep7.html",
-      "AssetFile": "student-tuition.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "28635"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dnhrgjsep7"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA="
-        },
-        {
-          "Name": "label",
-          "Value": "student-tuition.html"
-        }
-      ]
-    },
-    {
-      "Route": "student-tuition.dnhrgjsep7.html.gz",
-      "AssetFile": "student-tuition.html.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4701"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dnhrgjsep7"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg="
-        },
-        {
-          "Name": "label",
-          "Value": "student-tuition.html.gz"
-        }
-      ]
-    },
-    {
       "Route": "student-tuition.html",
       "AssetFile": "student-tuition.html.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000212675457"
+          "Quality": "0.000213492741"
         }
       ],
       "ResponseHeaders": [
@@ -8532,7 +8371,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4701"
+          "Value": "4683"
         },
         {
           "Name": "Content-Type",
@@ -8540,15 +8379,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=\""
+          "Value": "\"SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=\""
         },
         {
           "Name": "ETag",
-          "Value": "W/\"GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=\""
+          "Value": "W/\"OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Vary",
@@ -8558,7 +8397,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA="
+          "Value": "sha256-OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM="
         }
       ]
     },
@@ -8577,7 +8416,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "28635"
+          "Value": "27977"
         },
         {
           "Name": "Content-Type",
@@ -8585,17 +8424,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=\""
+          "Value": "\"OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA="
+          "Value": "sha256-OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM="
         }
       ]
     },
@@ -8618,7 +8457,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4701"
+          "Value": "4683"
         },
         {
           "Name": "Content-Type",
@@ -8626,11 +8465,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=\""
+          "Value": "\"SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Vary",
@@ -8640,7 +8479,168 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg="
+          "Value": "sha256-SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI="
+        }
+      ]
+    },
+    {
+      "Route": "student-tuition.xemvb19l98.html",
+      "AssetFile": "student-tuition.html.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000213492741"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4683"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xemvb19l98"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM="
+        },
+        {
+          "Name": "label",
+          "Value": "student-tuition.html"
+        }
+      ]
+    },
+    {
+      "Route": "student-tuition.xemvb19l98.html",
+      "AssetFile": "student-tuition.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "27977"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xemvb19l98"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM="
+        },
+        {
+          "Name": "label",
+          "Value": "student-tuition.html"
+        }
+      ]
+    },
+    {
+      "Route": "student-tuition.xemvb19l98.html.gz",
+      "AssetFile": "student-tuition.html.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4683"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xemvb19l98"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI="
+        },
+        {
+          "Name": "label",
+          "Value": "student-tuition.html.gz"
         }
       ]
     },

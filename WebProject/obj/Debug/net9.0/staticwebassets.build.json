@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RIRL43oDHg04EOMA7THQ9a+4g5nSH93JLmNgA4QVmEw=",
+  "Hash": "1n5AP5qSH10yD7lXV8dNhY2Reyao8R7rmFzCwmX9GYw=",
   "Source": "WebProject",
   "BasePath": "_content/WebProject",
   "Mode": "Default",
@@ -164,12 +164,12 @@
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\tuition.html"
     },
     {
-      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-dnhrgjsep7.gz",
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-xemvb19l98.gz",
       "SourceId": "WebProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/WebProject",
-      "RelativePath": "student-tuition#[.{fingerprint=dnhrgjsep7}]?.html.gz",
+      "RelativePath": "student-tuition#[.{fingerprint=xemvb19l98}]?.html.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -178,8 +178,8 @@
       "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\student-tuition.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "ya224qj4je",
-      "Integrity": "KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=",
+      "Fingerprint": "qrd4giznrv",
+      "Integrity": "SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\student-tuition.html"
@@ -668,12 +668,12 @@
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\handlers\\auth.js"
     },
     {
-      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-4rmzmwpmjj.gz",
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-a5psc4ff09.gz",
       "SourceId": "WebProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/WebProject",
-      "RelativePath": "js/student-tuition#[.{fingerprint=4rmzmwpmjj}]?.js.gz",
+      "RelativePath": "js/student-tuition#[.{fingerprint=a5psc4ff09}]?.js.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -682,8 +682,8 @@
       "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\student-tuition.js",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "rlin0ebg3c",
-      "Integrity": "72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=",
+      "Fingerprint": "idt7g4tq6p",
+      "Integrity": "doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\student-tuition.js"
@@ -1102,8 +1102,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4rmzmwpmjj",
-      "Integrity": "EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=",
+      "Fingerprint": "a5psc4ff09",
+      "Integrity": "ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\student-tuition.js"
@@ -1291,8 +1291,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "dnhrgjsep7",
-      "Integrity": "GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=",
+      "Fingerprint": "xemvb19l98",
+      "Integrity": "OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\student-tuition.html"
@@ -7025,13 +7025,13 @@
       ]
     },
     {
-      "Route": "js/student-tuition.4rmzmwpmjj.js",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-4rmzmwpmjj.gz",
+      "Route": "js/student-tuition.a5psc4ff09.js",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-a5psc4ff09.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000147732309"
+          "Quality": "0.000148257969"
         }
       ],
       "ResponseHeaders": [
@@ -7041,15 +7041,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6768"
+          "Value": "6744"
         },
         {
           "Name": "ETag",
-          "Value": "\"72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=\""
+          "Value": "\"doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7069,13 +7069,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\""
+          "Value": "W/\"ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4rmzmwpmjj"
+          "Value": "a5psc4ff09"
         },
         {
           "Name": "label",
@@ -7083,12 +7083,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="
+          "Value": "sha256-ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk="
         }
       ]
     },
     {
-      "Route": "js/student-tuition.4rmzmwpmjj.js",
+      "Route": "js/student-tuition.a5psc4ff09.js",
       "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\student-tuition.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -7098,7 +7098,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "41287"
+          "Value": "40237"
         },
         {
           "Name": "Content-Type",
@@ -7106,11 +7106,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\""
+          "Value": "\"ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7120,7 +7120,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4rmzmwpmjj"
+          "Value": "a5psc4ff09"
         },
         {
           "Name": "label",
@@ -7128,13 +7128,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="
+          "Value": "sha256-ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk="
         }
       ]
     },
     {
-      "Route": "js/student-tuition.4rmzmwpmjj.js.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-4rmzmwpmjj.gz",
+      "Route": "js/student-tuition.a5psc4ff09.js.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-a5psc4ff09.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7143,7 +7143,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6768"
+          "Value": "6744"
         },
         {
           "Name": "Content-Type",
@@ -7151,11 +7151,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=\""
+          "Value": "\"doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7173,7 +7173,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4rmzmwpmjj"
+          "Value": "a5psc4ff09"
         },
         {
           "Name": "label",
@@ -7181,18 +7181,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4="
+          "Value": "sha256-doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0="
         }
       ]
     },
     {
       "Route": "js/student-tuition.js",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-4rmzmwpmjj.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-a5psc4ff09.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000147732309"
+          "Quality": "0.000148257969"
         }
       ],
       "ResponseHeaders": [
@@ -7202,15 +7202,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6768"
+          "Value": "6744"
         },
         {
           "Name": "ETag",
-          "Value": "\"72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=\""
+          "Value": "\"doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7230,13 +7230,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\""
+          "Value": "W/\"ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="
+          "Value": "sha256-ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk="
         }
       ]
     },
@@ -7251,7 +7251,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "41287"
+          "Value": "40237"
         },
         {
           "Name": "Content-Type",
@@ -7259,11 +7259,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM=\""
+          "Value": "\"ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7273,13 +7273,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-EDwNPIi3oTaRJnyBAwVldoWTyPB3iUs8jlIk8smUdmM="
+          "Value": "sha256-ssVBEi2BRUqP5Bu6l5Y9sko2OKgmraQfPLUUKe2Nexk="
         }
       ]
     },
     {
       "Route": "js/student-tuition.js.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-4rmzmwpmjj.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\zh0yhi0r22-a5psc4ff09.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7288,7 +7288,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6768"
+          "Value": "6744"
         },
         {
           "Name": "Content-Type",
@@ -7296,11 +7296,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4=\""
+          "Value": "\"doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:30:44 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7318,7 +7318,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-72UCRy0Ttlwa078/S2Iw4kQTbM6QjhiTH7DERRjN8t4="
+          "Value": "sha256-doD7NzodQyNUN/IvHvspMUe6G3w8/09tew4cmOTznu0="
         }
       ]
     },
@@ -9707,13 +9707,13 @@
       ]
     },
     {
-      "Route": "student-tuition.dnhrgjsep7.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-dnhrgjsep7.gz",
+      "Route": "student-tuition.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-xemvb19l98.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000212675457"
+          "Quality": "0.000213492741"
         }
       ],
       "ResponseHeaders": [
@@ -9723,19 +9723,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4701"
+          "Value": "4683"
         },
         {
           "Name": "ETag",
-          "Value": "\"KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=\""
+          "Value": "\"SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -9751,26 +9751,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=\""
+          "Value": "W/\"OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "dnhrgjsep7"
-        },
-        {
-          "Name": "label",
-          "Value": "student-tuition.html"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA="
+          "Value": "sha256-OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM="
         }
       ]
     },
     {
-      "Route": "student-tuition.dnhrgjsep7.html",
+      "Route": "student-tuition.html",
       "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\student-tuition.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -9780,7 +9772,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "28635"
+          "Value": "27977"
         },
         {
           "Name": "Content-Type",
@@ -9788,11 +9780,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=\""
+          "Value": "\"OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM="
+        }
+      ]
+    },
+    {
+      "Route": "student-tuition.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-xemvb19l98.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4683"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI="
+        }
+      ]
+    },
+    {
+      "Route": "student-tuition.xemvb19l98.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-xemvb19l98.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000213492741"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4683"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xemvb19l98"
+        },
+        {
+          "Name": "label",
+          "Value": "student-tuition.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM="
+        }
+      ]
+    },
+    {
+      "Route": "student-tuition.xemvb19l98.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\student-tuition.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "27977"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9802,7 +9939,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "dnhrgjsep7"
+          "Value": "xemvb19l98"
         },
         {
           "Name": "label",
@@ -9810,13 +9947,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA="
+          "Value": "sha256-OeIGJ6h5IZ1gU4TccL43lPzaQwDzz42PYTV8/da5SqM="
         }
       ]
     },
     {
-      "Route": "student-tuition.dnhrgjsep7.html.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-dnhrgjsep7.gz",
+      "Route": "student-tuition.xemvb19l98.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-xemvb19l98.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9825,7 +9962,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4701"
+          "Value": "4683"
         },
         {
           "Name": "Content-Type",
@@ -9833,11 +9970,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=\""
+          "Value": "\"SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
+          "Value": "Wed, 19 Mar 2025 18:37:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9855,7 +9992,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "dnhrgjsep7"
+          "Value": "xemvb19l98"
         },
         {
           "Name": "label",
@@ -9863,144 +10000,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg="
-        }
-      ]
-    },
-    {
-      "Route": "student-tuition.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-dnhrgjsep7.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000212675457"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4701"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA="
-        }
-      ]
-    },
-    {
-      "Route": "student-tuition.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\student-tuition.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "28635"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-GQ4aOiMZ9Govt5bW5W7olgmc0oysIir+Ji4zQxDjUxA="
-        }
-      ]
-    },
-    {
-      "Route": "student-tuition.html.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\c50wr2yv9h-dnhrgjsep7.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "4701"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 18:22:45 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-KtReaH+HvcNw0bFVOxtOVi3AJuacMBCdotoJeDxtUvg="
+          "Value": "sha256-SlkVKzjA797dYAqIUSWK4S3aiCnZOiOAAd2xPiV2huI="
         }
       ]
     },
