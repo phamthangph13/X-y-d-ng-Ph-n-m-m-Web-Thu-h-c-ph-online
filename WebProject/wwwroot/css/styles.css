@@ -384,4 +384,60 @@ body.authenticated .user-dropdown {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+}
+
+/* User dropdown menu styles */
+.dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+}
+
+.dropdown-item i {
+    width: 20px;
+    text-align: center;
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.dropdown-divider {
+    margin: 0.5rem 0;
+    opacity: 0.1;
+}
+
+/* Accountant menu - may have more items so we add scrolling if needed */
+.accountant-menu {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Role indicator styles */
+.user-role {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 5px;
+    background-color: #f0f0f0;
+    color: #666;
+}
+
+.role-student {
+    background-color: rgba(76, 201, 240, 0.1);
+    color: var(--success-color);
+}
+
+.role-accountant {
+    background-color: rgba(67, 97, 238, 0.1);
+    color: var(--primary-color);
 } 

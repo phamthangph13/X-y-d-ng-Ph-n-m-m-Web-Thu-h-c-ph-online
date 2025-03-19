@@ -70,9 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
         function ensureCorrectEncoding(text) {
             if (!text) return "User";
             try {
-                // In case the text has been double-encoded or has encoding issues
-                // Try to normalize it for display
-                return decodeURIComponent(escape(text));
+                // Simpler approach that doesn't try to decode already decoded text
+                return text;
             } catch (e) {
                 console.error("Error normalizing text:", e);
                 return text;
@@ -99,12 +98,39 @@ document.addEventListener('DOMContentLoaded', function() {
                         }).join(''));
                         
                         const payload = JSON.parse(jsonPayload);
+                        console.log("JWT payload:", payload);
+                        console.log("Role from token:", payload.role);
+                        
+                        // Normalize the role value
+                        let userRole = payload.role;
+                        
+                        // Check alternative role claim names if role is undefined
+                        if (!userRole) {
+                            console.log("Role not found in standard claim, checking alternatives");
+                            // Try common JWT role claim alternatives
+                            if (payload.roles) {
+                                userRole = payload.roles;
+                                console.log("Found role in 'roles' claim:", userRole);
+                            } else if (payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]) {
+                                userRole = payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+                                console.log("Found role in Microsoft claim format:", userRole);
+                            }
+                        }
+                        
+                        if (Array.isArray(userRole)) {
+                            // Some JWT implementations return roles as arrays
+                            userRole = userRole[0];
+                            console.log("Role was in array format, using first value:", userRole);
+                        }
+                        
                         const userData = {
                             userId: payload.nameid,
                             email: payload.email,
                             fullName: payload.unique_name,
-                            role: payload.role
+                            role: userRole
                         };
+                        
+                        console.log("Extracted user data:", userData);
                         localStorage.setItem(USER_KEY, JSON.stringify(userData));
                         console.log("User data extracted from token:", userData);
                     }
@@ -210,18 +236,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // Handle non-JSON response
                     const textResponse = await response.text();
-                    console.log('Non-JSON response:', textResponse);
-                    
-                    try {
-                        // Try to parse as JSON anyway in case Content-Type header is incorrect
-                        const jsonData = JSON.parse(textResponse);
-                        console.log('Parsed as JSON despite content type:', jsonData);
-                        return jsonData;
-                    } catch (e) {
-                        // If not JSON, return as text
-                        console.log('Returning as text response');
-                        return { message: textResponse || 'Success' };
-                    }
+                    console.log('Returning as text response');
+                    return { message: textResponse || 'Success' };
                 }
             } catch (error) {
                 console.error('API call failed:', error);
@@ -1034,38 +1050,34 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Handle logout click - direct approach
-        const logoutButton = document.getElementById('logoutButton');
-        if (logoutButton) {
-            logoutButton.addEventListener('click', handleLogout);
-        }
-        
-        // Add a delegated event listener for the logout button in case it's added dynamically
-        document.body.addEventListener('click', function(e) {
-            if (e.target && e.target.closest('#logoutButton')) {
-                e.preventDefault();
-                handleLogout(e);
-            }
-        });
-        
-        // Shared logout handler function
+        // Handle logout button click
         async function handleLogout(e) {
+            if (e) e.preventDefault();
+            
+            console.log("Logout button clicked");
+            
             try {
                 await logout();
+                console.log("Logout successful");
                 
-                // Clear authentication state
-                clearAuthToken();
+                // Update UI to reflect logged out state
+                updateUIBasedOnAuth();
                 
-                // Show success message
-                showToast('Success', 'You have been logged out', 'success');
-                
-                // Reload the page immediately
-                window.location.reload();
-                
+                // Redirect to home page
+                window.location.href = "/";
             } catch (error) {
-                showToast('Error', 'Logout failed', 'error');
+                console.error("Logout failed:", error);
+                showToast("Error", "Failed to log out: " + error.message, "error");
             }
         }
+        
+        // Add event listener to both logout buttons (for both menus)
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutButtons = document.querySelectorAll('#logoutButton');
+            logoutButtons.forEach(button => {
+                button.addEventListener('click', handleLogout);
+            });
+        });
         
         // Add smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1113,108 +1125,108 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update UI based on authentication status
         function updateUIBasedOnAuth() {
-            const isLoggedIn = isAuthenticated();
-            console.log("Authentication status:", isLoggedIn);
+            console.log("Updating UI based on authentication state");
             
-            // Add or remove authenticated class on body element
-            if (isLoggedIn) {
-                document.body.classList.add('authenticated');
-            } else {
-                document.body.classList.remove('authenticated');
-            }
-            
-            const authButtons = document.querySelector('.auth-buttons');
-            const userDropdown = document.querySelector('.user-dropdown');
-            
-            console.log("Auth buttons element:", authButtons);
-            console.log("User dropdown element:", userDropdown);
-            
-            if (authButtons && userDropdown) {
-                if (isLoggedIn) {
-                    // Use multiple approaches to ensure the elements are properly hidden/shown
-                    // 1. Use inline styles
-                    authButtons.style.display = 'none';
-                    userDropdown.style.display = 'block';
+            try {
+                const isUserAuthenticated = isAuthenticated();
+                console.log("Is user authenticated:", isUserAuthenticated);
+                
+                const authButtons = document.querySelector('.auth-buttons');
+                const userDropdown = document.querySelector('.user-dropdown');
+                const studentMenu = document.querySelector('.student-menu');
+                const accountantMenu = document.querySelector('.accountant-menu');
+                
+                if (isUserAuthenticated) {
+                    console.log("User is authenticated, showing user dropdown");
                     
-                    // 2. Add/remove classes
-                    authButtons.classList.add('d-none');
-                    authButtons.classList.remove('d-flex');
-                    userDropdown.classList.remove('d-none');
+                    // Get user data and directly normalize role
+                    const userData = JSON.parse(localStorage.getItem(USER_KEY) || '{"fullName":"User"}');
+                    console.log("User data for UI:", userData);
                     
-                    // 3. Set visibility
-                    authButtons.hidden = true;
-                    userDropdown.hidden = false;
+                    // Get the role from either role or userType property
+                    const userRole = userData.role || userData.userType || 'Student';
+                    console.log("User role from data (normalized):", userRole);
                     
-                    // Force the reflow of the DOM to ensure the changes are applied
-                    void authButtons.offsetWidth;
-                    void userDropdown.offsetWidth;
+                    // Update user name and role in dropdown
+                    const userNameElement = document.querySelector('.user-name');
+                    const userRoleIndicator = document.getElementById('userRoleIndicator');
                     
-                    // Try to load user data for display
-                    let userData = {fullName: "User"};
-                    try {
-                        const storedData = localStorage.getItem(USER_KEY);
-                        console.log("Stored user data:", storedData);
-                        if (storedData) {
-                            userData = JSON.parse(storedData);
-                        } else {
-                            console.log("No user data found, using default name");
-                        }
-                    } catch (error) {
-                        console.error('Error parsing user data:', error);
-                        // If we can't parse the user data but we're authenticated,
-                        // try to extract basic info from the token
-                        try {
-                            const token = getAuthToken();
-                            if (token) {
-                                const tokenParts = token.split('.');
-                                if (tokenParts.length === 3) {
-                                    // Proper decoding of Base64URL with UTF-8 handling
-                                    const base64Url = tokenParts[1];
-                                    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-                                    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-                                        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                                    }).join(''));
-                                    
-                                    const payload = JSON.parse(jsonPayload);
-                                    userData = {
-                                        fullName: payload.unique_name || "User"
-                                    };
-                                    console.log("Extracted user name from token:", userData.fullName);
-                                }
-                            }
-                        } catch (tokenError) {
-                            console.error("Failed to extract name from token:", tokenError);
-                        }
-                    }
-                    
-                    const userNameElement = userDropdown.querySelector('.user-name');
                     if (userNameElement) {
-                        // Apply encoding fix to ensure proper display of UTF-8 characters
-                        userNameElement.textContent = ensureCorrectEncoding(userData.fullName) || 'User';
+                        userNameElement.textContent = ensureCorrectEncoding(userData.fullName || 'User');
                     }
+                    
+                    if (userRoleIndicator) {
+                        userRoleIndicator.textContent = userRole;
+                        userRoleIndicator.className = 'user-role'; // Reset class
+                        userRoleIndicator.classList.add('role-' + userRole.toLowerCase());
+                    }
+                    
+                    // Display the appropriate menu based on user role
+                    if (userDropdown) {
+                        userDropdown.style.display = 'block';
+                        
+                        // Debug the actual role value
+                        console.log("Using role value for menu selection:", userRole);
+                        
+                        // Get menu items by class
+                        const studentItems = document.querySelectorAll('.student-item');
+                        const accountantItems = document.querySelectorAll('.accountant-item');
+                        
+                        // Check user role and show the appropriate menu items
+                        if (userRole && userRole.toLowerCase() === 'accountant') {
+                            console.log("User is an Accountant, showing accountant menu items");
+                            
+                            // Hide student items
+                            studentItems.forEach(item => {
+                                item.style.display = 'none';
+                            });
+                            
+                            // Show accountant items
+                            accountantItems.forEach(item => {
+                                item.style.display = '';
+                            });
+                        } else {
+                            // Default to Student role menu
+                            console.log("User is a Student or other role, showing student menu items");
+                            
+                            // Show student items
+                            studentItems.forEach(item => {
+                                item.style.display = '';
+                            });
+                            
+                            // Hide accountant items
+                            accountantItems.forEach(item => {
+                                item.style.display = 'none';
+                            });
+                        }
+                    }
+                    
+                    // Hide auth buttons when authenticated
+                    if (authButtons) {
+                        authButtons.style.display = 'none';
+                    }
+                    
+                    // Add authenticated class to body for CSS targeting
+                    document.body.classList.add('authenticated');
+                    
                 } else {
-                    // Use multiple approaches to ensure the elements are properly hidden/shown
-                    // 1. Use inline styles
-                    authButtons.style.display = 'flex';
-                    userDropdown.style.display = 'none';
+                    console.log("User is not authenticated, showing auth buttons");
                     
-                    // 2. Add/remove classes
-                    authButtons.classList.remove('d-none');
-                    authButtons.classList.add('d-flex');
-                    userDropdown.classList.add('d-none');
+                    // Show auth buttons
+                    if (authButtons) {
+                        authButtons.style.display = 'flex';
+                    }
                     
-                    // 3. Set visibility
-                    authButtons.hidden = false;
-                    userDropdown.hidden = true;
+                    // Hide user dropdown
+                    if (userDropdown) {
+                        userDropdown.style.display = 'none';
+                    }
                     
-                    // Force DOM reflow to ensure changes take effect
-                    void authButtons.offsetWidth;
-                    void userDropdown.offsetWidth;
-                    
-                    console.log("UI updated for logged out state");
+                    // Remove authenticated class from body
+                    document.body.classList.remove('authenticated');
                 }
-            } else {
-                console.error("Could not find auth buttons or user dropdown elements");
+            } catch (error) {
+                console.error("Error updating UI based on auth:", error);
             }
         }
         
@@ -1231,22 +1243,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize animations
         initAnimations();
         
-        // Add an additional check after a short delay to ensure the UI is properly updated
-        setTimeout(() => {
-            console.log("Running delayed UI update check");
-            updateUIBasedOnAuth();
-            
-            // Force-fix auth buttons if needed
-            const isLoggedIn = isAuthenticated();
-            if (isLoggedIn) {
-                const authButtons = document.querySelector('.auth-buttons');
-                const navbarCollapse = document.getElementById('navbarNav');
-                if (authButtons && navbarCollapse) {
-                    console.log("Applying direct CSS fix for auth buttons");
-                    authButtons.style.cssText = 'display: none !important';  // Use !important to override any other styles
-                }
+        // Add a forced menu check as early as possible
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM content loaded - applying menu visibility immediately");
+            // Execute immediately without timeout
+            try {
+                window.forceCorrectMenu();
+            } catch (error) {
+                console.error("Error in immediate menu check:", error);
             }
-        }, 500);
+        });
+        
+        // Also run on window load just to be safe
+        window.addEventListener('load', function() {
+            console.log("Window loaded - ensuring correct menu visibility");
+            window.forceCorrectMenu();
+        });
 
         // Function to retry failed API calls
         async function retryApiCall(fn, maxRetries = 3, delay = 1000) {
@@ -1316,6 +1328,78 @@ document.addEventListener('DOMContentLoaded', function() {
                 showToast('Error', 'Không thể khởi tạo biểu mẫu', 'error');
             });
         }
+
+        // FOR DEBUGGING: Function to manually set user role
+        window.setUserRole = function(role) {
+            try {
+                const userData = JSON.parse(localStorage.getItem(USER_KEY) || '{"fullName":"User"}');
+                userData.role = role;
+                localStorage.setItem(USER_KEY, JSON.stringify(userData));
+                console.log("User role manually set to:", role);
+                updateUIBasedOnAuth();
+                return "User role updated to: " + role;
+            } catch (error) {
+                console.error("Error setting user role:", error);
+                return "Error: " + error.message;
+            }
+        };
+        
+        // FOR DEBUGGING: Function to check current user data
+        window.checkUserData = function() {
+            try {
+                const userData = JSON.parse(localStorage.getItem(USER_KEY) || '{"fullName":"User"}');
+                console.log("Current user data:", userData);
+                return userData;
+            } catch (error) {
+                console.error("Error checking user data:", error);
+                return "Error: " + error.message;
+            }
+        };
+
+        // FOR DEBUGGING: Function to force display the correct menu
+        window.forceCorrectMenu = function() {
+            try {
+                const userData = JSON.parse(localStorage.getItem(USER_KEY) || '{"fullName":"User"}');
+                const userRole = userData.role || userData.userType || '';
+                console.log("Setting menu items for role:", userRole);
+                
+                const studentItems = document.querySelectorAll('.student-item');
+                const accountantItems = document.querySelectorAll('.accountant-item');
+                
+                if (userRole.toLowerCase() === 'accountant') {
+                    console.log("Displaying ACCOUNTANT menu items");
+                    
+                    // Hide student items
+                    studentItems.forEach(item => {
+                        item.style.display = 'none';
+                    });
+                    
+                    // Show accountant items
+                    accountantItems.forEach(item => {
+                        item.style.display = '';
+                    });
+                    
+                    return "Accountant menu items displayed";
+                } else {
+                    console.log("Displaying STUDENT menu items");
+                    
+                    // Show student items
+                    studentItems.forEach(item => {
+                        item.style.display = '';
+                    });
+                    
+                    // Hide accountant items
+                    accountantItems.forEach(item => {
+                        item.style.display = 'none';
+                    });
+                    
+                    return "Student menu items displayed";
+                }
+            } catch (error) {
+                console.error("Error setting menu items:", error);
+                return "Error: " + error.message;
+            }
+        };
     } catch (error) {
         console.error('Error during application initialization:', error);
         showToast('Error', 'Không thể khởi tạo ứng dụng', 'error');

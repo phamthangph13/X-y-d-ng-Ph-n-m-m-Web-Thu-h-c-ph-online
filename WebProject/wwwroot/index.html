@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script>
+        // Immediately set correct menu visibility before page rendering
+        (function() {
+            try {
+                // Get role as early as possible in the page load process
+                const userData = JSON.parse(localStorage.getItem('user_data') || '{"fullName":"User"}');
+                const userRole = userData.role || userData.userType || '';
+                
+                // Define a style element to inject CSS rules that will be applied before rendering
+                document.write(`
+                    <style id="initial-menu-styles">
+                        .student-item { display: ${userRole.toLowerCase() === 'accountant' ? 'none' : 'list-item'}; }
+                        .accountant-item { display: ${userRole.toLowerCase() === 'accountant' ? 'list-item' : 'none'}; }
+                    </style>
+                `);
+            } catch(e) {
+                console.error("Error in initial menu setup:", e);
+            }
+        })();
+    </script>
 </head> 
 <body>
     <!-- Header -->
@@ -38,11 +58,26 @@
                         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user-circle me-1"></i>
                             <span class="user-name">User</span>
+                            <span class="user-role" id="userRoleIndicator"></span>
                         </a>
+                        <!-- Combined dropdown menu with conditional display -->
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <!-- Common item for all users -->
                             <li><a class="dropdown-item" href="../profile.html"><i class="fas fa-user me-2"></i>Hồ sơ</a></li>
-                            <li><a class="dropdown-item" href="../tuition.html"><i class="fas fa-money-bill-wave me-2"></i>Học phí</a></li>
-                            <li><a class="dropdown-item" href="../payment-history.html"><i class="fas fa-history me-2"></i>Lịch sử thanh toán</a></li>
+                            
+                            <!-- Student items -->
+                            <li class="student-item"><a class="dropdown-item" href="../tuition.html"><i class="fas fa-money-bill-wave me-2"></i>Học phí</a></li>
+                            <li class="student-item"><a class="dropdown-item" href="../payment-history.html"><i class="fas fa-history me-2"></i>Lịch sử thanh toán</a></li>
+                            
+                            <!-- Accountant items -->
+                            <li class="accountant-item" style="display: none;"><a class="dropdown-item" href="../tuition-structure.html"><i class="fas fa-sitemap me-2"></i>Quản lý cấu trúc học phí</a></li>
+                            <li class="accountant-item" style="display: none;"><a class="dropdown-item" href="../student-tuition.html"><i class="fas fa-users me-2"></i>Quản lý học phí sinh viên</a></li>
+                            <li class="accountant-item" style="display: none;"><a class="dropdown-item" href="../payment-management.html"><i class="fas fa-credit-card me-2"></i>Quản lý thanh toán</a></li>
+                            <li class="accountant-item" style="display: none;"><a class="dropdown-item" href="../invoice-management.html"><i class="fas fa-file-invoice me-2"></i>Quản lý hóa đơn</a></li>
+                            <li class="accountant-item" style="display: none;"><a class="dropdown-item" href="../financial-reports.html"><i class="fas fa-chart-bar me-2"></i>Báo cáo tài chính</a></li>
+                            <li class="accountant-item" style="display: none;"><a class="dropdown-item" href="../payment-notifications.html"><i class="fas fa-bell me-2"></i>Thông báo thanh toán</a></li>
+                            <li class="accountant-item" style="display: none;"><a class="dropdown-item" href="../system-settings.html"><i class="fas fa-cogs me-2"></i>Cài đặt hệ thống</a></li>
+                            
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="#" id="logoutButton"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
                         </ul>
@@ -371,5 +406,54 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script>
+        // Ensure correct menu is displayed after everything loads
+        window.addEventListener('load', function() {
+            console.log("Window fully loaded - forcing correct menu display");
+            setTimeout(function() {
+                try {
+                    // Get user role
+                    const userData = JSON.parse(localStorage.getItem('user_data') || '{"fullName":"User"}');
+                    const userRole = userData.role || userData.userType || '';
+                    console.log("Window loaded - user role:", userRole);
+                    
+                    // Direct menu manipulation based on role
+                    if (userRole.toLowerCase() === 'accountant') {
+                        console.log("FINAL CHECK: Showing ACCOUNTANT menu");
+                        document.querySelectorAll('.student-item').forEach(item => {
+                            item.style.display = 'none';
+                        });
+                        document.querySelectorAll('.accountant-item').forEach(item => {
+                            item.style.display = 'list-item';
+                        });
+                    } else {
+                        console.log("FINAL CHECK: Showing STUDENT menu");
+                        document.querySelectorAll('.student-item').forEach(item => {
+                            item.style.display = 'list-item';
+                        });
+                        document.querySelectorAll('.accountant-item').forEach(item => {
+                            item.style.display = 'none';
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error in final menu check:", error);
+                }
+            }, 1000); // Wait 1 second after window load
+        });
+        
+        // Also check when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM content loaded - scheduling menu check");
+            setTimeout(function() {
+                try {
+                    if (window.forceCorrectMenu) {
+                        window.forceCorrectMenu();
+                    }
+                } catch (error) {
+                    console.error("Error in DOM ready menu check:", error);
+                }
+            }, 500);
+        });
+    </script>
 </body>
 </html> 
