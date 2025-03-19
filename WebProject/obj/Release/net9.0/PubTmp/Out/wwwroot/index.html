@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPay - Hệ thống đóng học phí trực tuyến</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head> 
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <span class="text-primary fw-bold">Edu</span><span class="text-success">Pay</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Liên hệ</a>
+                        </li>
+                    </ul>
+                    <!-- Auth Buttons - Only shown when logged out -->
+                    <div class="d-flex auth-buttons">
+                        <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng nhập</button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Đăng ký</button>
+                    </div>
+                    <!-- User Dropdown - Only shown when logged in -->
+                    <div class="dropdown user-dropdown" style="display: none;">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i>
+                            <span class="user-name">User</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="../profile.html"><i class="fas fa-user me-2"></i>Hồ sơ</a></li>
+                            <li><a class="dropdown-item" href="../tuition.html"><i class="fas fa-money-bill-wave me-2"></i>Học phí</a></li>
+                            <li><a class="dropdown-item" href="../payment-history.html"><i class="fas fa-history me-2"></i>Lịch sử thanh toán</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logoutButton"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-md-6">
+                    <h1 class="display-4 fw-bold mb-4">Thanh toán học phí trực tuyến với <span class="text-primary">Edu</span><span class="text-success">Pay</span></h1>
+                    <p class="lead mb-4">Giải pháp thanh toán học phí hiện đại, an toàn và tiện lợi. Đóng học phí mọi lúc, mọi nơi chỉ với vài thao tác đơn giản.</p>
+                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal">Bắt đầu ngay</button>
+                </div>
+                <div class="col-md-6">
+                    <img src="images/hero-image.svg" alt="EduPay" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Tính năng nổi bật</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                            <h3 class="card-title">An toàn & Bảo mật</h3>
+                            <p class="card-text">Thanh toán được mã hóa và bảo mật với các tiêu chuẩn quốc tế.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-bolt fa-3x text-primary mb-3"></i>
+                            <h3 class="card-title">Nhanh chóng</h3>
+                            <p class="card-text">Thanh toán học phí nhanh chóng chỉ trong vài phút, không cần xếp hàng.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-history fa-3x text-primary mb-3"></i>
+                            <h3 class="card-title">Lịch sử giao dịch</h3>
+                            <p class="card-text">Theo dõi và quản lý tất cả lịch sử giao dịch thanh toán học phí.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Liên hệ với chúng tôi</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <form class="contact-form">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Họ và tên" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control" placeholder="Số điện thoại">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Nội dung tin nhắn" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gửi tin nhắn</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <h3>Thông tin liên hệ</h3>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt me-2 text-primary"></i> 123 Đường Nguyễn Văn Linh, Quận 7, TP. HCM</p>
+                        <p class="mb-2"><i class="fas fa-phone me-2 text-primary"></i> (028) 3123 4567</p>
+                        <p class="mb-2"><i class="fas fa-envelope me-2 text-primary"></i> info@edupay.vn</p>
+                        <h4 class="mt-4">Giờ làm việc</h4>
+                        <p class="mb-2">Thứ Hai - Thứ Sáu: 8:00 - 17:00</p>
+                        <p class="mb-2">Thứ Bảy: 8:00 - 12:00</p>
+                        <p class="mb-2">Chủ Nhật: Đóng cửa</p>
+                        <div class="social-icons mt-4">
+                            <a href="#" class="me-2"><i class="fab fa-facebook-f fa-lg text-primary"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-twitter fa-lg text-primary"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-instagram fa-lg text-primary"></i></a>
+                            <a href="#" class="me-2"><i class="fab fa-linkedin-in fa-lg text-primary"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-4 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5><span class="text-primary">Edu</span><span class="text-success">Pay</span></h5>
+                    <p>Hệ thống thanh toán học phí trực tuyến hiện đại, an toàn và tiện lợi.</p>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Liên kết</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Trang chủ</a></li>
+                        <li><a href="#" class="text-white">Về chúng tôi</a></li>
+                        <li><a href="#" class="text-white">Dịch vụ</a></li>
+                        <li><a href="#" class="text-white">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Hỗ trợ</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Trung tâm hỗ trợ</a></li>
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                        <li><a href="#" class="text-white">Chính sách bảo mật</a></li>
+                        <li><a href="#" class="text-white">Điều khoản dịch vụ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Đăng ký nhận thông tin</h5>
+                    <p>Nhận thông tin mới nhất từ chúng tôi</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email của bạn">
+                        <button class="btn btn-primary" type="button">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 EduPay. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="loginModalLabel"><i class="fas fa-user-circle me-2"></i>Đăng nhập</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="avatar-icon mb-3">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4>Đăng nhập vào tài khoản</h4>
+                        <p class="text-muted">Nhập thông tin đăng nhập của bạn để tiếp tục</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" required>
+                            <label for="loginEmail"><i class="fas fa-envelope me-2"></i>Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                            <label for="loginPassword"><i class="fas fa-lock me-2"></i>Mật khẩu</label>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+                            </div>
+                            <a href="#" id="forgotPasswordLink" class="text-primary">Quên mật khẩu?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="fas fa-sign-in-alt me-2"></i>Đăng nhập
+                        </button>
+                        <div class="text-center mt-4">
+                            <p>Chưa có tài khoản? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" class="text-primary fw-bold">Đăng ký ngay</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="registerModalLabel"><i class="fas fa-user-plus me-2"></i>Đăng ký tài khoản</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="avatar-icon mb-3">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h4>Tạo tài khoản mới</h4>
+                        <p class="text-muted">Vui lòng điền đầy đủ thông tin để đăng ký tài khoản</p>
+                    </div>
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="fullName" placeholder="Họ và tên" required>
+                                    <label for="fullName"><i class="fas fa-user me-2"></i>Họ và tên</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="studentCode" placeholder="Mã sinh viên" required>
+                                    <label for="studentCode"><i class="fas fa-id-card me-2"></i>Mã sinh viên</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="registerEmail" placeholder="Email" required>
+                                    <label for="registerEmail"><i class="fas fa-envelope me-2"></i>Email</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="tel" class="form-control" id="phoneNumber" placeholder="Số điện thoại" required>
+                                    <label for="phoneNumber"><i class="fas fa-phone me-2"></i>Số điện thoại</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="registerPassword" placeholder="Mật khẩu" required>
+                                    <label for="registerPassword"><i class="fas fa-lock me-2"></i>Mật khẩu</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Xác nhận mật khẩu" required>
+                                    <label for="confirmPassword"><i class="fas fa-lock me-2"></i>Xác nhận mật khẩu</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="departmentID" required>
+                                        <option value="" selected disabled>Chọn khoa</option>
+                                    </select>
+                                    <label for="departmentID"><i class="fas fa-building me-2"></i>Khoa</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="classID" required>
+                                        <option value="" selected disabled>Chọn lớp</option>
+                                    </select>
+                                    <label for="classID"><i class="fas fa-users me-2"></i>Lớp</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="enrollmentYear" required>
+                                        <option value="" selected disabled>Chọn năm</option>
+                                    </select>
+                                    <label for="enrollmentYear"><i class="fas fa-calendar-alt me-2"></i>Năm nhập học</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">Tôi đồng ý với <a href="#" class="text-primary">Điều khoản</a> và <a href="#" class="text-primary">Chính sách bảo mật</a></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="fas fa-user-plus me-2"></i>Đăng ký
+                        </button>
+                        <div class="text-center mt-4">
+                            <p>Đã có tài khoản? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" class="text-primary fw-bold">Đăng nhập</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel"><i class="fas fa-key me-2"></i>Quên mật khẩu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="avatar-icon mb-3">
+                            <i class="fas fa-unlock-alt"></i>
+                        </div>
+                        <h4>Đặt lại mật khẩu</h4>
+                        <p class="text-muted">Vui lòng nhập email của bạn để nhận hướng dẫn đặt lại mật khẩu</p>
+                    </div>
+                    <form id="forgotPasswordForm">
+                        <div class="form-floating mb-4">
+                            <input type="email" class="form-control" id="resetEmail" placeholder="name@example.com" required>
+                            <label for="resetEmail"><i class="fas fa-envelope me-2"></i>Email</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="fas fa-paper-plane me-2"></i>Gửi yêu cầu
+                        </button>
+                        <div class="text-center mt-4">
+                            <p>Nhớ mật khẩu? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" class="text-primary fw-bold">Đăng nhập</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html> 

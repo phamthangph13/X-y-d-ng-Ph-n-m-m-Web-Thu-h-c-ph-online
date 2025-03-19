@@ -1,0 +1,7 @@
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\WebProject\obj\Release\net9.0\PubTmp\Out\WebProject.exe
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\WebProject\obj\Release\net9.0\PubTmp\Out\appsettings.Development.json
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\WebProject\obj\Release\net9.0\PubTmp\Out\appsettings.json
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\WebProject\obj\Release\net9.0\PubTmp\Out\WebProject.dll
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\WebProject\obj\Release\net9.0\PubTmp\Out\WebProject.deps.json
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\WebProject\obj\Release\net9.0\PubTmp\Out\WebProject.runtimeconfig.json
+C:\Users\winni\OneDrive\Desktop\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\WebProject\WebProject\obj\Release\net9.0\PubTmp\Out\WebProject.pdb

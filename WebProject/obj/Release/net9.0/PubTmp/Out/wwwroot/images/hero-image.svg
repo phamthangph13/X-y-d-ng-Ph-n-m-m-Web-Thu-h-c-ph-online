@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f9fa" opacity="0.3"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="150" cy="100" r="50" fill="#4361ee" opacity="0.1"/>
+  <circle cx="700" cy="500" r="70" fill="#4cc9f0" opacity="0.1"/>
+  <circle cx="400" cy="100" r="30" fill="#3f37c9" opacity="0.1"/>
+  
+  <!-- Laptop/Computer -->
+  <rect x="200" y="250" width="300" height="200" rx="10" fill="#3f37c9"/>
+  <rect x="210" y="260" width="280" height="170" fill="#fff"/>
+  <rect x="230" y="450" width="240" height="20" rx="5" fill="#212529"/>
+  <rect x="310" y="450" width="80" height="10" rx="5" fill="#3f37c9"/>
+  
+  <!-- Screen Content -->
+  <!-- Header -->
+  <rect x="230" y="280" width="240" height="30" fill="#4361ee" opacity="0.8"/>
+  <rect x="250" y="290" width="80" height="10" fill="#fff"/>
+  <rect x="350" y="290" width="40" height="10" fill="#fff"/>
+  <rect x="400" y="290" width="40" height="10" fill="#fff"/>
+  
+  <!-- Form on Screen -->
+  <rect x="250" y="330" width="200" height="80" rx="5" fill="#f8f9fa"/>
+  <rect x="270" y="345" width="160" height="10" rx="2" fill="#dee2e6"/>
+  <rect x="270" y="365" width="160" height="10" rx="2" fill="#dee2e6"/>
+  <rect x="270" y="385" width="80" height="15" rx="3" fill="#4cc9f0"/>
+  
+  <!-- Student Figure -->
+  <!-- Head -->
+  <circle cx="600" cy="280" r="40" fill="#ffd166"/>
+  <!-- Body -->
+  <path d="M600 320 L600 420 L580 470 L620 470 L600 420" fill="#4361ee"/>
+  <!-- Arms -->
+  <path d="M600 340 L550 380" stroke="#4361ee" stroke-width="10" stroke-linecap="round"/>
+  <path d="M600 340 L650 370" stroke="#4361ee" stroke-width="10" stroke-linecap="round"/>
+  <!-- Book -->
+  <rect x="530" y="370" width="40" height="30" fill="#ef476f" transform="rotate(-10, 530, 370)"/>
+  
+  <!-- Credit Card -->
+  <rect x="620" y="360" width="60" height="40" rx="5" fill="#4cc9f0"/>
+  <rect x="630" y="375" width="40" height="5" fill="#fff"/>
+  <rect x="630" y="385" width="20" height="5" fill="#fff"/>
+  
+  <!-- Money Symbols -->
+  <text x="630" y="240" font-family="Arial" font-size="20" fill="#2b9348">$</text>
+  <text x="660" y="220" font-family="Arial" font-size="20" fill="#2b9348">$</text>
+  <text x="690" y="250" font-family="Arial" font-size="20" fill="#2b9348">$</text>
+  
+  <!-- Connection Lines -->
+  <path d="M500 350 Q550 320 580 350" stroke="#4361ee" stroke-width="3" stroke-dasharray="5,5" fill="none"/>
+  <path d="M640 400 Q660 430 680 400" stroke="#4cc9f0" stroke-width="3" stroke-dasharray="5,5" fill="none"/>
+  
+  <!-- EduPay Text -->
+  <text x="400" y="170" font-family="Arial" font-weight="bold" font-size="24" text-anchor="middle" fill="#3f37c9">EduPay</text>
+  <text x="400" y="195" font-family="Arial" font-size="14" text-anchor="middle" fill="#212529">Hệ thống đóng học phí trực tuyến</text>
+</svg> 
