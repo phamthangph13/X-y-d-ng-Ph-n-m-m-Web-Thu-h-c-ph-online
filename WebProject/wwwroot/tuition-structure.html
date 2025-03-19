@@ -366,16 +366,89 @@
     <!-- Modals for adding/editing fee categories and structures -->
     <!-- Add Category Modal -->
     <div class="modal fade" id="addCategoryModal" tabindex="-1">
-        <!-- Modal content for adding a category -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalLabel">Thêm danh mục học phí</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCategoryForm">
+                        <input type="hidden" id="categoryId">
+                        <div class="mb-3">
+                            <label for="categoryName" class="form-label">Tên danh mục</label>
+                            <input type="text" class="form-control" id="categoryName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoryDescription" class="form-label">Mô tả</label>
+                            <textarea class="form-control" id="categoryDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="categoryStatus" checked>
+                            <label class="form-check-label" for="categoryStatus">Kích hoạt</label>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Add Fee Structure Modal -->
     <div class="modal fade" id="addFeeStructureModal" tabindex="-1">
-        <!-- Modal content for adding a fee structure -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addFeeStructureModalLabel">Thêm cấu trúc học phí</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addFeeStructureForm">
+                        <input type="hidden" id="feeStructureId">
+                        <div class="mb-3">
+                            <label for="feeStructureDepartment" class="form-label">Khoa</label>
+                            <select class="form-select" id="feeStructureDepartment" required>
+                                <option value="">Chọn khoa</option>
+                                <!-- Departments will be loaded here -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="feeStructureSemester" class="form-label">Học kỳ</label>
+                            <select class="form-select" id="feeStructureSemester" required>
+                                <option value="">Chọn học kỳ</option>
+                                <!-- Semesters will be loaded here -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="feeStructureCategory" class="form-label">Danh mục học phí</label>
+                            <select class="form-select" id="feeStructureCategory" required>
+                                <option value="">Chọn danh mục</option>
+                                <!-- Categories will be loaded here -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="feeAmount" class="form-label">Số tiền (VNĐ)</label>
+                            <input type="number" class="form-control" id="feeAmount" required min="0">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="feePerCredit">
+                            <label class="form-check-label" for="feePerCredit">Tính theo tín chỉ</label>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/fee-structure.js"></script>
     <script src="js/sidebar.js"></script>
 </body>
