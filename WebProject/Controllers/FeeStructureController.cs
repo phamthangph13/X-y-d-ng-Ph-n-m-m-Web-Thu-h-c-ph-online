@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebProject.Models.Entities;
 using WebProject.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebProject.Controllers
 {
@@ -105,10 +106,22 @@ namespace WebProject.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<FeeStructure>> CreateFeeStructure(FeeStructure feeStructure)
+        public async Task<ActionResult<FeeStructure>> CreateFeeStructure([FromBody] FeeStructureInputModel model)
         {
             try 
             {
+                Console.WriteLine($"Received model: DeptID={model.DepartmentID}, SemID={model.SemesterID}, CatID={model.FeeCategoryID}, Amount={model.Amount}");
+                
+                // Tạo entity mới từ input model
+                var feeStructure = new FeeStructure
+                {
+                    DepartmentID = model.DepartmentID,
+                    SemesterID = model.SemesterID,
+                    FeeCategoryID = model.FeeCategoryID,
+                    Amount = model.Amount,
+                    PerCredit = model.PerCredit
+                };
+                
                 _context.FeeStructures.Add(feeStructure);
                 await _context.SaveChangesAsync();
                 
@@ -132,14 +145,34 @@ namespace WebProject.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateFeeStructure(int id, FeeStructure feeStructure)
+        public async Task<IActionResult> UpdateFeeStructure(int id, [FromBody] FeeStructureInputModel model)
         {
-            if (id != feeStructure.FeeStructureID)
-                return BadRequest();
+            try
+            {
+                Console.WriteLine($"Updating FeeStructure ID={id}, DeptID={model.DepartmentID}, SemID={model.SemesterID}, CatID={model.FeeCategoryID}");
+                
+                var feeStructure = await _context.FeeStructures.FindAsync(id);
+                if (feeStructure == null)
+                    return NotFound(new { message = "Cấu trúc học phí không tồn tại" });
 
-            _context.Entry(feeStructure).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return NoContent();
+                // Cập nhật thông tin
+                feeStructure.DepartmentID = model.DepartmentID;
+                feeStructure.SemesterID = model.SemesterID;
+                feeStructure.FeeCategoryID = model.FeeCategoryID;
+                feeStructure.Amount = model.Amount;
+                feeStructure.PerCredit = model.PerCredit;
+
+                _context.Entry(feeStructure).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                
+                Console.WriteLine($"Updated FeeStructure ID={id}");
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating FeeStructure: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
@@ -165,6 +198,24 @@ namespace WebProject.Controllers
         public int FeeCategoryID { get; set; }
         public string CategoryName { get; set; }
         public decimal Amount { get; set; }
+        public bool PerCredit { get; set; }
+    }
+
+    // Input model để tránh validation error với navigation properties
+    public class FeeStructureInputModel
+    {
+        [Required]
+        public int DepartmentID { get; set; }
+        
+        [Required]
+        public int SemesterID { get; set; }
+        
+        [Required]
+        public int FeeCategoryID { get; set; }
+        
+        [Required]
+        public decimal Amount { get; set; }
+        
         public bool PerCredit { get; set; }
     }
 } 

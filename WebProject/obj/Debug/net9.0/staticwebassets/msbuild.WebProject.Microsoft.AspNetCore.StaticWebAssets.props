@@ -192,8 +192,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>p5d92ze1h0</Fingerprint>
-      <Integrity>I4d/3Q6rtRbYLdGPBtghX86m/ZT+qSbRXEyNxXiqWAQ=</Integrity>
+      <Fingerprint>sqysd8a8zs</Fingerprint>
+      <Integrity>HHQNNRXzohGycfF/7EP8kGp/EtGpvwxmhE4tux2sGHg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\fee-structure.js'))</OriginalItemSpec>
