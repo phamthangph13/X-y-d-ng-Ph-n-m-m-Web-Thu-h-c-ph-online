@@ -385,7 +385,7 @@ $(document).ready(function() {
                     <td>${student.studentName || 'N/A'}</td>
                     <td>${student.className || 'N/A'}</td>
                     <td>${student.departmentName || 'N/A'}</td>
-                    <td>${student.semesterName || 'N/A'}</td>
+                    <td>${student.semester?.semesterName || 'N/A'}</td>
                     <td>${formatCurrency(student.totalAmount || 0)}</td>
                     <td>
                         <div class="d-flex align-items-center">
@@ -1048,4 +1048,4 @@ $(document).ready(function() {
     function formatCurrency(amount) {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
     }
-}); 
+});

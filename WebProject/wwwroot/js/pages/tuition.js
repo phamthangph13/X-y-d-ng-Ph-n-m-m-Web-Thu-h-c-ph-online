@@ -22,16 +22,42 @@ async function initTuitionPage() {
     
     // Get user data
     const userData = getUserData();
+    console.log('Complete user data from localStorage:', userData);
+    
     if (!userData || !userData.userId) {
-        console.error('User data not found');
+        console.error('User data not found or missing userId');
         return;
     }
+    
+    console.log('User ID for API calls:', userData.userId);
     
     // Update user name in header
     const userNameElement = document.querySelector('.user-name.content-element');
     if (userNameElement && userData.fullName) {
         userNameElement.textContent = userData.fullName;
     }
+    
+    // Define modal functions globally to prevent reference errors
+    window.openModal = function(modal) {
+        if (!modal) return;
+        
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+        
+        document.body.style.overflow = 'hidden';
+    };
+    
+    window.closeModal = function(modal) {
+        if (!modal) return;
+        
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 300);
+    };
     
     // Hiển thị trạng thái đang tải
     showLoadingState();
@@ -58,7 +84,7 @@ async function initTuitionPage() {
             // If there is no data, show a message
             if (dataResult.studentFeesCount === 0) {
                 console.warn('No student fees found in the database');
-                showErrorState('Không có dữ liệu học phí trong hệ thống. Vui lòng liên hệ quản trị viên.');
+                showErrorState('Không có dữ liệu học phí trong hệ thống. Vui lòng liên hệ vải trị viên.');
                 return;
             }
         } catch (dataError) {
@@ -68,7 +94,7 @@ async function initTuitionPage() {
         
         // Assuming the student ID is the same as the user ID for simplicity
         // In a real application, you might need to fetch the student ID first
-        const studentId = userData.userId;
+        const studentId = userData.userId; // Changed from StudentID to userId
         console.log('Fetching data for student ID:', studentId);
         
         // Load all student fees first
@@ -92,8 +118,16 @@ async function initTuitionPage() {
         // Load unpaid fees
         let unpaidFees = null;
         try {
+            console.log('Fetching unpaid fees for student ID:', studentId);
             unpaidFees = await tuitionApi.getUnpaidFees(studentId);
-            console.log('Unpaid fees:', unpaidFees);
+            console.log('Unpaid fees raw response:', unpaidFees);
+            if (Array.isArray(unpaidFees)) {
+                console.log('Unpaid fees is array with', unpaidFees.length, 'items');
+            } else if (unpaidFees && typeof unpaidFees === 'object') {
+                console.log('Unpaid fees is object with keys:', Object.keys(unpaidFees));
+            } else {
+                console.log('Unpaid fees has unexpected type:', typeof unpaidFees);
+            }
         } catch (error) {
             console.warn('Could not load unpaid fees:', error);
         }
@@ -111,14 +145,55 @@ async function initTuitionPage() {
         updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
         
         // Ưu tiên hiển thị dữ liệu theo thứ tự: allFees > unpaidFees > currentSemesterFees
-        if (allFees) {
+        if (allFees && (Array.isArray(allFees) || allFees.$values)) {
+            console.log('Using allFees for table display, type:', typeof allFees, 'is array:', Array.isArray(allFees));
             updateTuitionTable(allFees);
-        } else if (unpaidFees) {
+        } else if (unpaidFees && (Array.isArray(unpaidFees) || unpaidFees.$values)) {
+            console.log('Using unpaidFees for table display, type:', typeof unpaidFees, 'is array:', Array.isArray(unpaidFees));
             updateTuitionTable(unpaidFees);
-        } else if (currentSemesterFees) {
+        } else if (currentSemesterFees && !currentSemesterFees.message) {
+            console.log('Using currentSemesterFees for table display');
             updateTuitionTable([currentSemesterFees]);
         } else {
-            // Nếu không có dữ liệu nào, hiển thị trạng thái trống
+            // Giải pháp dự phòng cực kỳ đặc biệt - truy cập trực tiếp JSON
+            try {
+                console.log('Attempting direct access to unpaid fees via raw text JSON');
+                // Lấy dữ liệu raw JSON gốc từ API
+                const preElement = document.querySelector('pre');
+                if (preElement && preElement.textContent) {
+                    console.log('Found raw JSON text, attempting to parse');
+                    const directData = JSON.parse(preElement.textContent);
+                    if (Array.isArray(directData) && directData.length > 0) {
+                        console.log('Successfully parsed raw JSON into array', directData);
+                        // Render dữ liệu trực tiếp
+                        renderDirectFeeTable(directData);
+                        return;
+                    }
+                } else {
+                    console.log('No pre element found on the page, skipping direct JSON access');
+                }
+            } catch (directError) {
+                console.error('Direct JSON access failed:', directError);
+            }
+            
+            // Dự phòng: Nếu unpaidFees có dữ liệu thô, hãy thử cách khác
+            if (unpaidFees) {
+                console.log('Trying fallback method with direct raw JSON data');
+                try {
+                    let unpaidFeesArray = JSON.parse(JSON.stringify(unpaidFees));
+                    console.log('Parsed unpaid fees:', unpaidFeesArray);
+                    if (Array.isArray(unpaidFeesArray) && unpaidFeesArray.length > 0) {
+                        console.log('Successfully parsed unpaid fees into array');
+                        updateFallbackTuitionTable(unpaidFeesArray);
+                        return;
+                    }
+                } catch (parseError) {
+                    console.error('Error parsing unpaid fees JSON:', parseError);
+                }
+            }
+            
+            // No data available, show empty state
+            console.log('No data available to display');
             updateEmptyStateUI();
         }
         
@@ -156,9 +231,6 @@ function updateTuitionOverview(currentSemesterFees, allFees, unpaidFees) {
             allFeesArray = allFees.values;
         } else if (Array.isArray(allFees)) {
             allFeesArray = allFees;
-        } else if (typeof allFees === 'object') {
-            // Nếu là đối tượng đơn lẻ
-            allFeesArray = [allFees];
         }
     }
     
@@ -236,6 +308,7 @@ function updateTuitionOverview(currentSemesterFees, allFees, unpaidFees) {
 // Update tuition table with real data
 function updateTuitionTable(fees) {
     if (!fees) {
+        console.error('Fees data is null or undefined');
         return;
     }
     
@@ -243,7 +316,7 @@ function updateTuitionTable(fees) {
     console.log('Updating table with fees data structure:', typeof fees, fees);
     
     // Kiểm tra nếu có thông báo lỗi
-    if (fees.message) {
+    if (fees && fees.message) {
         console.warn('API returned message:', fees.message);
         
         // Hiển thị trạng thái trống với thông báo từ API
@@ -261,29 +334,43 @@ function updateTuitionTable(fees) {
         return;
     }
     
-    // Xử lý dữ liệu trả về từ API
+    // Xử lý dữ liệu trả về từ API - Cách hoàn toàn mới
     let feesArray = [];
     
-    // Kiểm tra nếu dữ liệu có cấu trúc $values (từ ReferenceHandler.Preserve)
-    if (fees.$values) {
-        feesArray = fees.$values;
-    } 
-    // Kiểm tra nếu dữ liệu có cấu trúc values (từ API trả về khi không có dữ liệu)
-    else if (fees.values) {
-        feesArray = fees.values;
-    }
-    // Kiểm tra nếu dữ liệu là mảng
-    else if (Array.isArray(fees)) {
-        feesArray = fees;
-    }
-    // Nếu là đối tượng đơn lẻ
-    else if (typeof fees === 'object' && fees !== null) {
-        feesArray = [fees];
+    // Thêm logging chi tiết hơn
+    console.log('Raw fees data type:', typeof fees);
+    
+    // Cách xử lý mới với kiểm tra nghiêm ngặt
+    if (Array.isArray(fees)) {
+        console.log('Fees is an array directly');
+        // Tạo một mảng mới từ dữ liệu
+        feesArray = Array.from(fees);
+    } else if (fees && typeof fees === 'object') {
+        // Cấu trúc có $values
+        if (fees.$values && Array.isArray(fees.$values)) {
+            console.log('Using $values array');
+            feesArray = Array.from(fees.$values);
+        } 
+        // Trường hợp đối tượng đơn lẻ, không phải mảng
+        else if (!Array.isArray(fees) && !fees.message) {
+            console.log('Single fee object detected');
+            feesArray = [fees];
+        }
     }
     
-    console.log('Processed fees array:', feesArray);
+    // Log details for debugging
+    console.log('Processed fees array is Array?', Array.isArray(feesArray));
+    console.log('Processed fees array length:', feesArray ? feesArray.length : 0);
     
-    if (feesArray.length === 0) {
+    // Check the first item in more detail
+    if (feesArray.length > 0) {
+        console.log('First fee item details:', feesArray[0]);
+    } else {
+        console.log('No items in fees array');
+    }
+    
+    if (!feesArray || feesArray.length === 0) {
+        console.warn('No fees data after processing');
         // Hiển thị trạng thái trống nếu không có dữ liệu
         const tableBody = document.querySelector('.tuition-table tbody');
         tableBody.innerHTML = `
@@ -300,32 +387,68 @@ function updateTuitionTable(fees) {
     }
     
     const tableBody = document.querySelector('.tuition-table tbody');
-    tableBody.innerHTML = ''; // Clear existing rows
+    if (!tableBody) {
+        console.error('Table body element not found');
+        return;
+    }
     
-    feesArray.forEach(fee => {
-        // Kiểm tra cấu trúc của fee
-        console.log('Processing fee:', fee);
+    tableBody.innerHTML = ''; // Clear existing rows
+    console.log('Cleared existing table rows, processing', feesArray.length, 'fee items');
+    
+    feesArray.forEach((fee, index) => {
+        console.log(`Processing fee ${index+1}/${feesArray.length}:`, fee);
+        
+        if (!fee) {
+            console.warn(`Fee at index ${index} is null or undefined, skipping`);
+            return;
+        }
         
         // Lấy danh sách chi tiết học phí
         let feeDetails = [];
-        if (fee.studentFeeDetails && fee.studentFeeDetails.$values) {
-            feeDetails = fee.studentFeeDetails.$values;
-        } else if (fee.studentFeeDetails && Array.isArray(fee.studentFeeDetails)) {
-            feeDetails = fee.studentFeeDetails;
+        console.log('Raw studentFeeDetails type:', typeof fee.studentFeeDetails);
+        
+        if (fee.studentFeeDetails) {
+            if (fee.studentFeeDetails.$values && Array.isArray(fee.studentFeeDetails.$values)) {
+                console.log('Using $values array for fee details');
+                feeDetails = Array.from(fee.studentFeeDetails.$values);
+            } else if (Array.isArray(fee.studentFeeDetails)) {
+                console.log('Fee details is directly an array');
+                feeDetails = Array.from(fee.studentFeeDetails);
+            } else if (typeof fee.studentFeeDetails === 'object') {
+                console.log('Fee details is a single object');
+                feeDetails = [fee.studentFeeDetails];
+            }
         }
         
-        console.log('Fee details:', feeDetails);
+        console.log('Processed fee details is array?', Array.isArray(feeDetails));
+        console.log('Fee details length:', feeDetails.length);
         
         // Nếu không có chi tiết học phí, hiển thị một hàng cho học phí
         if (!feeDetails || feeDetails.length === 0) {
+            console.log('No fee details, creating single row for fee');
             const row = document.createElement('tr');
+            
+            // Lấy thông tin học kỳ
+            let semesterName = 'N/A';
+            if (fee.semester && fee.semester.semesterName) {
+                semesterName = fee.semester.semesterName;
+            }
+            
+            // Xác định trạng thái thanh toán
+            let statusClass = 'unknown';
+            let statusText = getStatusText(fee.status || 'Unknown');
+            
+            if (fee.status) {
+                statusClass = fee.status.toLowerCase();
+            }
+            
             row.innerHTML = `
                 <td data-label="Mã học phần">${fee.studentFeeID || 'N/A'}</td>
-                <td data-label="Tên học phần">Học phí</td>
+                <td data-label="Tên học phần">Học phí ${semesterName}</td>
                 <td data-label="Số tín chỉ">-</td>
-                <td data-label="Học kỳ">${fee.semester ? fee.semester.semesterName : 'N/A'}</td>
+                <td data-label="Học kỳ">${semesterName}</td>
                 <td data-label="Số tiền">${formatCurrency(fee.totalAmount || 0)}</td>
-                <td data-label="Trạng thái"><span class="status-${(fee.status || 'unknown').toLowerCase()}">${getStatusText(fee.status || 'Unknown')}</span></td>
+                <td data-label="Trạng thái"><span class="status-${statusClass}">${statusText}</span></td>
                 <td data-label="Hành động">
                     ${fee.status !== "Paid" ? 
                         `<button class="btn-pay" data-fee-id="${fee.studentFeeID}" data-amount="${fee.totalAmount}"><i class="fas fa-credit-card"></i></button>` : 
@@ -339,6 +462,7 @@ function updateTuitionTable(fees) {
         
         // Hiển thị một hàng cho mỗi chi tiết học phí
         feeDetails.forEach(detail => {
+            console.log('Creating row for fee detail:', detail);
             const row = document.createElement('tr');
             
             // Lấy thông tin danh mục học phí
@@ -347,16 +471,30 @@ function updateTuitionTable(fees) {
                 categoryName = detail.feeCategory.categoryName;
             }
             
+            // Lấy thông tin học kỳ
+            let semesterName = 'N/A';
+            if (fee.semester && fee.semester.semesterName) {
+                semesterName = fee.semester.semesterName;
+            }
+            
             // Create a unique ID for the fee detail
             const feeDetailId = `${fee.studentFeeID}-${detail.studentFeeDetailID}`;
+            
+            // Xác định trạng thái thanh toán
+            let statusClass = 'unknown';
+            let statusText = getStatusText(fee.status || 'Unknown');
+            
+            if (fee.status) {
+                statusClass = fee.status.toLowerCase();
+            }
             
             row.innerHTML = `
                 <td data-label="Mã học phần">${feeDetailId}</td>
                 <td data-label="Tên học phần">${categoryName}</td>
                 <td data-label="Số tín chỉ">-</td>
-                <td data-label="Học kỳ">${fee.semester ? fee.semester.semesterName : 'N/A'}</td>
+                <td data-label="Học kỳ">${semesterName}</td>
                 <td data-label="Số tiền">${formatCurrency(detail.amount)}</td>
-                <td data-label="Trạng thái"><span class="status-${fee.status.toLowerCase()}">${getStatusText(fee.status)}</span></td>
+                <td data-label="Trạng thái"><span class="status-${statusClass}">${statusText}</span></td>
                 <td data-label="Hành động">
                     ${fee.status !== "Paid" ? 
                         `<button class="btn-pay" data-fee-id="${fee.studentFeeID}" data-fee-detail-id="${detail.studentFeeDetailID}" data-amount="${detail.amount}"><i class="fas fa-credit-card"></i></button>` : 
@@ -369,6 +507,157 @@ function updateTuitionTable(fees) {
         });
     });
     
+    console.log('Finished rendering table rows');
+    
+    // Re-attach event listeners to the new buttons
+    attachPaymentButtonListeners();
+}
+
+// Hàm dự phòng hiển thị dữ liệu học phí mà không xử lý phức tạp
+function updateFallbackTuitionTable(feesData) {
+    console.log('Using fallback table display method');
+    if (!feesData || !Array.isArray(feesData) || feesData.length === 0) {
+        console.warn('Fallback method: No data to display');
+        updateEmptyStateUI();
+        return;
+    }
+    
+    const tableBody = document.querySelector('.tuition-table tbody');
+    if (!tableBody) {
+        console.error('Table body element not found');
+        return;
+    }
+    
+    tableBody.innerHTML = ''; // Clear existing rows
+    
+    feesData.forEach((fee, index) => {
+        console.log(`Processing fallback fee ${index+1}/${feesData.length}:`, fee);
+        
+        const row = document.createElement('tr');
+        
+        // Lấy thông tin học kỳ
+        let semesterName = 'N/A';
+        if (fee.semester && fee.semester.semesterName) {
+            semesterName = fee.semester.semesterName;
+        }
+        
+        // Xác định trạng thái thanh toán
+        let statusClass = 'unknown';
+        let statusText = getStatusText(fee.status || 'Unknown');
+        
+        if (fee.status) {
+            statusClass = fee.status.toLowerCase();
+        }
+        
+        row.innerHTML = `
+            <td data-label="Mã học phần">${fee.studentFeeID || 'N/A'}</td>
+            <td data-label="Tên học phần">Học phí ${semesterName}</td>
+            <td data-label="Số tín chỉ">-</td>
+            <td data-label="Học kỳ">${semesterName}</td>
+            <td data-label="Số tiền">${formatCurrency(fee.totalAmount || 0)}</td>
+            <td data-label="Trạng thái"><span class="status-${statusClass}">${statusText}</span></td>
+            <td data-label="Hành động">
+                ${fee.status !== "Paid" ? 
+                    `<button class="btn-pay" data-fee-id="${fee.studentFeeID}" data-amount="${fee.totalAmount}"><i class="fas fa-credit-card"></i></button>` : 
+                    `<button class="btn-view-detail" data-fee-id="${fee.studentFeeID}"><i class="fas fa-eye"></i></button>`
+                }
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+    
+    // Re-attach event listeners to new buttons
+    attachPaymentButtonListeners();
+}
+
+// Hàm để hiển thị dữ liệu học phí từ dữ liệu JSON trực tiếp
+function renderDirectFeeTable(feesData) {
+    console.log('Rendering fee table from direct JSON data');
+    if (!feesData || !Array.isArray(feesData) || feesData.length === 0) {
+        console.warn('No direct fee data to display');
+        updateEmptyStateUI();
+        return;
+    }
+    
+    const tableBody = document.querySelector('.tuition-table tbody');
+    if (!tableBody) {
+        console.error('Table body element not found');
+        return;
+    }
+    
+    tableBody.innerHTML = ''; // Clear existing rows
+    
+    feesData.forEach((fee, index) => {
+        console.log(`Processing fee ${index+1}/${feesData.length}:`, fee);
+        
+        // Nếu có studentFeeDetails và nó là mảng, hiển thị từng chi tiết
+        if (fee.studentFeeDetails && Array.isArray(fee.studentFeeDetails) && fee.studentFeeDetails.length > 0) {
+            fee.studentFeeDetails.forEach(detail => {
+                const row = document.createElement('tr');
+                
+                // Lấy thông tin danh mục học phí
+                let categoryName = detail.feeCategory ? detail.feeCategory.categoryName : 'Học phí';
+                
+                // Lấy thông tin học kỳ
+                let semesterName = fee.semester ? fee.semester.semesterName : 'N/A';
+                
+                // Tạo ID duy nhất cho chi tiết học phí
+                const feeDetailId = `${fee.studentFeeID}-${detail.studentFeeDetailID}`;
+                
+                // Xác định trạng thái thanh toán
+                let statusClass = 'unknown';
+                let statusText = getStatusText(fee.status || 'Unknown');
+                
+                if (fee.status) {
+                    statusClass = fee.status.toLowerCase();
+                }
+                
+                row.innerHTML = `
+                    <td data-label="Mã học phần">${feeDetailId}</td>
+                    <td data-label="Tên học phần">${categoryName}</td>
+                    <td data-label="Số tín chỉ">-</td>
+                    <td data-label="Học kỳ">${semesterName}</td>
+                    <td data-label="Số tiền">${formatCurrency(detail.amount)}</td>
+                    <td data-label="Trạng thái"><span class="status-${statusClass}">${statusText}</span></td>
+                    <td data-label="Hành động">
+                        ${fee.status !== "Paid" ? 
+                            `<button class="btn-pay" data-fee-id="${fee.studentFeeID}" data-fee-detail-id="${detail.studentFeeDetailID}" data-amount="${detail.amount}"><i class="fas fa-credit-card"></i></button>` : 
+                            `<button class="btn-view-detail" data-fee-id="${fee.studentFeeID}"><i class="fas fa-eye"></i></button>`
+                        }
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        } else {
+            // Nếu không có chi tiết, hiển thị một hàng cho khoản học phí
+            const row = document.createElement('tr');
+            
+            // Lấy thông tin học kỳ
+            let semesterName = fee.semester ? fee.semester.semesterName : 'N/A';
+            
+            // Xác định trạng thái thanh toán
+            let statusClass = fee.status ? fee.status.toLowerCase() : 'unknown';
+            let statusText = getStatusText(fee.status || 'Unknown');
+            
+            row.innerHTML = `
+                <td data-label="Mã học phần">${fee.studentFeeID || 'N/A'}</td>
+                <td data-label="Tên học phần">Học phí ${semesterName}</td>
+                <td data-label="Số tín chỉ">-</td>
+                <td data-label="Học kỳ">${semesterName}</td>
+                <td data-label="Số tiền">${formatCurrency(fee.totalAmount || 0)}</td>
+                <td data-label="Trạng thái"><span class="status-${statusClass}">${statusText}</span></td>
+                <td data-label="Hành động">
+                    ${fee.status !== "Paid" ? 
+                        `<button class="btn-pay" data-fee-id="${fee.studentFeeID}" data-amount="${fee.totalAmount}"><i class="fas fa-credit-card"></i></button>` : 
+                        `<button class="btn-view-detail" data-fee-id="${fee.studentFeeID}"><i class="fas fa-eye"></i></button>`
+                    }
+                </td>
+            `;
+            tableBody.appendChild(row);
+        }
+    });
+    
     // Re-attach event listeners to the new buttons
     attachPaymentButtonListeners();
 }
@@ -376,6 +665,7 @@ function updateTuitionTable(fees) {
 // Attach event listeners to payment buttons
 function attachPaymentButtonListeners() {
     const payButtons = document.querySelectorAll('.btn-pay');
+    const viewDetailButtons = document.querySelectorAll('.btn-view-detail');
     
     payButtons.forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -389,6 +679,39 @@ function attachPaymentButtonListeners() {
             document.getElementById('courseAmount').textContent = formatCurrency(amount);
             
             openModal(document.getElementById('paymentModal'));
+        });
+    });
+    
+    // Add event listeners to view detail buttons
+    viewDetailButtons.forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const feeId = btn.dataset.feeId || '';
+            if (!feeId) return;
+            
+            try {
+                // Show loading state
+                showLoadingState();
+                
+                // Fetch fee details using the API
+                const feeDetails = await tuitionApi.getFeeDetails(feeId);
+                console.log('Fee details:', feeDetails);
+                
+                // Process and display fee details
+                if (feeDetails) {
+                    // Here you would typically show a modal with the details
+                    // For now, we'll just show an alert
+                    alert(`Đã tải chi tiết học phí ID: ${feeId}`);
+                    // In a real implementation, you would open a modal and display the details
+                }
+                
+                // Hide loading state
+                hideLoadingState();
+            } catch (error) {
+                console.error('Error loading fee details:', error);
+                alert('Không thể tải chi tiết học phí. Vui lòng thử lại sau.');
+                hideLoadingState();
+            }
         });
     });
 }
@@ -405,29 +728,6 @@ function initUIEventHandlers() {
     const paymentMethodSelect = document.getElementById('paymentMethod');
     const bankingDetails = document.getElementById('bankingDetails');
     const creditDetails = document.getElementById('creditDetails');
-
-    // Open modal function
-    function openModal(modal) {
-        if (!modal) return;
-        
-        modal.style.display = 'flex';
-        setTimeout(() => {
-            modal.classList.add('show');
-        }, 10);
-        
-        document.body.style.overflow = 'hidden';
-    }
-    
-    // Close modal function
-    function closeModal(modal) {
-        if (!modal) return;
-        
-        modal.classList.remove('show');
-        setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }, 300);
-    }
 
     // Show payment details based on selected method
     if (paymentMethodSelect) {
@@ -529,45 +829,67 @@ function initUIEventHandlers() {
             closeModal(e.target);
         }
     });
-    
-    // Make openModal and closeModal available globally in this function
-    window.openModal = openModal;
-    window.closeModal = closeModal;
+}
+
+// Helper function to get status text in Vietnamese
+function getStatusText(status) {
+    switch (status.toLowerCase()) {
+        case 'paid':
+            return 'Đã thanh toán';
+        case 'partial':
+        case 'partially paid':
+            return 'Thanh toán một phần';
+        case 'unpaid':
+            return 'Chưa thanh toán';
+        case 'overdue':
+            return 'Quá hạn';
+        default:
+            return status || 'Không xác định';
+    }
 }
 
 // Helper function to format currency
 function formatCurrency(amount) {
-    return new Intl.NumberFormat('vi-VN', { 
-        style: 'currency', 
-        currency: 'VND',
-        maximumFractionDigits: 0
-    }).format(amount);
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
 }
 
-// Helper function to get status text
-function getStatusText(status) {
-    switch (status.toLowerCase()) {
-        case 'paid': return 'Đã thanh toán';
-        case 'unpaid': return 'Chưa thanh toán';
-        case 'partial': return 'Thanh toán một phần';
-        case 'overdue': return 'Quá hạn';
-        default: return status;
-    }
+// Show loading state
+function showLoadingState() {
+    const tableBody = document.querySelector('.tuition-table tbody');
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="7" class="empty-state">
+                <div class="empty-state-container">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Đang tải dữ liệu học phí...</p>
+                </div>
+            </td>
+        </tr>
+    `;
 }
 
-// Show empty state UI when no data is available
+// Show error state
+function showErrorState(message) {
+    const tableBody = document.querySelector('.tuition-table tbody');
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="7" class="empty-state">
+                <div class="empty-state-container">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>${message}</p>
+                </div>
+            </td>
+        </tr>
+    `;
+}
+
+// Hide loading state
+function hideLoadingState() {
+    // This function is called when data is loaded and will be replaced by actual data
+}
+
+// Update empty state UI
 function updateEmptyStateUI() {
-    // Update overview with zeros
-    document.querySelector('.total-tuition').textContent = formatCurrency(0);
-    document.querySelector('.paid-amount').textContent = formatCurrency(0);
-    document.querySelector('.outstanding-amount').textContent = formatCurrency(0);
-    
-    // Update progress bar
-    const progressBar = document.querySelector('.progress-bar');
-    progressBar.style.width = '0%';
-    progressBar.textContent = '0%';
-    
-    // Update table with empty state message
     const tableBody = document.querySelector('.tuition-table tbody');
     tableBody.innerHTML = `
         <tr>
@@ -579,82 +901,4 @@ function updateEmptyStateUI() {
             </td>
         </tr>
     `;
-    
-    // Disable action buttons
-    document.getElementById('payAllBtn').disabled = true;
-    document.getElementById('downloadInvoiceBtn').disabled = true;
 }
-
-// Hiển thị trạng thái đang tải
-function showLoadingState() {
-    // Hiển thị placeholder và ẩn nội dung
-    document.querySelectorAll('.loading-placeholder').forEach(placeholder => {
-        placeholder.style.display = 'block';
-    });
-    document.querySelectorAll('.content-element').forEach(element => {
-        element.style.opacity = '0';
-    });
-    
-    // Hiển thị thông báo đang tải trong bảng
-    const tableBody = document.querySelector('.tuition-table tbody');
-    if (tableBody) {
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="7" class="empty-state">
-                    <div class="empty-state-container">
-                        <i class="fas fa-spinner fa-spin"></i>
-                        <p>Đang tải dữ liệu học phí...</p>
-                    </div>
-                </td>
-            </tr>
-        `;
-    }
-}
-
-// Ẩn trạng thái đang tải
-function hideLoadingState() {
-    // Ẩn placeholder và hiển thị nội dung
-    document.querySelectorAll('.loading-placeholder').forEach(placeholder => {
-        placeholder.style.display = 'none';
-    });
-    document.querySelectorAll('.content-element').forEach(element => {
-        element.style.opacity = '1';
-    });
-}
-
-// Hiển thị trạng thái lỗi
-function showErrorState(errorMessage) {
-    // Ẩn placeholder và hiển thị nội dung
-    hideLoadingState();
-    
-    // Hiển thị thông báo lỗi trong bảng
-    const tableBody = document.querySelector('.tuition-table tbody');
-    if (tableBody) {
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="7" class="empty-state">
-                    <div class="empty-state-container">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <p>${errorMessage}</p>
-                    </div>
-                </td>
-            </tr>
-        `;
-    }
-    
-    // Hiển thị giá trị 0 cho các thông tin tổng quát
-    document.querySelector('.total-tuition').textContent = formatCurrency(0);
-    document.querySelector('.paid-amount').textContent = formatCurrency(0);
-    document.querySelector('.outstanding-amount').textContent = formatCurrency(0);
-    
-    // Cập nhật thanh tiến độ
-    const progressBar = document.querySelector('.progress-bar');
-    progressBar.style.width = '0%';
-    progressBar.textContent = '0%';
-    progressBar.setAttribute('aria-valuenow', 0);
-    
-    // Cập nhật nhãn tiến độ
-    const progressLabels = document.querySelectorAll('.progress-labels span');
-    progressLabels[0].textContent = '0 ₫';
-    progressLabels[1].textContent = '0 ₫';
-} 

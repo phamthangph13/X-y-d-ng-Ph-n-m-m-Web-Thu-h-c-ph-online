@@ -388,14 +388,48 @@ export const tuitionApi = {
     checkData: () =>
         apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/CheckData`, 'GET', null, false),
         
-    getStudentFees: (studentId) => 
-        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetStudentFees/${studentId}`, 'GET', null, true),
+    getStudentFees: async (studentId) => {
+        console.log(`Calling getStudentFees API for studentId: ${studentId}`);
+        try {
+            const result = await apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetStudentFees/${studentId}`, 'GET', null, true);
+            console.log(`GetStudentFees API returned data type: ${typeof result}, is array: ${Array.isArray(result)}`);
+            return result;
+        } catch (error) {
+            console.error(`Error in getStudentFees API call: ${error.message}`);
+            throw error;
+        }
+    },
         
-    getCurrentSemesterFees: (studentId) => 
-        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetCurrentSemesterFees/${studentId}`, 'GET', null, true),
+    getCurrentSemesterFees: async (studentId) => {
+        console.log(`Calling getCurrentSemesterFees API for studentId: ${studentId}`);
+        try {
+            const result = await apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetCurrentSemesterFees/${studentId}`, 'GET', null, true);
+            console.log(`GetCurrentSemesterFees API returned data type: ${typeof result}, is array: ${Array.isArray(result)}`);
+            return result;
+        } catch (error) {
+            console.error(`Error in getCurrentSemesterFees API call: ${error.message}`);
+            throw error;
+        }
+    },
         
-    getUnpaidFees: (studentId) => 
-        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetUnpaidFees/${studentId}`, 'GET', null, true),
+    getUnpaidFees: async (studentId) => {
+        console.log(`Calling getUnpaidFees API for studentId: ${studentId}`);
+        try {
+            const result = await apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetUnpaidFees/${studentId}`, 'GET', null, true);
+            console.log(`GetUnpaidFees API returned data type: ${typeof result}, is array: ${Array.isArray(result)}`);
+            if (Array.isArray(result)) {
+                console.log(`Array length: ${result.length}`);
+            }
+            return result;
+        } catch (error) {
+            console.error(`Error in getUnpaidFees API call: ${error.message}`);
+            throw error;
+        }
+    },
+
+    // Get fee details for a specific fee
+    getFeeDetails: (feeId) => 
+        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetFeeDetails/${feeId}`, 'GET', null, true),
 
     // Get payment history for a student
     getPaymentHistory: (studentId) => 
@@ -445,4 +479,4 @@ export const tuitionApi = {
             throw error;
         }
     }
-}; 
+};
