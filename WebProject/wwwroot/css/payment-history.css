@@ -473,30 +473,30 @@ main:hover {
 }
 
 .status-success {
-    background-color: rgba(76, 201, 240, 0.1);
-    color: var(--success-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-weight: 600;
     display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: #48c774;
+    color: white;
 }
 
 .status-pending {
-    background-color: rgba(247, 37, 133, 0.1);
-    color: var(--warning-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-weight: 600;
     display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: #ffdd57;
+    color: #333;
 }
 
 .status-failed {
-    background-color: rgba(239, 35, 60, 0.1);
-    color: var(--danger-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-weight: 600;
     display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: #f14668;
+    color: white;
 }
 
 .btn-receipt {
@@ -1210,36 +1210,67 @@ main:hover {
 /* Empty State */
 .empty-state {
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 0;
 }
 
 .empty-state-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
+    padding: 2rem;
 }
 
 .empty-state-container i {
-    font-size: 2rem;
-    color: #6c757d;
+    font-size: 2.5rem;
+    color: #999;
+    margin-bottom: 0.5rem;
 }
 
 .empty-state-container p {
-    color: #6c757d;
     margin: 0;
+    color: #666;
+    font-size: 1rem;
 }
 
-/* Loading Placeholder */
+.empty-state-container .btn-refresh {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #3273dc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.empty-state-container .btn-refresh:hover {
+    background-color: #2366c7;
+}
+
+/* Loading animation for payment-history-table */
+.payment-history-table tbody .empty-state .fa-spinner {
+    color: #3273dc;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Content element transitions */
+.content-element {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Loading placeholders */
 .loading-placeholder {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    animation: loading-animation 1.5s infinite;
     border-radius: 4px;
-    display: none;
 }
 
-@keyframes loading {
+@keyframes loading-animation {
     0% {
         background-position: 200% 0;
     }
@@ -1248,24 +1279,29 @@ main:hover {
     }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .payment-history-table {
-        display: block;
-        overflow-x: auto;
-    }
+/* Animated error icon */
+.fa-exclamation-triangle {
+    color: #f14668;
+    animation: pulse 2s infinite;
+}
 
-    .info-group {
-        flex-direction: column;
-        align-items: flex-start;
+@keyframes pulse {
+    0% {
+        transform: scale(1);
     }
-
-    .info-group label {
-        margin-bottom: 0.5rem;
+    50% {
+        transform: scale(1.1);
     }
+    100% {
+        transform: scale(1);
+    }
+}
 
-    .modal-content {
-        width: 95%;
-        margin: 1rem;
+/* Additional responsive styling for payment history table */
+@media screen and (max-width: 768px) {
+    .payment-history-table td[data-label="Hành động"] {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
     }
 } 

@@ -444,8 +444,41 @@ export const tuitionApi = {
         apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetFeeDetails/${feeId}`, 'GET', null, true),
 
     // Get payment history for a student
-    getPaymentHistory: (studentId) => 
-        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetPaymentHistory/${studentId}`, 'GET', null, true),
+    getPaymentHistory: async (studentId) => {
+        console.log(`Fetching payment history for student ID: ${studentId}`);
+        try {
+            // Try the first endpoint format
+            try {
+                const result = await apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetPaymentHistory/${studentId}`, 'GET', null, true);
+                console.log('Payment history retrieved from primary endpoint:', result);
+                return result;
+            } catch (firstError) {
+                console.warn('Failed to fetch payment history from primary endpoint:', firstError);
+                
+                // Try alternative endpoint
+                try {
+                    const altResult = await apiCall(`/api/payments/student/${studentId}`, 'GET', null, true);
+                    console.log('Payment history retrieved from secondary endpoint:', altResult);
+                    return altResult;
+                } catch (secondError) {
+                    console.warn('Failed to fetch payment history from secondary endpoint:', secondError);
+                    
+                    // Last attempt with another endpoint format
+                    try {
+                        const lastResult = await apiCall(`/api/payments?studentId=${studentId}`, 'GET', null, true);
+                        console.log('Payment history retrieved from tertiary endpoint:', lastResult);
+                        return lastResult;
+                    } catch (thirdError) {
+                        console.warn('All payment history endpoints failed:', thirdError);
+                        throw new Error('Không thể tải lịch sử thanh toán. Vui lòng thử lại sau.');
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching payment history:', error);
+            throw error;
+        }
+    },
         
     // Get payment details
     getPaymentDetails: (paymentId) => 
