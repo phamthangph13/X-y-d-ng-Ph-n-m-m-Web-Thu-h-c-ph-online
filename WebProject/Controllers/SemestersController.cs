@@ -80,7 +80,94 @@ namespace WebProject.Controllers
             }
         }
 
-        // Other methods...
+        // POST: api/semesters
+        [HttpPost]
+        public async Task<ActionResult<SemesterDto>> CreateSemester([FromBody] SemesterDto semesterDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var semester = new Semester
+                {
+                    SemesterName = semesterDto.SemesterName,
+                    StartDate = semesterDto.StartDate,
+                    EndDate = semesterDto.EndDate,
+                    AcademicYear = semesterDto.AcademicYear,
+                    IsActive = semesterDto.IsActive
+                };
+
+                _context.Semesters.Add(semester);
+                await _context.SaveChangesAsync();
+
+                semesterDto.SemesterID = semester.SemesterID;
+                return CreatedAtAction(nameof(GetSemester), new { id = semester.SemesterID }, semesterDto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating semester: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        // PUT: api/semesters/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSemester(int id, [FromBody] SemesterDto semesterDto)
+        {
+            try
+            {
+                if (id != semesterDto.SemesterID)
+                {
+                    return BadRequest();
+                }
+
+                var semester = await _context.Semesters.FindAsync(id);
+                if (semester == null)
+                {
+                    return NotFound();
+                }
+
+                semester.SemesterName = semesterDto.SemesterName;
+                semester.StartDate = semesterDto.StartDate;
+                semester.EndDate = semesterDto.EndDate;
+                semester.AcademicYear = semesterDto.AcademicYear;
+                semester.IsActive = semesterDto.IsActive;
+
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating semester: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        // DELETE: api/semesters/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSemester(int id)
+        {
+            try
+            {
+                var semester = await _context.Semesters.FindAsync(id);
+                if (semester == null)
+                {
+                    return NotFound();
+                }
+
+                _context.Semesters.Remove(semester);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting semester: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
     }
 
     public class SemesterDto

@@ -24,77 +24,84 @@ namespace WebProject.Controllers.StudentTuition
         [HttpGet("GetStudentFees/{studentId}")]
         public async Task<ActionResult<IEnumerable<object>>> GetStudentFees(int studentId)
         {
-            var studentFees = await _context.StudentFees
-                .Include(sf => sf.Semester)
-                .Include(sf => sf.StudentFeeDetails)
-                    .ThenInclude(sfd => sfd.FeeCategory)
-                .Include(sf => sf.Payments)
-                    .ThenInclude(p => p.PaymentMethod)
-                .Where(sf => sf.StudentID == studentId)
-                .OrderByDescending(sf => sf.Semester.StartDate)
-                .ToListAsync();
-
-            if (studentFees == null || !studentFees.Any())
+            try
             {
-                // Trả về mảng trống thay vì NotFound
-                return Ok(new { message = "No fee records found for this student.", values = new object[] { } });
+                var studentFees = await _context.StudentFees
+                    .Include(sf => sf.Semester)
+                    .Include(sf => sf.StudentFeeDetails)
+                        .ThenInclude(sfd => sfd.FeeCategory)
+                    .Include(sf => sf.Payments)
+                        .ThenInclude(p => p.PaymentMethod)
+                    .Where(sf => sf.StudentID == studentId)
+                    .OrderByDescending(sf => sf.Semester.StartDate)
+                    .ToListAsync();
+
+                if (studentFees == null || !studentFees.Any())
+                {
+                    // Trả về mảng trống thay vì NotFound
+                    return Ok(new List<object>());
+                }
+
+                // Chuyển đổi sang DTO để tránh vòng lặp tham chiếu
+                var result = studentFees.Select(sf => new
+                {
+                    sf.StudentFeeID,
+                    sf.StudentID,
+                    sf.SemesterID,
+                    sf.TotalAmount,
+                    sf.DueDate,
+                    sf.Status,
+                    sf.CreatedDate,
+                    sf.LastUpdated,
+                    Semester = new
+                    {
+                        sf.Semester.SemesterID,
+                        sf.Semester.SemesterName,
+                        sf.Semester.StartDate,
+                        sf.Semester.EndDate,
+                        sf.Semester.AcademicYear,
+                        sf.Semester.IsActive
+                    },
+                    StudentFeeDetails = sf.StudentFeeDetails.Select(sfd => new
+                    {
+                        sfd.StudentFeeDetailID,
+                        sfd.StudentFeeID,
+                        sfd.FeeCategoryID,
+                        sfd.Amount,
+                        FeeCategory = new
+                        {
+                            sfd.FeeCategory.FeeCategoryID,
+                            sfd.FeeCategory.CategoryName,
+                            sfd.FeeCategory.Description,
+                            sfd.FeeCategory.IsActive
+                        }
+                    }).ToList(),
+                    Payments = sf.Payments.Select(p => new
+                    {
+                        p.PaymentID,
+                        p.StudentFeeID,
+                        p.PaymentMethodID,
+                        p.Amount,
+                        p.TransactionID,
+                        p.PaymentDate,
+                        p.Status,
+                        p.PaymentReference,
+                        PaymentMethod = new
+                        {
+                            p.PaymentMethod.PaymentMethodID,
+                            p.PaymentMethod.MethodName,
+                            p.PaymentMethod.Description,
+                            p.PaymentMethod.IsActive
+                        }
+                    }).ToList()
+                }).ToList();
+
+                return Ok(result);
             }
-
-            // Chuyển đổi sang DTO để tránh vòng lặp tham chiếu
-            var result = studentFees.Select(sf => new
+            catch (Exception ex)
             {
-                sf.StudentFeeID,
-                sf.StudentID,
-                sf.SemesterID,
-                sf.TotalAmount,
-                sf.DueDate,
-                sf.Status,
-                sf.CreatedDate,
-                sf.LastUpdated,
-                Semester = new
-                {
-                    sf.Semester.SemesterID,
-                    sf.Semester.SemesterName,
-                    sf.Semester.StartDate,
-                    sf.Semester.EndDate,
-                    sf.Semester.AcademicYear,
-                    sf.Semester.IsActive
-                },
-                StudentFeeDetails = sf.StudentFeeDetails.Select(sfd => new
-                {
-                    sfd.StudentFeeDetailID,
-                    sfd.StudentFeeID,
-                    sfd.FeeCategoryID,
-                    sfd.Amount,
-                    FeeCategory = new
-                    {
-                        sfd.FeeCategory.FeeCategoryID,
-                        sfd.FeeCategory.CategoryName,
-                        sfd.FeeCategory.Description,
-                        sfd.FeeCategory.IsActive
-                    }
-                }).ToList(),
-                Payments = sf.Payments.Select(p => new
-                {
-                    p.PaymentID,
-                    p.StudentFeeID,
-                    p.PaymentMethodID,
-                    p.Amount,
-                    p.TransactionID,
-                    p.PaymentDate,
-                    p.Status,
-                    p.PaymentReference,
-                    PaymentMethod = new
-                    {
-                        p.PaymentMethod.PaymentMethodID,
-                        p.PaymentMethod.MethodName,
-                        p.PaymentMethod.Description,
-                        p.PaymentMethod.IsActive
-                    }
-                }).ToList()
-            }).ToList();
-
-            return Ok(result);
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
         }
 
         // GET: api/StudentTuition/GetFeeDetails/{studentFeeId}
@@ -336,26 +343,53 @@ namespace WebProject.Controllers.StudentTuition
 
         // GET: api/StudentTuition/Test
         [HttpGet("Test")]
-        public ActionResult<string> Test()
+        public ActionResult<object> Test()
         {
-            return Ok("StudentTuitionController is working!");
+            try
+            {
+                return Ok(new { 
+                    message = "StudentTuitionController is working!",
+                    timestamp = DateTime.Now,
+                    version = "1.0.1",
+                    status = "OK"
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
         }
 
         // GET: api/StudentTuition/CheckData
         [HttpGet("CheckData")]
         public async Task<ActionResult<object>> CheckData()
         {
-            var result = new
+            try
             {
-                StudentsCount = await _context.Students.CountAsync(),
-                SemestersCount = await _context.Semesters.CountAsync(),
-                StudentFeesCount = await _context.StudentFees.CountAsync(),
-                StudentFeeDetailsCount = await _context.StudentFeeDetails.CountAsync(),
-                PaymentsCount = await _context.Payments.CountAsync(),
-                FeeCategoriesCount = await _context.FeeCategories.CountAsync()
-            };
-
-            return Ok(result);
+                // Count records in main tables
+                var studentCount = await _context.Students.CountAsync();
+                var semesterCount = await _context.Semesters.CountAsync();
+                var studentFeesCount = await _context.StudentFees.CountAsync();
+                var studentFeeDetailsCount = await _context.StudentFeeDetails.CountAsync();
+                var feeCategoriesCount = await _context.FeeCategories.CountAsync();
+                var paymentsCount = await _context.Payments.CountAsync();
+                
+                return Ok(new
+                {
+                    studentCount,
+                    semesterCount,
+                    studentFeesCount,
+                    studentFeeDetailsCount,
+                    feeCategoriesCount,
+                    paymentsCount,
+                    timestamp = DateTime.Now,
+                    status = "OK"
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = $"Internal server error: {ex.Message}" });
+            }
         }
     }
 } 

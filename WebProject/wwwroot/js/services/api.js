@@ -397,14 +397,35 @@ export const tuitionApi = {
     testStudentTuition: () =>
         apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/Test`, 'GET', null, false),
         
-    checkData: () =>
-        apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/CheckData`, 'GET', null, false),
+    checkData: async () => {
+        try {
+            const result = await apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/CheckData`, 'GET', null, false);
+            console.log('CheckData API result:', result);
+            return result;
+        } catch (error) {
+            console.error('Error in checkData API call:', error);
+            throw error;
+        }
+    },
         
     getStudentFees: async (studentId) => {
         console.log(`Calling getStudentFees API for studentId: ${studentId}`);
         try {
             const result = await apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetStudentFees/${studentId}`, 'GET', null, true);
             console.log(`GetStudentFees API returned data type: ${typeof result}, is array: ${Array.isArray(result)}`);
+            
+            // Handle empty array
+            if (Array.isArray(result) && result.length === 0) {
+                console.log('GetStudentFees API returned empty array');
+                return [];
+            }
+            
+            // Handle API response with $values property (ASP.NET format)
+            if (result && result.$values) {
+                console.log('Processing $values array from API response');
+                return result.$values;
+            }
+            
             return result;
         } catch (error) {
             console.error(`Error in getStudentFees API call: ${error.message}`);

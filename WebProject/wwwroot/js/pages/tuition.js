@@ -19,252 +19,59 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize tuition page functionality
 async function initTuitionPage() {
-    console.log('Tuition page initialized for authenticated user');
-    
-    // Get user data
-    const userData = getUserData();
-    console.log('Complete user data from localStorage:', userData);
-    
-    if (!userData || !userData.userId) {
-        console.error('User data not found or missing userId');
-        return;
-    }
-    
-    console.log('User ID for API calls:', userData.userId);
-    
-    // Update user name in header
-    const userNameElement = document.querySelector('.user-name.content-element');
-    if (userNameElement && userData.fullName) {
-        userNameElement.textContent = userData.fullName;
-    }
-    
-    // Define modal functions globally to prevent reference errors
-    window.openModal = function(modal) {
-        if (!modal) return;
-        
-        modal.style.display = 'flex';
-        setTimeout(() => {
-            modal.classList.add('show');
-        }, 10);
-        
-        document.body.style.overflow = 'hidden';
-    };
-    
-    window.closeModal = function(modal) {
-        if (!modal) return;
-        
-        modal.classList.remove('show');
-        setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }, 300);
-    };
-    
-    // Hiển thị trạng thái đang tải
-    showLoadingState();
-    
-    // Load student data
     try {
-        // First, test if the controller is working
-        console.log('Testing StudentTuitionController...');
-        try {
-            const testResult = await tuitionApi.testStudentTuition();
-            console.log('StudentTuitionController test result:', testResult);
-        } catch (testError) {
-            console.error('StudentTuitionController test failed:', testError);
-            showErrorState('Không thể kết nối đến máy chủ. Vui lòng thử lại sau.');
+        // Lấy thông tin người dùng từ localStorage
+        const userData = getUserData();
+        if (!userData || !userData.userId) {
+            window.location.href = '/login.html';
             return;
         }
-        
-        // Check if there is data in the database
-        console.log('Checking database data...');
-        try {
-            const dataResult = await tuitionApi.checkData();
-            console.log('Database data check result:', dataResult);
-            
-            // If there is no data, show a message
-            if (dataResult.studentFeesCount === 0) {
-                console.warn('No student fees found in the database');
-                showErrorState('Không có dữ liệu học phí trong hệ thống. Vui lòng liên hệ vải trị viên.');
-                return;
-            }
-        } catch (dataError) {
-            console.error('Database data check failed:', dataError);
-            // Continue with other API calls
-        }
-        
-        // Assuming the student ID is the same as the user ID for simplicity
-        // In a real application, you might need to fetch the student ID first
-        const studentId = userData.userId; // Changed from StudentID to userId
-        console.log('Fetching data for student ID:', studentId);
-        
-        // Load all student fees first
-        let allFees = null;
-        try {
-            allFees = await tuitionApi.getStudentFees(studentId);
-            console.log('All student fees:', allFees);
-        } catch (error) {
-            console.warn('Could not load all student fees:', error);
-        }
-        
-        // Load current semester fees
-        let currentSemesterFees = null;
-        try {
-            currentSemesterFees = await tuitionApi.getCurrentSemesterFees(studentId);
-            console.log('Current semester fees:', currentSemesterFees);
-        } catch (error) {
-            console.warn('Could not load current semester fees:', error);
-        }
-        
-        // Load unpaid fees
-        let unpaidFees = null;
-        try {
-            console.log('Fetching unpaid fees for student ID:', studentId);
-            unpaidFees = await tuitionApi.getUnpaidFees(studentId);
-            console.log('Unpaid fees raw response:', unpaidFees);
-            if (Array.isArray(unpaidFees)) {
-                console.log('Unpaid fees is array with', unpaidFees.length, 'items');
-            } else if (unpaidFees && typeof unpaidFees === 'object') {
-                console.log('Unpaid fees is object with keys:', Object.keys(unpaidFees));
-            } else {
-                console.log('Unpaid fees has unexpected type:', typeof unpaidFees);
-            }
-        } catch (error) {
-            console.warn('Could not load unpaid fees:', error);
-        }
-        
-        // If we couldn't load any data, show an error
-        if (!currentSemesterFees && !allFees && !unpaidFees) {
-            showErrorState('Không thể tải bất kỳ dữ liệu học phí nào.');
+
+        // Lấy thông tin sinh viên từ user data
+        const studentId = userData.userId;
+        if (!studentId) {
+            showErrorState('Không tìm thấy thông tin sinh viên');
             return;
         }
-        
-        // Ẩn trạng thái đang tải
-        hideLoadingState();
-        
-        // Ưu tiên hiển thị dữ liệu theo thứ tự: allFees > unpaidFees > currentSemesterFees
-        if (allFees && (Array.isArray(allFees) || allFees.$values)) {
-            console.log('Using allFees for table display, type:', typeof allFees, 'is array:', Array.isArray(allFees));
-            updateTuitionTable(allFees);
-        } else if (unpaidFees && (Array.isArray(unpaidFees) || unpaidFees.$values)) {
-            console.log('Using unpaidFees for table display, type:', typeof unpaidFees, 'is array:', Array.isArray(unpaidFees));
-            updateTuitionTable(unpaidFees);
-        } else if (currentSemesterFees && !currentSemesterFees.message) {
-            console.log('Using currentSemesterFees for table display');
-            updateTuitionTable([currentSemesterFees]);
-        } else {
-            // Giải pháp dự phòng cực kỳ đặc biệt - truy cập trực tiếp JSON
-            try {
-                console.log('Attempting direct access to unpaid fees via raw text JSON');
-                // Lấy dữ liệu raw JSON gốc từ API
-                const preElement = document.querySelector('pre');
-                if (preElement && preElement.textContent) {
-                    console.log('Found raw JSON text, attempting to parse');
-                    const directData = JSON.parse(preElement.textContent);
-                    if (Array.isArray(directData) && directData.length > 0) {
-                        console.log('Successfully parsed raw JSON into array', directData);
-                        // Render dữ liệu trực tiếp
-                        renderDirectFeeTable(directData);
-                        return;
-                    }
-                } else {
-                    console.log('No pre element found on the page, skipping direct JSON access');
-                }
-            } catch (directError) {
-                console.error('Direct JSON access failed:', directError);
-            }
-            
-            // Dự phòng: Nếu unpaidFees có dữ liệu thô, hãy thử cách khác
-            if (unpaidFees) {
-                console.log('Trying fallback method with direct raw JSON data');
-                try {
-                    let unpaidFeesArray = JSON.parse(JSON.stringify(unpaidFees));
-                    console.log('Parsed unpaid fees:', unpaidFeesArray);
-                    if (Array.isArray(unpaidFeesArray) && unpaidFeesArray.length > 0) {
-                        console.log('Successfully parsed unpaid fees into array');
-                        updateFallbackTuitionTable(unpaidFeesArray);
-                        return;
-                    }
-                } catch (parseError) {
-                    console.error('Error parsing unpaid fees JSON:', parseError);
-                }
-            }
-            
-            // No data available, show empty state
-            console.log('No data available to display');
-            updateEmptyStateUI();
+
+        // Hiển thị tên người dùng
+        const userNameElement = document.querySelector('.user-name');
+        if (userNameElement) {
+            userNameElement.textContent = userData.fullName || userData.email;
         }
+
+        // Kiểm tra dữ liệu trong database
+        const dataCheck = await tuitionApi.checkData();
+        console.log('Database check result:', dataCheck);
+
+        if (!dataCheck || dataCheck.studentFeesCount === 0 || dataCheck.studentCount === 0) {
+            showErrorState('Vui lòng liên hệ quản trị viên');
+            return;
+        }
+
+        // Fetch dữ liệu học phí
+        const fees = await tuitionApi.getStudentFees(studentId);
+        console.log('Fetched fees:', fees);
+
+        if (!fees || (Array.isArray(fees) && fees.length === 0)) {
+            showErrorState('Không tìm thấy thông tin học phí');
+            return;
+        }
+
+        // Cập nhật UI với dữ liệu thực
+        updateTuitionTable(fees);
         
-        // Calculate fee totals after table is populated
+        // Tính toán tổng tiền sau khi cập nhật bảng
         setTimeout(() => {
-            console.log('Calculating fee totals after table has been populated');
-            
-            // First try to calculate from the DOM if table is populated
-            let totalAmount = 0;
-            let paidAmount = 0;
-            let outstandingAmount = 0;
-            
-            try {
-                const tableRows = document.querySelectorAll('.tuition-table tbody tr');
-                console.log('Found table rows:', tableRows.length);
-                
-                if (tableRows && tableRows.length > 0 && !tableRows[0].querySelector('.empty-state')) {
-                    tableRows.forEach(row => {
-                        // Skip rows with empty state
-                        if (row.querySelector('.empty-state')) return;
-                        
-                        // Get fee amount
-                        const amountCell = row.querySelector('td[data-label="Số tiền"]');
-                        const statusCell = row.querySelector('td[data-label="Trạng thái"] span');
-                        
-                        if (amountCell && statusCell) {
-                            // Extract amount from formatted string
-                            const amountText = amountCell.textContent.trim();
-                            const amount = parseInt(amountText.replace(/[^\d]/g, '')) || 0;
-                            
-                            // Add to total
-                            totalAmount += amount;
-                            
-                            // Check status
-                            if (statusCell.textContent.includes('Đã thanh toán') || 
-                                statusCell.classList.contains('status-paid')) {
-                                paidAmount += amount;
-                            } else {
-                                outstandingAmount += amount;
-                            }
-                        }
-                    });
-                    
-                    // Log calculated values
-                    console.log('DOM calculated values:', { totalAmount, paidAmount, outstandingAmount });
-                    
-                    // If we have valid total amount, update UI
-                    if (totalAmount > 0) {
-                        // Update the overview with calculated values
-                        updateTuitionOverview({ totalAmount, paidAmount, outstandingAmount });
-                    } else {
-                        // Fallback to original method
-                        updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
-                    }
-                } else {
-                    // Fallback to original method
-                    updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
-                }
-            } catch (error) {
-                console.error('Error calculating from DOM:', error);
-                // Fallback to original method
-                updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
-            }
-        }, 500); // Give time for the table to be fully rendered
-        
+            calculateFeeTotals();
+        }, 100);
+
+        // Ẩn loading state
+        hideLoadingState();
     } catch (error) {
-        console.error('Error loading tuition data:', error);
-        // Show error message to user
-        showErrorState('Không thể tải dữ liệu học phí. Vui lòng thử lại sau.');
+        console.error('Error initializing tuition page:', error);
+        showErrorState('Có lỗi xảy ra khi tải dữ liệu học phí');
     }
-    
-    // Initialize UI event handlers
-    initUIEventHandlers();
 }
 
 // Update tuition overview section with real data
@@ -1382,5 +1189,58 @@ async function reloadPageData() {
     } catch (error) {
         console.error('Error reloading page data:', error);
         showErrorState('Không thể tải lại dữ liệu. Vui lòng làm mới trang.');
+    }
+}
+
+// Calculate fee totals from the table data
+function calculateFeeTotals() {
+    console.log('Calculating fee totals from table data');
+    
+    let totalAmount = 0;
+    let paidAmount = 0;
+    let outstandingAmount = 0;
+    
+    try {
+        const tableRows = document.querySelectorAll('.tuition-table tbody tr');
+        console.log('Found table rows:', tableRows.length);
+        
+        if (tableRows && tableRows.length > 0 && !tableRows[0].querySelector('.empty-state')) {
+            tableRows.forEach(row => {
+                // Skip rows with empty state
+                if (row.querySelector('.empty-state')) return;
+                
+                // Get fee amount
+                const amountCell = row.querySelector('td[data-label="Số tiền"]');
+                const statusCell = row.querySelector('td[data-label="Trạng thái"] span');
+                
+                if (amountCell && statusCell) {
+                    // Extract amount from formatted string
+                    const amountText = amountCell.textContent.trim();
+                    const amount = parseInt(amountText.replace(/[^\d]/g, '')) || 0;
+                    
+                    // Add to total
+                    totalAmount += amount;
+                    
+                    // Check status
+                    if (statusCell.textContent.includes('Đã thanh toán') || 
+                        statusCell.classList.contains('status-paid')) {
+                        paidAmount += amount;
+                    } else {
+                        outstandingAmount += amount;
+                    }
+                }
+            });
+            
+            // Log calculated values
+            console.log('DOM calculated values:', { totalAmount, paidAmount, outstandingAmount });
+            
+            // If we have valid total amount, update UI
+            if (totalAmount > 0) {
+                // Update the overview with calculated values
+                updateUIWithCalculatedTotals(totalAmount, paidAmount, outstandingAmount);
+            }
+        }
+    } catch (error) {
+        console.error('Error calculating fee totals:', error);
     }
 }

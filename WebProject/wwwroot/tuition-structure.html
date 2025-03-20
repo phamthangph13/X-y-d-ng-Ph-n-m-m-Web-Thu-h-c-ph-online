@@ -361,6 +361,39 @@
                 </div>
             </div>
         </div>
+
+        <!-- Quản lý học kỳ -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Quản lý học kỳ</h5>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSemesterModal">
+                            <i class="fas fa-plus me-2"></i>Thêm học kỳ
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="semestersTable">
+                                <thead>
+                                    <tr>
+                                        <th>Tên học kỳ</th>
+                                        <th>Năm học</th>
+                                        <th>Ngày bắt đầu</th>
+                                        <th>Ngày kết thúc</th>
+                                        <th>Trạng thái</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Semesters will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Modals for adding/editing fee categories and structures -->
@@ -447,9 +480,301 @@
         </div>
     </div>
     
+    <!-- Modal thêm mới học kỳ -->
+    <div class="modal fade" id="addSemesterModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm mới học kỳ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addSemesterForm">
+                        <div class="mb-3">
+                            <label for="semesterName" class="form-label">Tên học kỳ</label>
+                            <input type="text" class="form-control" id="semesterName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="academicYear" class="form-label">Năm học</label>
+                            <input type="text" class="form-control" id="academicYear" required placeholder="VD: 2023-2024">
+                        </div>
+                        <div class="mb-3">
+                            <label for="startDate" class="form-label">Ngày bắt đầu</label>
+                            <input type="date" class="form-control" id="startDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="endDate" class="form-label">Ngày kết thúc</label>
+                            <input type="date" class="form-control" id="endDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="isActive" checked>
+                                <label class="form-check-label" for="isActive">
+                                    Kích hoạt học kỳ
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="saveSemesterButton">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/fee-structure.js"></script>
     <script src="js/sidebar.js"></script>
+    <script>
+        // Xử lý thêm mới học kỳ
+        $('#saveSemesterButton').click(function() {
+            const semesterData = {
+                semesterName: $('#semesterName').val(),
+                academicYear: $('#academicYear').val(),
+                startDate: $('#startDate').val(),
+                endDate: $('#endDate').val(),
+                isActive: $('#isActive').is(':checked')
+            };
+
+            $.ajax({
+                url: '/api/semesters',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(semesterData),
+                success: function(response) {
+                    $('#addSemesterModal').modal('hide');
+                    $('#addSemesterForm')[0].reset();
+                    // Refresh danh sách học kỳ
+                    loadSemesters();
+                    // Refresh dropdown học kỳ
+                    loadSemestersToDropdown();
+                    // Hiển thị thông báo thành công
+                    showAlert('success', 'Thêm mới học kỳ thành công!');
+                },
+                error: function(xhr) {
+                    showAlert('danger', 'Có lỗi xảy ra khi thêm mới học kỳ: ' + xhr.responseText);
+                }
+            });
+        });
+
+        // Hàm hiển thị thông báo
+        function showAlert(type, message) {
+            const alertDiv = $('<div>')
+                .addClass(`alert alert-${type} alert-dismissible fade show`)
+                .html(`
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `);
+            $('.container').prepend(alertDiv);
+            setTimeout(() => alertDiv.alert('close'), 5000);
+        }
+
+        // Hàm load danh sách học kỳ vào dropdown
+        function loadSemestersToDropdown() {
+            $.get('/api/semesters', function(semesters) {
+                const semesterFilter = $('#semesterFilter');
+                const feeStructureSemester = $('#feeStructureSemester');
+                
+                // Lưu lại giá trị đã chọn trước đó (nếu có)
+                const selectedFilterValue = semesterFilter.val();
+                const selectedStructureValue = feeStructureSemester.val();
+                
+                // Xóa tất cả options trừ option đầu tiên
+                semesterFilter.find('option:not(:first)').remove();
+                feeStructureSemester.find('option:not(:first)').remove();
+                
+                // Thêm options mới từ danh sách học kỳ
+                semesters.forEach(semester => {
+                    semesterFilter.append(
+                        `<option value="${semester.semesterID}">${semester.semesterName} (${semester.academicYear})</option>`
+                    );
+                    feeStructureSemester.append(
+                        `<option value="${semester.semesterID}">${semester.semesterName} (${semester.academicYear})</option>`
+                    );
+                });
+                
+                // Khôi phục giá trị đã chọn trước đó (nếu có)
+                if (selectedFilterValue) semesterFilter.val(selectedFilterValue);
+                if (selectedStructureValue) feeStructureSemester.val(selectedStructureValue);
+            });
+        }
+
+        // Hàm load danh sách học kỳ vào bảng
+        function loadSemesters() {
+            $.get('/api/semesters', function(semesters) {
+                const tbody = $('#semestersTable tbody');
+                tbody.empty();
+                
+                semesters.forEach(semester => {
+                    tbody.append(`
+                        <tr>
+                            <td>${semester.semesterName}</td>
+                            <td>${semester.academicYear}</td>
+                            <td>${new Date(semester.startDate).toLocaleDateString()}</td>
+                            <td>${new Date(semester.endDate).toLocaleDateString()}</td>
+                            <td>
+                                <span class="badge ${semester.isActive ? 'bg-success' : 'bg-danger'}">
+                                    ${semester.isActive ? 'Đang hoạt động' : 'Đã đóng'}
+                                </span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-primary edit-semester" data-id="${semester.semesterID}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger delete-semester" data-id="${semester.semesterID}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `);
+                });
+                
+                // Gắn sự kiện cho nút chỉnh sửa học kỳ
+                $('.edit-semester').click(function() {
+                    const semesterId = $(this).data('id');
+                    editSemester(semesterId);
+                });
+                
+                // Gắn sự kiện cho nút xóa học kỳ
+                $('.delete-semester').click(function() {
+                    const semesterId = $(this).data('id');
+                    if (confirm('Bạn có chắc chắn muốn xóa học kỳ này không?')) {
+                        deleteSemester(semesterId);
+                    }
+                });
+            });
+        }
+        
+        // Hàm chỉnh sửa học kỳ
+        function editSemester(semesterId) {
+            // Lấy thông tin học kỳ cần chỉnh sửa
+            $.get(`/api/semesters/${semesterId}`, function(semester) {
+                // Đưa thông tin học kỳ vào form
+                $('#semesterName').val(semester.semesterName);
+                $('#academicYear').val(semester.academicYear);
+                $('#startDate').val(new Date(semester.startDate).toISOString().split('T')[0]);
+                $('#endDate').val(new Date(semester.endDate).toISOString().split('T')[0]);
+                $('#isActive').prop('checked', semester.isActive);
+                
+                // Thêm ID học kỳ vào form (có thể dùng một hidden input hoặc data attribute)
+                $('#addSemesterForm').data('semesterId', semesterId);
+                
+                // Đổi tên button và title modal
+                $('#saveSemesterButton').text('Cập nhật');
+                $('.modal-title').text('Chỉnh sửa học kỳ');
+                
+                // Hiển thị modal
+                $('#addSemesterModal').modal('show');
+                
+                // Thay đổi xử lý sự kiện cho nút lưu
+                $('#saveSemesterButton').off('click').click(function() {
+                    const semesterData = {
+                        semesterID: semesterId,
+                        semesterName: $('#semesterName').val(),
+                        academicYear: $('#academicYear').val(),
+                        startDate: $('#startDate').val(),
+                        endDate: $('#endDate').val(),
+                        isActive: $('#isActive').is(':checked')
+                    };
+                    
+                    // Gửi request cập nhật
+                    $.ajax({
+                        url: `/api/semesters/${semesterId}`,
+                        type: 'PUT',
+                        contentType: 'application/json',
+                        data: JSON.stringify(semesterData),
+                        success: function() {
+                            $('#addSemesterModal').modal('hide');
+                            $('#addSemesterForm')[0].reset();
+                            // Refresh danh sách học kỳ
+                            loadSemesters();
+                            // Refresh dropdown học kỳ
+                            loadSemestersToDropdown();
+                            // Hiển thị thông báo
+                            showAlert('success', 'Cập nhật học kỳ thành công!');
+                            
+                            // Khôi phục xử lý sự kiện thêm mới
+                            resetSemesterModal();
+                        },
+                        error: function(xhr) {
+                            showAlert('danger', 'Có lỗi xảy ra khi cập nhật học kỳ: ' + xhr.responseText);
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Hàm xóa học kỳ
+        function deleteSemester(semesterId) {
+            $.ajax({
+                url: `/api/semesters/${semesterId}`,
+                type: 'DELETE',
+                success: function() {
+                    // Refresh danh sách học kỳ
+                    loadSemesters();
+                    // Refresh dropdown học kỳ
+                    loadSemestersToDropdown();
+                    // Hiển thị thông báo
+                    showAlert('success', 'Xóa học kỳ thành công!');
+                },
+                error: function(xhr) {
+                    showAlert('danger', 'Có lỗi xảy ra khi xóa học kỳ: ' + xhr.responseText);
+                }
+            });
+        }
+        
+        // Hàm reset modal khi đóng
+        function resetSemesterModal() {
+            $('#addSemesterForm')[0].reset();
+            $('#addSemesterForm').removeData('semesterId');
+            $('#saveSemesterButton').text('Lưu');
+            $('.modal-title').text('Thêm mới học kỳ');
+            
+            // Khôi phục xử lý sự kiện thêm mới cho nút lưu
+            $('#saveSemesterButton').off('click').click(function() {
+                const semesterData = {
+                    semesterName: $('#semesterName').val(),
+                    academicYear: $('#academicYear').val(),
+                    startDate: $('#startDate').val(),
+                    endDate: $('#endDate').val(),
+                    isActive: $('#isActive').is(':checked')
+                };
+
+                $.ajax({
+                    url: '/api/semesters',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(semesterData),
+                    success: function(response) {
+                        $('#addSemesterModal').modal('hide');
+                        $('#addSemesterForm')[0].reset();
+                        // Refresh danh sách học kỳ
+                        loadSemesters();
+                        // Refresh dropdown học kỳ
+                        loadSemestersToDropdown();
+                        // Hiển thị thông báo thành công
+                        showAlert('success', 'Thêm mới học kỳ thành công!');
+                    },
+                    error: function(xhr) {
+                        showAlert('danger', 'Có lỗi xảy ra khi thêm mới học kỳ: ' + xhr.responseText);
+                    }
+                });
+            });
+        }
+        
+        // Xử lý sự kiện khi modal đóng để reset form
+        $('#addSemesterModal').on('hidden.bs.modal', function() {
+            resetSemesterModal();
+        });
+
+        // Load dữ liệu khi trang được tải
+        $(document).ready(function() {
+            loadSemesters();
+            loadSemestersToDropdown();
+        });
+    </script>
 </body>
 </html>
