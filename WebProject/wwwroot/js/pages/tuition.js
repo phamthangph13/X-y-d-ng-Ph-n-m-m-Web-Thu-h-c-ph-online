@@ -696,6 +696,27 @@ function attachPaymentButtonListeners() {
     });
 }
 
+// Định nghĩa các hàm modal ở mức global
+function openModal(modal) {
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.classList.add('modal-open');
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+    }
+}
+
+function closeModal(modal) {
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }, 300);
+    }
+}
+
 // Initialize UI event handlers
 function initUIEventHandlers() {
     // Payment modals
@@ -730,84 +751,6 @@ function initUIEventHandlers() {
                 if (bankingDetails) bankingDetails.style.display = 'block';
             }
         });
-    }
-    
-    // Function to load payment methods from database
-    async function loadPaymentMethodsFromDatabase() {
-        try {
-            // Clear existing options
-            if (paymentMethodSelect) {
-                paymentMethodSelect.innerHTML = '<option value="">Chọn phương thức thanh toán</option>';
-                
-                // Show loading indicator
-                const loadingOption = document.createElement('option');
-                loadingOption.disabled = true;
-                loadingOption.text = 'Đang tải...';
-                paymentMethodSelect.appendChild(loadingOption);
-                
-                // Fetch payment methods from database
-                const paymentMethods = await tuitionApi.getPaymentMethods();
-                
-                // Remove loading indicator
-                if (paymentMethodSelect.contains(loadingOption)) {
-                    paymentMethodSelect.removeChild(loadingOption);
-                }
-                
-                // Process payment methods
-                if (paymentMethods && (Array.isArray(paymentMethods) || paymentMethods.$values)) {
-                    let methodsArray = [];
-                    
-                    // Handle different response formats
-                    if (Array.isArray(paymentMethods)) {
-                        methodsArray = paymentMethods;
-                    } else if (paymentMethods.$values) {
-                        methodsArray = paymentMethods.$values;
-                    }
-                    
-                    console.log('Payment methods loaded:', methodsArray);
-                    
-                    if (methodsArray.length > 0) {
-                        // Add options to select
-                        methodsArray.forEach(method => {
-                            const option = document.createElement('option');
-                            // Use the numeric ID directly from the database
-                            option.value = method.paymentMethodID;
-                            option.text = method.methodName || 'Unknown Method';
-                            paymentMethodSelect.appendChild(option);
-                        });
-                    } else {
-                        console.warn('Empty payment methods array');
-                        addFallbackOptions();
-                    }
-                } else {
-                    console.warn('No payment methods received from API');
-                    addFallbackOptions();
-                }
-            }
-        } catch (error) {
-            console.error('Error loading payment methods:', error);
-            // Add fallback options if an error occurs
-            addFallbackOptions();
-        }
-        
-        // Helper function to add fallback options
-        function addFallbackOptions() {
-            if (paymentMethodSelect) {
-                // Add fallback options with numeric IDs
-                const fallbackMethods = [
-                    { value: 1, text: 'Internet Banking' },
-                    { value: 2, text: 'Thẻ tín dụng/Ghi nợ' },
-                    { value: 3, text: 'Ví điện tử' }
-                ];
-                
-                fallbackMethods.forEach(method => {
-                    const option = document.createElement('option');
-                    option.value = method.value;
-                    option.text = method.text;
-                    paymentMethodSelect.appendChild(option);
-                });
-            }
-        }
     }
     
     // Handle "Pay All" button click
@@ -1242,5 +1185,83 @@ function calculateFeeTotals() {
         }
     } catch (error) {
         console.error('Error calculating fee totals:', error);
+    }
+}
+
+// Function to load payment methods from database
+async function loadPaymentMethodsFromDatabase() {
+    try {
+        // Clear existing options
+        if (paymentMethodSelect) {
+            paymentMethodSelect.innerHTML = '<option value="">Chọn phương thức thanh toán</option>';
+            
+            // Show loading indicator
+            const loadingOption = document.createElement('option');
+            loadingOption.disabled = true;
+            loadingOption.text = 'Đang tải...';
+            paymentMethodSelect.appendChild(loadingOption);
+            
+            // Fetch payment methods from database
+            const paymentMethods = await tuitionApi.getPaymentMethods();
+            
+            // Remove loading indicator
+            if (paymentMethodSelect.contains(loadingOption)) {
+                paymentMethodSelect.removeChild(loadingOption);
+            }
+            
+            // Process payment methods
+            if (paymentMethods && (Array.isArray(paymentMethods) || paymentMethods.$values)) {
+                let methodsArray = [];
+                
+                // Handle different response formats
+                if (Array.isArray(paymentMethods)) {
+                    methodsArray = paymentMethods;
+                } else if (paymentMethods.$values) {
+                    methodsArray = paymentMethods.$values;
+                }
+                
+                console.log('Payment methods loaded:', methodsArray);
+                
+                if (methodsArray.length > 0) {
+                    // Add options to select
+                    methodsArray.forEach(method => {
+                        const option = document.createElement('option');
+                        // Use the numeric ID directly from the database
+                        option.value = method.paymentMethodID;
+                        option.text = method.methodName || 'Unknown Method';
+                        paymentMethodSelect.appendChild(option);
+                    });
+                } else {
+                    console.warn('Empty payment methods array');
+                    addFallbackOptions();
+                }
+            } else {
+                console.warn('No payment methods received from API');
+                addFallbackOptions();
+            }
+        }
+    } catch (error) {
+        console.error('Error loading payment methods:', error);
+        // Add fallback options if an error occurs
+        addFallbackOptions();
+    }
+    
+    // Helper function to add fallback options
+    function addFallbackOptions() {
+        if (paymentMethodSelect) {
+            // Add fallback options with numeric IDs
+            const fallbackMethods = [
+                { value: 1, text: 'Internet Banking' },
+                { value: 2, text: 'Thẻ tín dụng/Ghi nợ' },
+                { value: 3, text: 'Ví điện tử' }
+            ];
+            
+            fallbackMethods.forEach(method => {
+                const option = document.createElement('option');
+                option.value = method.value;
+                option.text = method.text;
+                paymentMethodSelect.appendChild(option);
+            });
+        }
     }
 }
