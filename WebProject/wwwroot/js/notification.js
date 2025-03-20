@@ -149,8 +149,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const token = getAuthToken();
         
-        // You would typically fetch this from an API
-        fetch('/api/notifications', {
+        // Get filter values if any
+        const type = notificationTypeFilter?.value || '';
+        const isRead = readStatusFilter?.value 
+            ? readStatusFilter.value === 'read' 
+            : null;
+        
+        // Construct URL with query parameters
+        let url = '/api/notifications?';
+        if (type) url += `type=${type}&`;
+        if (isRead !== null) url += `isRead=${isRead}&`;
+        url += `page=1&pageSize=${perPage}`;
+        
+        // Fetch notifications from API
+        fetch(url, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -163,17 +175,30 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             // Store the notifications
-            notifications = data;
-            filteredNotifications = [...notifications];
+            if (data && data.items) {
+                notifications = data.items;
+                filteredNotifications = [...notifications];
+                currentPage = data.currentPage || 1;
+                
+                // Set pagination data
+                if (data.totalPages) {
+                    renderPaginationWithTotalPages(data.totalPages, data.currentPage);
+                } else {
+                    renderPagination();
+                }
+            } else {
+                notifications = [];
+                filteredNotifications = [];
+                renderPagination();
+            }
             
             // Render notifications
             renderNotifications();
-            renderPagination();
         })
         .catch(error => {
             console.error('Error loading notifications:', error);
             
-            // For demo purposes, create sample data
+            // For demo purposes, create sample data if API fails
             createSampleData();
             
             // Render notifications with sample data
@@ -248,39 +273,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 title: 'Thông báo về việc cấp giấy chứng nhận sinh viên',
                 message: 'Sinh viên có nhu cầu xin giấy chứng nhận sinh viên vui lòng đăng ký trực tuyến qua cổng thông tin hoặc liên hệ trực tiếp phòng Đào tạo.',
                 notificationType: 'general',
-                sentDate: '2023-09-10T14:00:00',
+                sentDate: '2023-09-18T10:10:00',
                 isRead: true
             },
             {
                 notificationId: 9,
-                title: 'Thông báo kiểm tra giữa kỳ',
-                message: 'Lịch kiểm tra giữa kỳ học kỳ 1 năm học 2023-2024 đã được công bố. Vui lòng kiểm tra lịch thi trên cổng thông tin của trường.',
+                title: 'Thông báo về thời khóa biểu học kỳ 2',
+                message: 'Thời khóa biểu học kỳ 2 năm học 2023-2024 đã được cập nhật trên cổng thông tin. Sinh viên vui lòng kiểm tra và sắp xếp lịch học phù hợp.',
                 notificationType: 'deadline',
-                sentDate: '2023-09-25T13:20:00',
+                sentDate: '2023-12-28T14:00:00',
                 isRead: false
             },
             {
                 notificationId: 10,
-                title: 'Chương trình học bổng đặc biệt',
-                message: 'Trường thông báo chương trình học bổng đặc biệt dành cho sinh viên có thành tích xuất sắc. Hạn nộp hồ sơ: 30/10/2023.',
+                title: 'Thông báo về đăng ký khóa luận tốt nghiệp',
+                message: 'Sinh viên năm cuối cần đăng ký khóa luận tốt nghiệp trước ngày 20/02/2024. Vui lòng liên hệ giáo viên hướng dẫn và nộp đề cương nghiên cứu.',
                 notificationType: 'important',
-                sentDate: '2023-10-01T10:00:00',
-                isRead: true
+                sentDate: '2024-01-15T09:00:00',
+                isRead: false
             },
             {
                 notificationId: 11,
-                title: 'Thông báo về việc cài đặt phần mềm học trực tuyến',
-                message: 'Để chuẩn bị cho kế hoạch học trực tuyến, sinh viên vui lòng cài đặt các phần mềm cần thiết theo hướng dẫn đính kèm.',
+                title: 'Thông báo nghỉ Tết Nguyên đán 2024',
+                message: 'Trường thông báo lịch nghỉ Tết Nguyên đán từ ngày 08/02/2024 đến hết ngày 18/02/2024. Chúc sinh viên và gia đình năm mới an khang, thịnh vượng.',
                 notificationType: 'general',
-                sentDate: '2023-08-20T09:10:00',
+                sentDate: '2024-01-25T11:30:00',
                 isRead: true
             },
             {
                 notificationId: 12,
-                title: 'Giảm 10% học phí cho sinh viên đóng sớm',
-                message: 'Trường thông báo chương trình giảm 10% học phí cho sinh viên đóng học phí trước ngày 01/01/2024.',
+                title: 'Cập nhật thông tin thanh toán học phí kỳ 2',
+                message: 'Nhà trường đã cập nhật thông tin học phí học kỳ 2 năm học 2023-2024. Sinh viên vui lòng đăng nhập vào cổng thông tin để kiểm tra chi tiết học phí và thực hiện thanh toán.',
                 notificationType: 'payment',
-                sentDate: '2023-12-01T11:30:00',
+                sentDate: '2023-12-10T08:45:00',
                 isRead: false
             }
         ];
@@ -294,129 +319,144 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderNotifications() {
         if (!notificationTableBody) return;
         
-        // Clear the table body
+        // Clear existing rows
         notificationTableBody.innerHTML = '';
         
-        // Calculate start and end indices
-        const startIndex = (currentPage - 1) * perPage;
-        const endIndex = startIndex + perPage;
-        const displayedNotifications = filteredNotifications.slice(startIndex, endIndex);
-        
-        // Check if there are no notifications after filtering
-        if (displayedNotifications.length === 0) {
-            notificationTableBody.innerHTML = `
-                <tr>
-                    <td colspan="6">
-                        <div class="empty-state">
-                            <i class="fas fa-bell-slash"></i>
-                            <p>Không có thông báo nào phù hợp với bộ lọc!</p>
-                            <button class="refresh-btn" onclick="location.reload()">
-                                <i class="fas fa-sync-alt"></i> Làm mới
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+        // If no notifications, show empty message
+        if (filteredNotifications.length === 0) {
+            const emptyRow = document.createElement('tr');
+            emptyRow.className = 'empty-row';
+            emptyRow.innerHTML = `
+                <td colspan="6" class="text-center">
+                    <i class="fas fa-bell-slash"></i>
+                    <p>Không có thông báo nào</p>
+                </td>
             `;
+            notificationTableBody.appendChild(emptyRow);
             return;
         }
         
-        // Render each notification
-        displayedNotifications.forEach(notification => {
+        // Calculate start and end index for current page
+        const startIndex = (currentPage - 1) * perPage;
+        const endIndex = Math.min(startIndex + perPage, filteredNotifications.length);
+        
+        // Create table rows for current page
+        for (let i = startIndex; i < endIndex; i++) {
+            const notification = filteredNotifications[i];
             const row = document.createElement('tr');
             row.className = notification.isRead ? '' : 'unread';
             row.setAttribute('data-id', notification.notificationId);
             
-            // Format date for display
+            // Format date
             const date = new Date(notification.sentDate);
-            const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+            const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
             
-            // Get type label
+            // Get notification type label
             const typeLabel = getNotificationTypeLabel(notification.notificationType);
-            const typeClass = `type-${notification.notificationType}`;
             
-            // Get status label
-            const statusLabel = notification.isRead ? 'Đã đọc' : 'Chưa đọc';
-            const statusClass = notification.isRead ? 'status-read' : 'status-unread';
-            
-            // Create row content
             row.innerHTML = `
-                <td data-label="#">${notification.notificationId}</td>
-                <td data-label="Tiêu đề">${notification.title}</td>
-                <td data-label="Nội dung" class="notification-message">${notification.message}</td>
-                <td data-label="Loại thông báo"><span class="notification-type ${typeClass}">${typeLabel}</span></td>
-                <td data-label="Ngày gửi">${formattedDate}</td>
-                <td data-label="Trạng thái"><span class="notification-status ${statusClass}">${statusLabel}</span></td>
+                <td>${i + 1}</td>
+                <td class="title">${notification.title}</td>
+                <td class="message">${notification.message.length > 100 ? notification.message.substring(0, 100) + '...' : notification.message}</td>
+                <td><span class="type-badge ${notification.notificationType}">${typeLabel}</span></td>
+                <td>${formattedDate}</td>
+                <td>${notification.isRead ? '<span class="status-badge read">Đã đọc</span>' : '<span class="status-badge unread">Chưa đọc</span>'}</td>
             `;
             
-            // Add click event to open notification detail
+            // Add click event to open detail modal
             row.addEventListener('click', () => {
                 openNotificationDetail(notification);
             });
             
-            // Add the row to the table
             notificationTableBody.appendChild(row);
-        });
+        }
     }
     
     /**
-     * Render pagination controls
+     * Render pagination buttons
      */
     function renderPagination() {
         const paginationContainer = document.querySelector('.pagination-container');
         if (!paginationContainer) return;
         
-        // Calculate total pages
         const totalPages = Math.ceil(filteredNotifications.length / perPage);
+        renderPaginationWithTotalPages(totalPages, currentPage);
+    }
+    
+    /**
+     * Render pagination with server-side total pages
+     */
+    function renderPaginationWithTotalPages(totalPages, currentPageNumber) {
+        const paginationContainer = document.querySelector('.pagination-container');
+        if (!paginationContainer) return;
         
-        // Clear pagination
+        // Clear existing buttons
         paginationContainer.innerHTML = '';
         
-        // Previous button
-        const prevButton = document.createElement('button');
-        prevButton.className = 'pagination-btn';
-        prevButton.dataset.page = 'prev';
-        prevButton.disabled = currentPage <= 1;
-        prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
-        paginationContainer.appendChild(prevButton);
-        
-        // Page numbers
-        let startPage = Math.max(1, currentPage - 2);
-        let endPage = Math.min(totalPages, startPage + 4);
-        
-        if (endPage - startPage < 4 && totalPages > 5) {
-            startPage = Math.max(1, endPage - 4);
+        // If no pages, hide pagination
+        if (totalPages === 0) {
+            paginationContainer.style.display = 'none';
+            return;
+        } else {
+            paginationContainer.style.display = 'flex';
         }
         
-        for (let i = startPage; i <= endPage; i++) {
-            const pageButton = document.createElement('button');
-            pageButton.className = `pagination-btn${i === currentPage ? ' active' : ''}`;
-            pageButton.dataset.page = i;
-            pageButton.textContent = i;
-            paginationContainer.appendChild(pageButton);
-        }
+        // Create previous button
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'pagination-btn';
+        prevBtn.setAttribute('data-page', 'prev');
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevBtn.disabled = currentPageNumber <= 1;
+        paginationContainer.appendChild(prevBtn);
         
-        // Ellipsis
-        if (endPage < totalPages) {
-            const ellipsis = document.createElement('span');
-            ellipsis.className = 'pagination-ellipsis';
-            ellipsis.textContent = '...';
-            paginationContainer.appendChild(ellipsis);
+        // If less than 5 pages, show all
+        if (totalPages <= 5) {
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `pagination-btn ${i === currentPageNumber ? 'active' : ''}`;
+                pageBtn.setAttribute('data-page', i);
+                pageBtn.textContent = i;
+                paginationContainer.appendChild(pageBtn);
+            }
+        } else {
+            // Show first page, current page and neighbors, and last page
+            const pagesToShow = new Set();
+            pagesToShow.add(1); // First page
+            pagesToShow.add(totalPages); // Last page
             
-            // Last page
-            const lastPageButton = document.createElement('button');
-            lastPageButton.className = 'pagination-btn';
-            lastPageButton.dataset.page = totalPages;
-            lastPageButton.textContent = totalPages;
-            paginationContainer.appendChild(lastPageButton);
+            // Current page and neighbors
+            for (let i = Math.max(2, currentPageNumber - 1); i <= Math.min(totalPages - 1, currentPageNumber + 1); i++) {
+                pagesToShow.add(i);
+            }
+            
+            // Add ellipsis if needed
+            const sortedPages = Array.from(pagesToShow).sort((a, b) => a - b);
+            
+            for (let i = 0; i < sortedPages.length; i++) {
+                // If there's a gap, add ellipsis
+                if (i > 0 && sortedPages[i] - sortedPages[i - 1] > 1) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.className = 'pagination-ellipsis';
+                    ellipsis.textContent = '...';
+                    paginationContainer.appendChild(ellipsis);
+                }
+                
+                // Add the page button
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `pagination-btn ${sortedPages[i] === currentPageNumber ? 'active' : ''}`;
+                pageBtn.setAttribute('data-page', sortedPages[i]);
+                pageBtn.textContent = sortedPages[i];
+                paginationContainer.appendChild(pageBtn);
+            }
         }
         
-        // Next button
-        const nextButton = document.createElement('button');
-        nextButton.className = 'pagination-btn';
-        nextButton.dataset.page = 'next';
-        nextButton.disabled = currentPage >= totalPages;
-        nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
-        paginationContainer.appendChild(nextButton);
+        // Create next button
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'pagination-btn';
+        nextBtn.setAttribute('data-page', 'next');
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextBtn.disabled = currentPageNumber >= totalPages;
+        paginationContainer.appendChild(nextBtn);
     }
     
     /**
@@ -425,99 +465,120 @@ document.addEventListener('DOMContentLoaded', function() {
     function showLoadingState() {
         if (!notificationTableBody) return;
         
-        notificationTableBody.innerHTML = '';
-        
-        // Create 5 loading rows
-        for (let i = 0; i < 5; i++) {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td><div class="loading-placeholder" style="width: 30px;"></div></td>
-                <td><div class="loading-placeholder" style="width: 80%;"></div></td>
-                <td><div class="loading-placeholder" style="width: 90%;"></div></td>
-                <td><div class="loading-placeholder" style="width: 60%;"></div></td>
-                <td><div class="loading-placeholder" style="width: 70%;"></div></td>
-                <td><div class="loading-placeholder" style="width: 50%;"></div></td>
-            `;
-            notificationTableBody.appendChild(row);
-        }
+        notificationTableBody.innerHTML = `
+            <tr class="loading-row">
+                <td colspan="6" class="text-center">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Đang tải thông báo...</p>
+                    </div>
+                </td>
+            </tr>
+        `;
     }
     
     /**
      * Apply filters to the notifications
      */
     function applyFilters() {
-        const typeFilter = notificationTypeFilter.value;
-        const statusFilter = readStatusFilter.value;
+        const typeValue = notificationTypeFilter ? notificationTypeFilter.value : '';
+        const readValue = readStatusFilter ? readStatusFilter.value : '';
         
-        // Apply filters
-        filteredNotifications = notifications.filter(notification => {
-            let matchesType = true;
-            let matchesStatus = true;
-            
-            if (typeFilter) {
-                matchesType = notification.notificationType === typeFilter;
+        // Reload from API with filters
+        const token = getAuthToken();
+        
+        // Construct URL with query parameters
+        let url = '/api/notifications?';
+        if (typeValue) url += `type=${typeValue}&`;
+        if (readValue) {
+            const isRead = readValue === 'read' ? true : readValue === 'unread' ? false : null;
+            if (isRead !== null) url += `isRead=${isRead}&`;
+        }
+        url += `page=1&pageSize=${perPage}`;
+        
+        // Show loading state
+        showLoadingState();
+        
+        // Fetch filtered notifications
+        fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${token}`
             }
-            
-            if (statusFilter) {
-                matchesStatus = (statusFilter === 'read' && notification.isRead) || 
-                               (statusFilter === 'unread' && !notification.isRead);
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to apply filters');
             }
+            return response.json();
+        })
+        .then(data => {
+            // Update notifications
+            if (data && data.items) {
+                notifications = data.items;
+                filteredNotifications = [...notifications];
+                currentPage = 1;
+                
+                // Render with updated data
+                renderNotifications();
+                renderPaginationWithTotalPages(data.totalPages, 1);
+            }
+        })
+        .catch(error => {
+            console.error('Error applying filters:', error);
             
-            return matchesType && matchesStatus;
+            // Fallback to client-side filtering for demo
+            filteredNotifications = notifications.filter(notification => {
+                const typeMatch = !typeValue || notification.notificationType === typeValue;
+                let readMatch = true;
+                if (readValue === 'read') readMatch = notification.isRead;
+                if (readValue === 'unread') readMatch = !notification.isRead;
+                return typeMatch && readMatch;
+            });
+            
+            currentPage = 1;
+            renderNotifications();
+            renderPagination();
         });
-        
-        // Reset to first page
-        currentPage = 1;
-        
-        // Render the filtered notifications
-        renderNotifications();
-        renderPagination();
     }
     
     /**
      * Reset all filters
      */
     function resetFilters() {
-        // Reset filter dropdowns
-        notificationTypeFilter.value = '';
-        readStatusFilter.value = '';
+        if (notificationTypeFilter) notificationTypeFilter.value = '';
+        if (readStatusFilter) readStatusFilter.value = '';
         
-        // Reset filtered data
-        filteredNotifications = [...notifications];
-        
-        // Reset to first page
-        currentPage = 1;
-        
-        // Render notifications
-        renderNotifications();
-        renderPagination();
+        // Reload notifications without filters
+        loadNotifications();
     }
     
     /**
      * Open notification detail modal
      */
     function openNotificationDetail(notification) {
-        // Populate modal content
+        if (!modal || !modalTitle || !modalMessage || !modalType || !modalDate || !markAsReadBtn) return;
+        
+        // Set modal content
         modalTitle.textContent = notification.title;
         modalMessage.textContent = notification.message;
         modalType.textContent = getNotificationTypeLabel(notification.notificationType);
         
         // Format date
         const date = new Date(notification.sentDate);
-        modalDate.textContent = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+        modalDate.textContent = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
         
         // Set notification ID for mark as read button
         markAsReadBtn.dataset.notificationId = notification.notificationId;
         
-        // Show/hide mark as read button based on current status
-        markAsReadBtn.style.display = notification.isRead ? 'none' : 'flex';
+        // Hide mark as read button if already read
+        markAsReadBtn.style.display = notification.isRead ? 'none' : 'block';
         
-        // Open modal
-        modal.classList.add('show');
+        // Show modal
+        modal.style.display = 'flex';
         
-        // If notification is unread, mark it as read
+        // If not read, mark as read automatically when opened
         if (!notification.isRead) {
-            markAsRead(notification.notificationId, false);
+            markAsRead(notification.notificationId, false); // Don't show toast message
         }
     }
     
@@ -525,7 +586,8 @@ document.addEventListener('DOMContentLoaded', function() {
      * Close notification detail modal
      */
     function closeModal() {
-        modal.classList.remove('show');
+        if (!modal) return;
+        modal.style.display = 'none';
     }
     
     /**
@@ -534,29 +596,61 @@ document.addEventListener('DOMContentLoaded', function() {
     function markAsRead(notificationId, showToastMessage = true) {
         const token = getAuthToken();
         
-        // In a real app, you would make an API call
-        // For demo purposes, update locally
-        const notification = notifications.find(n => n.notificationId == notificationId);
-        if (notification) {
-            notification.isRead = true;
-            
-            // Update the filtered array as well
-            const filteredNotification = filteredNotifications.find(n => n.notificationId == notificationId);
-            if (filteredNotification) {
-                filteredNotification.isRead = true;
+        // Send request to API
+        fetch(`/api/notifications/${notificationId}/mark-as-read`, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to mark notification as read');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Update notification in local data
+            const notificationIndex = notifications.findIndex(n => n.notificationId === parseInt(notificationId));
+            if (notificationIndex >= 0) {
+                notifications[notificationIndex].isRead = true;
+                filteredNotifications = filteredNotifications.map(n => {
+                    if (n.notificationId === parseInt(notificationId)) {
+                        return { ...n, isRead: true };
+                    }
+                    return n;
+                });
             }
             
-            // Update UI
+            // Rerender notifications
             renderNotifications();
             
-            // Hide the mark as read button in modal
-            markAsReadBtn.style.display = 'none';
+            // Hide mark as read button in modal
+            if (markAsReadBtn) markAsReadBtn.style.display = 'none';
             
             // Show success message
             if (showToastMessage) {
-                showToast('success', 'Đã đánh dấu thông báo là đã đọc!');
+                showToast('Đã đánh dấu thông báo như đã đọc', 'success');
             }
-        }
+        })
+        .catch(error => {
+            console.error('Error marking notification as read:', error);
+            
+            // For demo, still update UI even if API fails
+            const notificationIndex = notifications.findIndex(n => n.notificationId === parseInt(notificationId));
+            if (notificationIndex >= 0) {
+                notifications[notificationIndex].isRead = true;
+                filteredNotifications = filteredNotifications.map(n => {
+                    if (n.notificationId === parseInt(notificationId)) {
+                        return { ...n, isRead: true };
+                    }
+                    return n;
+                });
+                renderNotifications();
+                if (markAsReadBtn) markAsReadBtn.style.display = 'none';
+            }
+        });
     }
     
     /**
@@ -565,39 +659,58 @@ document.addEventListener('DOMContentLoaded', function() {
     function markAllAsRead() {
         const token = getAuthToken();
         
-        // In a real app, you would make an API call
-        // For demo purposes, update locally
-        notifications.forEach(notification => {
-            notification.isRead = true;
+        // Send request to API
+        fetch('/api/notifications/mark-all-read', {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to mark all notifications as read');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Update all notifications as read
+            notifications = notifications.map(n => ({ ...n, isRead: true }));
+            filteredNotifications = filteredNotifications.map(n => ({ ...n, isRead: true }));
+            
+            // Rerender notifications
+            renderNotifications();
+            
+            // Show success message
+            showToast(data.message || 'Tất cả thông báo đã được đánh dấu như đã đọc', 'success');
+        })
+        .catch(error => {
+            console.error('Error marking all notifications as read:', error);
+            
+            // For demo, still update UI even if API fails
+            notifications = notifications.map(n => ({ ...n, isRead: true }));
+            filteredNotifications = filteredNotifications.map(n => ({ ...n, isRead: true }));
+            renderNotifications();
+            
+            showToast('Tất cả thông báo đã được đánh dấu như đã đọc', 'success');
         });
-        
-        // Update filtered notifications
-        filteredNotifications.forEach(notification => {
-            notification.isRead = true;
-        });
-        
-        // Update UI
-        renderNotifications();
-        
-        // Show success message
-        showToast('success', 'Đã đánh dấu tất cả thông báo là đã đọc!');
     }
     
     /**
-     * Get notification type label for display
+     * Get label for notification type
      */
     function getNotificationTypeLabel(type) {
         switch (type) {
-            case 'general':
-                return 'Thông báo chung';
             case 'payment':
                 return 'Thanh toán';
             case 'deadline':
                 return 'Thời hạn';
             case 'important':
                 return 'Quan trọng';
+            case 'general':
+                return 'Chung';
             default:
-                return 'Khác';
+                return 'Chung';
         }
     }
     
@@ -606,6 +719,5 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function handleLogout() {
         logout();
-        window.location.href = 'login.html';
     }
 }); 

@@ -285,7 +285,18 @@
         <h2 class="mb-4"><i class="fas fa-bell me-2"></i>Thông báo thanh toán</h2>
         
         <div class="card mb-4">
-            <div class="card-header d-flex justify-content 
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Tổng quan thông báo</h5>
+                <div>
+                    <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#scheduleNotificationModal">
+                        <i class="fas fa-calendar-plus me-1"></i> Lập lịch thông báo
+                    </button>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tuitionReminderModal">
+                        <i class="fas fa-envelope me-1"></i> Gửi nhắc nhở học phí
+                    </button>
+                    <button class="btn btn-outline-primary ms-2" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
                 </div>
             </div>
             <div class="col-md-6">
@@ -469,6 +480,68 @@
         </div>
     </div>
     
+    <!-- Add Tuition Reminder Modal -->
+    <div class="modal fade" id="tuitionReminderModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Gửi nhắc nhở học phí</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="tuitionReminderForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="reminderSemester" class="form-label">Học kỳ</label>
+                                <select class="form-select" id="reminderSemester" required>
+                                    <option value="">-- Chọn học kỳ --</option>
+                                    <!-- Will be populated from JS -->
+                                </select>
+                                <small class="text-muted">Chọn học kỳ để gửi nhắc nhở</small>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="daysBeforeDue" class="form-label">Số ngày trước hạn</label>
+                                <input type="number" class="form-control" id="daysBeforeDue" value="7" min="1" max="30">
+                                <small class="text-muted">Nhắc nhở sinh viên trước bao nhiêu ngày so với hạn thanh toán</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="customizeMessage">
+                                <label class="form-check-label" for="customizeMessage">
+                                    Tùy chỉnh nội dung thông báo
+                                </label>
+                            </div>
+                            <small class="text-muted">Nếu không tùy chỉnh, hệ thống sẽ sử dụng nội dung mặc định</small>
+                        </div>
+                        <div id="customMessageContainer" class="mb-3" style="display: none;">
+                            <div class="mb-3">
+                                <label for="reminderTitle" class="form-label">Tiêu đề thông báo</label>
+                                <input type="text" class="form-control" id="reminderTitle" placeholder="Ví dụ: Nhắc nhở thanh toán học phí kỳ [semester]">
+                                <small class="text-muted">Có thể sử dụng {semesterName} để chèn tên học kỳ</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reminderContent" class="form-label">Nội dung thông báo</label>
+                                <textarea class="form-control" id="reminderContent" rows="4" placeholder="Ví dụ: Bạn còn khoản học phí chưa thanh toán: {amount} VNĐ. Hạn thanh toán: {dueDate}. Vui lòng thanh toán đúng hạn."></textarea>
+                                <small class="text-muted">Có thể sử dụng: {fullName}, {studentCode}, {amount}, {dueDate}, {semesterName}</small>
+                            </div>
+                        </div>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Hệ thống sẽ chỉ gửi thông báo cho các sinh viên chưa thanh toán hoặc thanh toán một phần học phí của học kỳ đã chọn.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" form="tuitionReminderForm" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-1"></i> Gửi nhắc nhở
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/chart.min.js"></script>

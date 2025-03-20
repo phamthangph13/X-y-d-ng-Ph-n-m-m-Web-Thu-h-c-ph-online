@@ -1,44 +1,71 @@
-// Toast notification system
-export function showToast(title, message, type = 'info') {
-    // Check if toast container exists, if not create it
-    let toastContainer = document.querySelector('.toast-container');
+/**
+ * Shows a toast notification to the user
+ * @param {string} message - The message to display
+ * @param {string} type - The type of toast (success, error, warning, info)
+ * @param {number} duration - Duration in milliseconds
+ */
+export function showToast(message, type = 'info', duration = 3000) {
+    // Create toast container if it doesn't exist
+    let toastContainer = document.getElementById('toast-container');
+    
     if (!toastContainer) {
         toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
         toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
         document.body.appendChild(toastContainer);
     }
     
-    // Create toast element
+    // Create a unique ID for this toast
     const toastId = 'toast-' + Date.now();
-    const toast = document.createElement('div');
-    toast.className = `toast align-items-center text-white bg-${type === 'error' ? 'danger' : type} border-0`;
-    toast.id = toastId;
-    toast.setAttribute('role', 'alert');
-    toast.setAttribute('aria-live', 'assertive');
-    toast.setAttribute('aria-atomic', 'true');
     
-    // Create toast content
-    toast.innerHTML = `
-        <div class="d-flex">
-            <div class="toast-body">
-                <strong>${title}</strong> ${message}
+    // Determine the correct color class based on the type
+    let typeClass = 'bg-info text-white';
+    let icon = '<i class="fas fa-info-circle me-2"></i>';
+    
+    switch (type) {
+        case 'success':
+            typeClass = 'bg-success text-white';
+            icon = '<i class="fas fa-check-circle me-2"></i>';
+            break;
+        case 'error':
+            typeClass = 'bg-danger text-white';
+            icon = '<i class="fas fa-exclamation-circle me-2"></i>';
+            break;
+        case 'warning':
+            typeClass = 'bg-warning text-dark';
+            icon = '<i class="fas fa-exclamation-triangle me-2"></i>';
+            break;
+    }
+    
+    // Create the toast element
+    const toastHTML = `
+        <div id="${toastId}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header ${typeClass}">
+                ${icon}
+                <strong class="me-auto">${type.charAt(0).toUpperCase() + type.slice(1)}</strong>
+                <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div class="toast-body">
+                ${message}
+            </div>
         </div>
     `;
     
-    // Add toast to container
-    toastContainer.appendChild(toast);
+    // Add the toast to the container
+    toastContainer.insertAdjacentHTML('beforeend', toastHTML);
     
-    // Initialize and show the toast
-    const bsToast = new bootstrap.Toast(toast, {
+    // Initialize the toast
+    const toastElement = document.getElementById(toastId);
+    const bsToast = new bootstrap.Toast(toastElement, {
         autohide: true,
-        delay: 5000
+        delay: duration
     });
+    
+    // Show the toast
     bsToast.show();
     
-    // Remove toast element after it's hidden
-    toast.addEventListener('hidden.bs.toast', function() {
-        toast.remove();
+    // Remove toast from DOM after it's hidden
+    toastElement.addEventListener('hidden.bs.toast', () => {
+        toastElement.remove();
     });
 } 

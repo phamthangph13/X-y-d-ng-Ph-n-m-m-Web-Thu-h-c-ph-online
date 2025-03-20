@@ -4,42 +4,44 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Get sidebar elements
+    // Elements
+    const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.querySelector('.sidebar');
     const mainContainer = document.querySelector('.main-container');
-    const sidebarToggle = document.getElementById('sidebarToggle');
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     
-    // Check if elements exist before adding event listeners
+    // Sidebar toggle functionality for desktop
     if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', function() {
+        sidebarToggle.addEventListener('click', () => {
             sidebar.classList.toggle('sidebar-collapsed');
             mainContainer.classList.toggle('expanded');
+            
+            // Save preference
+            const isCollapsed = sidebar.classList.contains('sidebar-collapsed');
+            localStorage.setItem('sidebar_collapsed', isCollapsed);
         });
     }
     
     // Mobile menu toggle functionality
     if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('mobile-visible');
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+        });
+        
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            const isClickInside = sidebar.contains(e.target) || mobileMenuToggle.contains(e.target);
+            
+            if (!isClickInside && sidebar.classList.contains('show')) {
+                sidebar.classList.remove('show');
+            }
         });
     }
     
-    // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', function(event) {
-        const isMobile = window.innerWidth < 992;
-        if (isMobile && sidebar.classList.contains('mobile-visible')) {
-            // Check if click is outside sidebar and not on the toggle button
-            if (!sidebar.contains(event.target) && event.target !== mobileMenuToggle) {
-                sidebar.classList.remove('mobile-visible');
-            }
-        }
-    });
-    
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth >= 992) {
-            sidebar.classList.remove('mobile-visible');
-        }
-    });
+    // Apply saved sidebar state on page load
+    const sidebarState = localStorage.getItem('sidebar_collapsed');
+    if (sidebarState === 'true') {
+        sidebar.classList.add('sidebar-collapsed');
+        mainContainer.classList.add('expanded');
+    }
 });
