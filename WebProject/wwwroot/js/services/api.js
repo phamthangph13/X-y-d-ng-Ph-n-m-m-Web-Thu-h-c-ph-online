@@ -3,88 +3,100 @@ import { getAuthToken } from '../utils/auth.js';
 
 // Generic API call function with enhanced error handling
 async function apiCall(url, method = 'GET', data = null, requiresAuth = false) {
-    console.log(`Making ${method} request to: ${url}`);
-    
-    // Detect if we're on production server
-    const isProduction = window.location.hostname !== "localhost";
-    if (isProduction) {
-        console.log('Running in production environment');
-    }
-    
-    const options = {
-        method,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        mode: 'cors',
-        credentials: 'same-origin'
-    };
-    
-    if (data) {
-        options.body = JSON.stringify(data);
-    }
-    
-    if (requiresAuth) {
-        const token = getAuthToken();
-        if (token) {
-            options.headers['Authorization'] = `Bearer ${token}`;
-        }
-    }
-    
     try {
-        console.log('Request options:', JSON.stringify({...options, body: options.body ? '[DATA]' : undefined}));
-        const response = await fetch(url, options);
+        // Add cache busting for GET requests
+        if (method === 'GET') {
+            // Add timestamp to prevent caching
+            const cacheBuster = `_=${Date.now()}`;
+            url += url.includes('?') ? `&${cacheBuster}` : `?${cacheBuster}`;
+        }
         
-        console.log(`Response status: ${response.status} ${response.statusText}`);
+        console.log(`Making ${method} request to: ${url}`);
         
-        // Log response headers for debugging
-        const headers = {};
-        response.headers.forEach((value, key) => {
-            headers[key] = value;
-        });
-        console.log('Response headers:', headers);
+        // Detect if we're on production server
+        const isProduction = window.location.hostname !== "localhost";
+        if (isProduction) {
+            console.log('Running in production environment');
+        }
         
-        // For all environments, log the raw response text for debugging
-        const responseClone = response.clone();
-        const rawText = await responseClone.text();
-        console.log('Raw response text:', rawText);
+        const options = {
+            method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            mode: 'cors',
+            credentials: 'same-origin'
+        };
         
-        if (!rawText || rawText.trim() === '') {
-            console.error('Empty response received from server');
-            return [];  // Return empty array as fallback
+        if (data) {
+            options.body = JSON.stringify(data);
+        }
+        
+        if (requiresAuth) {
+            const token = getAuthToken();
+            if (token) {
+                options.headers['Authorization'] = `Bearer ${token}`;
+            }
         }
         
         try {
-            // Try to parse the raw text manually
-            const parsedData = JSON.parse(rawText);
-            console.log('Successfully parsed JSON response:', parsedData);
+            console.log('Request options:', JSON.stringify({...options, body: options.body ? '[DATA]' : undefined}));
+            const response = await fetch(url, options);
             
-            // Check if not OK status
-            if (!response.ok) {
-                const errorMessage = parsedData.message || getFriendlyErrorMessage(response.status);
-                console.error('Error response with parsed JSON:', errorMessage);
-                throw new Error(errorMessage);
+            console.log(`Response status: ${response.status} ${response.statusText}`);
+            
+            // Log response headers for debugging
+            const headers = {};
+            response.headers.forEach((value, key) => {
+                headers[key] = value;
+            });
+            console.log('Response headers:', headers);
+            
+            // For all environments, log the raw response text for debugging
+            const responseClone = response.clone();
+            const rawText = await responseClone.text();
+            console.log('Raw response text:', rawText);
+            
+            if (!rawText || rawText.trim() === '') {
+                console.error('Empty response received from server');
+                return [];  // Return empty array as fallback
             }
             
-            // Check if the response has $id and $values properties (ASP.NET format)
-            if (parsedData && parsedData.$id && parsedData.$values) {
-                console.log('Detected ASP.NET serialization format with $values');
-                return parsedData; // Return the whole object, the api functions will extract $values
+            try {
+                // Try to parse the raw text manually
+                const parsedData = JSON.parse(rawText);
+                console.log('Successfully parsed JSON response:', parsedData);
+                
+                // Check if not OK status
+                if (!response.ok) {
+                    const errorMessage = parsedData.message || getFriendlyErrorMessage(response.status);
+                    console.error('Error response with parsed JSON:', errorMessage);
+                    throw new Error(errorMessage);
+                }
+                
+                // Check if the response has $id and $values properties (ASP.NET format)
+                if (parsedData && parsedData.$id && parsedData.$values) {
+                    console.log('Detected ASP.NET serialization format with $values');
+                    return parsedData; // Return the whole object, the api functions will extract $values
+                }
+                
+                return parsedData;
+            } catch (parseError) {
+                console.error('Failed to parse response as JSON:', parseError);
+                
+                // Check if not OK status
+                if (!response.ok) {
+                    const errorMessage = rawText || getFriendlyErrorMessage(response.status);
+                    console.error('Error response with text:', errorMessage);
+                    throw new Error(errorMessage);
+                }
+                
+                return [];  // Return empty array as fallback
             }
-            
-            return parsedData;
-        } catch (parseError) {
-            console.error('Failed to parse response as JSON:', parseError);
-            
-            // Check if not OK status
-            if (!response.ok) {
-                const errorMessage = rawText || getFriendlyErrorMessage(response.status);
-                console.error('Error response with text:', errorMessage);
-                throw new Error(errorMessage);
-            }
-            
-            return [];  // Return empty array as fallback
+        } catch (error) {
+            console.error(`API call error (${method} ${url}):`, error);
+            throw error;
         }
     } catch (error) {
         console.error(`API call error (${method} ${url}):`, error);
@@ -438,6 +450,83 @@ export const tuitionApi = {
     // Get payment details
     getPaymentDetails: (paymentId) => 
         apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetPaymentDetails/${paymentId}`, 'GET', null, true),
+    
+    // Create a new payment
+    createPayment: async (paymentData) => {
+        console.log('Creating new payment with data:', paymentData);
+        try {
+            // Log explicit details of the payment data for debugging
+            console.log('Payment details - studentFeeID:', paymentData.studentFeeID);
+            console.log('Payment details - paymentMethodID:', paymentData.paymentMethodID);
+            console.log('Payment details - amount:', paymentData.amount);
+            
+            const result = await apiCall(`/api/payments`, 'POST', paymentData, true);
+            console.log('Payment created successfully:', result);
+            return result;
+        } catch (error) {
+            console.error('Error creating payment:', error);
+            throw error;
+        }
+    },
+        
+    // Direct update fee status
+    updateFeeStatus: async (feeId, status) => {
+        console.log(`Updating fee status for feeId ${feeId} to ${status}`);
+        try {
+            // Make sure feeId is a valid number
+            if (!feeId || isNaN(parseInt(feeId))) {
+                console.error('Invalid fee ID:', feeId);
+                throw new Error('Invalid fee ID');
+            }
+            
+            // Create full data object with all necessary properties
+            const updateData = { 
+                status: status,
+                feeId: parseInt(feeId)
+            };
+            
+            console.log('Sending update request with data:', updateData);
+            
+            // First try the PUT method as specified
+            try {
+                const result = await apiCall(`/api/student-fees/${feeId}/status`, 'PUT', updateData, true);
+                console.log('Fee status updated successfully via PUT:', result);
+                return result;
+            } catch (putError) {
+                console.warn('PUT method failed, trying with POST:', putError);
+                
+                // If PUT fails, try POST as a fallback (some APIs use POST for updates)
+                try {
+                    const postResult = await apiCall(`/api/student-fees/${feeId}/status`, 'POST', updateData, true);
+                    console.log('Fee status updated successfully via POST:', postResult);
+                    return postResult;
+                } catch (postError) {
+                    console.error('POST method also failed:', postError);
+                    
+                    // Try direct SQL call - This usually won't work from frontend but worth trying if there's an API endpoint
+                    console.log('Attempting direct fee update as last resort');
+                    try {
+                        // Try using a dedicated endpoint that might exist for direct updates
+                        const directResult = await apiCall(`/api/student-fees/direct-update`, 'POST', {
+                            feeId: parseInt(feeId),
+                            status: status,
+                            forceUpdate: true
+                        }, true);
+                        console.log('Direct update succeeded:', directResult);
+                        return directResult;
+                    } catch (directError) {
+                        console.error('All update methods failed:', directError);
+                        throw directError;
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error updating fee status:', error);
+            // Log additional details for debugging
+            console.error('Failed to update fee ID:', feeId, 'to status:', status);
+            throw error;
+        }
+    },
         
     // Download invoice
     downloadInvoice: async (paymentId) => {
@@ -478,5 +567,109 @@ export const tuitionApi = {
             console.error('Error downloading invoice:', error);
             throw error;
         }
-    }
+    },
+
+    // Create a dummy payment to trigger fee status update
+    forceStatusUpdateViaPayment: async (feeId, targetStatus) => {
+        console.log(`Forcing status update for fee ID ${feeId} via payment creation`);
+        try {
+            // Create a minimal payment record to trigger status update on the backend
+            const paymentData = {
+                studentFeeID: parseInt(feeId),
+                paymentMethodID: 1, // Default payment method
+                amount: 1.0, // Minimal amount to mark as paid
+                transactionID: `FORCE_UPDATE_${Date.now()}`,
+                paymentReference: `Force status update to ${targetStatus}`,
+                forceStatusUpdate: true, // Special flag for backend
+                targetStatus: targetStatus
+            };
+            
+            // Call the payment creation endpoint
+            try {
+                const result = await apiCall(`/api/payments`, 'POST', paymentData, true);
+                console.log('Forced status update via payment creation:', result);
+                return result;
+            } catch (paymentError) {
+                console.error('Failed to force status update via payment:', paymentError);
+                throw paymentError;
+            }
+        } catch (error) {
+            console.error('Error in force status update:', error);
+            throw error;
+        }
+    },
+
+    // Direct SQL execution for debugging (TEMPORARY - REMOVE IN PRODUCTION)
+    executeSqlUpdate: async (feeId) => {
+        console.log(`Executing direct SQL update for fee ID ${feeId}`);
+        try {
+            // This endpoint would need to be created on the backend
+            const result = await apiCall(`/api/debug/execute-sql`, 'POST', {
+                sql: `UPDATE StudentFees SET Status = 'Paid', LastUpdated = GETDATE() WHERE StudentFeeID = ${feeId}`,
+                params: { feeId }
+            }, true);
+            console.log('Direct SQL execution result:', result);
+            return result;
+        } catch (error) {
+            console.error('Error executing direct SQL:', error);
+            throw error;
+        }
+    },
+
+    // Direct update fee status using SQL-style endpoint
+    directSqlUpdateFeeStatus: async (feeId, status) => {
+        console.log(`Direct SQL update for fee ID ${feeId} to status ${status}`);
+        try {
+            // This should match a new endpoint in your backend controller
+            const result = await apiCall(`/api/StudentTuition/UpdateFeeStatus`, 'POST', {
+                studentFeeID: parseInt(feeId),
+                status: status
+            }, true);
+            console.log('Direct SQL update result:', result);
+            return result;
+        } catch (error) {
+            console.error('Error with direct SQL update:', error);
+            throw error;
+        }
+    },
+
+    // Get payment methods
+    getPaymentMethods: async () => {
+        console.log('Fetching payment methods from database');
+        try {
+            // First try the correct API endpoint
+            try {
+                const result = await apiCall(`/api/payment-methods`, 'GET', null, true);
+                console.log('Payment methods retrieved:', result);
+                return result;
+            } catch (firstError) {
+                console.warn('Failed to fetch from primary endpoint:', firstError);
+                
+                // Fallback to secondary endpoint
+                try {
+                    const fallbackResult = await apiCall(`${API_ENDPOINTS.STUDENT_TUITION}/GetPaymentMethods`, 'GET', null, true);
+                    console.log('Payment methods retrieved from fallback:', fallbackResult);
+                    return fallbackResult;
+                } catch (secondError) {
+                    console.warn('Failed to fetch from secondary endpoint:', secondError);
+                    
+                    // Return hardcoded fallback payment methods
+                    console.log('Using hardcoded payment methods as fallback');
+                    return [
+                        { paymentMethodID: 1, methodName: "Internet Banking", description: "Thanh toán qua ngân hàng trực tuyến", isActive: true },
+                        { paymentMethodID: 2, methodName: "Thẻ tín dụng/Ghi nợ", description: "Thanh toán bằng thẻ tín dụng hoặc thẻ ghi nợ", isActive: true },
+                        { paymentMethodID: 3, methodName: "Ví điện tử", description: "Thanh toán qua ví điện tử như Momo, ZaloPay", isActive: true }
+                    ];
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching payment methods:', error);
+            // Return fallback payment methods on error
+            return [
+                { paymentMethodID: 1, methodName: "Internet Banking", description: "Thanh toán qua ngân hàng trực tuyến", isActive: true },
+                { paymentMethodID: 2, methodName: "Thẻ tín dụng/Ghi nợ", description: "Thanh toán bằng thẻ tín dụng hoặc thẻ ghi nợ", isActive: true },
+                { paymentMethodID: 3, methodName: "Ví điện tử", description: "Thanh toán qua ví điện tử như Momo, ZaloPay", isActive: true }
+            ];
+        }
+    },
 };

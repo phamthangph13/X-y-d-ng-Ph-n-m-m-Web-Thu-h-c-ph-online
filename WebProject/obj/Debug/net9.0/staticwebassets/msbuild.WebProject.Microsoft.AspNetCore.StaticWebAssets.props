@@ -270,6 +270,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pages\payment-history.js'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pages\payment-update.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebProject</BasePath>
+      <RelativePath>js/pages/payment-update.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3z1ndn9zey</Fingerprint>
+      <Integrity>QV19H0x/wZGL2ZeBKcYdqq185W2dACn2LEkvVPpYePU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pages\payment-update.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pages\profile.js'))">
       <SourceType>Package</SourceType>
       <SourceId>WebProject</SourceId>
@@ -300,8 +318,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>bcfnqa8uxb</Fingerprint>
-      <Integrity>a2/W7CjSVX5JF1RiJlGu4aP/zSOMu64kzUjb5rmGmK4=</Integrity>
+      <Fingerprint>n4wdx88m6x</Fingerprint>
+      <Integrity>GTv3UK9IX+/GYnJHhDzWfBkISEGzqf0i2/Npao1uTT0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pages\tuition.js'))</OriginalItemSpec>
@@ -336,8 +354,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>1odjn3n1ku</Fingerprint>
-      <Integrity>DyHAG9CRmAWZ5YXb00KvQqPYTMGxSfDvD0j0ZEzYTnU=</Integrity>
+      <Fingerprint>f8s7ots4so</Fingerprint>
+      <Integrity>UQkEsIllfES3etNDlwTYGfjzv/WHFlkrqrXGiPWTx9g=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\services\api.js'))</OriginalItemSpec>
@@ -372,8 +390,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wz49eswiao</Fingerprint>
-      <Integrity>jL8D179Dv9hXfZv56iaVIfAb1/aOxXrXaa0jTz90Ck4=</Integrity>
+      <Fingerprint>ksxv59s0zn</Fingerprint>
+      <Integrity>LJoUeEwuS+3EZxoVLuRz4086S5fmKNzvOvz0W8vpDyY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\student-tuition.js'))</OriginalItemSpec>
@@ -570,8 +588,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5tfl526h2r</Fingerprint>
-      <Integrity>t6/gB6k/P+izvf3Tv/N0LBnFYuFq20o1esAjmMKHwmU=</Integrity>
+      <Fingerprint>h43k7xs9lr</Fingerprint>
+      <Integrity>0ddXEhLKdkkKqup1xEOygOQ5Mz6yaJDxcJfd36DNKEw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\tuition.html'))</OriginalItemSpec>
