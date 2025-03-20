@@ -109,5 +109,39 @@ namespace WebProject.Controllers
                 return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
             }
         }
+
+        // GET: Lấy danh sách sinh viên có học phí chưa thanh toán hết
+        [HttpGet("students-with-fees")]
+        public async Task<ActionResult<IEnumerable<StudentWithFeeDto>>> GetStudentsWithFees()
+        {
+            try
+            {
+                var students = await _context.Students
+                    .Include(s => s.User)
+                    .Include(s => s.StudentFees.Where(sf => sf.Status != "Paid"))
+                    .Where(s => s.StudentFees.Any(sf => sf.Status != "Paid"))
+                    .Select(s => new StudentWithFeeDto
+                    {
+                        StudentId = s.StudentID,
+                        StudentCode = s.StudentCode,
+                        StudentName = s.User.FullName
+                    })
+                    .ToListAsync();
+
+                return students;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting students with fees: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+    }
+
+    public class StudentWithFeeDto
+    {
+        public int StudentId { get; set; }
+        public string StudentCode { get; set; }
+        public string StudentName { get; set; }
     }
 } 

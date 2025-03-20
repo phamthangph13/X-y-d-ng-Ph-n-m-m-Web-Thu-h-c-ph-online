@@ -531,6 +531,47 @@ namespace WebProject.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
+        // GET: Lấy danh sách học phí của sinh viên theo ID sinh viên
+        [HttpGet("student/{studentId}")]
+        public async Task<ActionResult<IEnumerable<StudentFeeSummaryDto>>> GetStudentFeesByStudentId(int studentId)
+        {
+            try
+            {
+                var student = await _context.Students
+                    .Include(s => s.User)
+                    .FirstOrDefaultAsync(s => s.StudentID == studentId);
+                    
+                if (student == null)
+                {
+                    return NotFound(new { message = "Không tìm thấy sinh viên" });
+                }
+                
+                var studentFees = await _context.StudentFees
+                    .Include(sf => sf.Semester)
+                    .Where(sf => sf.StudentID == studentId)
+                    .OrderByDescending(sf => sf.Semester.EndDate)
+                    .Select(sf => new StudentFeeSummaryDto
+                    {
+                        StudentFeeID = sf.StudentFeeID,
+                        SemesterName = sf.Semester.SemesterName,
+                        TotalAmount = sf.TotalAmount,
+                        PaidAmount = _context.Payments
+                            .Where(p => p.StudentFeeID == sf.StudentFeeID && p.Status == "Success")
+                            .Sum(p => p.Amount),
+                        DueDate = sf.DueDate,
+                        Status = sf.Status
+                    })
+                    .ToListAsync();
+                    
+                return studentFees;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting student fees by student ID: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
     }
 
     // DTO Models
@@ -632,5 +673,15 @@ namespace WebProject.Controllers
         public int PageSize { get; set; }
         public int TotalItems { get; set; }
         public int TotalPages { get; set; }
+    }
+
+    public class StudentFeeSummaryDto
+    {
+        public int StudentFeeID { get; set; }
+        public string SemesterName { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal PaidAmount { get; set; }
+        public DateTime DueDate { get; set; }
+        public string Status { get; set; }
     }
 } 

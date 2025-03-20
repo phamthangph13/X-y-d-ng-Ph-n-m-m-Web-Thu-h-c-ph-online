@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\accoutant_profile.html"
     },
     {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\notification.css",
+      "PackagePath": "staticwebassets\\css\\notification.css"
+    },
+    {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\payment-history.css",
       "PackagePath": "staticwebassets\\css\\payment-history.css"
     },
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\profile.css",
       "PackagePath": "staticwebassets\\css\\profile.css"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\student-report.css",
+      "PackagePath": "staticwebassets\\css\\student-report.css"
     },
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\css\\styles.css",
@@ -57,6 +65,10 @@
       "PackagePath": "staticwebassets\\js\\main.js"
     },
     {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\notification.js",
+      "PackagePath": "staticwebassets\\js\\notification.js"
+    },
+    {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\pages\\payment-history.js",
       "PackagePath": "staticwebassets\\js\\pages\\payment-history.js"
     },
@@ -73,6 +85,10 @@
       "PackagePath": "staticwebassets\\js\\pages\\tuition.js"
     },
     {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\payment-management.js",
+      "PackagePath": "staticwebassets\\js\\payment-management.js"
+    },
+    {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\profile.js",
       "PackagePath": "staticwebassets\\js\\profile.js"
     },
@@ -83,6 +99,10 @@
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\sidebar.js",
       "PackagePath": "staticwebassets\\js\\sidebar.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\student-report.js",
+      "PackagePath": "staticwebassets\\js\\student-report.js"
     },
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\student-tuition.js",
@@ -119,6 +139,14 @@
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\profile.html",
       "PackagePath": "staticwebassets\\profile.html"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\student-notification.html",
+      "PackagePath": "staticwebassets\\student-notification.html"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\student-report.html",
+      "PackagePath": "staticwebassets\\student-report.html"
     },
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\student-tuition.html",
