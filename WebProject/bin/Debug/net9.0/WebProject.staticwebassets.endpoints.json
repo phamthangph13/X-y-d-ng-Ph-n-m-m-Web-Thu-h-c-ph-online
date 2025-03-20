@@ -3579,6 +3579,88 @@
       ]
     },
     {
+      "Route": "invoices/INV-20250320-0001.l4zc4zm4l8.pdf",
+      "AssetFile": "invoices/INV-20250320-0001.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "28"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1Yxt6SrXC+FXs6P1Kxs4iS6ubhGYYMKR8p6rbZRyfyE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 16:37:58 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l4zc4zm4l8"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1Yxt6SrXC+FXs6P1Kxs4iS6ubhGYYMKR8p6rbZRyfyE="
+        },
+        {
+          "Name": "label",
+          "Value": "invoices/INV-20250320-0001.pdf"
+        }
+      ]
+    },
+    {
+      "Route": "invoices/INV-20250320-0001.pdf",
+      "AssetFile": "invoices/INV-20250320-0001.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "28"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1Yxt6SrXC+FXs6P1Kxs4iS6ubhGYYMKR8p6rbZRyfyE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 16:37:58 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1Yxt6SrXC+FXs6P1Kxs4iS6ubhGYYMKR8p6rbZRyfyE="
+        }
+      ]
+    },
+    {
       "Route": "js/config.js",
       "AssetFile": "js/config.js.gz",
       "Selectors": [
@@ -4171,6 +4253,304 @@
         {
           "Name": "label",
           "Value": "js/fee-structure.js.gz"
+        }
+      ]
+    },
+    {
+      "Route": "js/financial-reports.e7qh02c8ra.js",
+      "AssetFile": "js/financial-reports.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000215610177"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4637"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"a3ORKJRI1BtQWSIUWLd93pxWKYKXdLh6xGDA6eTMuIA=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6qbrrTdXfcobDImUsRf63hrhmMePRaVzOW3ps3e28ww=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 16:41:52 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e7qh02c8ra"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6qbrrTdXfcobDImUsRf63hrhmMePRaVzOW3ps3e28ww="
+        },
+        {
+          "Name": "label",
+          "Value": "js/financial-reports.js"
+        }
+      ]
+    },
+    {
+      "Route": "js/financial-reports.e7qh02c8ra.js",
+      "AssetFile": "js/financial-reports.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31131"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6qbrrTdXfcobDImUsRf63hrhmMePRaVzOW3ps3e28ww=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 16:41:52 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e7qh02c8ra"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6qbrrTdXfcobDImUsRf63hrhmMePRaVzOW3ps3e28ww="
+        },
+        {
+          "Name": "label",
+          "Value": "js/financial-reports.js"
+        }
+      ]
+    },
+    {
+      "Route": "js/financial-reports.e7qh02c8ra.js.gz",
+      "AssetFile": "js/financial-reports.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4637"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"a3ORKJRI1BtQWSIUWLd93pxWKYKXdLh6xGDA6eTMuIA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 16:41:52 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e7qh02c8ra"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-a3ORKJRI1BtQWSIUWLd93pxWKYKXdLh6xGDA6eTMuIA="
+        },
+        {
+          "Name": "label",
+          "Value": "js/financial-reports.js.gz"
+        }
+      ]
+    },
+    {
+      "Route": "js/financial-reports.js",
+      "AssetFile": "js/financial-reports.js.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000215610177"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4637"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"a3ORKJRI1BtQWSIUWLd93pxWKYKXdLh6xGDA6eTMuIA=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6qbrrTdXfcobDImUsRf63hrhmMePRaVzOW3ps3e28ww=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 16:41:52 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6qbrrTdXfcobDImUsRf63hrhmMePRaVzOW3ps3e28ww="
+        }
+      ]
+    },
+    {
+      "Route": "js/financial-reports.js",
+      "AssetFile": "js/financial-reports.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31131"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6qbrrTdXfcobDImUsRf63hrhmMePRaVzOW3ps3e28ww=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 16:41:52 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6qbrrTdXfcobDImUsRf63hrhmMePRaVzOW3ps3e28ww="
+        }
+      ]
+    },
+    {
+      "Route": "js/financial-reports.js.gz",
+      "AssetFile": "js/financial-reports.js.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4637"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"a3ORKJRI1BtQWSIUWLd93pxWKYKXdLh6xGDA6eTMuIA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 16:41:52 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-a3ORKJRI1BtQWSIUWLd93pxWKYKXdLh6xGDA6eTMuIA="
         }
       ]
     },

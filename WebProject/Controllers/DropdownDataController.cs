@@ -136,6 +136,35 @@ namespace WebProject.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
+        // GET: Lấy danh sách học kỳ cho dropdown
+        [HttpGet("semesters")]
+        public async Task<ActionResult<IEnumerable<DropdownSemesterDto>>> GetSemesters()
+        {
+            try
+            {
+                _logger.LogInformation("GetSemesters: Attempting to fetch semesters");
+                
+                var semesters = await _context.Semesters
+                    .OrderByDescending(s => s.EndDate)
+                    .Select(s => new DropdownSemesterDto
+                    {
+                        SemesterID = s.SemesterID,
+                        SemesterName = s.SemesterName,
+                        IsActive = s.IsActive
+                    })
+                    .ToListAsync();
+
+                _logger.LogInformation($"GetSemesters: Successfully fetched {semesters.Count} semesters");
+
+                return semesters;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "GetSemesters: Error fetching semesters");
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
+            }
+        }
     }
 
     public class StudentWithFeeDto
@@ -143,5 +172,12 @@ namespace WebProject.Controllers
         public int StudentId { get; set; }
         public string StudentCode { get; set; }
         public string StudentName { get; set; }
+    }
+
+    public class DropdownSemesterDto
+    {
+        public int SemesterID { get; set; }
+        public string SemesterName { get; set; }
+        public bool IsActive { get; set; }
     }
 } 

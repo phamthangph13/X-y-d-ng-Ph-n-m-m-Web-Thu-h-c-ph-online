@@ -591,6 +591,659 @@ namespace WebProject.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
+        // FINANCIAL REPORTS API ENDPOINTS
+        
+        // POST: Báo cáo theo học kỳ
+        [HttpPost("reports/by-semester")]
+        public async Task<ActionResult<FinancialReportDto>> GetReportBySemester(ReportRequestDto request)
+        {
+            try
+            {
+                // Validate request
+                if (request.StartDate > request.EndDate)
+                {
+                    return BadRequest(new { message = "Ngày bắt đầu phải trước ngày kết thúc" });
+                }
+
+                // Query for report by semester
+                var query = from sf in _context.StudentFees
+                            join sem in _context.Semesters on sf.SemesterID equals sem.SemesterID
+                            join p in _context.Payments.Where(p => p.Status == "Success" && 
+                                                                p.PaymentDate >= request.StartDate && 
+                                                                p.PaymentDate <= request.EndDate)
+                                    on sf.StudentFeeID equals p.StudentFeeID into payments
+                            from p in payments.DefaultIfEmpty()
+                            group new { sf, p } by new { sf.SemesterID, sem.SemesterName } into g
+                            select new ReportItemDto
+                            {
+                                Id = g.Key.SemesterID.ToString(),
+                                Name = g.Key.SemesterName,
+                                TotalAmount = g.Sum(x => x.sf.TotalAmount),
+                                PaidAmount = g.Sum(x => x.p != null ? x.p.Amount : 0),
+                                StudentCount = g.Select(x => x.sf.StudentID).Distinct().Count()
+                            };
+                
+                var items = await query.ToListAsync();
+                
+                // Calculate summary
+                var summary = new ReportSummaryDto
+                {
+                    TotalAmount = items.Sum(i => i.TotalAmount),
+                    PaidAmount = items.Sum(i => i.PaidAmount),
+                    TotalCount = items.Sum(i => i.StudentCount)
+                };
+                
+                return new FinancialReportDto
+                {
+                    Items = items,
+                    Summary = summary
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error generating semester report: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+        
+        // POST: Báo cáo theo khoa
+        [HttpPost("reports/by-department")]
+        public async Task<ActionResult<FinancialReportDto>> GetReportByDepartment(ReportRequestDto request)
+        {
+            try
+            {
+                // Validate request
+                if (request.StartDate > request.EndDate)
+                {
+                    return BadRequest(new { message = "Ngày bắt đầu phải trước ngày kết thúc" });
+                }
+
+                // Query for report by department
+                var query = from sf in _context.StudentFees
+                            join s in _context.Students on sf.StudentID equals s.StudentID
+                            join d in _context.Departments on s.DepartmentID equals d.DepartmentID
+                            join p in _context.Payments.Where(p => p.Status == "Success" &&
+                                                                p.PaymentDate >= request.StartDate &&
+                                                                p.PaymentDate <= request.EndDate)
+                                    on sf.StudentFeeID equals p.StudentFeeID into payments
+                            from p in payments.DefaultIfEmpty()
+                            where (!request.SemesterId.HasValue || sf.SemesterID == request.SemesterId.Value)
+                            group new { sf, p } by new { d.DepartmentID, d.DepartmentName } into g
+                            select new ReportItemDto
+                            {
+                                Id = g.Key.DepartmentID.ToString(),
+                                Name = g.Key.DepartmentName,
+                                TotalAmount = g.Sum(x => x.sf.TotalAmount),
+                                PaidAmount = g.Sum(x => x.p != null ? x.p.Amount : 0),
+                                StudentCount = g.Select(x => x.sf.StudentID).Distinct().Count()
+                            };
+                
+                var items = await query.ToListAsync();
+                
+                // Calculate summary
+                var summary = new ReportSummaryDto
+                {
+                    TotalAmount = items.Sum(i => i.TotalAmount),
+                    PaidAmount = items.Sum(i => i.PaidAmount),
+                    TotalCount = items.Sum(i => i.StudentCount)
+                };
+                
+                return new FinancialReportDto
+                {
+                    Items = items,
+                    Summary = summary
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error generating department report: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+        
+        // POST: Báo cáo theo danh mục học phí
+        [HttpPost("reports/by-category")]
+        public async Task<ActionResult<FinancialReportDto>> GetReportByCategory(ReportRequestDto request)
+        {
+            try
+            {
+                // Validate request
+                if (request.StartDate > request.EndDate)
+                {
+                    return BadRequest(new { message = "Ngày bắt đầu phải trước ngày kết thúc" });
+                }
+
+                // Query student fees in the given period
+                var studentFees = _context.StudentFees
+                    .Where(sf => (!request.SemesterId.HasValue || sf.SemesterID == request.SemesterId.Value))
+                    .Select(sf => sf.StudentFeeID)
+                    .ToList();
+
+                // Query for report by fee category
+                var query = from sfd in _context.StudentFeeDetails
+                            join fc in _context.FeeCategories on sfd.FeeCategoryID equals fc.FeeCategoryID
+                            join sf in _context.StudentFees on sfd.StudentFeeID equals sf.StudentFeeID
+                            join p in _context.Payments.Where(p => p.Status == "Success" &&
+                                                                p.PaymentDate >= request.StartDate &&
+                                                                p.PaymentDate <= request.EndDate)
+                                    on sf.StudentFeeID equals p.StudentFeeID into payments
+                            where studentFees.Contains(sfd.StudentFeeID)
+                            group new { sfd, payments } by new { fc.FeeCategoryID, fc.CategoryName } into g
+                            select new ReportItemDto
+                            {
+                                Id = g.Key.FeeCategoryID.ToString(),
+                                Name = g.Key.CategoryName,
+                                TotalAmount = g.Sum(x => x.sfd.Amount),
+                                PaidAmount = g.Sum(x => x.payments.Sum(p => p.Amount) * (x.sfd.Amount / _context.StudentFeeDetails
+                                                    .Where(d => d.StudentFeeID == x.sfd.StudentFeeID)
+                                                    .Sum(d => d.Amount)))
+                            };
+                
+                var items = await query.ToListAsync();
+                
+                // Calculate summary
+                var summary = new ReportSummaryDto
+                {
+                    TotalAmount = items.Sum(i => i.TotalAmount),
+                    PaidAmount = items.Sum(i => i.PaidAmount)
+                };
+                
+                return new FinancialReportDto
+                {
+                    Items = items,
+                    Summary = summary
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error generating category report: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+        
+        // POST: Báo cáo theo phương thức thanh toán
+        [HttpPost("reports/by-method")]
+        public async Task<ActionResult<FinancialReportDto>> GetReportByMethod(ReportRequestDto request)
+        {
+            try
+            {
+                // Validate request
+                if (request.StartDate > request.EndDate)
+                {
+                    return BadRequest(new { message = "Ngày bắt đầu phải trước ngày kết thúc" });
+                }
+
+                // Query for payments by method
+                var query = from p in _context.Payments
+                            join pm in _context.PaymentMethods on p.PaymentMethodID equals pm.PaymentMethodID
+                            join sf in _context.StudentFees on p.StudentFeeID equals sf.StudentFeeID
+                            where p.Status == "Success" &&
+                                  p.PaymentDate >= request.StartDate &&
+                                  p.PaymentDate <= request.EndDate &&
+                                  (!request.SemesterId.HasValue || sf.SemesterID == request.SemesterId.Value)
+                            group p by new { pm.PaymentMethodID, pm.MethodName } into g
+                            select new PaymentMethodReportItemDto
+                            {
+                                Id = g.Key.PaymentMethodID.ToString(),
+                                Name = g.Key.MethodName,
+                                Count = g.Count(),
+                                Amount = g.Sum(p => p.Amount)
+                            };
+                
+                var items = await query.ToListAsync();
+                
+                // Get most popular payment method
+                var mostPopularMethod = items.OrderByDescending(i => i.Count).FirstOrDefault()?.Name ?? "N/A";
+                
+                // Calculate summary
+                var summary = new PaymentMethodReportSummaryDto
+                {
+                    TotalAmount = items.Sum(i => i.Amount),
+                    TotalCount = items.Sum(i => i.Count),
+                    MostPopularMethod = mostPopularMethod
+                };
+                
+                return new FinancialReportDto
+                {
+                    Items = items,
+                    Summary = summary
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error generating payment method report: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+        
+        // POST: Báo cáo theo ngày
+        [HttpPost("reports/by-day")]
+        public async Task<ActionResult<FinancialReportDto>> GetReportByDay(ReportRequestDto request)
+        {
+            try
+            {
+                // Validate request
+                if (request.StartDate > request.EndDate)
+                {
+                    return BadRequest(new { message = "Ngày bắt đầu phải trước ngày kết thúc" });
+                }
+
+                // Query for payments by day
+                var query = from p in _context.Payments
+                            join sf in _context.StudentFees on p.StudentFeeID equals sf.StudentFeeID
+                            where p.PaymentDate >= request.StartDate &&
+                                  p.PaymentDate <= request.EndDate &&
+                                  (!request.SemesterId.HasValue || sf.SemesterID == request.SemesterId.Value)
+                            group p by p.PaymentDate.Date into g
+                            select new PaymentTimeReportItemDto
+                            {
+                                Date = g.Key,
+                                Count = g.Count(),
+                                TotalAmount = g.Sum(p => p.Amount),
+                                SuccessAmount = g.Where(p => p.Status == "Success").Sum(p => p.Amount),
+                                PendingAmount = g.Where(p => p.Status == "Pending").Sum(p => p.Amount),
+                                FailedAmount = g.Where(p => p.Status == "Failed").Sum(p => p.Amount)
+                            };
+                
+                var items = await query.ToListAsync();
+                
+                // Calculate summary
+                var summary = new PaymentTimeReportSummaryDto
+                {
+                    TotalAmount = items.Sum(i => i.TotalAmount),
+                    SuccessAmount = items.Sum(i => i.SuccessAmount),
+                    PendingAmount = items.Sum(i => i.PendingAmount),
+                    FailedAmount = items.Sum(i => i.FailedAmount),
+                    TotalCount = items.Sum(i => i.Count)
+                };
+                
+                return new FinancialReportDto
+                {
+                    Items = items,
+                    Summary = summary
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error generating daily report: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+        
+        // POST: Báo cáo theo tháng
+        [HttpPost("reports/by-month")]
+        public async Task<ActionResult<FinancialReportDto>> GetReportByMonth(ReportRequestDto request)
+        {
+            try
+            {
+                // Validate request
+                if (request.StartDate > request.EndDate)
+                {
+                    return BadRequest(new { message = "Ngày bắt đầu phải trước ngày kết thúc" });
+                }
+
+                // Query for payments by month
+                var query = from p in _context.Payments
+                            join sf in _context.StudentFees on p.StudentFeeID equals sf.StudentFeeID
+                            where p.PaymentDate >= request.StartDate &&
+                                  p.PaymentDate <= request.EndDate &&
+                                  (!request.SemesterId.HasValue || sf.SemesterID == request.SemesterId.Value)
+                            group p by new { Month = p.PaymentDate.Month, Year = p.PaymentDate.Year } into g
+                            select new PaymentMonthReportItemDto
+                            {
+                                Month = g.Key.Month,
+                                Year = g.Key.Year,
+                                Count = g.Count(),
+                                TotalAmount = g.Sum(p => p.Amount),
+                                SuccessAmount = g.Where(p => p.Status == "Success").Sum(p => p.Amount),
+                                PendingAmount = g.Where(p => p.Status == "Pending").Sum(p => p.Amount),
+                                FailedAmount = g.Where(p => p.Status == "Failed").Sum(p => p.Amount)
+                            };
+                
+                var items = await query.OrderBy(i => i.Year).ThenBy(i => i.Month).ToListAsync();
+                
+                // Calculate summary
+                var summary = new PaymentTimeReportSummaryDto
+                {
+                    TotalAmount = items.Sum(i => i.TotalAmount),
+                    SuccessAmount = items.Sum(i => i.SuccessAmount),
+                    PendingAmount = items.Sum(i => i.PendingAmount),
+                    FailedAmount = items.Sum(i => i.FailedAmount),
+                    TotalCount = items.Sum(i => i.Count)
+                };
+                
+                return new FinancialReportDto
+                {
+                    Items = items,
+                    Summary = summary
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error generating monthly report: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+        
+        // GET: Xuất báo cáo ra file Excel
+        [HttpGet("reports/export")]
+        public async Task<IActionResult> ExportReport([FromQuery] ReportExportDto model)
+        {
+            try
+            {
+                // Validate dates
+                if (string.IsNullOrEmpty(model.StartDate) || string.IsNullOrEmpty(model.EndDate))
+                {
+                    return BadRequest(new { message = "Ngày bắt đầu và kết thúc không được để trống" });
+                }
+                
+                if (!DateTime.TryParse(model.StartDate, out var startDate) || !DateTime.TryParse(model.EndDate, out var endDate))
+                {
+                    return BadRequest(new { message = "Định dạng ngày không hợp lệ" });
+                }
+                
+                if (startDate > endDate)
+                {
+                    return BadRequest(new { message = "Ngày bắt đầu phải trước ngày kết thúc" });
+                }
+                
+                // Generate report data based on report type
+                FinancialReportDto reportData = null;
+                
+                // Create report request
+                var request = new ReportRequestDto
+                {
+                    StartDate = startDate,
+                    EndDate = endDate
+                };
+                
+                if (!string.IsNullOrEmpty(model.SemesterId) && int.TryParse(model.SemesterId, out var semesterId))
+                {
+                    request.SemesterId = semesterId;
+                }
+                
+                switch (model.ReportType)
+                {
+                    case "semester":
+                        reportData = (await GetReportBySemester(request)).Value;
+                        break;
+                    case "department":
+                        reportData = (await GetReportByDepartment(request)).Value;
+                        break;
+                    case "category":
+                        reportData = (await GetReportByCategory(request)).Value;
+                        break;
+                    case "method":
+                        reportData = (await GetReportByMethod(request)).Value;
+                        break;
+                    case "daily":
+                        reportData = (await GetReportByDay(request)).Value;
+                        break;
+                    case "monthly":
+                        reportData = (await GetReportByMonth(request)).Value;
+                        break;
+                    default:
+                        return BadRequest(new { message = "Loại báo cáo không hợp lệ" });
+                }
+                
+                if (reportData == null || reportData.Items == null || !reportData.Items.Any())
+                {
+                    return NotFound(new { message = "Không có dữ liệu báo cáo" });
+                }
+                
+                using (var workbook = new XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("Báo cáo tài chính");
+                    
+                    // Set up headers based on report type
+                    int headerRow = 1;
+                    worksheet.Cell(headerRow, 1).Value = "Báo cáo tài chính";
+                    worksheet.Cell(headerRow, 1).Style.Font.Bold = true;
+                    worksheet.Cell(headerRow, 1).Style.Font.FontSize = 16;
+                    
+                    headerRow += 2;
+                    worksheet.Cell(headerRow, 1).Value = "Loại báo cáo:";
+                    worksheet.Cell(headerRow, 2).Value = GetReportTypeName(model.ReportType);
+                    
+                    headerRow += 1;
+                    worksheet.Cell(headerRow, 1).Value = "Thời gian:";
+                    worksheet.Cell(headerRow, 2).Value = $"Từ {startDate.ToShortDateString()} đến {endDate.ToShortDateString()}";
+                    
+                    if (request.SemesterId.HasValue)
+                    {
+                        headerRow += 1;
+                        var semester = await _context.Semesters.FindAsync(request.SemesterId.Value);
+                        worksheet.Cell(headerRow, 1).Value = "Học kỳ:";
+                        worksheet.Cell(headerRow, 2).Value = semester?.SemesterName ?? "N/A";
+                    }
+                    
+                    headerRow += 2;
+                    
+                    // Add column headers based on report type
+                    switch (model.ReportType)
+                    {
+                        case "semester":
+                        case "department":
+                            worksheet.Cell(headerRow, 1).Value = model.ReportType == "semester" ? "Học kỳ" : "Khoa";
+                            worksheet.Cell(headerRow, 2).Value = "Tổng học phí";
+                            worksheet.Cell(headerRow, 3).Value = "Đã thanh toán";
+                            worksheet.Cell(headerRow, 4).Value = "Chưa thanh toán";
+                            worksheet.Cell(headerRow, 5).Value = "Tỷ lệ thanh toán";
+                            worksheet.Cell(headerRow, 6).Value = "Số sinh viên";
+                            break;
+                        case "category":
+                            worksheet.Cell(headerRow, 1).Value = "Danh mục học phí";
+                            worksheet.Cell(headerRow, 2).Value = "Tổng học phí";
+                            worksheet.Cell(headerRow, 3).Value = "Đã thanh toán";
+                            worksheet.Cell(headerRow, 4).Value = "Chưa thanh toán";
+                            worksheet.Cell(headerRow, 5).Value = "Tỷ lệ thanh toán";
+                            break;
+                        case "method":
+                            worksheet.Cell(headerRow, 1).Value = "Phương thức thanh toán";
+                            worksheet.Cell(headerRow, 2).Value = "Số lượng giao dịch";
+                            worksheet.Cell(headerRow, 3).Value = "Tổng tiền";
+                            worksheet.Cell(headerRow, 4).Value = "Tỷ lệ";
+                            break;
+                        case "daily":
+                            worksheet.Cell(headerRow, 1).Value = "Ngày";
+                            worksheet.Cell(headerRow, 2).Value = "Số lượng giao dịch";
+                            worksheet.Cell(headerRow, 3).Value = "Tổng tiền";
+                            worksheet.Cell(headerRow, 4).Value = "Thành công";
+                            worksheet.Cell(headerRow, 5).Value = "Đang xử lý";
+                            worksheet.Cell(headerRow, 6).Value = "Thất bại";
+                            break;
+                        case "monthly":
+                            worksheet.Cell(headerRow, 1).Value = "Tháng";
+                            worksheet.Cell(headerRow, 2).Value = "Số lượng giao dịch";
+                            worksheet.Cell(headerRow, 3).Value = "Tổng tiền";
+                            worksheet.Cell(headerRow, 4).Value = "Thành công";
+                            worksheet.Cell(headerRow, 5).Value = "Đang xử lý";
+                            worksheet.Cell(headerRow, 6).Value = "Thất bại";
+                            break;
+                    }
+                    
+                    // Style header row
+                    var dataHeaderRow = worksheet.Row(headerRow);
+                    dataHeaderRow.Style.Font.Bold = true;
+                    dataHeaderRow.Style.Fill.BackgroundColor = XLColor.LightGray;
+                    
+                    // Add data rows
+                    int row = headerRow + 1;
+                    switch (model.ReportType)
+                    {
+                        case "semester":
+                        case "department":
+                        case "category":
+                            foreach (var item in reportData.Items.Cast<ReportItemDto>())
+                            {
+                                decimal paymentRate = item.TotalAmount > 0 ? (item.PaidAmount / item.TotalAmount * 100) : 0;
+                                
+                                worksheet.Cell(row, 1).Value = item.Name;
+                                worksheet.Cell(row, 2).Value = item.TotalAmount;
+                                worksheet.Cell(row, 2).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 3).Value = item.PaidAmount;
+                                worksheet.Cell(row, 3).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 4).Value = item.TotalAmount - item.PaidAmount;
+                                worksheet.Cell(row, 4).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 5).Value = paymentRate;
+                                worksheet.Cell(row, 5).Style.NumberFormat.Format = "0.00%";
+                                
+                                if (model.ReportType != "category")
+                                {
+                                    worksheet.Cell(row, 6).Value = item.StudentCount;
+                                }
+                                
+                                row++;
+                            }
+                            break;
+                        case "method":
+                            foreach (var item in reportData.Items.Cast<PaymentMethodReportItemDto>())
+                            {
+                                var summary = (PaymentMethodReportSummaryDto)reportData.Summary;
+                                decimal percentage = summary.TotalAmount > 0 ? (item.Amount / summary.TotalAmount * 100) : 0;
+                                
+                                worksheet.Cell(row, 1).Value = item.Name;
+                                worksheet.Cell(row, 2).Value = item.Count;
+                                worksheet.Cell(row, 3).Value = item.Amount;
+                                worksheet.Cell(row, 3).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 4).Value = percentage;
+                                worksheet.Cell(row, 4).Style.NumberFormat.Format = "0.00%";
+                                
+                                row++;
+                            }
+                            break;
+                        case "daily":
+                            foreach (var item in reportData.Items.Cast<PaymentTimeReportItemDto>())
+                            {
+                                worksheet.Cell(row, 1).Value = item.Date;
+                                worksheet.Cell(row, 1).Style.DateFormat.Format = "dd/MM/yyyy";
+                                worksheet.Cell(row, 2).Value = item.Count;
+                                worksheet.Cell(row, 3).Value = item.TotalAmount;
+                                worksheet.Cell(row, 3).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 4).Value = item.SuccessAmount;
+                                worksheet.Cell(row, 4).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 5).Value = item.PendingAmount;
+                                worksheet.Cell(row, 5).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 6).Value = item.FailedAmount;
+                                worksheet.Cell(row, 6).Style.NumberFormat.Format = "#,##0";
+                                
+                                row++;
+                            }
+                            break;
+                        case "monthly":
+                            foreach (var item in reportData.Items.Cast<PaymentMonthReportItemDto>())
+                            {
+                                worksheet.Cell(row, 1).Value = $"{item.Month}/{item.Year}";
+                                worksheet.Cell(row, 2).Value = item.Count;
+                                worksheet.Cell(row, 3).Value = item.TotalAmount;
+                                worksheet.Cell(row, 3).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 4).Value = item.SuccessAmount;
+                                worksheet.Cell(row, 4).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 5).Value = item.PendingAmount;
+                                worksheet.Cell(row, 5).Style.NumberFormat.Format = "#,##0";
+                                worksheet.Cell(row, 6).Value = item.FailedAmount;
+                                worksheet.Cell(row, 6).Style.NumberFormat.Format = "#,##0";
+                                
+                                row++;
+                            }
+                            break;
+                    }
+                    
+                    // Add summary row
+                    row++;
+                    worksheet.Cell(row, 1).Value = "Tổng cộng";
+                    worksheet.Cell(row, 1).Style.Font.Bold = true;
+                    
+                    switch (model.ReportType)
+                    {
+                        case "semester":
+                        case "department":
+                        case "category":
+                            var summaryData = (ReportSummaryDto)reportData.Summary;
+                            decimal totalPaymentRate = summaryData.TotalAmount > 0 ? (summaryData.PaidAmount / summaryData.TotalAmount * 100) : 0;
+                            
+                            worksheet.Cell(row, 2).Value = summaryData.TotalAmount;
+                            worksheet.Cell(row, 2).Style.NumberFormat.Format = "#,##0";
+                            worksheet.Cell(row, 3).Value = summaryData.PaidAmount;
+                            worksheet.Cell(row, 3).Style.NumberFormat.Format = "#,##0";
+                            worksheet.Cell(row, 4).Value = summaryData.TotalAmount - summaryData.PaidAmount;
+                            worksheet.Cell(row, 4).Style.NumberFormat.Format = "#,##0";
+                            worksheet.Cell(row, 5).Value = totalPaymentRate;
+                            worksheet.Cell(row, 5).Style.NumberFormat.Format = "0.00%";
+                            
+                            if (model.ReportType != "category")
+                            {
+                                worksheet.Cell(row, 6).Value = summaryData.TotalCount;
+                            }
+                            break;
+                        case "method":
+                            var methodSummary = (PaymentMethodReportSummaryDto)reportData.Summary;
+                            
+                            worksheet.Cell(row, 2).Value = methodSummary.TotalCount;
+                            worksheet.Cell(row, 3).Value = methodSummary.TotalAmount;
+                            worksheet.Cell(row, 3).Style.NumberFormat.Format = "#,##0";
+                            worksheet.Cell(row, 4).Value = "100%";
+                            break;
+                        case "daily":
+                        case "monthly":
+                            var timeSummary = (PaymentTimeReportSummaryDto)reportData.Summary;
+                            
+                            worksheet.Cell(row, 2).Value = timeSummary.TotalCount;
+                            worksheet.Cell(row, 3).Value = timeSummary.TotalAmount;
+                            worksheet.Cell(row, 3).Style.NumberFormat.Format = "#,##0";
+                            worksheet.Cell(row, 4).Value = timeSummary.SuccessAmount;
+                            worksheet.Cell(row, 4).Style.NumberFormat.Format = "#,##0";
+                            worksheet.Cell(row, 5).Value = timeSummary.PendingAmount;
+                            worksheet.Cell(row, 5).Style.NumberFormat.Format = "#,##0";
+                            worksheet.Cell(row, 6).Value = timeSummary.FailedAmount;
+                            worksheet.Cell(row, 6).Style.NumberFormat.Format = "#,##0";
+                            break;
+                    }
+                    
+                    // Auto-fit columns
+                    worksheet.Columns().AdjustToContents();
+                    
+                    // Prepare response
+                    var stream = new MemoryStream();
+                    workbook.SaveAs(stream);
+                    stream.Position = 0;
+                    
+                    return File(
+                        fileContents: stream.ToArray(),
+                        contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        fileDownloadName: $"Bao-cao-tai-chinh_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error exporting report: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+        
+        // Helper method to get report type text
+        private string GetReportTypeName(string reportType)
+        {
+            switch (reportType)
+            {
+                case "semester":
+                    return "Theo học kỳ";
+                case "department":
+                    return "Theo khoa";
+                case "category":
+                    return "Theo danh mục học phí";
+                case "method":
+                    return "Theo phương thức thanh toán";
+                case "daily":
+                    return "Theo ngày";
+                case "monthly":
+                    return "Theo tháng";
+                default:
+                    return "Không xác định";
+            }
+        }
     }
 
     // DTO Models
@@ -676,5 +1329,88 @@ namespace WebProject.Controllers
         public string Status { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
+    }
+
+    // Financial Report DTO Models
+    public class ReportRequestDto
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int? SemesterId { get; set; }
+    }
+
+    public class ReportExportDto
+    {
+        public string ReportType { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        public string SemesterId { get; set; }
+    }
+
+    public class FinancialReportDto
+    {
+        public IEnumerable<object> Items { get; set; }
+        public object Summary { get; set; }
+    }
+
+    public class ReportItemDto
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal PaidAmount { get; set; }
+        public int StudentCount { get; set; }
+    }
+
+    public class ReportSummaryDto
+    {
+        public decimal TotalAmount { get; set; }
+        public decimal PaidAmount { get; set; }
+        public int TotalCount { get; set; }
+    }
+
+    public class PaymentMethodReportItemDto
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public int Count { get; set; }
+        public decimal Amount { get; set; }
+    }
+
+    public class PaymentMethodReportSummaryDto
+    {
+        public decimal TotalAmount { get; set; }
+        public int TotalCount { get; set; }
+        public string MostPopularMethod { get; set; }
+    }
+
+    public class PaymentTimeReportItemDto
+    {
+        public DateTime Date { get; set; }
+        public int Count { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal SuccessAmount { get; set; }
+        public decimal PendingAmount { get; set; }
+        public decimal FailedAmount { get; set; }
+    }
+
+    public class PaymentMonthReportItemDto
+    {
+        public int Month { get; set; }
+        public int Year { get; set; }
+        public int Count { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal SuccessAmount { get; set; }
+        public decimal PendingAmount { get; set; }
+        public decimal FailedAmount { get; set; }
+    }
+
+    public class PaymentTimeReportSummaryDto
+    {
+        public decimal TotalAmount { get; set; }
+        public decimal SuccessAmount { get; set; }
+        public decimal PendingAmount { get; set; }
+        public decimal FailedAmount { get; set; }
+        public int TotalCount { get; set; }
     }
 } 
