@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo / Khiếu nại - EduPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/student-report.css">
+</head> 
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="sidebar-logo-text">EduPay</span>
+            </a>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="index.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                    <span class="sidebar-menu-text">Trang chủ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="profile.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                    <span class="sidebar-menu-text">Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="tuition.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="sidebar-menu-text">Học phí</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="payment-history.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-history"></i></span>
+                    <span class="sidebar-menu-text">Lịch sử thanh toán</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="student-notification.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-bell"></i></span>
+                    <span class="sidebar-menu-text">Thông báo</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="student-report.html" class="sidebar-menu-link active">
+                    <span class="sidebar-menu-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                    <span class="sidebar-menu-text">Báo cáo/Khiếu nại</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle animate__animated animate__fadeIn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-content animate__animated animate__fadeIn">
+        <div class="container-fluid">
+            <div class="content-header">
+                <h1 class="content-title">Báo cáo / Khiếu nại</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Báo cáo / Khiếu nại</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="content-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="reportForm">
+                            <div class="mb-3">
+                                <label for="reportType" class="form-label">Loại báo cáo</label>
+                                <select class="form-select" id="reportType" required>
+                                    <option value="" selected disabled>Chọn loại báo cáo</option>
+                                    <option value="payment_issue">Vấn đề thanh toán học phí</option>
+                                    <option value="system_error">Lỗi hệ thống</option>
+                                    <option value="incorrect_info">Thông tin học phí không chính xác</option>
+                                    <option value="transaction_error">Lỗi giao dịch</option>
+                                    <option value="other">Vấn đề khác</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="reportSubject" class="form-label">Tiêu đề</label>
+                                <input type="text" class="form-control" id="reportSubject" placeholder="Nhập tiêu đề báo cáo" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="reportDescription" class="form-label">Mô tả chi tiết</label>
+                                <textarea class="form-control" id="reportDescription" rows="5" placeholder="Mô tả chi tiết về vấn đề bạn đang gặp phải..." required></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="reportAttachment" class="form-label">Tài liệu đính kèm (nếu có)</label>
+                                <input class="form-control" type="file" id="reportAttachment" multiple>
+                                <div class="form-text">Bạn có thể đính kèm ảnh chụp màn hình, biên lai hoặc các tài liệu liên quan.</div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="reset" class="btn btn-outline-secondary me-md-2">Làm mới</button>
+                                <button type="submit" class="btn btn-primary">Gửi báo cáo</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Lịch sử báo cáo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Mã báo cáo</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Loại</th>
+                                        <th>Ngày gửi</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reportHistory">
+                                    <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="noReports" class="text-center py-3 d-none">
+                            <p class="text-muted">Bạn chưa có báo cáo nào</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Report Detail Modal -->
+    <div class="modal fade" id="reportDetailModal" tabindex="-1" aria-labelledby="reportDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportDetailModalLabel">Chi tiết báo cáo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="reportDetailContent">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/auth.js" type="module"></script>
+    <script src="js/utils/toast.js" type="module"></script>
+    <script src="js/student-report.js" type="module"></script>
+</body>
+</html>

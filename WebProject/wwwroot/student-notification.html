@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử thanh toán - EduPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/payment-history.css">
+</head> 
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="sidebar-logo-text">EduPay</span>
+            </a>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="index.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                    <span class="sidebar-menu-text">Trang chủ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="profile.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                    <span class="sidebar-menu-text">Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="tuition.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="sidebar-menu-text">Học phí</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="payment-history.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-history"></i></span>
+                    <span class="sidebar-menu-text">Lịch sử thanh toán</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="student-notification.html" class="sidebar-menu-link active">
+                    <span class="sidebar-menu-icon"><i class="fas fa-bell"></i></span>
+                    <span class="sidebar-menu-text">Thông báo</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="student-report.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                    <span class="sidebar-menu-text">Báo cáo/Khiếu nại</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle animate__animated animate__fadeIn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-container animate__animated animate__fadeIn">
+        <header>
+            <nav>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <div class="user-name" id="userName">Xin chào</div>
+                        <div id="userRole">Sinh viên</div>
+                    </div>
+                </div>
+                <button id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="notification-section">
+                <h1 class="section-title">Thông Báo</h1>
+                
+                <div class="notification-overview">
+                    <div class="filter-section">
+                        <div class="filter-container">
+                            <div class="filter-group">
+                                <label for="notificationType">Loại thông báo</label>
+                                <select id="notificationType">
+                                    <option value="">Tất cả</option>
+                                    <option value="general">Chung</option>
+                                    <option value="payment">Thanh toán</option>
+                                    <option value="deadline">Thời hạn</option>
+                                    <option value="important">Quan trọng</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="readStatus">Trạng thái</label>
+                                <select id="readStatus">
+                                    <option value="">Tất cả</option>
+                                    <option value="unread">Chưa đọc</option>
+                                    <option value="read">Đã đọc</option>
+                                </select>
+                            </div>
+                            <div class="filter-actions">
+                                <button id="applyFilterBtn" class="primary-btn">
+                                    <i class="fas fa-filter"></i> Lọc
+                                </button>
+                                <button id="resetFilterBtn" class="secondary-btn">
+                                    <i class="fas fa-redo"></i> Đặt lại
+                                </button>
+                                <button id="markAllReadBtn" class="primary-btn">
+                                    <i class="fas fa-check-double"></i> Đánh dấu đã đọc tất cả
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification-list">
+                        <div class="notification-table-container">
+                            <table class="notification-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%">#</th>
+                                        <th style="width: 20%">Tiêu đề</th>
+                                        <th style="width: 35%">Nội dung</th>
+                                        <th style="width: 15%">Loại thông báo</th>
+                                        <th style="width: 15%">Ngày gửi</th>
+                                        <th style="width: 10%">Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="notificationTableBody">
+                                    <!-- Dữ liệu sẽ được thêm vào bằng JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Phân trang -->
+                        <div class="pagination-container">
+                            <button class="pagination-btn" data-page="prev" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active" data-page="1">1</button>
+                            <button class="pagination-btn" data-page="2">2</button>
+                            <span class="pagination-ellipsis">...</span>
+                            <button class="pagination-btn" data-page="next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Xem Chi Tiết Thông Báo -->
+    <div class="modal" id="notificationDetailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-bell"></i> Chi Tiết Thông Báo</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="notification-detail">
+                    <div class="info-group">
+                        <label><i class="fas fa-heading"></i> Tiêu đề:</label>
+                        <span id="modalTitle">--</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-tag"></i> Loại thông báo:</label>
+                        <span id="modalType">--</span>
+                    </div>
+                    <div class="info-group">
+                        <label><i class="fas fa-calendar-alt"></i> Ngày gửi:</label>
+                        <span id="modalDate">--</span>
+                    </div>
+                    <div class="info-group message-content">
+                        <label><i class="fas fa-comment-alt"></i> Nội dung:</label>
+                        <div id="modalMessage" class="message-body">--</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="mark-read-btn" id="markAsReadBtn"><i class="fas fa-check"></i> Đánh dấu đã đọc</button>
+                <button class="close-btn"><i class="fas fa-times"></i> Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="css/notification.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/auth.js" type="module"></script>
+    <script src="js/utils/toast.js" type="module"></script>
+    <script src="js/notification.js" type="module"></script>
+</body>
+</html>
