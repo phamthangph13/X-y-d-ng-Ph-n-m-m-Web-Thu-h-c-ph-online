@@ -180,37 +180,118 @@
                     <label for="paymentMethod"><i class="fas fa-wallet"></i>Phương thức thanh toán:</label>
                     <select id="paymentMethod" required>
                         <option value="">-- Chọn phương thức thanh toán --</option>
-                        <option value="banking">Internet Banking</option>
-                        <option value="credit">Thẻ tín dụng/ghi nợ</option>
-                        <option value="momo">Ví MoMo</option>
-                        <option value="vnpay">VN Pay</option>
-                        <option value="zalopay">Zalo Pay</option>
+                        <!-- Các option sẽ được thêm động từ JavaScript -->
                     </select>
                 </div>
-                <div id="bankingDetails" class="payment-method-details" style="display: none;">
-                    <div class="form-group">
-                        <label for="bankSelect"><i class="fas fa-university"></i>Chọn ngân hàng:</label>
-                        <select id="bankSelect" required>
-                            <option value="">-- Chọn ngân hàng --</option>
-                            <option value="vietcombank">Vietcombank</option>
-                            <option value="techcombank">Techcombank</option>
-                            <option value="tpbank">TPBank</option>
-                            <option value="mbbank">MB Bank</option>
-                            <option value="other">Ngân hàng khác</option>
-                        </select>
+                
+                <!-- Cash payment details -->
+                <div id="cashDetails" class="payment-details" style="display: none;">
+                    <div class="payment-info-box">
+                        <h3><i class="fas fa-money-bill-alt"></i> Hướng dẫn thanh toán tiền mặt</h3>
+                        <p>Vui lòng đến quầy thu ngân tại trường để thanh toán học phí.</p>
+                        <div class="info-item">
+                            <span class="info-label">Địa điểm:</span>
+                            <span class="info-value">Phòng Tài chính - Kế toán (Tầng 1, Tòa nhà A)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Thời gian làm việc:</span>
+                            <span class="info-value">Thứ 2 - Thứ 6: 08:00 - 17:00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Lưu ý:</span>
+                            <span class="info-value">Mang theo thẻ sinh viên hoặc CMND/CCCD khi đến thanh toán</span>
+                        </div>
                     </div>
                 </div>
-                <div id="creditDetails" class="payment-method-details" style="display: none;">
+                
+                <!-- Bank transfer details -->
+                <div id="bankingDetails" class="payment-details" style="display: none;">
+                    <div class="payment-info-box">
+                        <h3><i class="fas fa-university"></i> Chuyển khoản ngân hàng</h3>
+                        <p>Vui lòng chuyển khoản theo thông tin sau:</p>
+                        <div class="info-item">
+                            <span class="info-label">Tên tài khoản:</span>
+                            <span class="info-value">TRƯỜNG ĐẠI HỌC ABC</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Số tài khoản:</span>
+                            <span class="info-value">1234 5678 9012 3456</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Ngân hàng:</span>
+                            <span class="info-value">Vietcombank - Chi nhánh ABC</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Nội dung chuyển khoản:</span>
+                            <span class="info-value">HP_[MÃ SINH VIÊN]_[HỌ TÊN]</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Lưu ý:</span>
+                            <span class="info-value">Vui lòng giữ lại biên lai giao dịch và gửi về email: ketoan@abc.edu.vn</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MoMo e-wallet details -->
+                <div id="momoDetails" class="payment-details" style="display: none;">
+                    <div class="payment-info-box">
+                        <h3><i class="fas fa-mobile-alt"></i> Thanh toán qua MoMo</h3>
+                        <div class="qr-code-container">
+                            <img src="data:image/png;base64,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 0H+AuPJd4PVoYQAAAABJRU5ErkJggg==" alt="MoMo QR Code">
+                        </div>
+                        <p>Quét mã QR bằng ứng dụng MoMo hoặc chuyển khoản tới số điện thoại:</p>
+                        <div class="info-item highlight">
+                            <span class="info-value">0912 345 678</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Chủ tài khoản:</span>
+                            <span class="info-value">TRƯỜNG ĐẠI HỌC ABC</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Nội dung chuyển khoản:</span>
+                            <span class="info-value">HP_[MÃ SINH VIÊN]_[HỌ TÊN]</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ZaloPay e-wallet details -->
+                <div id="zaloDetails" class="payment-details" style="display: none;">
+                    <div class="payment-info-box">
+                        <h3><i class="fas fa-qrcode"></i> Thanh toán qua ZaloPay</h3>
+                        <div class="qr-code-container">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKQAAACkCAYAAAAZtYVBAAAAAklEQVR4AewaftIAAAYdSURBVO3BQY4cy5LAQDLQ978yR0tfBZBIKbXmj8jM/mCtFQ9rrRUPa60VD2utFQ9rrRUPa60VD2utFQ9rrRUPa60VD2utFQ9rrRUPa60VD2utFQ9rrRUPa60VP3xI5S9V3KjcVLxR8UkqNxVvqPwmlU9SuVF5o+INlTcqPknlL1V84mGtteLhLJVPqnhD5Y2Km4qbipuKNyreqLhRuam4UblReUPljYoblTdUblQ+qeKTVD7xsNZa8fAfV/GGyk3FjcpNxSepvFFxo3JTcVPxhsoNxY yCXNxI3KTcWNylkPa60VD5uo3FS8ofJGxRsVNyo3KjcVNxU3KjcVn6TyRsVNxRsqNxU3FZ9U8YmHtdaKhw9R+aSKG5U3VG4qblQ+SeWm4qbiRuWNipuKG5XfVHFTcaNyU/GGyk3FGyo3FZ94WGutePhQxW+quFG5qfgklTcqblRuKm5UblTeqLip+KSKm4qbihuVv6Typ3hYa614+JDKX6r4SxVvqLxRcaNyU3FT8U9SuVF5o+INlZuKm4o3Km5Ubip+k8onHtZaKx7OUvlLFTcqb6jcVLyhcqNyU/FGxY3KTcUbKm9U3FR8kso3VdyovFFxU/FND2utFQ9rrRUPa60VD2utFQ9rrRUPa60VD2utFQ9rrRUPa60VD2utFQ9rrRUPa60VD2utFQ9rrRUPa60VD2utFT98qOINlZuKm4o3Km5UbipuKn6Tyk3FTcWNyhsVv0nljYoblU+quFF5o+JG5abiRuWm4qbiEw9rrRUPZ6jcVPwllZuKN1RuKm5U3qi4UbmpuFG5qbipeFxcPyxG5abi6RD/0cNa Ae/DDdSvpNxU3FTcVLxRcVNxo/JGxRsqNxVvVLxR8YbKTcVNxRsVNyq/qeITD2utFQ8fUvlLFTcqb1TcqNxU3KjcVNyo3KjcVLyhclPxRsVNxY3K36TyRsUbKm9U3Ki8UfFJD2utFQ8fUnmj4kblpuINlTcqblRuKm5UbipuVG4qblRuKm5UbipuVN5QuVG5qbhR+aYAzPxBkr/iYa214uFDKjcVb1TcqNxUvKFyU3Gj8obKJ1XcqNxU3KjcVLyhclPxRsVNxRsq31Rxo3JT8U8+rLVWPJyh8obKGyo3FW+o3FS8UfGGyk3FjcpNxRsVNyo3FTcqNxVvqHzTw1prxcOHVP5SxRsVb6i8oXJTcaPyhsobFTcqb1TcqNyo3FS8oXKjclPxRsVNxRsqb1TcqNxU3FTcVHziYa214uEslZuKG5WbijcqblRuKt5QuVG5qbipuKm4UbmpuFG5qbhReaPiRuUNlWPFc4H/0cNaa8XDhypuVG5UbipuKm5UbipuVH5TxRsqNxW/qeINlTcqbipuVG5UbipuVN6ouFG5qbhRuan4xMNaa8XDh1RuKm5UbipuVN5QuVG5qbipuFG5qXij4kblDZU3Km5UbipuKt5QuVF5o+INlTcqblRuKm5UPkm+6mGtteLhQyo3FW+o3FTcqNxU3FS8ofJJFTcqNxU3KjcVb6i8UfGGyicpxyo3FW+o3FTcqNxUfNPDWmvFw1kVn9SQe1/xNapvVPyTKj5J5Q2VNyreqLipuFG5UbmpuFG5UbmpuKn4pIe11oqHD6n8JZU3Km5UblRuKm5UbipuVG4qblRuKm5UbipuVG5UbipuKt5QeaPiDZXjxf+q4pMe1lorHtZaKx7WWise1lorHtZaKx7WWise1lorHtZaKx7WWise1lorHtZaKx7WWise1lorHtZaKx7WWise1lorHtZaK374 0H+AuPJd4PVoYQAAAABJRU5ErkJggg==" alt="ZaloPay QR Code">
+                        </div>
+                        <p>Quét mã QR bằng ứng dụng ZaloPay hoặc tìm kiếm tài khoản:</p>
+                        <div class="info-item highlight">
+                            <span class="info-value">TRUONG_DAI_HOC_ABC</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Chủ tài khoản:</span>
+                            <span class="info-value">TRƯỜNG ĐẠI HỌC ABC</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Nội dung chuyển khoản:</span>
+                            <span class="info-value">HP_[MÃ SINH VIÊN]_[HỌ TÊN]</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Credit/Debit Card details -->
+                <div id="creditDetails" class="payment-details" style="display: none;">
                     <div class="form-group">
                         <label for="cardNumber"><i class="fas fa-credit-card"></i>Số thẻ:</label>
                         <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
                     </div>
                     <div class="card-details">
                         <div class="form-group">
+                            <label for="cardName"><i class="fas fa-user"></i>Chủ thẻ:</label>
+                            <input type="text" id="cardName" placeholder="Họ tên trên thẻ">
+                        </div>
+                        <div class="form-group half-width">
                             <label for="expiryDate"><i class="fas fa-calendar-alt"></i>Ngày hết hạn:</label>
                             <input type="text" id="expiryDate" placeholder="MM/YY">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group half-width">
                             <label for="cvv"><i class="fas fa-lock"></i>CVV:</label>
                             <input type="text" id="cvv" placeholder="XXX">
                         </div>

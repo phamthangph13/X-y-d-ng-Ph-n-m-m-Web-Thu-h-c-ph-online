@@ -645,23 +645,37 @@ function renderDirectFeeTable(feesData) {
     attachPaymentButtonListeners();
 }
 
-// Attach event listeners to payment buttons
+// Function to attach payment button event listeners
 function attachPaymentButtonListeners() {
+    console.log('Attaching payment button listeners');
+    
+    // Get all payment buttons
     const payButtons = document.querySelectorAll('.btn-pay');
     const viewDetailButtons = document.querySelectorAll('.btn-view-detail');
     
+    console.log(`Found ${payButtons.length} payment buttons and ${viewDetailButtons.length} view detail buttons`);
+    
+    // Add event listeners to payment buttons
     payButtons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', async function(e) {
             e.preventDefault();
             const feeId = btn.dataset.feeId || '';
             const feeDetailId = btn.dataset.feeDetailId || '';
             const amount = btn.dataset.amount || '';
             
-            document.getElementById('courseCode').textContent = feeDetailId;
-            document.getElementById('courseName').textContent = 'Học phí';
-            document.getElementById('courseAmount').textContent = formatCurrency(amount);
+            if (!feeId || isNaN(amount)) {
+                console.error('Invalid fee data:', { feeId, amount });
+                alert('Dữ liệu thanh toán không hợp lệ. Vui lòng thử lại.');
+                return;
+            }
             
-            openModal(document.getElementById('paymentModal'));
+            // Set payment details in modal
+            document.querySelector('#courseCode').textContent = feeId;
+            document.querySelector('#courseName').textContent = 'Học phí';
+            document.querySelector('#courseAmount').textContent = amount.toLocaleString('vi-VN') + ' VNĐ';
+            
+            // Show payment modal
+            openModal(paymentModal);
         });
     });
     
@@ -720,6 +734,10 @@ function closeModal(modal) {
     }
 }
 
+// Export các hàm để có thể sử dụng từ bên ngoài
+window.openModal = openModal;
+window.closeModal = closeModal;
+
 // Initialize UI event handlers
 function initUIEventHandlers() {
     // Payment modals
@@ -733,6 +751,9 @@ function initUIEventHandlers() {
     const bankingDetails = document.getElementById('bankingDetails');
     const creditDetails = document.getElementById('creditDetails');
 
+    console.log('Initializing UI event handlers...');
+    console.log('Pay All button found:', payAllBtn !== null);
+
     // Load payment methods from database
     loadPaymentMethodsFromDatabase();
     
@@ -743,15 +764,38 @@ function initUIEventHandlers() {
             console.log(`Payment method changed to ID: ${selectedMethodID}`);
             
             // Hide all payment details first
-            if (bankingDetails) bankingDetails.style.display = 'none';
-            if (creditDetails) creditDetails.style.display = 'none';
+            const allPaymentDetails = document.querySelectorAll('.payment-details');
+            allPaymentDetails.forEach(detail => {
+                detail.style.display = 'none';
+            });
             
             // Show the appropriate payment details section based on method ID
-            // Method IDs are now numeric values directly from the database
             if (selectedMethodID) {
-                // For now, show banking details for all methods
-                // This can be expanded in the future to show different UIs based on method type
-                if (bankingDetails) bankingDetails.style.display = 'block';
+                switch (parseInt(selectedMethodID)) {
+                    case 1: // Cash
+                        const cashDetails = document.getElementById('cashDetails');
+                        if (cashDetails) cashDetails.style.display = 'block';
+                        break;
+                    case 2: // Bank Transfer
+                        const bankingDetails = document.getElementById('bankingDetails');
+                        if (bankingDetails) bankingDetails.style.display = 'block';
+                        break;
+                    case 3: // MoMo E-wallet
+                        const momoDetails = document.getElementById('momoDetails');
+                        if (momoDetails) momoDetails.style.display = 'block';
+                        break;
+                    case 4: // ZaloPay E-wallet
+                        const zaloDetails = document.getElementById('zaloDetails');
+                        if (zaloDetails) zaloDetails.style.display = 'block';
+                        break;
+                    case 5: // Credit/Debit Card
+                        const creditDetails = document.getElementById('creditDetails');
+                        if (creditDetails) creditDetails.style.display = 'block';
+                        break;
+                    default:
+                        console.warn(`Unknown payment method ID: ${selectedMethodID}`);
+                        break;
+                }
             }
         });
     }
@@ -760,33 +804,67 @@ function initUIEventHandlers() {
     if (payAllBtn) {
         payAllBtn.addEventListener('click', async function(e) {
             e.preventDefault();
+            console.log('Pay All button clicked');
             
             try {
                 const userData = getUserData();
                 if (!userData || !userData.userId) {
                     console.error('User data not found');
+                    alert('Không tìm thấy thông tin người dùng. Vui lòng đăng nhập lại.');
                     return;
                 }
                 
-                const unpaidFees = await tuitionApi.getUnpaidFees(userData.userId);
+                // Hiển thị trạng thái loading
+                payAllBtn.disabled = true;
+                payAllBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
                 
-                if (!unpaidFees || unpaidFees.length === 0) {
+                const unpaidFees = await tuitionApi.getUnpaidFees(userData.userId);
+                console.log('Unpaid fees:', unpaidFees);
+                
+                // Khôi phục trạng thái nút
+                payAllBtn.disabled = false;
+                payAllBtn.innerHTML = '<i class="fas fa-credit-card"></i>Thanh toán tất cả';
+                
+                // Kiểm tra dữ liệu học phí chưa thanh toán
+                let unpaidFeesArray = [];
+                
+                if (Array.isArray(unpaidFees)) {
+                    unpaidFeesArray = unpaidFees;
+                } else if (unpaidFees && unpaidFees.$values) {
+                    unpaidFeesArray = unpaidFees.$values;
+                }
+                
+                if (!unpaidFeesArray || unpaidFeesArray.length === 0) {
                     alert('Không có khoản học phí nào cần thanh toán.');
                     return;
                 }
                 
                 // Calculate total unpaid amount
-                const totalUnpaid = unpaidFees.reduce((sum, fee) => sum + fee.totalAmount, 0);
+                const totalUnpaid = unpaidFeesArray.reduce((sum, fee) => sum + (parseFloat(fee.totalAmount) || 0), 0);
                 
                 document.getElementById('courseCode').textContent = 'ALL';
                 document.getElementById('courseName').textContent = 'Tất cả học phần chưa thanh toán';
                 document.getElementById('courseAmount').textContent = formatCurrency(totalUnpaid);
-                openModal(paymentModal);
+                
+                if (paymentModal) {
+                    openModal(paymentModal);
+                } else {
+                    console.error('Payment modal not found in the DOM');
+                    alert('Có lỗi xảy ra. Không tìm thấy cửa sổ thanh toán.');
+                }
             } catch (error) {
                 console.error('Error fetching unpaid fees:', error);
                 alert('Không thể tải dữ liệu học phí chưa thanh toán. Vui lòng thử lại sau.');
+                
+                // Khôi phục trạng thái nút
+                if (payAllBtn) {
+                    payAllBtn.disabled = false;
+                    payAllBtn.innerHTML = '<i class="fas fa-credit-card"></i>Thanh toán tất cả';
+                }
             }
         });
+    } else {
+        console.warn('Pay All button not found in the DOM');
     }
     
     // Close modals
@@ -830,11 +908,17 @@ function initUIEventHandlers() {
             const paymentMethodID = parseInt(paymentMethod);
             if (!paymentMethodID || isNaN(paymentMethodID)) {
                 alert('Phương thức thanh toán không hợp lệ. Vui lòng thử lại.');
-                openModal(paymentModal); // Reopen the modal
                 return;
             }
             
             console.log(`Selected payment method ID: ${paymentMethodID}`);
+            
+            // Disable submit button and show processing state
+            const submitBtn = document.getElementById('confirmPaymentBtn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+            }
             
             // Close payment modal
             closeModal(paymentModal);
@@ -867,10 +951,18 @@ function initUIEventHandlers() {
                         let processedFees = [];
                         let successCount = 0;
                         
+                        // Xử lý dữ liệu unpaidFees
+                        let unpaidFeesArray = [];
+                        if (Array.isArray(unpaidFees)) {
+                            unpaidFeesArray = unpaidFees;
+                        } else if (unpaidFees && unpaidFees.$values) {
+                            unpaidFeesArray = unpaidFees.$values;
+                        }
+                        
                         // Check if unpaidFees is a proper array
-                        if (Array.isArray(unpaidFees) && unpaidFees.length > 0) {
+                        if (unpaidFeesArray && unpaidFeesArray.length > 0) {
                             // Process each unpaid fee as a separate payment
-                            for (let fee of unpaidFees) {
+                            for (let fee of unpaidFeesArray) {
                                 if (!fee.studentFeeID) {
                                     console.error('Invalid fee data, missing studentFeeID', fee);
                                     continue;
@@ -879,7 +971,7 @@ function initUIEventHandlers() {
                                 const singlePaymentData = {
                                     studentFeeID: fee.studentFeeID,
                                     paymentMethodID: paymentMethodID,
-                                    amount: fee.totalAmount,
+                                    amount: parseFloat(fee.totalAmount) || 0,
                                     transactionID: 'TXN' + Math.floor(Math.random() * 1000000000),
                                     paymentReference: `Bulk payment via method ID ${paymentMethodID} on ${new Date().toLocaleDateString()}`
                                 };
@@ -889,70 +981,40 @@ function initUIEventHandlers() {
                                     const paymentResult = await processCompletedPayment(singlePaymentData);
                                     processedFees.push(fee.studentFeeID);
                                     successCount++;
-                                    
-                                    // Also directly update the fee status
-                                    try {
-                                        await tuitionApi.updateFeeStatus(fee.studentFeeID, 'Paid');
-                                        console.log(`Directly updated fee status for ID: ${fee.studentFeeID}`);
-                                    } catch (statusError) {
-                                        console.warn(`Failed to directly update fee status: ${statusError.message}`);
-                                    }
                                 } catch (feeError) {
                                     console.error(`Error processing fee ID ${fee.studentFeeID}:`, feeError);
                                 }
                             }
                             
-                            // Reset cursor
+                            // Reset cursor and form state
                             document.body.style.cursor = 'default';
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.innerHTML = '<i class="fas fa-check"></i>Xác nhận thanh toán';
+                            }
+                            
+                            // Reload page data
+                            await reloadPageData();
                             
                             // Show success message
-                            document.querySelector('.transaction-id').textContent = `${successCount} khoản thanh toán thành công`;
+                            const transactionIdElement = document.querySelector('.transaction-id');
+                            if (transactionIdElement) {
+                                transactionIdElement.textContent = `${successCount} khoản thanh toán thành công`;
+                            }
                             openModal(successModal);
                         } else {
-                            // Handle the case where unpaidFees might be in a different format
-                            if (unpaidFees && unpaidFees.$values && Array.isArray(unpaidFees.$values)) {
-                                // Process ASP.NET style array with $values
-                                for (let fee of unpaidFees.$values) {
-                                    if (!fee.studentFeeID) continue;
-                                    
-                                    const singlePaymentData = {
-                                        studentFeeID: fee.studentFeeID,
-                                        paymentMethodID: paymentMethodID,
-                                        amount: fee.totalAmount,
-                                        transactionID: 'TXN' + Math.floor(Math.random() * 1000000000),
-                                        paymentReference: `Bulk payment via method ID ${paymentMethodID} on ${new Date().toLocaleDateString()}`
-                                    };
-                                    
-                                    try {
-                                        await processCompletedPayment(singlePaymentData);
-                                        processedFees.push(fee.studentFeeID);
-                                        successCount++;
-                                        
-                                        // Also directly update the fee status
-                                        try {
-                                            await tuitionApi.updateFeeStatus(fee.studentFeeID, 'Paid');
-                                            console.log(`Directly updated fee status for ID: ${fee.studentFeeID}`);
-                                        } catch (statusError) {
-                                            console.warn(`Failed to directly update fee status: ${statusError.message}`);
-                                        }
-                                    } catch (feeError) {
-                                        console.error(`Error processing fee ID ${fee.studentFeeID}:`, feeError);
-                                    }
-                                }
-                                
-                                // Reset cursor
-                                document.body.style.cursor = 'default';
-                                
-                                // Show success message
-                                document.querySelector('.transaction-id').textContent = `${successCount} khoản thanh toán thành công`;
-                                openModal(successModal);
-                            } else {
-                                throw new Error('No unpaid fees found or fees in unexpected format');
-                            }
+                            throw new Error('No unpaid fees found or fees in unexpected format');
                         }
                     } catch (error) {
                         console.error('Error processing bulk payment:', error);
                         document.body.style.cursor = 'default';
+                        
+                        // Reset form state
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<i class="fas fa-check"></i>Xác nhận thanh toán';
+                        }
+                        
                         alert('Có lỗi xảy ra khi xử lý thanh toán hàng loạt. Vui lòng thử lại sau.');
                     }
                 } else {
@@ -963,49 +1025,48 @@ function initUIEventHandlers() {
                         
                         console.log('Payment processed with result:', result);
                         
-                        // As a backup, also directly update the fee status
-                        if (feeId !== 'ALL') {
-                            try {
-                                await tuitionApi.updateFeeStatus(parseInt(feeId), 'Paid');
-                                console.log(`Directly updated fee status for ID: ${feeId}`);
-                            } catch (statusError) {
-                                console.warn(`Failed to directly update fee status: ${statusError.message}`);
-                            }
-                        }
-                        
-                        // Reset cursor
+                        // Reset cursor and form state
                         document.body.style.cursor = 'default';
-                        
-                        // Show success message
-                        document.querySelector('.transaction-id').textContent = 
-                            result?.transactionID || paymentData.transactionID;
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<i class="fas fa-check"></i>Xác nhận thanh toán';
+                        }
                         
                         // Force a data reload to ensure UI is updated
                         await reloadPageData();
                         
                         // Show success message
+                        const transactionIdElement = document.querySelector('.transaction-id');
+                        if (transactionIdElement) {
+                            transactionIdElement.textContent = result?.transactionID || paymentData.transactionID;
+                        }
+                        
+                        // Show success modal
                         openModal(successModal);
                     } catch (error) {
                         console.error('Error processing single payment:', error);
                         document.body.style.cursor = 'default';
                         
-                        // Check if this was the "payment method not found" error which we're simulating success for
-                        if (error.message && error.message.includes('Không tìm thấy phương thức thanh toán')) {
-                            // We're handling this in the processCompletedPayment function
-                            // Just reload the data and show success
-                            await reloadPageData();
-                            document.querySelector('.transaction-id').textContent = 
-                                `SIM${Date.now()}`;
-                            openModal(successModal);
-                        } else {
-                            alert('Có lỗi xảy ra khi xử lý thanh toán. Vui lòng thử lại sau.');
+                        // Reset form state
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = '<i class="fas fa-check"></i>Xác nhận thanh toán';
                         }
+                        
+                        alert(`Có lỗi xảy ra khi xử lý thanh toán: ${error.message}`);
                     }
                 }
             } catch (error) {
                 console.error('Payment processing error:', error);
                 document.body.style.cursor = 'default';
-                alert('Có lỗi xảy ra khi xử lý thanh toán. Vui lòng thử lại sau.');
+                
+                // Reset form state
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i>Xác nhận thanh toán';
+                }
+                
+                alert(`Có lỗi xảy ra: ${error.message}`);
             }
         });
     }
@@ -1090,51 +1151,37 @@ function updateEmptyStateUI() {
     `;
 }
 
-// Add a function to reload page data without refreshing the entire page
+// Reload page data after payment
 async function reloadPageData() {
     console.log('Reloading page data after payment...');
     
-    const userData = getUserData();
-    if (!userData || !userData.userId) {
-        console.error('User data not found, cannot reload data');
-        return;
-    }
-    
     try {
+        // Get current user ID
+        const userData = getUserData();
+        if (!userData || !userData.userId) {
+            console.error('User data not found, cannot reload page data');
+            return;
+        }
+        
         // Show loading state
         showLoadingState();
         
-        // Wait longer to ensure database updates have been processed
-        console.log('Waiting for database updates to complete...');
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        console.log('Fetching fresh data with cache busting...');
-        
-        // Fetch fresh data from the server with cache busting
+        // Fetch updated data
         const allFees = await tuitionApi.getStudentFees(userData.userId);
-        const currentSemesterFees = await tuitionApi.getCurrentSemesterFees(userData.userId);
-        const unpaidFees = await tuitionApi.getUnpaidFees(userData.userId);
         
-        console.log('Reloaded data after payment:', { allFees, currentSemesterFees, unpaidFees });
+        // Update UI with the new data
+        updateTuitionTable(allFees);
         
-        // Update UI with the refreshed data
-        updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
+        // Calculate fee totals
+        calculateFeeTotals();
         
-        if (allFees && (Array.isArray(allFees) || allFees.$values)) {
-            updateTuitionTable(allFees);
-        } else if (unpaidFees && (Array.isArray(unpaidFees) || unpaidFees.$values)) {
-            updateTuitionTable(unpaidFees);
-        } else if (currentSemesterFees && !currentSemesterFees.message) {
-            updateTuitionTable([currentSemesterFees]);
-        } else {
-            updateEmptyStateUI();
-        }
+        // Hide loading state
+        hideLoadingState();
         
-        // Hide loading state (in case it doesn't get hidden by the update functions)
-        document.querySelector('.tuition-table tbody').innerHTML = '';
+        console.log('Page data reloaded successfully');
     } catch (error) {
         console.error('Error reloading page data:', error);
-        showErrorState('Không thể tải lại dữ liệu. Vui lòng làm mới trang.');
+        hideLoadingState();
     }
 }
 
@@ -1193,78 +1240,77 @@ function calculateFeeTotals() {
 
 // Function to load payment methods from database
 async function loadPaymentMethodsFromDatabase() {
+    const paymentMethodSelect = document.getElementById('paymentMethod');
+    if (!paymentMethodSelect) {
+        console.error('Payment method select element not found');
+        return;
+    }
+
     try {
         // Clear existing options
-        if (paymentMethodSelect) {
-            paymentMethodSelect.innerHTML = '<option value="">Chọn phương thức thanh toán</option>';
+        paymentMethodSelect.innerHTML = '<option value="">Chọn phương thức thanh toán</option>';
+        
+        // Show loading indicator
+        const loadingOption = document.createElement('option');
+        loadingOption.disabled = true;
+        loadingOption.text = 'Đang tải...';
+        paymentMethodSelect.appendChild(loadingOption);
+        
+        // Fetch payment methods from database
+        const paymentMethods = await tuitionApi.getPaymentMethods();
+        
+        // Remove loading indicator
+        if (paymentMethodSelect.contains(loadingOption)) {
+            paymentMethodSelect.removeChild(loadingOption);
+        }
+        
+        // Process payment methods
+        if (paymentMethods && (Array.isArray(paymentMethods) || paymentMethods.$values)) {
+            let methodsArray = [];
             
-            // Show loading indicator
-            const loadingOption = document.createElement('option');
-            loadingOption.disabled = true;
-            loadingOption.text = 'Đang tải...';
-            paymentMethodSelect.appendChild(loadingOption);
-            
-            // Fetch payment methods from database
-            const paymentMethods = await tuitionApi.getPaymentMethods();
-            
-            // Remove loading indicator
-            if (paymentMethodSelect.contains(loadingOption)) {
-                paymentMethodSelect.removeChild(loadingOption);
+            // Handle different response formats
+            if (Array.isArray(paymentMethods)) {
+                methodsArray = paymentMethods;
+            } else if (paymentMethods.$values) {
+                methodsArray = paymentMethods.$values;
             }
             
-            // Process payment methods
-            if (paymentMethods && (Array.isArray(paymentMethods) || paymentMethods.$values)) {
-                let methodsArray = [];
-                
-                // Handle different response formats
-                if (Array.isArray(paymentMethods)) {
-                    methodsArray = paymentMethods;
-                } else if (paymentMethods.$values) {
-                    methodsArray = paymentMethods.$values;
-                }
-                
-                console.log('Payment methods loaded:', methodsArray);
-                
-                if (methodsArray.length > 0) {
-                    // Add options to select
-                    methodsArray.forEach(method => {
-                        const option = document.createElement('option');
-                        // Use the numeric ID directly from the database
-                        option.value = method.paymentMethodID;
-                        option.text = method.methodName || 'Unknown Method';
-                        paymentMethodSelect.appendChild(option);
-                    });
-                } else {
-                    console.warn('Empty payment methods array');
-                    addFallbackOptions();
-                }
+            console.log('Payment methods loaded:', methodsArray);
+            
+            if (methodsArray.length > 0) {
+                // Add options to select
+                methodsArray.forEach(method => {
+                    const option = document.createElement('option');
+                    // Use the numeric ID directly from the database
+                    option.value = method.paymentMethodID;
+                    option.text = method.methodName || 'Unknown Method';
+                    // Add additional data attributes for later use
+                    option.dataset.description = method.description || '';
+                    option.dataset.isActive = method.isActive ? 'true' : 'false';
+                    paymentMethodSelect.appendChild(option);
+                });
             } else {
-                console.warn('No payment methods received from API');
-                addFallbackOptions();
+                console.warn('Empty payment methods array');
+                addFallbackOptions(paymentMethodSelect);
             }
+        } else {
+            console.warn('No payment methods received from API');
+            addFallbackOptions(paymentMethodSelect);
         }
     } catch (error) {
         console.error('Error loading payment methods:', error);
         // Add fallback options if an error occurs
-        addFallbackOptions();
+        addFallbackOptions(paymentMethodSelect);
     }
+}
+
+// Helper function to add fallback options
+function addFallbackOptions(paymentMethodSelect) {
+    if (!paymentMethodSelect) return;
     
-    // Helper function to add fallback options
-    function addFallbackOptions() {
-        if (paymentMethodSelect) {
-            // Add fallback options with numeric IDs
-            const fallbackMethods = [
-                { value: 1, text: 'Internet Banking' },
-                { value: 2, text: 'Thẻ tín dụng/Ghi nợ' },
-                { value: 3, text: 'Ví điện tử' }
-            ];
-            
-            fallbackMethods.forEach(method => {
-                const option = document.createElement('option');
-                option.value = method.value;
-                option.text = method.text;
-                paymentMethodSelect.appendChild(option);
-            });
-        }
-    }
+    // Thêm thông báo không có phương thức thanh toán thay vì các phương thức mặc định
+    const emptyOption = document.createElement('option');
+    emptyOption.disabled = true;
+    emptyOption.text = 'Không có phương thức thanh toán';
+    paymentMethodSelect.appendChild(emptyOption);
 }
