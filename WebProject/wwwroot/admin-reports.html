@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xuất báo cáo thanh toán - EduPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/payment-history.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head> 
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <a href="admin-dashboard.html" class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="sidebar-logo-text">EduPay</span>
+            </a>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="admin-dashboard.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                    <span class="sidebar-menu-text">Trang chủ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-students.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user-graduate"></i></span>
+                    <span class="sidebar-menu-text">Quản lý danh sách sinh viên</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-tuition.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="sidebar-menu-text">Quản lý học phí theo kỳ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-courses.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-book"></i></span>
+                    <span class="sidebar-menu-text">Quản lý khóa học</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-manual-payment.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-check-circle"></i></span>
+                    <span class="sidebar-menu-text">Xác nhận thanh toán thủ công</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-reports.html" class="sidebar-menu-link active">
+                    <span class="sidebar-menu-icon"><i class="fas fa-file-invoice"></i></span>
+                    <span class="sidebar-menu-text">Xuất báo cáo thanh toán</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-system.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-cogs"></i></span>
+                    <span class="sidebar-menu-text">Quản lý hệ thống</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle animate__animated animate__fadeIn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-container animate__animated animate__fadeIn">
+        <header>
+            <nav>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <div class="user-name" id="userName">Xin chào</div>
+                        <div id="userRole">Quản trị viên</div>
+                    </div>
+                </div>
+                <button id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="dashboard-section">
+                <h1 class="section-title">Xuất báo cáo thanh toán</h1>
+                
+                <div class="admin-form">
+                    <h2 class="subsection-title">Tùy chọn báo cáo</h2>
+                    
+                    <!-- Loại báo cáo -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reportType">Loại báo cáo</label>
+                            <select id="reportType" class="form-select">
+                                <option value="payment_summary">Tổng hợp thanh toán</option>
+                                <option value="payment_detail">Chi tiết thanh toán</option>
+                                <option value="student_payment">Thanh toán theo sinh viên</option>
+                                <option value="unpaid_tuition">Sinh viên chưa thanh toán</option>
+                                <option value="faculty_summary">Thống kê theo khoa</option>
+                                <option value="payment_method">Thống kê theo phương thức thanh toán</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Bộ lọc tùy theo loại báo cáo -->
+                    <div id="reportFilters">
+                        <!-- Bộ lọc mặc định hiển thị cho tất cả loại báo cáo -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reportPeriod">Kỳ học</label>
+                                <select id="reportPeriod" class="form-select">
+                                    <option value="current">Kỳ hiện tại (HK1 2023-2024)</option>
+                                    <option value="HK2-2022-2023">HK2 2022-2023</option>
+                                    <option value="HK1-2022-2023">HK1 2022-2023</option>
+                                    <option value="all">Tất cả kỳ học</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reportDateRange">Thời gian</label>
+                                <select id="reportDateRange" class="form-select">
+                                    <option value="currentMonth">Tháng hiện tại</option>
+                                    <option value="last3Months">3 tháng gần đây</option>
+                                    <option value="currentSemester">Kỳ học hiện tại</option>
+                                    <option value="custom">Tùy chỉnh</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Chọn ngày tùy chỉnh (hiển thị khi chọn tùy chỉnh) -->
+                        <div class="form-row custom-date-range" style="display: none;">
+                            <div class="form-group">
+                                <label for="reportStartDate">Từ ngày</label>
+                                <input type="date" id="reportStartDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="reportEndDate">Đến ngày</label>
+                                <input type="date" id="reportEndDate" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <!-- Bộ lọc khác sẽ hiển thị động dựa trên loại báo cáo -->
+                        <div id="additionalFilters">
+                            <!-- Bộ lọc bổ sung sẽ được thêm bằng JavaScript dựa trên loại báo cáo -->
+                        </div>
+                    </div>
+                    
+                    <div class="admin-btn-group">
+                        <button class="admin-btn admin-btn-primary" id="generateReportBtn">
+                            <i class="fas fa-sync-alt"></i> Tạo báo cáo
+                        </button>
+                        <button class="admin-btn admin-btn-secondary" id="resetReportBtn">
+                            <i class="fas fa-redo"></i> Đặt lại
+                        </button>
+                        <button class="admin-btn admin-btn-secondary" id="exportExcelBtn">
+                            <i class="fas fa-file-excel"></i> Xuất Excel
+                        </button>
+                        <button class="admin-btn admin-btn-secondary" id="exportPdfBtn">
+                            <i class="fas fa-file-pdf"></i> Xuất PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Khu vực hiển thị báo cáo -->
+                <div class="report-container">
+                    <div class="report-header">
+                        <h2 id="reportTitle">Báo cáo tổng hợp thanh toán</h2>
+                        <p id="reportPeriodDisplay">Kỳ học: HK1 2023-2024 | Thời gian: 01/09/2023 - 31/12/2023</p>
+                    </div>
+
+                    <!-- Phần tóm tắt báo cáo -->
+                    <div class="report-summary">
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="summary-details">
+                                    <h3 id="totalStudents">1,254</h3>
+                                    <p>Tổng số sinh viên</p>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="summary-details">
+                                    <h3 id="totalPaid">1,023</h3>
+                                    <p>Đã thanh toán</p>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="summary-details">
+                                    <h3 id="totalPending">87</h3>
+                                    <p>Đang xử lý</p>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="summary-details">
+                                    <h3 id="totalUnpaid">144</h3>
+                                    <p>Chưa thanh toán</p>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="summary-details">
+                                    <h3 id="totalAmount">15,342,500,000 ₫</h3>
+                                    <p>Tổng thu</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Khu vực biểu đồ, sẽ được render bằng JavaScript -->
+                    <div class="report-charts">
+                        <div class="chart-container">
+                            <canvas id="paymentStatusChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="paymentMethodChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Bảng chi tiết thanh toán -->
+                    <div class="report-table">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead id="reportTableHead">
+                                    <!-- Header sẽ được thêm động dựa trên loại báo cáo -->
+                                </thead>
+                                <tbody id="reportTableBody">
+                                    <!-- Dữ liệu báo cáo sẽ được thêm vào bằng JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Phân trang cho bảng báo cáo -->
+                    <div class="pagination-container">
+                        <button class="pagination-btn" data-page="prev" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="pagination-btn active" data-page="1">1</button>
+                        <button class="pagination-btn" data-page="2">2</button>
+                        <span class="pagination-ellipsis">...</span>
+                        <button class="pagination-btn" data-page="next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="js/utils/auth.js" type="module"></script>
+    <script src="js/utils/toast.js" type="module"></script>
+    <script src="js/admin-reports.js" type="module"></script>
+</body>
+</html> 

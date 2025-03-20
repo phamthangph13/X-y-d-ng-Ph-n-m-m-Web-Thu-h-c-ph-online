@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên - EduPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/payment-history.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head> 
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <a href="admin-dashboard.html" class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="sidebar-logo-text">EduPay</span>
+            </a>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="admin-dashboard.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                    <span class="sidebar-menu-text">Trang chủ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-students.html" class="sidebar-menu-link active">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user-graduate"></i></span>
+                    <span class="sidebar-menu-text">Quản lý danh sách sinh viên</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-tuition.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="sidebar-menu-text">Quản lý học phí theo kỳ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-courses.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-book"></i></span>
+                    <span class="sidebar-menu-text">Quản lý khóa học</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-manual-payment.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-check-circle"></i></span>
+                    <span class="sidebar-menu-text">Xác nhận thanh toán thủ công</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-reports.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-file-invoice"></i></span>
+                    <span class="sidebar-menu-text">Xuất báo cáo thanh toán</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-system.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-cogs"></i></span>
+                    <span class="sidebar-menu-text">Quản lý hệ thống</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle animate__animated animate__fadeIn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-container animate__animated animate__fadeIn">
+        <header>
+            <nav>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <div class="user-name" id="userName">Xin chào</div>
+                        <div id="userRole">Quản trị viên</div>
+                    </div>
+                </div>
+                <button id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="dashboard-section">
+                <h1 class="section-title">Quản lý danh sách sinh viên</h1>
+                
+                <div class="admin-form">
+                    <h2 class="subsection-title">Tìm kiếm sinh viên</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="searchStudentId">Mã sinh viên</label>
+                            <input type="text" id="searchStudentId" class="form-control" placeholder="Nhập mã sinh viên">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchStudentName">Họ tên</label>
+                            <input type="text" id="searchStudentName" class="form-control" placeholder="Nhập họ tên sinh viên">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchClass">Lớp</label>
+                            <input type="text" id="searchClass" class="form-control" placeholder="Nhập lớp">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchFaculty">Khoa</label>
+                            <select id="searchFaculty" class="form-select">
+                                <option value="">Tất cả</option>
+                                <option value="CNTT">Công nghệ thông tin</option>
+                                <option value="QTKD">Quản trị kinh doanh</option>
+                                <option value="KT">Kế toán</option>
+                                <option value="NNA">Ngôn ngữ Anh</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="admin-btn-group">
+                        <button class="admin-btn admin-btn-primary" id="searchStudentBtn">
+                            <i class="fas fa-search"></i> Tìm kiếm
+                        </button>
+                        <button class="admin-btn admin-btn-secondary" id="resetSearchBtn">
+                            <i class="fas fa-redo"></i> Đặt lại
+                        </button>
+                        <button class="admin-btn admin-btn-primary" id="addStudentBtn">
+                            <i class="fas fa-plus"></i> Thêm sinh viên mới
+                        </button>
+                        <button class="admin-btn admin-btn-secondary" id="importStudentsBtn">
+                            <i class="fas fa-file-import"></i> Nhập từ Excel
+                        </button>
+                        <button class="admin-btn admin-btn-secondary" id="exportStudentsBtn">
+                            <i class="fas fa-file-export"></i> Xuất ra Excel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mã SV</th>
+                                <th>Họ tên</th>
+                                <th>Ngày sinh</th>
+                                <th>Giới tính</th>
+                                <th>Lớp</th>
+                                <th>Khoa</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Dữ liệu sẽ được thêm vào bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Phân trang -->
+                <div class="pagination-container">
+                    <button class="pagination-btn" data-page="prev" disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-btn active" data-page="1">1</button>
+                    <button class="pagination-btn" data-page="2">2</button>
+                    <span class="pagination-ellipsis">...</span>
+                    <button class="pagination-btn" data-page="next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Thêm/Sửa Sinh viên -->
+    <div class="modal fade" id="studentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="studentModalTitle">Thêm sinh viên mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="studentForm">
+                        <input type="hidden" id="studentId">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="studentCode" class="form-label">Mã sinh viên</label>
+                                <input type="text" class="form-control" id="studentCode" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="studentName" class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control" id="studentName" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="studentDob" class="form-label">Ngày sinh</label>
+                                <input type="date" class="form-control" id="studentDob" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Giới tính</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="genderMale" value="male" checked>
+                                        <label class="form-check-label" for="genderMale">Nam</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="female">
+                                        <label class="form-check-label" for="genderFemale">Nữ</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="studentClass" class="form-label">Lớp</label>
+                                <input type="text" class="form-control" id="studentClass" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="studentFaculty" class="form-label">Khoa</label>
+                                <select class="form-select" id="studentFaculty" required>
+                                    <option value="">Chọn khoa</option>
+                                    <option value="CNTT">Công nghệ thông tin</option>
+                                    <option value="QTKD">Quản trị kinh doanh</option>
+                                    <option value="KT">Kế toán</option>
+                                    <option value="NNA">Ngôn ngữ Anh</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="studentEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="studentEmail" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="studentPhone" class="form-label">Số điện thoại</label>
+                                <input type="tel" class="form-control" id="studentPhone" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="studentAddress" class="form-label">Địa chỉ</label>
+                                <textarea class="form-control" id="studentAddress" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="studentStatus" class="form-label">Trạng thái</label>
+                                <select class="form-select" id="studentStatus" required>
+                                    <option value="active">Đang học</option>
+                                    <option value="graduated">Đã tốt nghiệp</option>
+                                    <option value="suspended">Đình chỉ</option>
+                                    <option value="dropped">Nghỉ học</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="admin-btn admin-btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="admin-btn admin-btn-primary" id="saveStudentBtn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/auth.js" type="module"></script>
+    <script src="js/utils/toast.js" type="module"></script>
+    <script src="js/admin-students.js" type="module"></script>
+</body>
+</html> 

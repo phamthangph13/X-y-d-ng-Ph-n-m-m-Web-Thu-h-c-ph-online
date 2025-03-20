@@ -91,7 +91,6 @@ export function ensureCorrectEncoding(text) {
  * Authentication utility functions
  */
 
-const TOKEN_KEY = 'auth_token';
 const REDIRECT_URL = 'login.html';
 
 /**
@@ -111,26 +110,18 @@ export function checkAuth() {
 }
 
 /**
- * Get the authentication token from localStorage
- * @returns {string|null} The authentication token or null if not found
- */
-export function getAuthToken() {
-    return localStorage.getItem(TOKEN_KEY);
-}
-
-/**
  * Set the authentication token in localStorage
  * @param {string} token - The authentication token to store
  */
 export function setAuthToken(token) {
-    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(STORAGE_KEYS.TOKEN, token);
 }
 
 /**
  * Remove the authentication token from localStorage and redirect to login page
  */
 export function logout() {
-    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(STORAGE_KEYS.TOKEN);
     window.location.href = REDIRECT_URL;
 }
 

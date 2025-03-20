@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác nhận thanh toán thủ công - EduPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/payment-history.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head> 
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <a href="admin-dashboard.html" class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="sidebar-logo-text">EduPay</span>
+            </a>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="admin-dashboard.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                    <span class="sidebar-menu-text">Trang chủ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-students.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user-graduate"></i></span>
+                    <span class="sidebar-menu-text">Quản lý danh sách sinh viên</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-tuition.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="sidebar-menu-text">Quản lý học phí theo kỳ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-courses.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-book"></i></span>
+                    <span class="sidebar-menu-text">Quản lý khóa học</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-manual-payment.html" class="sidebar-menu-link active">
+                    <span class="sidebar-menu-icon"><i class="fas fa-check-circle"></i></span>
+                    <span class="sidebar-menu-text">Xác nhận thanh toán thủ công</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-reports.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-file-invoice"></i></span>
+                    <span class="sidebar-menu-text">Xuất báo cáo thanh toán</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-system.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-cogs"></i></span>
+                    <span class="sidebar-menu-text">Quản lý hệ thống</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle animate__animated animate__fadeIn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-container animate__animated animate__fadeIn">
+        <header>
+            <nav>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <div class="user-name" id="userName">Xin chào</div>
+                        <div id="userRole">Quản trị viên</div>
+                    </div>
+                </div>
+                <button id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="dashboard-section">
+                <h1 class="section-title">Xác nhận thanh toán thủ công</h1>
+                
+                <div class="admin-form">
+                    <h2 class="subsection-title">Thanh toán chờ xác nhận</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="searchTransactionId">Mã giao dịch</label>
+                            <input type="text" id="searchTransactionId" class="form-control" placeholder="Nhập mã giao dịch">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchStudentId">Mã sinh viên</label>
+                            <input type="text" id="searchStudentId" class="form-control" placeholder="Nhập mã sinh viên">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchPaymentMethod">Phương thức thanh toán</label>
+                            <select id="searchPaymentMethod" class="form-select">
+                                <option value="">Tất cả</option>
+                                <option value="bank_transfer">Chuyển khoản ngân hàng</option>
+                                <option value="cash">Tiền mặt</option>
+                                <option value="other">Phương thức khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="searchDateRange">Thời gian thanh toán</label>
+                            <select id="searchDateRange" class="form-select">
+                                <option value="today">Hôm nay</option>
+                                <option value="last3days">3 ngày qua</option>
+                                <option value="last7days">7 ngày qua</option>
+                                <option value="last30days" selected>30 ngày qua</option>
+                                <option value="custom">Tùy chỉnh</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row custom-date-range" style="display: none;">
+                        <div class="form-group">
+                            <label for="searchStartDate">Từ ngày</label>
+                            <input type="date" id="searchStartDate" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchEndDate">Đến ngày</label>
+                            <input type="date" id="searchEndDate" class="form-control">
+                        </div>
+                    </div>
+                    <div class="admin-btn-group">
+                        <button class="admin-btn admin-btn-primary" id="searchTransactionBtn">
+                            <i class="fas fa-search"></i> Tìm kiếm
+                        </button>
+                        <button class="admin-btn admin-btn-secondary" id="resetTransactionBtn">
+                            <i class="fas fa-redo"></i> Đặt lại
+                        </button>
+                        <button class="admin-btn admin-btn-primary" id="approveSelectedBtn">
+                            <i class="fas fa-check"></i> Xác nhận các mục đã chọn
+                        </button>
+                        <button class="admin-btn admin-btn-danger" id="rejectSelectedBtn">
+                            <i class="fas fa-times"></i> Từ chối các mục đã chọn
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="selectAllTransactions">
+                                        <label class="form-check-label" for="selectAllTransactions"></label>
+                                    </div>
+                                </th>
+                                <th>Mã giao dịch</th>
+                                <th>Mã SV</th>
+                                <th>Họ tên</th>
+                                <th>Kỳ học</th>
+                                <th>Số tiền</th>
+                                <th>Phương thức</th>
+                                <th>Ngày thanh toán</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsTableBody">
+                            <!-- Dữ liệu sẽ được thêm vào bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Phân trang -->
+                <div class="pagination-container">
+                    <button class="pagination-btn" data-page="prev" disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-btn active" data-page="1">1</button>
+                    <button class="pagination-btn" data-page="2">2</button>
+                    <span class="pagination-ellipsis">...</span>
+                    <button class="pagination-btn" data-page="next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Xem chi tiết giao dịch -->
+    <div class="modal fade" id="transactionDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chi tiết giao dịch</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Thông tin giao dịch</h6>
+                            <div class="mb-3">
+                                <label class="fw-bold">Mã giao dịch:</label>
+                                <span id="modalTransactionId"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Ngày thanh toán:</label>
+                                <span id="modalTransactionDate"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Số tiền:</label>
+                                <span id="modalAmount"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Phương thức thanh toán:</label>
+                                <span id="modalPaymentMethod"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Trạng thái:</label>
+                                <span id="modalStatus"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Nội dung thanh toán:</label>
+                                <span id="modalDescription"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Thông tin sinh viên</h6>
+                            <div class="mb-3">
+                                <label class="fw-bold">Mã sinh viên:</label>
+                                <span id="modalStudentId"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Họ tên:</label>
+                                <span id="modalStudentName"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Lớp:</label>
+                                <span id="modalStudentClass"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Khoa:</label>
+                                <span id="modalStudentFaculty"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Email:</label>
+                                <span id="modalStudentEmail"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold">Số điện thoại:</label>
+                                <span id="modalStudentPhone"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>Hình ảnh minh chứng thanh toán</h6>
+                            <div class="payment-proof-container">
+                                <img src="" alt="Minh chứng thanh toán" id="paymentProofImage" class="img-fluid">
+                                <div class="mt-2">
+                                    <button class="admin-btn admin-btn-secondary btn-sm" id="downloadProofBtn">
+                                        <i class="fas fa-download"></i> Tải xuống
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3" id="adminNoteSection">
+                        <div class="col-12">
+                            <h6>Ghi chú của quản trị viên</h6>
+                            <textarea class="form-control" id="adminNote" rows="3" placeholder="Nhập ghi chú..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="admin-btn admin-btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="admin-btn admin-btn-danger" id="rejectTransactionBtn">
+                        <i class="fas fa-times"></i> Từ chối
+                    </button>
+                    <button type="button" class="admin-btn admin-btn-primary" id="approveTransactionBtn">
+                        <i class="fas fa-check"></i> Xác nhận
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/auth.js" type="module"></script>
+    <script src="js/utils/toast.js" type="module"></script>
+    <script src="js/admin-manual-payment.js" type="module"></script>
+</body>
+</html> 
