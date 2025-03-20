@@ -142,9 +142,6 @@ async function initTuitionPage() {
         // Ẩn trạng thái đang tải
         hideLoadingState();
         
-        // Update UI with the fetched data
-        updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
-        
         // Ưu tiên hiển thị dữ liệu theo thứ tự: allFees > unpaidFees > currentSemesterFees
         if (allFees && (Array.isArray(allFees) || allFees.$values)) {
             console.log('Using allFees for table display, type:', typeof allFees, 'is array:', Array.isArray(allFees));
@@ -198,6 +195,68 @@ async function initTuitionPage() {
             updateEmptyStateUI();
         }
         
+        // Calculate fee totals after table is populated
+        setTimeout(() => {
+            console.log('Calculating fee totals after table has been populated');
+            
+            // First try to calculate from the DOM if table is populated
+            let totalAmount = 0;
+            let paidAmount = 0;
+            let outstandingAmount = 0;
+            
+            try {
+                const tableRows = document.querySelectorAll('.tuition-table tbody tr');
+                console.log('Found table rows:', tableRows.length);
+                
+                if (tableRows && tableRows.length > 0 && !tableRows[0].querySelector('.empty-state')) {
+                    tableRows.forEach(row => {
+                        // Skip rows with empty state
+                        if (row.querySelector('.empty-state')) return;
+                        
+                        // Get fee amount
+                        const amountCell = row.querySelector('td[data-label="Số tiền"]');
+                        const statusCell = row.querySelector('td[data-label="Trạng thái"] span');
+                        
+                        if (amountCell && statusCell) {
+                            // Extract amount from formatted string
+                            const amountText = amountCell.textContent.trim();
+                            const amount = parseInt(amountText.replace(/[^\d]/g, '')) || 0;
+                            
+                            // Add to total
+                            totalAmount += amount;
+                            
+                            // Check status
+                            if (statusCell.textContent.includes('Đã thanh toán') || 
+                                statusCell.classList.contains('status-paid')) {
+                                paidAmount += amount;
+                            } else {
+                                outstandingAmount += amount;
+                            }
+                        }
+                    });
+                    
+                    // Log calculated values
+                    console.log('DOM calculated values:', { totalAmount, paidAmount, outstandingAmount });
+                    
+                    // If we have valid total amount, update UI
+                    if (totalAmount > 0) {
+                        // Update the overview with calculated values
+                        updateTuitionOverview({ totalAmount, paidAmount, outstandingAmount });
+                    } else {
+                        // Fallback to original method
+                        updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
+                    }
+                } else {
+                    // Fallback to original method
+                    updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
+                }
+            } catch (error) {
+                console.error('Error calculating from DOM:', error);
+                // Fallback to original method
+                updateTuitionOverview(currentSemesterFees, allFees, unpaidFees);
+            }
+        }, 500); // Give time for the table to be fully rendered
+        
     } catch (error) {
         console.error('Error loading tuition data:', error);
         // Show error message to user
@@ -210,12 +269,28 @@ async function initTuitionPage() {
 
 // Update tuition overview section with real data
 function updateTuitionOverview(currentSemesterFees, allFees, unpaidFees) {
-    console.log('Updating overview with:', { currentSemesterFees, allFees, unpaidFees });
+    console.log('Updating overview with raw data:', { currentSemesterFees, allFees, unpaidFees });
     
     // Calculate total amounts
     let totalAmount = 0;
     let paidAmount = 0;
     let outstandingAmount = 0;
+    
+    // Check if we were passed a pre-calculated object with totals
+    if (currentSemesterFees && typeof currentSemesterFees === 'object' && 
+        'totalAmount' in currentSemesterFees && 
+        'paidAmount' in currentSemesterFees && 
+        'outstandingAmount' in currentSemesterFees) {
+        
+        console.log('Using pre-calculated totals:', currentSemesterFees);
+        totalAmount = currentSemesterFees.totalAmount;
+        paidAmount = currentSemesterFees.paidAmount;
+        outstandingAmount = currentSemesterFees.outstandingAmount;
+        
+        // Update UI with pre-calculated values
+        updateUIWithCalculatedTotals(totalAmount, paidAmount, outstandingAmount);
+        return;
+    }
     
     // Xử lý dữ liệu allFees
     let allFeesArray = [];
@@ -237,12 +312,12 @@ function updateTuitionOverview(currentSemesterFees, allFees, unpaidFees) {
     
     if (allFeesArray && allFeesArray.length > 0) {
         // Sum up all fees
-        totalAmount = allFeesArray.reduce((sum, fee) => sum + (fee.totalAmount || 0), 0);
+        totalAmount = allFeesArray.reduce((sum, fee) => sum + (parseFloat(fee.totalAmount) || 0), 0);
         
         // Calculate paid amount (fees with status "Paid")
         paidAmount = allFeesArray
             .filter(fee => fee.status === "Paid")
-            .reduce((sum, fee) => sum + (fee.totalAmount || 0), 0);
+            .reduce((sum, fee) => sum + (parseFloat(fee.totalAmount) || 0), 0);
         
         // Nếu có học phí với trạng thái "Partially Paid", tính toán số tiền đã thanh toán
         const partiallyPaidFees = allFeesArray.filter(fee => fee.status === "Partially Paid");
@@ -258,7 +333,7 @@ function updateTuitionOverview(currentSemesterFees, allFees, unpaidFees) {
                 }
                 
                 if (payments && payments.length > 0) {
-                    const paidForThisFee = payments.reduce((sum, payment) => sum + (payment.amount || 0), 0);
+                    const paidForThisFee = payments.reduce((sum, payment) => sum + (parseFloat(payment.amount) || 0), 0);
                     paidAmount += paidForThisFee;
                 }
             });
@@ -283,27 +358,124 @@ function updateTuitionOverview(currentSemesterFees, allFees, unpaidFees) {
         
         if (unpaidFeesArray && unpaidFeesArray.length > 0) {
             // Tính tổng số tiền chưa thanh toán
-            outstandingAmount = unpaidFeesArray.reduce((sum, fee) => sum + (fee.totalAmount || 0), 0);
+            outstandingAmount = unpaidFeesArray.reduce((sum, fee) => sum + (parseFloat(fee.totalAmount) || 0), 0);
             totalAmount = outstandingAmount; // Giả sử tổng số tiền bằng số tiền chưa thanh toán
         }
     }
+    
+    // If we still don't have any data, try to get it from the table directly
+    if (totalAmount === 0) {
+        try {
+            console.log('No valid API data found, trying to calculate from DOM...');
+            // Try to calculate from DOM as a last resort
+            const tableRows = document.querySelectorAll('.tuition-table tbody tr');
+            if (tableRows && tableRows.length > 0 && !tableRows[0].querySelector('.empty-state')) {
+                tableRows.forEach(row => {
+                    if (row.querySelector('.empty-state')) return;
+                    
+                    const amountCell = row.querySelector('td[data-label="Số tiền"]');
+                    const statusCell = row.querySelector('td[data-label="Trạng thái"] span');
+                    
+                    if (amountCell && statusCell) {
+                        const amountText = amountCell.textContent.trim();
+                        const amount = parseInt(amountText.replace(/[^\d]/g, '')) || 0;
+                        
+                        totalAmount += amount;
+                        
+                        if (statusCell.textContent.includes('Đã thanh toán') || 
+                            statusCell.classList.contains('status-paid')) {
+                            paidAmount += amount;
+                        } else {
+                            outstandingAmount += amount;
+                        }
+                    }
+                });
+                
+                console.log('Calculated from DOM:', { totalAmount, paidAmount, outstandingAmount });
+            }
+        } catch (domError) {
+            console.error('Error calculating from DOM:', domError);
+        }
+    }
+    
+    // Update UI with calculated values
+    updateUIWithCalculatedTotals(totalAmount, paidAmount, outstandingAmount);
+}
+
+// Helper function to update UI with calculated totals
+function updateUIWithCalculatedTotals(totalAmount, paidAmount, outstandingAmount) {
+    console.log('Updating UI with calculated totals:', { totalAmount, paidAmount, outstandingAmount });
     
     // Update UI elements
     document.querySelector('.total-tuition').textContent = formatCurrency(totalAmount);
     document.querySelector('.paid-amount').textContent = formatCurrency(paidAmount);
     document.querySelector('.outstanding-amount').textContent = formatCurrency(outstandingAmount);
     
-    // Update progress bar
+    // Update progress bar and payment progress section
     const progressPercentage = totalAmount > 0 ? (paidAmount / totalAmount) * 100 : 0;
     const progressBar = document.querySelector('.progress-bar');
+    
+    // Update the progress bar
     progressBar.style.width = `${progressPercentage}%`;
     progressBar.textContent = `${Math.round(progressPercentage)}%`;
     progressBar.setAttribute('aria-valuenow', Math.round(progressPercentage));
     
+    // Apply appropriate color based on progress
+    if (progressPercentage >= 100) {
+        progressBar.classList.remove('bg-warning', 'bg-danger');
+        progressBar.classList.add('bg-success');
+    } else if (progressPercentage >= 50) {
+        progressBar.classList.remove('bg-success', 'bg-danger');
+        progressBar.classList.add('bg-warning');
+    } else {
+        progressBar.classList.remove('bg-success', 'bg-warning');
+        progressBar.classList.add('bg-danger');
+    }
+    
     // Update progress labels
     const progressLabels = document.querySelectorAll('.progress-labels span');
-    progressLabels[0].textContent = '0 ₫';
+    progressLabels[0].textContent = formatCurrency(0);
     progressLabels[1].textContent = formatCurrency(totalAmount);
+    
+    // Add a middle label showing the paid amount
+    const progressContainer = document.querySelector('.progress-container');
+    const middleLabel = document.querySelector('.progress-middle-label') || document.createElement('div');
+    middleLabel.className = 'progress-middle-label';
+    middleLabel.innerHTML = `
+        <span class="paid-progress">Đã thanh toán: ${formatCurrency(paidAmount)}</span>
+        <span class="progress-percentage">(${Math.round(progressPercentage)}%)</span>
+    `;
+    
+    // Position the middle label based on the progress percentage
+    middleLabel.style.left = `${Math.min(Math.max(progressPercentage, 5), 95)}%`;
+    
+    // Add the middle label if it doesn't exist
+    if (!document.querySelector('.progress-middle-label')) {
+        progressContainer.appendChild(middleLabel);
+    }
+    
+    // Show payment status text
+    const paymentStatusText = document.querySelector('.payment-status-text') || document.createElement('div');
+    paymentStatusText.className = 'payment-status-text';
+    
+    if (progressPercentage >= 100) {
+        paymentStatusText.innerHTML = '<i class="fas fa-check-circle"></i> Đã thanh toán đầy đủ';
+        paymentStatusText.classList.remove('status-warning', 'status-danger');
+        paymentStatusText.classList.add('status-success');
+    } else if (progressPercentage > 0) {
+        paymentStatusText.innerHTML = '<i class="fas fa-clock"></i> Đã thanh toán một phần';
+        paymentStatusText.classList.remove('status-success', 'status-danger');
+        paymentStatusText.classList.add('status-warning');
+    } else {
+        paymentStatusText.innerHTML = '<i class="fas fa-exclamation-circle"></i> Chưa thanh toán';
+        paymentStatusText.classList.remove('status-success', 'status-warning');
+        paymentStatusText.classList.add('status-danger');
+    }
+    
+    // Add the payment status text if it doesn't exist
+    if (!document.querySelector('.payment-status-text')) {
+        progressContainer.appendChild(paymentStatusText);
+    }
 }
 
 // Update tuition table with real data
