@@ -1,3 +1,6 @@
+// Thêm timestamp để tránh cache
+console.log('Student Tuition JS loaded at:', new Date().toISOString());
+
 $(document).ready(function() {
     // Biến toàn cục để lưu trữ thông tin đang xử lý
     let currentStudentFee = null;
@@ -6,10 +9,13 @@ $(document).ready(function() {
     
     // Hàm để xử lý dữ liệu trả về từ API
     function processApiResponse(data) {
+        console.log('processApiResponse raw input:', data);
+        
         // Nếu data là chuỗi, thử parse thành JSON
         if (typeof data === 'string') {
             try {
                 data = JSON.parse(data);
+                console.log('Đã parse JSON từ string:', data);
             } catch (e) {
                 console.error('Error parsing JSON:', e);
                 return [];
@@ -18,12 +24,20 @@ $(document).ready(function() {
         
         // Kiểm tra nếu data có cấu trúc .NET với $values
         if (data && data.$values && Array.isArray(data.$values)) {
+            console.log('Trả về $values array:', data.$values);
             return data.$values;
         }
         
         // Nếu data đã là mảng, trả về nó
         if (Array.isArray(data)) {
+            console.log('Data đã là mảng, giữ nguyên:', data);
             return data;
+        }
+
+        // Trường hợp đặc biệt: data là items array từ API response
+        if (data && Array.isArray(data.items)) {
+            console.log('Trả về items array từ response:', data.items);
+            return data.items;
         }
         
         // Nếu không xác định được cấu trúc, ghi log và trả về mảng rỗng
@@ -312,11 +326,24 @@ $(document).ready(function() {
                 // Xử lý dữ liệu trả về
                 let students = [];
                 if (data && data.items) {
-                    students = processApiResponse(data.items);
+                    students = data.items; // Sử dụng trực tiếp data.items thay vì xử lý qua processApiResponse
+                    console.log('Sử dụng trực tiếp data.items:', students);
                 } else {
                     students = processApiResponse(data);
                 }
                 console.log('Sau khi xử lý:', students);
+                
+                // Thêm debug để kiểm tra các thuộc tính liên quan đến semester
+                if (students.length > 0) {
+                    const firstStudent = students[0];
+                    console.log('Chi tiết thuộc tính semester của sinh viên đầu tiên:', {
+                        semesterName: firstStudent.semesterName,
+                        semester: firstStudent.semester,
+                        semesterID: firstStudent.semesterID,
+                        // Log tất cả các thuộc tính của đối tượng để kiểm tra
+                        allProperties: Object.keys(firstStudent)
+                    });
+                }
                 
                 renderStudentTable(students);
                 hideLoading();
@@ -352,6 +379,17 @@ $(document).ready(function() {
             return;
         }
         
+        // Log chi tiết thông tin học kỳ của mỗi sinh viên
+        students.forEach((student, index) => {
+            console.log(`Chi tiết sinh viên #${index + 1}:`, {
+                id: student.studentFeeID,
+                studentName: student.studentName,
+                semesterID: student.semesterID,
+                semesterName: student.semesterName,
+                semester: student.semester
+            });
+        });
+        
         students.forEach(function(student) {
             let statusBadge = '';
             let paymentPercent = 0;
@@ -379,13 +417,16 @@ $(document).ready(function() {
             
             const dueDate = student.dueDate ? new Date(student.dueDate).toLocaleDateString('vi-VN') : 'N/A';
             
+            // In ra log giá trị semesterName ngay trước khi render
+            console.log(`Hiển thị học kỳ cho sinh viên ${student.studentName}:`, student.semesterName);
+            
             tableBody.append(`
                 <tr>
                     <td>${student.studentCode || 'N/A'}</td>
                     <td>${student.studentName || 'N/A'}</td>
                     <td>${student.className || 'N/A'}</td>
                     <td>${student.departmentName || 'N/A'}</td>
-                    <td>${student.semester?.semesterName || 'N/A'}</td>
+                    <td>${student.semesterName}</td>
                     <td>${formatCurrency(student.totalAmount || 0)}</td>
                     <td>
                         <div class="d-flex align-items-center">

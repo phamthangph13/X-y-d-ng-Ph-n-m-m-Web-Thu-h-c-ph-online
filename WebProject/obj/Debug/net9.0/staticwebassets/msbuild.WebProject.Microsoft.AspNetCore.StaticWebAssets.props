@@ -372,8 +372,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>p1btb1eco0</Fingerprint>
-      <Integrity>07PgVIfoF+SgYlnJSESAsBxeDvy98flmOsoI7iww96s=</Integrity>
+      <Fingerprint>wz49eswiao</Fingerprint>
+      <Integrity>jL8D179Dv9hXfZv56iaVIfAb1/aOxXrXaa0jTz90Ck4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\student-tuition.js'))</OriginalItemSpec>
