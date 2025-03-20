@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize tuition page functionality
     initTuitionPage();
+    
+    // Initialize UI event handlers
+    initUIEventHandlers();
 });
 
 // Initialize tuition page functionality
