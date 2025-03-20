@@ -1,5 +1,23 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\accountant_profile.html'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebProject</BasePath>
+      <RelativePath>accountant_profile.html</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>8ijqrj1njx</Fingerprint>
+      <Integrity>QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\accountant_profile.html'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\accoutant_profile.html'))">
       <SourceType>Package</SourceType>
       <SourceId>WebProject</SourceId>
@@ -354,8 +372,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>xetzfpkcki</Fingerprint>
-      <Integrity>V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0=</Integrity>
+      <Fingerprint>1izeu6zt6m</Fingerprint>
+      <Integrity>xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</OriginalItemSpec>

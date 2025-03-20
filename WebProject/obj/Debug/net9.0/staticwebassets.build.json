@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "X2IycXfCUV82r/CU7hLapU6GuxA5b7jom8A4wSUEriA=",
+  "Hash": "jBVjAalY48DdkcJO1JPlNEC4TaGsKwVavVzDvYivSQc=",
   "Source": "WebProject",
   "BasePath": "_content/WebProject",
   "Mode": "Default",
@@ -479,12 +479,12 @@
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\financial-reports.html"
     },
     {
-      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-xetzfpkcki.gz",
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-1izeu6zt6m.gz",
       "SourceId": "WebProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/WebProject",
-      "RelativePath": "index#[.{fingerprint=xetzfpkcki}]?.html.gz",
+      "RelativePath": "index#[.{fingerprint=1izeu6zt6m}]?.html.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -493,8 +493,8 @@
       "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "wt96fnan9d",
-      "Integrity": "vP1ahLaptYOw5Mw9ZlPLI68ltIaFymTCCO2L4eHuIyk=",
+      "Fingerprint": "278mdvm7pa",
+      "Integrity": "/vvGXYUq1ZEsdigggVEJf9zAnNPGTSO/YcGKWZad5Dg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html"
@@ -1046,6 +1046,27 @@
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-courses.html"
     },
     {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vcrmehtvwb-8ijqrj1njx.gz",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "accountant_profile#[.{fingerprint=8ijqrj1njx}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\accountant_profile.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "bjm4c15oqj",
+      "Integrity": "F8tI1uH+gIcXMfrgOFAKzBSr9zlme1E56ZxZB/XSHV8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\accountant_profile.html"
+    },
+    {
       "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vhqpzn1n9z-za8l6zimvi.gz",
       "SourceId": "WebProject",
       "SourceType": "Discovered",
@@ -1275,6 +1296,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\accountant_profile.html",
+      "SourceId": "WebProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\",
+      "BasePath": "_content/WebProject",
+      "RelativePath": "accountant_profile#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8ijqrj1njx",
+      "Integrity": "QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\accountant_profile.html"
     },
     {
       "Identity": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\accoutant_profile.html",
@@ -1690,8 +1732,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xetzfpkcki",
-      "Integrity": "V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0=",
+      "Fingerprint": "1izeu6zt6m",
+      "Integrity": "xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
@@ -2559,6 +2601,304 @@
     }
   ],
   "Endpoints": [
+    {
+      "Route": "accountant_profile.8ijqrj1njx.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vcrmehtvwb-8ijqrj1njx.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000196232339"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5095"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"F8tI1uH+gIcXMfrgOFAKzBSr9zlme1E56ZxZB/XSHV8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 15:18:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8ijqrj1njx"
+        },
+        {
+          "Name": "label",
+          "Value": "accountant_profile.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4="
+        }
+      ]
+    },
+    {
+      "Route": "accountant_profile.8ijqrj1njx.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\accountant_profile.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31205"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 15:18:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8ijqrj1njx"
+        },
+        {
+          "Name": "label",
+          "Value": "accountant_profile.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4="
+        }
+      ]
+    },
+    {
+      "Route": "accountant_profile.8ijqrj1njx.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vcrmehtvwb-8ijqrj1njx.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5095"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"F8tI1uH+gIcXMfrgOFAKzBSr9zlme1E56ZxZB/XSHV8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 15:18:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8ijqrj1njx"
+        },
+        {
+          "Name": "label",
+          "Value": "accountant_profile.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-F8tI1uH+gIcXMfrgOFAKzBSr9zlme1E56ZxZB/XSHV8="
+        }
+      ]
+    },
+    {
+      "Route": "accountant_profile.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vcrmehtvwb-8ijqrj1njx.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000196232339"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5095"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"F8tI1uH+gIcXMfrgOFAKzBSr9zlme1E56ZxZB/XSHV8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 15:18:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4="
+        }
+      ]
+    },
+    {
+      "Route": "accountant_profile.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\accountant_profile.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31205"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 15:18:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-QNyeCdduf9AZ1/29GyebKQBEA+vhhOJNc8WDWSxvUF4="
+        }
+      ]
+    },
+    {
+      "Route": "accountant_profile.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\vcrmehtvwb-8ijqrj1njx.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5095"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"F8tI1uH+gIcXMfrgOFAKzBSr9zlme1E56ZxZB/XSHV8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 15:18:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-F8tI1uH+gIcXMfrgOFAKzBSr9zlme1E56ZxZB/XSHV8="
+        }
+      ]
+    },
     {
       "Route": "accoutant_profile.8ijqrj1njx.html",
       "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\9mef015vov-8ijqrj1njx.gz",
@@ -8222,13 +8562,13 @@
       ]
     },
     {
-      "Route": "index.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-xetzfpkcki.gz",
+      "Route": "index.1izeu6zt6m.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-1izeu6zt6m.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000194855807"
+          "Quality": "0.000188253012"
         }
       ],
       "ResponseHeaders": [
@@ -8238,19 +8578,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5131"
+          "Value": "5311"
         },
         {
           "Name": "ETag",
-          "Value": "\"vP1ahLaptYOw5Mw9ZlPLI68ltIaFymTCCO2L4eHuIyk=\""
+          "Value": "\"/vvGXYUq1ZEsdigggVEJf9zAnNPGTSO/YcGKWZad5Dg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 17:36:58 GMT"
+          "Value": "Thu, 20 Mar 2025 17:55:37 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -8266,18 +8606,26 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0=\""
+          "Value": "W/\"xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "1izeu6zt6m"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0="
+          "Value": "sha256-xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4="
         }
       ]
     },
     {
-      "Route": "index.html",
+      "Route": "index.1izeu6zt6m.html",
       "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -8287,7 +8635,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "28899"
+          "Value": "30354"
         },
         {
           "Name": "Content-Type",
@@ -8295,121 +8643,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0=\""
+          "Value": "\"xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 17:36:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0="
-        }
-      ]
-    },
-    {
-      "Route": "index.html.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-xetzfpkcki.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5131"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"vP1ahLaptYOw5Mw9ZlPLI68ltIaFymTCCO2L4eHuIyk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 17:36:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-vP1ahLaptYOw5Mw9ZlPLI68ltIaFymTCCO2L4eHuIyk="
-        }
-      ]
-    },
-    {
-      "Route": "index.xetzfpkcki.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-xetzfpkcki.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000194855807"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5131"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"vP1ahLaptYOw5Mw9ZlPLI68ltIaFymTCCO2L4eHuIyk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 17:36:58 GMT"
+          "Value": "Thu, 20 Mar 2025 17:55:37 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "xetzfpkcki"
+          "Value": "1izeu6zt6m"
         },
         {
           "Name": "label",
@@ -8417,13 +8665,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0="
+          "Value": "sha256-xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4="
         }
       ]
     },
     {
-      "Route": "index.xetzfpkcki.html",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html",
+      "Route": "index.1izeu6zt6m.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-1izeu6zt6m.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8432,7 +8680,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "28899"
+          "Value": "5311"
         },
         {
           "Name": "Content-Type",
@@ -8440,56 +8688,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0=\""
+          "Value": "\"/vvGXYUq1ZEsdigggVEJf9zAnNPGTSO/YcGKWZad5Dg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 17:36:58 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "xetzfpkcki"
-        },
-        {
-          "Name": "label",
-          "Value": "index.html"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-V83XftLZ1qb0fka//e1bRAbcKpW2OOgq8gVWh5bPKs0="
-        }
-      ]
-    },
-    {
-      "Route": "index.xetzfpkcki.html.gz",
-      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-xetzfpkcki.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5131"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"vP1ahLaptYOw5Mw9ZlPLI68ltIaFymTCCO2L4eHuIyk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 17:36:58 GMT"
+          "Value": "Thu, 20 Mar 2025 17:55:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8507,7 +8710,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "xetzfpkcki"
+          "Value": "1izeu6zt6m"
         },
         {
           "Name": "label",
@@ -8515,7 +8718,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-vP1ahLaptYOw5Mw9ZlPLI68ltIaFymTCCO2L4eHuIyk="
+          "Value": "sha256-/vvGXYUq1ZEsdigggVEJf9zAnNPGTSO/YcGKWZad5Dg="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-1izeu6zt6m.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000188253012"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5311"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vvGXYUq1ZEsdigggVEJf9zAnNPGTSO/YcGKWZad5Dg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 17:55:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30354"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 17:55:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xy7KOl+TLxC0dPLBPGVI5+4drl2kAY93tu+lHggYFG4="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\obj\\Debug\\net9.0\\compressed\\fv9h8woxx0-1izeu6zt6m.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5311"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/vvGXYUq1ZEsdigggVEJf9zAnNPGTSO/YcGKWZad5Dg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Mar 2025 17:55:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/vvGXYUq1ZEsdigggVEJf9zAnNPGTSO/YcGKWZad5Dg="
         }
       ]
     },
