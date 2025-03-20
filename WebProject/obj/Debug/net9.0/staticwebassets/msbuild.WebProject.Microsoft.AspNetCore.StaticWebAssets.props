@@ -318,8 +318,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>3tp92fv6ks</Fingerprint>
-      <Integrity>5zg2JZ/4u9RDewZ5kDn9lAk07g9vZ5KRvAu0NCmzxKE=</Integrity>
+      <Fingerprint>0lwnv4jchj</Fingerprint>
+      <Integrity>TLzTNRrGQS2B7dtsSMdla+2ffJD8TsHe41N+73qyapo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\pages\tuition.js'))</OriginalItemSpec>
@@ -606,8 +606,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>mmnjkie8qy</Fingerprint>
-      <Integrity>ogV7+jg5LX/Jnebt/okFm1JQ/BjJcsYtj3DnPMIc+hU=</Integrity>
+      <Fingerprint>eznz28c5u2</Fingerprint>
+      <Integrity>1jn8+qh9kZGh64BAm49VkoXRMDWxc0zfPeBS2FFziYw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\tuition-structure.html'))</OriginalItemSpec>

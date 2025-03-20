@@ -20,9 +20,9 @@ namespace WebProject.Controllers.StudentTuition
             _context = context;
         }
 
-        // GET: api/StudentTuition/GetStudentFees/{studentId}
-        [HttpGet("GetStudentFees/{studentId}")]
-        public async Task<ActionResult<IEnumerable<object>>> GetStudentFees(int studentId)
+        // GET: api/StudentTuition/GetStudentFees/{userId}
+        [HttpGet("GetStudentFees/{userId}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetStudentFees(int userId)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace WebProject.Controllers.StudentTuition
                         .ThenInclude(sfd => sfd.FeeCategory)
                     .Include(sf => sf.Payments)
                         .ThenInclude(p => p.PaymentMethod)
-                    .Where(sf => sf.StudentID == studentId)
+                    .Where(sf => sf.Student.UserID == userId)
                     .OrderByDescending(sf => sf.Semester.StartDate)
                     .ToListAsync();
 
@@ -138,15 +138,15 @@ namespace WebProject.Controllers.StudentTuition
             return Ok(result);
         }
 
-        // GET: api/StudentTuition/GetPaymentHistory/{studentId}
-        [HttpGet("GetPaymentHistory/{studentId}")]
-        public async Task<ActionResult<IEnumerable<object>>> GetPaymentHistory(int studentId)
+        // GET: api/StudentTuition/GetPaymentHistory/{userId}
+        [HttpGet("GetPaymentHistory/{userId}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetPaymentHistory(int userId)
         {
             var payments = await _context.Payments
                 .Include(p => p.PaymentMethod)
                 .Include(p => p.StudentFee)
                     .ThenInclude(sf => sf.Semester)
-                .Where(p => p.StudentFee.StudentID == studentId)
+                .Where(p => p.StudentFee.Student.UserID == userId)
                 .OrderByDescending(p => p.PaymentDate)
                 .ToListAsync();
 
@@ -193,9 +193,9 @@ namespace WebProject.Controllers.StudentTuition
             return Ok(result);
         }
 
-        // GET: api/StudentTuition/GetCurrentSemesterFees/{studentId}
-        [HttpGet("GetCurrentSemesterFees/{studentId}")]
-        public async Task<ActionResult<object>> GetCurrentSemesterFees(int studentId)
+        // GET: api/StudentTuition/GetCurrentSemesterFees/{userId}
+        [HttpGet("GetCurrentSemesterFees/{userId}")]
+        public async Task<ActionResult<object>> GetCurrentSemesterFees(int userId)
         {
             // Get the current active semester
             var currentSemester = await _context.Semesters
@@ -215,7 +215,7 @@ namespace WebProject.Controllers.StudentTuition
                 .Include(sf => sf.StudentFeeDetails)
                     .ThenInclude(sfd => sfd.FeeCategory)
                 .Include(sf => sf.Payments)
-                .Where(sf => sf.StudentID == studentId && sf.SemesterID == currentSemester.SemesterID)
+                .Where(sf => sf.Student.UserID == userId && sf.SemesterID == currentSemester.SemesterID)
                 .FirstOrDefaultAsync();
 
             if (studentFee == null)
@@ -284,15 +284,15 @@ namespace WebProject.Controllers.StudentTuition
             return Ok(result);
         }
 
-        // GET: api/StudentTuition/GetUnpaidFees/{studentId}
-        [HttpGet("GetUnpaidFees/{studentId}")]
-        public async Task<ActionResult<IEnumerable<object>>> GetUnpaidFees(int studentId)
+        // GET: api/StudentTuition/GetUnpaidFees/{userId}
+        [HttpGet("GetUnpaidFees/{userId}")]
+        public async Task<ActionResult<IEnumerable<object>>> GetUnpaidFees(int userId)
         {
             var unpaidFees = await _context.StudentFees
                 .Include(sf => sf.Semester)
                 .Include(sf => sf.StudentFeeDetails)
                     .ThenInclude(sfd => sfd.FeeCategory)
-                .Where(sf => sf.StudentID == studentId && sf.Status != "Paid")
+                .Where(sf => sf.Student.UserID == userId && sf.Status != "Paid")
                 .OrderByDescending(sf => sf.DueDate)
                 .ToListAsync();
 
