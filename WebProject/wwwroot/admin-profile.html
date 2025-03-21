@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ sơ quản trị viên - EduPay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/payment-history.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head> 
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar animate__animated animate__fadeInLeft">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="sidebar-logo-text">EduPay</span>
+            </a>
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="admin-profile.html" class="sidebar-menu-link active">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user-circle"></i></span>
+                    <span class="sidebar-menu-text">Hồ sơ</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-management.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-user-graduate"></i></span>
+                    <span class="sidebar-menu-text">Quản lý người dùng</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-payment-methods.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="sidebar-menu-text">Quản lý phương thức thanh toán</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-tuition.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-book"></i></span>
+                    <span class="sidebar-menu-text">Quản Lý Học Phí</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="admin-reports.html" class="sidebar-menu-link">
+                    <span class="sidebar-menu-icon"><i class="fas fa-file-invoice"></i></span>
+                    <span class="sidebar-menu-text">Báo cáo và phản hồi người dùng</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle animate__animated animate__fadeIn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-container animate__animated animate__fadeIn">
+        <header>
+            <nav>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <div class="user-name" id="userName">Xin chào</div>
+                        <div id="userRole">Quản trị viên</div>
+                    </div>
+                </div>
+                <button id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="profile-section">
+                <h1 class="section-title">Hồ sơ Quản trị viên</h1>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="fas fa-user-circle me-2"></i>Thông tin cá nhân</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="admin-profile-info">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Mã người dùng:</label>
+                                        <p id="userId" class="mb-0">-</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Họ và tên:</label>
+                                        <p id="userFullName" class="mb-0">-</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Email:</label>
+                                        <p id="userEmail" class="mb-0">-</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Số điện thoại:</label>
+                                        <p id="userPhone" class="mb-0">-</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Loại tài khoản:</label>
+                                        <p id="userType" class="mb-0">Quản trị viên</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Ngày đăng ký:</label>
+                                        <p id="registrationDate" class="mb-0">-</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Đăng nhập gần nhất:</label>
+                                        <p id="lastLogin" class="mb-0">-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                                    <i class="fas fa-edit me-2"></i>Cập nhật thông tin
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Bảo mật</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="fw-bold mb-0">Xác thực hai yếu tố</h6>
+                                            <p class="mb-0 text-muted">Bảo vệ tài khoản với xác thực hai lớp</p>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="twoFactorToggle">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                                    <i class="fas fa-key me-2"></i>Đổi mật khẩu
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="fas fa-history me-2"></i>Lịch sử đăng nhập</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Thời gian</th>
+                                                <th>IP</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="loginHistoryTable">
+                                            <!-- Data will be loaded by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Cập nhật thông tin cá nhân</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfileForm">
+                        <div class="mb-3">
+                            <label for="editFullName" class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control" id="editFullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editEmail" disabled>
+                            <small class="text-muted">Email không thể thay đổi</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPhone" class="form-label">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="editPhone">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="saveProfileBtn">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Đổi mật khẩu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="changePasswordForm">
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">Mật khẩu hiện tại</label>
+                            <input type="password" class="form-control" id="currentPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">Mật khẩu mới</label>
+                            <input type="password" class="form-control" id="newPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Xác nhận mật khẩu mới</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary" id="savePasswordBtn">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/auth.js" type="module"></script>
+    <script src="js/utils/toast.js" type="module"></script>
+    <script src="js/admin-profile.js" type="module"></script>
+</body>
+</html> 

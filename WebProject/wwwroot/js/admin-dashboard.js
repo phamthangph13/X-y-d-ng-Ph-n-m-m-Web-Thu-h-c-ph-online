@@ -1,21 +1,28 @@
-import { checkAuth, getUserInfo, logout } from './utils/auth.js';
+import { checkAuth, getUserData, logout } from './utils/auth.js';
 import { showToast } from './utils/toast.js';
+import { API_ENDPOINTS } from './config.js';
 
 // Kiểm tra xác thực
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Kiểm tra người dùng đã đăng nhập và có quyền admin
-        const authResult = await checkAuth(['admin']);
-        if (!authResult.isAuthenticated) {
-            window.location.href = 'login.html';
-            return;
+        // Kiểm tra người dùng đã đăng nhập
+        if (!checkAuth()) {
+            return; // checkAuth will redirect to login page if not authenticated
         }
 
-        // Lấy thông tin người dùng
-        const userInfo = await getUserInfo();
-        if (userInfo) {
-            document.getElementById('userName').textContent = `Xin chào, ${userInfo.fullName || userInfo.username}`;
+        // Lấy thông tin người dùng từ localStorage
+        const userData = getUserData();
+        if (userData) {
+            document.getElementById('userName').textContent = `${userData.fullName || 'Admin'}`;
+            // Verify this user is admin type
+            if (userData.userType !== 'admin' && userData.role !== 'admin') {
+                window.location.href = 'index.html'; // Redirect non-admin users
+                return;
+            }
         }
+
+        // Tải dữ liệu người dùng từ API
+        await loadUserProfile();
 
         // Thiết lập sự kiện đăng xuất
         document.getElementById('logoutBtn').addEventListener('click', handleLogout);
@@ -34,6 +41,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         showToast('Đã xảy ra lỗi khi tải trang. Vui lòng thử lại sau.', 'error');
     }
 });
+
+// Tải thông tin hồ sơ người dùng từ API
+async function loadUserProfile() {
+    try {
+        const token = localStorage.getItem('auth_token');
+        if (!token) return;
+
+        const response = await fetch(`${API_ENDPOINTS.USERS}/profile`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user profile');
+        }
+
+        const data = await response.json();
+        
+        if (data.success) {
+            // Update profile information in the view
+            document.getElementById('userName').textContent = data.fullName;
+            
+            // Save updated user data to localStorage if needed
+            const userData = getUserData() || {};
+            const updatedUserData = { ...userData, ...data };
+            localStorage.setItem('user_data', JSON.stringify(updatedUserData));
+        }
+    } catch (error) {
+        console.error('Error loading user profile:', error);
+        showToast('Could not load user profile information', 'error');
+    }
+}
 
 // Xử lý đăng xuất
 async function handleLogout() {
