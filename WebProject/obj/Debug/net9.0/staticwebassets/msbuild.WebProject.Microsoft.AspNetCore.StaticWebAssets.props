@@ -36,6 +36,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\accoutant_profile.html'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\admin-department-class.html'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebProject</BasePath>
+      <RelativePath>admin-department-class.html</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>cuouw0s3xc</Fingerprint>
+      <Integrity>vIZU41F54GvyQkZ5dj6wwe9hCOeRm2MfmidF53Sn1fk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\admin-department-class.html'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\admin-management.html'))">
       <SourceType>Package</SourceType>
       <SourceId>WebProject</SourceId>
@@ -48,8 +66,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nmjitdtczh</Fingerprint>
-      <Integrity>35RlHnOQoShCItl+io1s4TY+KwuZhoy+/N3KFVg2VmA=</Integrity>
+      <Fingerprint>bstjyfp6j5</Fingerprint>
+      <Integrity>iyv6xD9bdaMRJENMkIfYe0weJgxNyvAaWhsJBWPT2vY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\admin-management.html'))</OriginalItemSpec>
@@ -66,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7uusz76pu0</Fingerprint>
-      <Integrity>4VUDGSCuTy3Kb+EcjkXdh/4LlF22nnbs5czFJZjuVf4=</Integrity>
+      <Fingerprint>dl8vnzr5iu</Fingerprint>
+      <Integrity>v+9vlBcvGL/Kc7GLLpWM0+0IeEk9ngIcEbpKnSnZNeo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\admin-payment-methods.html'))</OriginalItemSpec>
@@ -84,8 +102,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wfzyhf2nz6</Fingerprint>
-      <Integrity>7BT9c77+HgAmd5pWkCIiiu6cOiXg+/XO65dgiqx4dOI=</Integrity>
+      <Fingerprint>1o799lm9s8</Fingerprint>
+      <Integrity>EUxkQQ/gHmFnymCaDzdWGwivl2U78wJABxAN1EcE6KE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\admin-profile.html'))</OriginalItemSpec>
@@ -102,8 +120,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>h9gunz2okd</Fingerprint>
-      <Integrity>1bBT8H2J26VRItJcBHeqvsNnx3alZglHb0mVwAnwsfI=</Integrity>
+      <Fingerprint>4sk8o6yyuh</Fingerprint>
+      <Integrity>NKujPeGuJhhW4dp4wB5WI2eG6aqG2Nbg0C8f1Qj0xRE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\admin-reports.html'))</OriginalItemSpec>
@@ -120,8 +138,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>stv66erocg</Fingerprint>
-      <Integrity>oFQMe2HUHFsrhO2o6oICk6E0rN/XSS+0R3yYD3Bfv4Q=</Integrity>
+      <Fingerprint>xiw4agz589</Fingerprint>
+      <Integrity>qXcwb6QJQK9BTf47yJex52tt49VNiSbQ0t8QhJifr10=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\admin-tuition.html'))</OriginalItemSpec>
@@ -396,6 +414,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\admin-dashboard.js'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\admin-department-class.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebProject</BasePath>
+      <RelativePath>js/admin-department-class.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>pi3hvutkws</Fingerprint>
+      <Integrity>EbN3J/xRd5hplDb4n6DZNqR3QPhz+2R40cZdaOWnR0U=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\admin-department-class.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\admin-profile.js'))">
       <SourceType>Package</SourceType>
       <SourceId>WebProject</SourceId>
@@ -444,8 +480,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>sbdi7dda1k</Fingerprint>
-      <Integrity>COEhWJsXRdCRj7uciTnEFukjjsEik5B4WtP9ICcB2AY=</Integrity>
+      <Fingerprint>9fs4z5zjg8</Fingerprint>
+      <Integrity>G3DYn0Q/bDPQzWSqQJyhhsGsSlNFZxtCViSaZvYykM0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\admin-users.js'))</OriginalItemSpec>
@@ -858,8 +894,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>2ycrkkxf2x</Fingerprint>
-      <Integrity>Sq71lhs4gPQ+RXgR+h1GIIy/3HGaBCEYAwzpPQAQ5OA=</Integrity>
+      <Fingerprint>9ve37p6f6q</Fingerprint>
+      <Integrity>Bfk9czGWj/wISEuUgg5UNu6WVyg325T+lzoetTV8o7I=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\utils\auth.js'))</OriginalItemSpec>

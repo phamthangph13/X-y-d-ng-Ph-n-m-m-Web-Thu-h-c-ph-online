@@ -9,8 +9,22 @@ let currentClassPage = 1;
 const pageSize = 10;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Authentication check for admin
-    checkAdminAuth();
+    // Authentication check for admin - Add development mode bypass
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.warn('Running in development mode - bypassing admin authentication check');
+        // Set a demo token if none exists
+        if (!getAuthToken()) {
+            localStorage.setItem('auth_token', 'demo_token');
+            localStorage.setItem('user_data', JSON.stringify({
+                userId: 1,
+                email: 'admin@example.com',
+                fullName: 'Administrator',
+                role: 'Admin'
+            }));
+        }
+    } else {
+        checkAdminAuth();
+    }
 
     // Initialize the UI
     initializeSidebar();
@@ -79,7 +93,76 @@ document.addEventListener('DOMContentLoaded', function() {
         // Export classes to Excel functionality
         showToast('info', 'Tính năng đang phát triển', 'Chức năng xuất ra Excel đang được phát triển');
     });
+    
+    // Modal close events
+    document.querySelectorAll('.modal .btn-close, .modal .admin-btn-secondary[data-bs-dismiss="modal"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const modalId = this.closest('.modal').id;
+            const modal = bootstrap.Modal.getInstance(document.getElementById(modalId));
+            if (modal) {
+                modal.hide();
+            }
+            clearModalBackdrop();
+        });
+    });
+    
+    // Setup modals
+    setupModals();
 });
+
+// Setup modals
+function setupModals() {
+    // Department modal setup
+    const departmentModal = document.getElementById('departmentModal');
+    if (departmentModal) {
+        departmentModal.addEventListener('hidden.bs.modal', function() {
+            clearModalBackdrop();
+        });
+        
+        const cancelBtn = departmentModal.querySelector('.admin-btn-secondary[data-bs-dismiss="modal"]');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function() {
+                const modal = bootstrap.Modal.getInstance(departmentModal);
+                if (modal) {
+                    modal.hide();
+                }
+                clearModalBackdrop();
+            });
+        }
+    }
+    
+    // Class modal setup
+    const classModal = document.getElementById('classModal');
+    if (classModal) {
+        classModal.addEventListener('hidden.bs.modal', function() {
+            clearModalBackdrop();
+        });
+        
+        const cancelBtn = classModal.querySelector('.admin-btn-secondary[data-bs-dismiss="modal"]');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function() {
+                const modal = bootstrap.Modal.getInstance(classModal);
+                if (modal) {
+                    modal.hide();
+                }
+                clearModalBackdrop();
+            });
+        }
+    }
+}
+
+// Hàm xóa modal backdrop
+function clearModalBackdrop() {
+    // Xóa tất cả các modal-backdrop
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.remove();
+    });
+    
+    // Reset body style
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+}
 
 // Sidebar functionality
 function initializeSidebar() {
@@ -116,78 +199,79 @@ function initializeLogout() {
 // DEPARTMENT MANAGEMENT FUNCTIONALITY
 
 // Load department data
-function loadDepartmentData(page = 1) {
+async function loadDepartmentData(page = 1) {
     currentDepartmentPage = page;
     const tableBody = document.getElementById('departmentsTableBody');
     tableBody.innerHTML = '<tr><td colspan="8" class="text-center">Đang tải dữ liệu...</td></tr>';
 
     // Get filter values
-    const departmentId = document.getElementById('searchDepartmentId').value.trim();
+    const departmentCode = document.getElementById('searchDepartmentId').value.trim();
     const departmentName = document.getElementById('searchDepartmentName').value.trim();
 
     // Build query string
     let queryParams = new URLSearchParams();
-    if (departmentId) queryParams.append('departmentId', departmentId);
+    if (departmentCode) queryParams.append('departmentCode', departmentCode);
     if (departmentName) queryParams.append('name', departmentName);
     queryParams.append('page', page);
     queryParams.append('pageSize', pageSize);
 
-    // For demo purposes, use mock data instead of API call
-    // In a real application, you would make an API call to fetch data
-    const mockData = getMockDepartmentData();
-    renderDepartmentData(mockData);
-}
-
-// Get mock department data for demo
-function getMockDepartmentData() {
-    return {
-        items: [
-            {
-                departmentID: 1,
-                departmentCode: "CNTT",
-                departmentName: "Công nghệ thông tin",
-                classCount: 5,
-                studentCount: 120,
-                departmentHead: "Nguyễn Văn A",
-                foundingDate: "2000-09-01",
-                isActive: true
-            },
-            {
-                departmentID: 2,
-                departmentCode: "QTKD",
-                departmentName: "Quản trị kinh doanh",
-                classCount: 4,
-                studentCount: 110,
-                departmentHead: "Trần Thị B",
-                foundingDate: "2001-09-01",
-                isActive: true
-            },
-            {
-                departmentID: 3,
-                departmentCode: "KT",
-                departmentName: "Kế toán",
-                classCount: 3,
-                studentCount: 95,
-                departmentHead: "Lê Văn C",
-                foundingDate: "2002-09-01",
-                isActive: true
-            },
-            {
-                departmentID: 4,
-                departmentCode: "NNA",
-                departmentName: "Ngôn ngữ Anh",
-                classCount: 4,
-                studentCount: 105,
-                departmentHead: "Phạm Thị D",
-                foundingDate: "2003-09-01",
-                isActive: true
+    try {
+        const token = getAuthToken();
+        
+        // If no token and in development mode, use mock data
+        if (!token && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+            console.warn('No authentication token found, using mock data for development');
+            const mockData = {
+                items: [
+                    {
+                        departmentID: 1,
+                        departmentCode: "CNTT",
+                        departmentName: "Công nghệ thông tin",
+                        classCount: 5,
+                        studentCount: 120,
+                        head: "Nguyễn Văn A",
+                        foundingDate: "2000-09-01",
+                        isActive: true
+                    },
+                    {
+                        departmentID: 2,
+                        departmentCode: "QTKD",
+                        departmentName: "Quản trị kinh doanh",
+                        classCount: 4,
+                        studentCount: 110,
+                        head: "Trần Thị B",
+                        foundingDate: "2001-09-01",
+                        isActive: true
+                    }
+                ],
+                totalCount: 2,
+                pageSize: 10,
+                currentPage: 1,
+                totalPages: 1
+            };
+            renderDepartmentData(mockData);
+            return;
+        }
+        
+        const response = await fetch(`/api/departments?${queryParams.toString()}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             }
-        ],
-        totalCount: 4,
-        pageSize: 10,
-        currentPage: 1,
-        totalPages: 1
-    };
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch department data');
+        }
+
+        const data = await response.json();
+        renderDepartmentData(data);
+    } catch (error) {
+        console.error('Error loading department data:', error);
+        tableBody.innerHTML = '<tr><td colspan="8" class="text-center text-danger">Lỗi khi tải dữ liệu</td></tr>';
+        showToast('error', 'Lỗi', 'Không thể tải dữ liệu khoa');
+    }
 }
 
 // Render department data to the table
@@ -213,7 +297,7 @@ function renderDepartmentData(data) {
             <td>${department.departmentName || 'N/A'}</td>
             <td>${department.classCount || 0}</td>
             <td>${department.studentCount || 0}</td>
-            <td>${department.departmentHead || 'N/A'}</td>
+            <td>${department.head || 'N/A'}</td>
             <td>${foundingDate}</td>
             <td><span class="status-badge ${statusClass}">${statusDisplay}</span></td>
             <td>
@@ -248,130 +332,251 @@ function renderDepartmentData(data) {
 
 // Search departments
 function searchDepartments() {
-    loadDepartmentData(1); // Reset to page 1 when searching
+    loadDepartmentData(1);
 }
 
-// Reset department search
+// Reset department search form
 function resetDepartmentSearch() {
     document.getElementById('searchDepartmentId').value = '';
     document.getElementById('searchDepartmentName').value = '';
-    loadDepartmentData(1); // Reset to page 1
+    loadDepartmentData(1);
 }
 
 // Update department pagination
 function updateDepartmentPagination(data) {
     const paginationContainer = document.querySelector('#departments-content .pagination-container');
+    
+    if (!paginationContainer) return;
+    
+    // Clear previous pagination
     paginationContainer.innerHTML = '';
-
+    
     // Previous button
     const prevBtn = document.createElement('button');
-    prevBtn.className = `pagination-btn ${currentDepartmentPage <= 1 ? 'disabled' : ''}`;
-    prevBtn.dataset.page = 'prev';
-    prevBtn.disabled = currentDepartmentPage <= 1;
+    prevBtn.className = 'pagination-btn';
+    prevBtn.setAttribute('data-page', 'prev');
     prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-    prevBtn.addEventListener('click', () => loadDepartmentData(currentDepartmentPage - 1));
-    paginationContainer.appendChild(prevBtn);
-
-    // Page buttons
-    for (let i = 1; i <= data.totalPages; i++) {
-        if (data.totalPages > 5 && i > 2 && i < data.totalPages - 1 && Math.abs(i - currentDepartmentPage) > 1) {
-            if (paginationContainer.lastChild && paginationContainer.lastChild.className !== 'pagination-ellipsis') {
-                const ellipsis = document.createElement('span');
-                ellipsis.className = 'pagination-ellipsis';
-                ellipsis.textContent = '...';
-                paginationContainer.appendChild(ellipsis);
-            }
-            continue;
+    prevBtn.disabled = data.currentPage <= 1;
+    prevBtn.addEventListener('click', function() {
+        if (data.currentPage > 1) {
+            loadDepartmentData(data.currentPage - 1);
         }
-
+    });
+    paginationContainer.appendChild(prevBtn);
+    
+    // Page buttons
+    const totalPages = Math.min(data.totalPages, 5);
+    let startPage = Math.max(1, data.currentPage - 2);
+    let endPage = Math.min(data.totalPages, startPage + 4);
+    
+    if (endPage - startPage < 4) {
+        startPage = Math.max(1, endPage - 4);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
         const pageBtn = document.createElement('button');
-        pageBtn.className = `pagination-btn ${i === currentDepartmentPage ? 'active' : ''}`;
-        pageBtn.dataset.page = i;
+        pageBtn.className = 'pagination-btn';
+        if (i === data.currentPage) {
+            pageBtn.classList.add('active');
+        }
+        pageBtn.setAttribute('data-page', i);
         pageBtn.textContent = i;
-        pageBtn.addEventListener('click', () => loadDepartmentData(i));
+        pageBtn.addEventListener('click', function() {
+            loadDepartmentData(i);
+        });
         paginationContainer.appendChild(pageBtn);
     }
-
+    
     // Next button
     const nextBtn = document.createElement('button');
-    nextBtn.className = `pagination-btn ${currentDepartmentPage >= data.totalPages ? 'disabled' : ''}`;
-    nextBtn.dataset.page = 'next';
-    nextBtn.disabled = currentDepartmentPage >= data.totalPages;
+    nextBtn.className = 'pagination-btn';
+    nextBtn.setAttribute('data-page', 'next');
     nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-    nextBtn.addEventListener('click', () => loadDepartmentData(currentDepartmentPage + 1));
+    nextBtn.disabled = data.currentPage >= data.totalPages;
+    nextBtn.addEventListener('click', function() {
+        if (data.currentPage < data.totalPages) {
+            loadDepartmentData(data.currentPage + 1);
+        }
+    });
     paginationContainer.appendChild(nextBtn);
 }
 
-// Show department modal for adding new department
-function showDepartmentModal(departmentId = null) {
-    const modal = new bootstrap.Modal(document.getElementById('departmentModal'));
-    document.getElementById('departmentForm').reset();
-    document.getElementById('departmentModalTitle').textContent = departmentId ? 'Cập nhật khoa' : 'Thêm khoa mới';
-    document.getElementById('departmentId').value = departmentId || '';
-
+// Show department modal for add/edit
+async function showDepartmentModal(departmentId = null) {
+    // Đảm bảo xóa các modal backdrop cũ
+    clearModalBackdrop();
+    
+    // Đóng modal hiện tại nếu có
+    const existingModal = bootstrap.Modal.getInstance(document.getElementById('departmentModal'));
+    if (existingModal) {
+        existingModal.dispose();
+    }
+    
+    const modalElement = document.getElementById('departmentModal');
+    
+    // Đặt lại style ban đầu
+    modalElement.style.display = '';
+    modalElement.style.paddingRight = '';
+    modalElement.classList.remove('show');
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    
+    const modal = new bootstrap.Modal(modalElement, {
+        backdrop: true,
+        keyboard: true,
+        focus: true
+    });
+    
+    const modalTitle = document.getElementById('departmentModalTitle');
+    const departmentForm = document.getElementById('departmentForm');
+    
+    // Reset form
+    departmentForm.reset();
+    document.getElementById('departmentId').value = '';
+    
+    // Set default status to active
+    document.getElementById('departmentStatus').value = 'active';
+    
     if (departmentId) {
-        // For demo purposes, fetch from mock data
-        // In a real application, you would make an API call
-        const mockData = getMockDepartmentData();
-        const department = mockData.items.find(d => d.departmentID == departmentId);
-        
-        if (department) {
+        // Edit mode
+        modalTitle.textContent = 'Chỉnh sửa thông tin khoa';
+        try {
+            const token = getAuthToken();
+            
+            // Nếu đang ở chế độ dev và không có token, sử dụng dữ liệu mẫu
+            if (!token && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+                const mockDepartment = {
+                    departmentID: departmentId,
+                    departmentCode: "CNTT",
+                    departmentName: "Công nghệ thông tin",
+                    head: "Nguyễn Văn A",
+                    foundingDate: "2000-09-01",
+                    description: "Khoa đào tạo về công nghệ thông tin",
+                    isActive: true
+                };
+                
+                // Fill form with department data
+                document.getElementById('departmentId').value = mockDepartment.departmentID;
+                document.getElementById('departmentCode').value = mockDepartment.departmentCode;
+                document.getElementById('departmentName').value = mockDepartment.departmentName;
+                document.getElementById('departmentHead').value = mockDepartment.head || '';
+                
+                if (mockDepartment.foundingDate) {
+                    document.getElementById('departmentFoundingDate').value = formatDateForInput(mockDepartment.foundingDate);
+                }
+                
+                document.getElementById('departmentDescription').value = mockDepartment.description || '';
+                document.getElementById('departmentStatus').value = mockDepartment.isActive ? 'active' : 'inactive';
+                
+                modal.show();
+                return;
+            }
+            
+            const response = await fetch(`/api/departments/${departmentId}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch department data');
+            }
+
+            const department = await response.json();
+            
+            // Fill form with department data
+            document.getElementById('departmentId').value = department.departmentID;
             document.getElementById('departmentCode').value = department.departmentCode;
             document.getElementById('departmentName').value = department.departmentName;
-            document.getElementById('departmentHead').value = department.departmentHead || '';
-            document.getElementById('departmentFoundingDate').value = department.foundingDate ? formatDateForInput(department.foundingDate) : '';
+            document.getElementById('departmentHead').value = department.head || '';
+            
+            if (department.foundingDate) {
+                document.getElementById('departmentFoundingDate').value = formatDateForInput(department.foundingDate);
+            }
+            
+            document.getElementById('departmentDescription').value = department.description || '';
             document.getElementById('departmentStatus').value = department.isActive ? 'active' : 'inactive';
-        } else {
-            showToast('error', 'Lỗi', 'Không tìm thấy thông tin khoa');
+        } catch (error) {
+            console.error('Error fetching department:', error);
+            showToast('error', 'Lỗi', 'Không thể tải thông tin khoa');
             return;
         }
+    } else {
+        // Add mode
+        modalTitle.textContent = 'Thêm khoa mới';
     }
-
+    
+    // Hiển thị modal
     modal.show();
 }
 
 // Save department (create or update)
-function saveDepartment() {
-    // Validate form
-    const form = document.getElementById('departmentForm');
-    if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-    }
-
-    // Get form values
+async function saveDepartment() {
+    // Get form data
     const departmentId = document.getElementById('departmentId').value;
     const departmentCode = document.getElementById('departmentCode').value;
     const departmentName = document.getElementById('departmentName').value;
     const departmentHead = document.getElementById('departmentHead').value;
-    const foundingDate = document.getElementById('departmentFoundingDate').value;
-    const description = document.getElementById('departmentDescription').value;
-    const status = document.getElementById('departmentStatus').value;
+    const departmentFoundingDate = document.getElementById('departmentFoundingDate').value;
+    const departmentDescription = document.getElementById('departmentDescription').value;
+    const departmentStatus = document.getElementById('departmentStatus').value;
 
-    // Create data object
-    let data = {
-        departmentCode: departmentCode,
-        departmentName: departmentName,
-        departmentHead: departmentHead,
-        foundingDate: foundingDate,
-        description: description,
-        isActive: status === 'active'
-    };
+    // Validate required fields
+    if (!departmentCode || !departmentName) {
+        showToast('error', 'Lỗi', 'Vui lòng điền đầy đủ thông tin bắt buộc');
+        return;
+    }
 
-    console.log('Saving department data:', data);
+    try {
+        const token = getAuthToken();
+        let url = '/api/departments';
+        let method = 'POST';
+        
+        // Prepare data
+        const data = {
+            departmentCode: departmentCode,
+            departmentName: departmentName,
+            head: departmentHead,
+            foundingDate: departmentFoundingDate || null,
+            isActive: departmentStatus === 'active',
+            description: departmentDescription
+        };
+        
+        // If updating existing department
+        if (departmentId) {
+            url = `/api/departments/${departmentId}`;
+            method = 'PUT';
+        }
+        
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-    // In a real application, you would make an API call to save data
-    // For demo purposes, just show success message and reload
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to save department');
+        }
 
-    // Hide modal
-    const modal = bootstrap.Modal.getInstance(document.getElementById('departmentModal'));
-    modal.hide();
-
-    // Show success message
-    showToast('success', 'Thành công', departmentId ? 'Cập nhật khoa thành công' : 'Thêm khoa mới thành công');
-
-    // Reload data
-    loadDepartmentData(currentDepartmentPage);
+        // Close modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('departmentModal'));
+        modal.hide();
+        
+        // Reload department data
+        loadDepartmentData(currentDepartmentPage);
+        
+        showToast('success', 'Thành công', departmentId ? 'Đã cập nhật thông tin khoa' : 'Đã thêm khoa mới');
+    } catch (error) {
+        console.error('Error saving department:', error);
+        showToast('error', 'Lỗi', error.message || 'Không thể lưu thông tin khoa');
+    }
 }
 
 // Edit department
@@ -380,107 +585,115 @@ function editDepartment(departmentId) {
 }
 
 // Delete department
-function deleteDepartment(departmentId) {
-    if (confirm('Bạn có chắc chắn muốn xóa khoa này?')) {
-        // In a real application, you would make an API call to delete
-        // For demo purposes, just show success message and reload
-        showToast('success', 'Thành công', 'Xóa khoa thành công');
+async function deleteDepartment(departmentId) {
+    if (!confirm('Bạn có chắc chắn muốn xóa khoa này không?')) {
+        return;
+    }
+    
+    try {
+        const token = getAuthToken();
+        const response = await fetch(`/api/departments/${departmentId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to delete department');
+        }
+        
+        // Reload department data
         loadDepartmentData(currentDepartmentPage);
+        showToast('success', 'Thành công', 'Đã xóa khoa');
+    } catch (error) {
+        console.error('Error deleting department:', error);
+        showToast('error', 'Lỗi', error.message || 'Không thể xóa khoa');
     }
 }
 
 // CLASS MANAGEMENT FUNCTIONALITY
 
 // Load class data
-function loadClassData(page = 1) {
+async function loadClassData(page = 1) {
     currentClassPage = page;
     const tableBody = document.getElementById('classesTableBody');
     tableBody.innerHTML = '<tr><td colspan="8" class="text-center">Đang tải dữ liệu...</td></tr>';
-
+    
     // Get filter values
-    const classId = document.getElementById('searchClassId').value.trim();
+    const classCode = document.getElementById('searchClassId').value.trim();
     const className = document.getElementById('searchClassName').value.trim();
-    const department = document.getElementById('searchClassDepartment').value;
-
+    const departmentId = document.getElementById('searchClassDepartment').value.trim();
+    
     // Build query string
     let queryParams = new URLSearchParams();
-    if (classId) queryParams.append('classId', classId);
-    if (className) queryParams.append('name', className);
-    if (department) queryParams.append('departmentId', getDepartmentIdFromCode(department));
+    if (classCode) queryParams.append('classCode', classCode);
+    if (className) queryParams.append('className', className);
+    if (departmentId) queryParams.append('departmentId', departmentId);
     queryParams.append('page', page);
     queryParams.append('pageSize', pageSize);
-
-    // For demo purposes, use mock data instead of API call
-    // In a real application, you would make an API call to fetch data
-    const mockData = getMockClassData();
-    renderClassData(mockData);
-}
-
-// Get mock class data for demo
-function getMockClassData() {
-    return {
-        items: [
-            {
-                classID: 1,
-                classCode: "CSA",
-                className: "Computer Science - Class A",
-                departmentCode: "CNTT",
-                departmentName: "Công nghệ thông tin",
-                studentCount: 30,
-                teacher: "Nguyễn Văn X",
-                startYear: 2020,
-                isActive: true
-            },
-            {
-                classID: 2,
-                classCode: "CSB",
-                className: "Computer Science - Class B",
-                departmentCode: "CNTT",
-                departmentName: "Công nghệ thông tin",
-                studentCount: 32,
-                teacher: "Trần Thị Y",
-                startYear: 2020,
-                isActive: true
-            },
-            {
-                classID: 3,
-                classCode: "BMA",
-                className: "Business Management - Class A",
-                departmentCode: "QTKD",
-                departmentName: "Quản trị kinh doanh",
-                studentCount: 28,
-                teacher: "Lê Văn Z",
-                startYear: 2021,
-                isActive: true
-            },
-            {
-                classID: 4,
-                classCode: "ACA",
-                className: "Accounting - Class A",
-                departmentCode: "KT",
-                departmentName: "Kế toán",
-                studentCount: 25,
-                teacher: "Phạm Thị W",
-                startYear: 2021,
-                isActive: true
-            },
-            {
-                classID: 5,
-                classCode: "ENA",
-                className: "English - Class A",
-                departmentCode: "NNA",
-                departmentName: "Ngôn ngữ Anh",
-                studentCount: 26,
-                teacher: "Hoàng Văn V",
-                startYear: 2022,
-                isActive: true
+    
+    try {
+        const token = getAuthToken();
+        
+        // If no token and in development mode, use mock data
+        if (!token && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+            console.warn('No authentication token found, using mock data for development');
+            const mockData = {
+                items: [
+                    {
+                        classID: 1,
+                        classCode: "CSA",
+                        className: "Computer Science - Class A",
+                        departmentID: 1,
+                        departmentName: "Công nghệ thông tin",
+                        studentCount: 30,
+                        teacher: "Nguyễn Văn X",
+                        startYear: 2022,
+                        isActive: true
+                    },
+                    {
+                        classID: 2,
+                        classCode: "CSB",
+                        className: "Computer Science - Class B",
+                        departmentID: 1,
+                        departmentName: "Công nghệ thông tin",
+                        studentCount: 32,
+                        teacher: "Trần Thị Y",
+                        startYear: 2022,
+                        isActive: true
+                    }
+                ],
+                totalCount: 2,
+                pageSize: 10,
+                currentPage: 1,
+                totalPages: 1
+            };
+            renderClassData(mockData);
+            return;
+        }
+        
+        const response = await fetch(`/api/classes?${queryParams.toString()}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             }
-        ],
-        totalCount: 5,
-        pageSize: 10,
-        currentPage: 1,
-        totalPages: 1
-    };
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch class data');
+        }
+
+        const data = await response.json();
+        renderClassData(data);
+    } catch (error) {
+        console.error('Error loading class data:', error);
+        tableBody.innerHTML = '<tr><td colspan="8" class="text-center text-danger">Lỗi khi tải dữ liệu</td></tr>';
+        showToast('error', 'Lỗi', 'Không thể tải dữ liệu lớp học');
+    }
 }
 
 // Render class data to the table
@@ -492,33 +705,33 @@ function renderClassData(data) {
         updateClassPagination(data || { totalPages: 1, currentPage: 1 });
         return;
     }
-
+    
     tableBody.innerHTML = '';
-    data.items.forEach(cls => {
-        // Format data for display
-        const statusClass = cls.isActive ? 'status-active' : 'status-inactive';
-        const statusDisplay = cls.isActive ? 'Đang hoạt động' : 'Đã kết thúc';
-
+    data.items.forEach(classItem => {
+        const startYear = classItem.startYear || 'N/A';
+        const statusClass = classItem.isActive ? 'status-active' : 'status-inactive';
+        const statusDisplay = classItem.isActive ? 'Đang hoạt động' : 'Đã kết thúc';
+        
         tableBody.innerHTML += `
         <tr>
-            <td>${cls.classCode || 'N/A'}</td>
-            <td>${cls.className || 'N/A'}</td>
-            <td>${cls.departmentName || 'N/A'}</td>
-            <td>${cls.studentCount || 0}</td>
-            <td>${cls.teacher || 'N/A'}</td>
-            <td>${cls.startYear || 'N/A'}</td>
+            <td>${classItem.classCode || 'N/A'}</td>
+            <td>${classItem.className || 'N/A'}</td>
+            <td>${classItem.departmentName || 'N/A'}</td>
+            <td>${classItem.studentCount || 0}</td>
+            <td>${classItem.teacher || 'N/A'}</td>
+            <td>${startYear}</td>
             <td><span class="status-badge ${statusClass}">${statusDisplay}</span></td>
             <td>
-                <button class="action-btn edit-btn" data-id="${cls.classID}" title="Sửa">
+                <button class="action-btn edit-btn" data-id="${classItem.classID}" title="Sửa">
                     <i class="fas fa-edit"></i>
                 </button>
-                <button class="action-btn delete-btn" data-id="${cls.classID}" title="Xóa">
+                <button class="action-btn delete-btn" data-id="${classItem.classID}" title="Xóa">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </td>
         </tr>`;
     });
-
+    
     // Add event listeners to action buttons
     document.querySelectorAll('#classesTableBody .edit-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -526,151 +739,333 @@ function renderClassData(data) {
             editClass(classId);
         });
     });
-
+    
     document.querySelectorAll('#classesTableBody .delete-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const classId = this.getAttribute('data-id');
             deleteClass(classId);
         });
     });
-
+    
     // Update pagination
     updateClassPagination(data);
 }
 
 // Search classes
 function searchClasses() {
-    loadClassData(1); // Reset to page 1 when searching
+    loadClassData(1);
 }
 
-// Reset class search
+// Reset class search form
 function resetClassSearch() {
     document.getElementById('searchClassId').value = '';
     document.getElementById('searchClassName').value = '';
     document.getElementById('searchClassDepartment').value = '';
-    loadClassData(1); // Reset to page 1
+    loadClassData(1);
 }
 
 // Update class pagination
 function updateClassPagination(data) {
     const paginationContainer = document.querySelector('#classes-content .pagination-container');
+    
+    if (!paginationContainer) return;
+    
+    // Clear previous pagination
     paginationContainer.innerHTML = '';
-
+    
     // Previous button
     const prevBtn = document.createElement('button');
-    prevBtn.className = `pagination-btn ${currentClassPage <= 1 ? 'disabled' : ''}`;
-    prevBtn.dataset.page = 'prev';
-    prevBtn.disabled = currentClassPage <= 1;
+    prevBtn.className = 'pagination-btn';
+    prevBtn.setAttribute('data-page', 'prev');
     prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-    prevBtn.addEventListener('click', () => loadClassData(currentClassPage - 1));
-    paginationContainer.appendChild(prevBtn);
-
-    // Page buttons
-    for (let i = 1; i <= data.totalPages; i++) {
-        if (data.totalPages > 5 && i > 2 && i < data.totalPages - 1 && Math.abs(i - currentClassPage) > 1) {
-            if (paginationContainer.lastChild && paginationContainer.lastChild.className !== 'pagination-ellipsis') {
-                const ellipsis = document.createElement('span');
-                ellipsis.className = 'pagination-ellipsis';
-                ellipsis.textContent = '...';
-                paginationContainer.appendChild(ellipsis);
-            }
-            continue;
+    prevBtn.disabled = data.currentPage <= 1;
+    prevBtn.addEventListener('click', function() {
+        if (data.currentPage > 1) {
+            loadClassData(data.currentPage - 1);
         }
-
+    });
+    paginationContainer.appendChild(prevBtn);
+    
+    // Page buttons
+    const totalPages = Math.min(data.totalPages, 5);
+    let startPage = Math.max(1, data.currentPage - 2);
+    let endPage = Math.min(data.totalPages, startPage + 4);
+    
+    if (endPage - startPage < 4) {
+        startPage = Math.max(1, endPage - 4);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
         const pageBtn = document.createElement('button');
-        pageBtn.className = `pagination-btn ${i === currentClassPage ? 'active' : ''}`;
-        pageBtn.dataset.page = i;
+        pageBtn.className = 'pagination-btn';
+        if (i === data.currentPage) {
+            pageBtn.classList.add('active');
+        }
+        pageBtn.setAttribute('data-page', i);
         pageBtn.textContent = i;
-        pageBtn.addEventListener('click', () => loadClassData(i));
+        pageBtn.addEventListener('click', function() {
+            loadClassData(i);
+        });
         paginationContainer.appendChild(pageBtn);
     }
-
+    
     // Next button
     const nextBtn = document.createElement('button');
-    nextBtn.className = `pagination-btn ${currentClassPage >= data.totalPages ? 'disabled' : ''}`;
-    nextBtn.dataset.page = 'next';
-    nextBtn.disabled = currentClassPage >= data.totalPages;
+    nextBtn.className = 'pagination-btn';
+    nextBtn.setAttribute('data-page', 'next');
     nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-    nextBtn.addEventListener('click', () => loadClassData(currentClassPage + 1));
+    nextBtn.disabled = data.currentPage >= data.totalPages;
+    nextBtn.addEventListener('click', function() {
+        if (data.currentPage < data.totalPages) {
+            loadClassData(data.currentPage + 1);
+        }
+    });
     paginationContainer.appendChild(nextBtn);
 }
 
-// Show class modal for adding new class
-function showClassModal(classId = null) {
-    const modal = new bootstrap.Modal(document.getElementById('classModal'));
-    document.getElementById('classForm').reset();
-    document.getElementById('classModalTitle').textContent = classId ? 'Cập nhật lớp học' : 'Thêm lớp học mới';
-    document.getElementById('classId').value = classId || '';
-
+// Show class modal for add/edit
+async function showClassModal(classId = null) {
+    // Đảm bảo xóa các modal backdrop cũ
+    clearModalBackdrop();
+    
+    // Đóng modal hiện tại nếu có
+    const existingModal = bootstrap.Modal.getInstance(document.getElementById('classModal'));
+    if (existingModal) {
+        existingModal.dispose();
+    }
+    
+    const modalElement = document.getElementById('classModal');
+    
+    // Đặt lại style ban đầu
+    modalElement.style.display = '';
+    modalElement.style.paddingRight = '';
+    modalElement.classList.remove('show');
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    
+    const modal = new bootstrap.Modal(modalElement, {
+        backdrop: true,
+        keyboard: true,
+        focus: true
+    });
+    
+    const modalTitle = document.getElementById('classModalTitle');
+    const classForm = document.getElementById('classForm');
+    
+    // Reset form
+    classForm.reset();
+    document.getElementById('classId').value = '';
+    
+    // Set default status to active
+    document.getElementById('classStatus').value = 'active';
+    
+    // Load departments for dropdown
+    await loadDepartmentsForDropdown();
+    
     if (classId) {
-        // For demo purposes, fetch from mock data
-        // In a real application, you would make an API call
-        const mockData = getMockClassData();
-        const classData = mockData.items.find(c => c.classID == classId);
-        
-        if (classData) {
+        // Edit mode
+        modalTitle.textContent = 'Chỉnh sửa thông tin lớp học';
+        try {
+            const token = getAuthToken();
+            
+            // Nếu đang ở chế độ dev và không có token, sử dụng dữ liệu mẫu
+            if (!token && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+                const mockClass = {
+                    classID: classId,
+                    classCode: "CSA",
+                    className: "Computer Science - Class A",
+                    departmentID: 1,
+                    teacher: "Nguyễn Văn X",
+                    startYear: 2022,
+                    maxStudents: 50,
+                    description: "Lớp học chuyên ngành khoa học máy tính",
+                    isActive: true
+                };
+                
+                // Fill form with class data
+                document.getElementById('classId').value = mockClass.classID;
+                document.getElementById('classCode').value = mockClass.classCode;
+                document.getElementById('className').value = mockClass.className;
+                document.getElementById('classDepartment').value = mockClass.departmentID;
+                document.getElementById('classTeacher').value = mockClass.teacher || '';
+                document.getElementById('classStartYear').value = mockClass.startYear || '';
+                document.getElementById('classMaxStudents').value = mockClass.maxStudents || '';
+                document.getElementById('classDescription').value = mockClass.description || '';
+                document.getElementById('classStatus').value = mockClass.isActive ? 'active' : 'inactive';
+                
+                modal.show();
+                return;
+            }
+            
+            const response = await fetch(`/api/classes/${classId}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch class data');
+            }
+
+            const classData = await response.json();
+            
+            // Fill form with class data
+            document.getElementById('classId').value = classData.classID;
             document.getElementById('classCode').value = classData.classCode;
             document.getElementById('className').value = classData.className;
-            document.getElementById('classDepartment').value = classData.departmentCode;
+            document.getElementById('classDepartment').value = classData.departmentID;
             document.getElementById('classTeacher').value = classData.teacher || '';
             document.getElementById('classStartYear').value = classData.startYear || '';
+            document.getElementById('classMaxStudents').value = classData.maxStudents || '';
+            document.getElementById('classDescription').value = classData.description || '';
             document.getElementById('classStatus').value = classData.isActive ? 'active' : 'inactive';
-        } else {
-            showToast('error', 'Lỗi', 'Không tìm thấy thông tin lớp học');
+        } catch (error) {
+            console.error('Error fetching class:', error);
+            showToast('error', 'Lỗi', 'Không thể tải thông tin lớp học');
             return;
         }
+    } else {
+        // Add mode
+        modalTitle.textContent = 'Thêm lớp học mới';
     }
-
+    
+    // Hiển thị modal
     modal.show();
 }
 
-// Save class (create or update)
-function saveClass() {
-    // Validate form
-    const form = document.getElementById('classForm');
-    if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-    }
+// Load departments for class dropdown
+async function loadDepartmentsForDropdown() {
+    try {
+        const token = getAuthToken();
+        
+        // If no token and in development mode, use mock data
+        if (!token && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+            console.warn('No authentication token found, using mock data for development');
+            const mockDepartments = [
+                { departmentID: 1, departmentName: "Công nghệ thông tin", departmentCode: "CNTT" },
+                { departmentID: 2, departmentName: "Quản trị kinh doanh", departmentCode: "QTKD" },
+                { departmentID: 3, departmentName: "Kế toán", departmentCode: "KT" },
+                { departmentID: 4, departmentName: "Ngôn ngữ Anh", departmentCode: "NNA" }
+            ];
+            
+            const departmentDropdown = document.getElementById('classDepartment');
+            const searchDepartmentDropdown = document.getElementById('searchClassDepartment');
+            
+            // Clear existing options except the first one
+            departmentDropdown.innerHTML = '<option value="">Chọn khoa</option>';
+            searchDepartmentDropdown.innerHTML = '<option value="">Tất cả</option>';
+            
+            mockDepartments.forEach(department => {
+                departmentDropdown.innerHTML += `<option value="${department.departmentID}">${department.departmentName} (${department.departmentCode})</option>`;
+                searchDepartmentDropdown.innerHTML += `<option value="${department.departmentID}">${department.departmentName}</option>`;
+            });
+            
+            return;
+        }
+        
+        const response = await fetch('/api/departments', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
 
-    // Get form values
+        if (!response.ok) {
+            throw new Error('Failed to fetch departments');
+        }
+
+        const data = await response.json();
+        const departmentDropdown = document.getElementById('classDepartment');
+        const searchDepartmentDropdown = document.getElementById('searchClassDepartment');
+        
+        // Clear existing options except the first one
+        departmentDropdown.innerHTML = '<option value="">Chọn khoa</option>';
+        searchDepartmentDropdown.innerHTML = '<option value="">Tất cả</option>';
+        
+        if (data.items && data.items.length > 0) {
+            data.items.forEach(department => {
+                departmentDropdown.innerHTML += `<option value="${department.departmentID}">${department.departmentName} (${department.departmentCode})</option>`;
+                searchDepartmentDropdown.innerHTML += `<option value="${department.departmentID}">${department.departmentName}</option>`;
+            });
+        }
+    } catch (error) {
+        console.error('Error loading departments:', error);
+        showToast('error', 'Lỗi', 'Không thể tải danh sách khoa');
+    }
+}
+
+// Save class (create or update)
+async function saveClass() {
+    // Get form data
     const classId = document.getElementById('classId').value;
     const classCode = document.getElementById('classCode').value;
     const className = document.getElementById('className').value;
-    const department = document.getElementById('classDepartment').value;
+    const departmentId = document.getElementById('classDepartment').value;
     const teacher = document.getElementById('classTeacher').value;
     const startYear = document.getElementById('classStartYear').value;
     const maxStudents = document.getElementById('classMaxStudents').value;
     const description = document.getElementById('classDescription').value;
     const status = document.getElementById('classStatus').value;
 
-    // Create data object
-    let data = {
-        classCode: classCode,
-        className: className,
-        departmentCode: department,
-        departmentId: getDepartmentIdFromCode(department),
-        teacher: teacher,
-        startYear: startYear,
-        maxStudents: maxStudents,
-        description: description,
-        isActive: status === 'active'
-    };
+    // Validate required fields
+    if (!classCode || !className || !departmentId) {
+        showToast('error', 'Lỗi', 'Vui lòng điền đầy đủ thông tin bắt buộc');
+        return;
+    }
 
-    console.log('Saving class data:', data);
+    try {
+        const token = getAuthToken();
+        let url = '/api/classes';
+        let method = 'POST';
+        
+        // Prepare data
+        const data = {
+            classCode: classCode,
+            className: className,
+            departmentID: parseInt(departmentId),
+            teacher: teacher,
+            startYear: startYear ? parseInt(startYear) : null,
+            maxStudents: maxStudents ? parseInt(maxStudents) : null,
+            isActive: status === 'active',
+            description: description
+        };
+        
+        // If updating existing class
+        if (classId) {
+            url = `/api/classes/${classId}`;
+            method = 'PUT';
+        }
+        
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-    // In a real application, you would make an API call to save data
-    // For demo purposes, just show success message and reload
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to save class');
+        }
 
-    // Hide modal
-    const modal = bootstrap.Modal.getInstance(document.getElementById('classModal'));
-    modal.hide();
-
-    // Show success message
-    showToast('success', 'Thành công', classId ? 'Cập nhật lớp học thành công' : 'Thêm lớp học mới thành công');
-
-    // Reload data
-    loadClassData(currentClassPage);
+        // Close modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('classModal'));
+        modal.hide();
+        
+        // Reload class data
+        loadClassData(currentClassPage);
+        
+        showToast('success', 'Thành công', classId ? 'Đã cập nhật thông tin lớp học' : 'Đã thêm lớp học mới');
+    } catch (error) {
+        console.error('Error saving class:', error);
+        showToast('error', 'Lỗi', error.message || 'Không thể lưu thông tin lớp học');
+    }
 }
 
 // Edit class
@@ -679,50 +1074,54 @@ function editClass(classId) {
 }
 
 // Delete class
-function deleteClass(classId) {
-    if (confirm('Bạn có chắc chắn muốn xóa lớp học này?')) {
-        // In a real application, you would make an API call to delete
-        // For demo purposes, just show success message and reload
-        showToast('success', 'Thành công', 'Xóa lớp học thành công');
+async function deleteClass(classId) {
+    if (!confirm('Bạn có chắc chắn muốn xóa lớp học này không?')) {
+        return;
+    }
+    
+    try {
+        const token = getAuthToken();
+        const response = await fetch(`/api/classes/${classId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to delete class');
+        }
+        
+        // Reload class data
         loadClassData(currentClassPage);
+        showToast('success', 'Thành công', 'Đã xóa lớp học');
+    } catch (error) {
+        console.error('Error deleting class:', error);
+        showToast('error', 'Lỗi', error.message || 'Không thể xóa lớp học');
     }
 }
 
 // UTILITY FUNCTIONS
 
-// Format date for display (YYYY-MM-DD to DD/MM/YYYY)
+// Format date for display
 function formatDate(dateString) {
     if (!dateString) return 'N/A';
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
 }
 
-// Format date for input field (YYYY-MM-DD)
+// Format date for input fields (yyyy-MM-dd)
 function formatDateForInput(dateString) {
     if (!dateString) return '';
+    
     const date = new Date(dateString);
-    return date.toISOString().split('T')[0];
-}
-
-// Get department ID from code
-function getDepartmentIdFromCode(departmentCode) {
-    // This is a placeholder function - in a real app, you'd map department codes to IDs
-    const departmentMap = {
-        'CNTT': 1,
-        'QTKD': 2,
-        'KT': 3,
-        'NNA': 4
-    };
-    return departmentMap[departmentCode] || 1;
-}
-
-// Get department name from code
-function getDepartmentName(departmentCode) {
-    const departmentMap = {
-        'CNTT': 'Công nghệ thông tin',
-        'QTKD': 'Quản trị kinh doanh',
-        'KT': 'Kế toán',
-        'NNA': 'Ngôn ngữ Anh'
-    };
-    return departmentMap[departmentCode] || departmentCode;
+    if (isNaN(date.getTime())) return '';
+    
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
 } 

@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\accoutant_profile.html"
     },
     {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-department-class.html",
+      "PackagePath": "staticwebassets\\admin-department-class.html"
+    },
+    {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-management.html",
       "PackagePath": "staticwebassets\\admin-management.html"
     },
@@ -87,6 +91,10 @@
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\admin-dashboard.js",
       "PackagePath": "staticwebassets\\js\\admin-dashboard.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\admin-department-class.js",
+      "PackagePath": "staticwebassets\\js\\admin-department-class.js"
     },
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\admin-profile.js",
