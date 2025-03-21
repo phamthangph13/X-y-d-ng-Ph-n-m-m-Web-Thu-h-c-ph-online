@@ -391,7 +391,7 @@ namespace WebProject.Controllers
                     Items = payments,
                     TotalCount = totalCount,
                     PageSize = pageSize,
-                    PageNumber = pageNumber
+                    CurrentPage = pageNumber
                 };
             }
             catch (Exception ex)

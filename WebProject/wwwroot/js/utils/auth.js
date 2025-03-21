@@ -135,4 +135,29 @@ export function initDemoAuth() {
         setAuthToken('demo_token_for_development');
         console.log('Demo authentication initialized');
     }
+}
+
+/**
+ * Check if user is authenticated as admin and redirect to login page if not
+ * @returns {boolean} True if authenticated as admin, false otherwise
+ */
+export function checkAdminAuth() {
+    const token = getAuthToken();
+    
+    if (!token) {
+        // Redirect to login page if not authenticated
+        window.location.href = REDIRECT_URL;
+        return false;
+    }
+    
+    // Check if user has admin role
+    const userData = getUserData();
+    if (!userData || userData.role !== 'Admin') {
+        // Redirect to login page if not admin
+        localStorage.setItem('auth_error', 'You must be an administrator to access this page');
+        window.location.href = REDIRECT_URL;
+        return false;
+    }
+    
+    return true;
 } 

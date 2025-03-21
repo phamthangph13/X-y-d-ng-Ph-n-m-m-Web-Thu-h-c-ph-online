@@ -9,28 +9,20 @@
       "PackagePath": "staticwebassets\\accoutant_profile.html"
     },
     {
-      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-courses.html",
-      "PackagePath": "staticwebassets\\admin-courses.html"
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-management.html",
+      "PackagePath": "staticwebassets\\admin-management.html"
     },
     {
-      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-dashboard.html",
-      "PackagePath": "staticwebassets\\admin-dashboard.html"
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-payment-methods.html",
+      "PackagePath": "staticwebassets\\admin-payment-methods.html"
     },
     {
-      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-manual-payment.html",
-      "PackagePath": "staticwebassets\\admin-manual-payment.html"
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-profile.html",
+      "PackagePath": "staticwebassets\\admin-profile.html"
     },
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-reports.html",
       "PackagePath": "staticwebassets\\admin-reports.html"
-    },
-    {
-      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-students.html",
-      "PackagePath": "staticwebassets\\admin-students.html"
-    },
-    {
-      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-system.html",
-      "PackagePath": "staticwebassets\\admin-system.html"
     },
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\admin-tuition.html",
@@ -97,8 +89,16 @@
       "PackagePath": "staticwebassets\\js\\admin-dashboard.js"
     },
     {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\admin-profile.js",
+      "PackagePath": "staticwebassets\\js\\admin-profile.js"
+    },
+    {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\admin-system.js",
       "PackagePath": "staticwebassets\\js\\admin-system.js"
+    },
+    {
+      "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\admin-users.js",
+      "PackagePath": "staticwebassets\\js\\admin-users.js"
     },
     {
       "Id": "C:\\Users\\winni\\OneDrive\\Desktop\\X-y-d-ng-Ph-n-m-m-Web-Thu-h-c-ph-online\\WebProject\\wwwroot\\js\\bootstrap.bundle.min.js",

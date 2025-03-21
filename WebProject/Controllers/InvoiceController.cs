@@ -141,7 +141,7 @@ namespace WebProject.Controllers
                 {
                     Items = invoices,
                     TotalCount = totalCount,
-                    PageNumber = model.PageNumber,
+                    CurrentPage = model.PageNumber,
                     PageSize = model.PageSize
                 };
                 
